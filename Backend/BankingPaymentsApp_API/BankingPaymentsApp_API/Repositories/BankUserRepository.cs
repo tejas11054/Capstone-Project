@@ -12,25 +12,25 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        public IEnumerable<BankUser> GetAll()
+        public async Task<IEnumerable<BankUser>> GetAll()
         {
-            return _dbContext.BankUsers.ToList();
+            return await _dbContext.BankUsers.ToListAsync();
         }
 
-        public BankUser Add(BankUser user)
+        public async Task<BankUser> Add(BankUser user)
         {
-            _dbContext.Users.Add(user);
-            _dbContext.SaveChanges();
+            await _dbContext.Users.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
             return user;
         }
 
-        public BankUser? GetById(int id)
+        public async Task<BankUser?> GetById(int id)
         {
-            return _dbContext.BankUsers.Include(u => u.Role).FirstOrDefault(u => u.UserId.Equals(id));
+            return await _dbContext.BankUsers.Include(u => u.Role).FirstOrDefaultAsync(u => u.UserId.Equals(id));
         }
-        public BankUser? Update(BankUser user)
+        public async Task<BankUser?> Update(BankUser user)
         {
-            BankUser? existingUser = GetById(user.UserId);
+            BankUser? existingUser = await GetById(user.UserId);
 
             if (existingUser == null)
                 return null;
@@ -44,17 +44,18 @@ namespace BankingPaymentsApp_API.Repositories
             existingUser.Branch = user.Branch;
             existingUser.RefferalCode = user.RefferalCode;
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             return existingUser;
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            BankUser? existingUser = GetById(id);
+            BankUser? existingUser = await GetById(id);
 
             if (existingUser == null) return;
 
             _dbContext.Users.Remove(existingUser);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
