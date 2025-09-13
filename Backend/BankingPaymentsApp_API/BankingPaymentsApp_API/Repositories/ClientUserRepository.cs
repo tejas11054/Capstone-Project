@@ -26,7 +26,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public ClientUser? getById(int id)
         {
-            return _dbContext.ClientUsers.Include(u => u.Role).FirstOrDefault(d => d.UserId.Equals(id));
+            return _dbContext.ClientUsers.Include(u => u.Role).Include(u=> u.Account).FirstOrDefault(d => d.UserId.Equals(id));
         }
 
         public ClientUser? Update(ClientUser user)
