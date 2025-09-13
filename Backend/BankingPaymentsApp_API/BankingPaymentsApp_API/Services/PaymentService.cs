@@ -3,7 +3,7 @@ using BankingPaymentsApp_API.Repositories;
 
 namespace BankingPaymentsApp_API.Services
 {
-    public class PaymentService : IPayementService
+    public class PaymentService : IPaymentService
     {
         private readonly IPaymentRepository _paymentRepository;
 

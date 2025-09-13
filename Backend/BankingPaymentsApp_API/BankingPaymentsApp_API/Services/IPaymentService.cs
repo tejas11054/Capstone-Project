@@ -2,7 +2,7 @@
 
 namespace BankingPaymentsApp_API.Services
 {
-    public interface IPayementService
+    public interface IPaymentService
     {
         public IEnumerable<Payment> GetAll();
         public Payment Add(Payment payment);

@@ -1,5 +1,7 @@
 
 using BankingPaymentsApp_API.Data;
+using BankingPaymentsApp_API.Repositories;
+using BankingPaymentsApp_API.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankingPaymentsApp_API
@@ -21,6 +23,24 @@ namespace BankingPaymentsApp_API
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("connString"));
             });
+            builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+            builder.Services.AddScoped<IBankUserRepository, BankUserRepository>();
+            builder.Services.AddScoped<IBeneficiaryRepository, BeneficiaryRepository>();
+            builder.Services.AddScoped<IClientUserRepository, ClientUserRepository>();
+            builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+            builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IBankUserService, BankUserService>();
+            builder.Services.AddScoped<IBeneficiaryService, BeneficiaryService>();
+            builder.Services.AddScoped<IClientUserService, ClientUserService>();
+            builder.Services.AddScoped<IDocumentService, DocumentService>();
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
+            builder.Services.AddScoped<ITransactionService, TransactionService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             var app = builder.Build();
 
