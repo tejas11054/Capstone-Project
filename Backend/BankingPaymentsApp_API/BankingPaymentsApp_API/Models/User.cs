@@ -25,6 +25,6 @@ namespace BankingPaymentsApp_API.Models
         [RegularExpression(@"[0-9]{10}")]
         public string UserPhone { get; set; } = null!;
         [Required(ErrorMessage = "User Joining Date is Required!")]
-        public DateTime UserJoiningDate { get; set; } = DateTime.Now.Date;
+        public DateTime UserJoiningDate { get; set; } = DateTime.Now.Date;  
     }
 }
