@@ -12,26 +12,26 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        public IEnumerable<Account> GetAll()
+        public async Task<IEnumerable<Account>> GetAll()
         {
-            return _dbContext.Accounts.ToList();
+            return await _dbContext.Accounts.ToListAsync();
         }
 
-        public Account Add(Account account)
+        public async Task<Account> Add(Account account)
         {
-            _dbContext.Accounts.Add(account);
-            _dbContext.SaveChanges();
+            await _dbContext.Accounts.AddAsync(account);
+            await _dbContext.SaveChangesAsync();
             return account;
         }
 
-        public Account? GetById(int id)
+        public async Task<Account?> GetById(int id)
         {
-            return _dbContext.Accounts.Include(a=>a.ClientUser).Include(a=>a.AccountStatus).Include(a=>a.AccountType).FirstOrDefault(u => u.AccountId.Equals(id));
+            return await _dbContext.Accounts.Include(a => a.ClientUser).Include(a => a.AccountStatus).Include(a => a.AccountType).FirstOrDefaultAsync(u => u.AccountId.Equals(id));
         }
 
-        public Account? Update(Account account)
+        public async Task<Account?> Update(Account account)
         {
-            Account? existingAccount = GetById(account.AccountId);
+            Account? existingAccount = await GetById(account.AccountId);
 
             if (existingAccount == null)
                 return null;
@@ -42,17 +42,18 @@ namespace BankingPaymentsApp_API.Repositories
             existingAccount.AccountTypeId = account.AccountTypeId;
             existingAccount.ClientId = account.ClientId;
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             return existingAccount;
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            Account? existingAccount = GetById(id);
+            Account? existingAccount = await GetById(id);
 
             if (existingAccount == null) return;
 
             _dbContext.Accounts.Remove(existingAccount);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

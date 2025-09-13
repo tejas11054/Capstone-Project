@@ -4,11 +4,11 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IAccountService
     {
-        IEnumerable<Account> GetAll();
-        Account Add(Account account);
-        Account? GetById(int id);
-        Account? Update(Account account);
-        void DeleteById(int id);
+        Task<IEnumerable<Account>> GetAll();
+        Task<Account> Add(Account account);
+        Task<Account?> GetById(int id);
+        Task<Account?> Update(Account account);
+        Task DeleteById(int id);
     }
 }
 
