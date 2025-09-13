@@ -8,7 +8,8 @@ namespace BankingPaymentsApp_API.Models
         ADDRESS_PROOF,
         DATE_OF_BIRTH_PROOF,
         PHOTOGRAPH,
-        PAN_CARD
+        PAN_CARD,
+        OTHER
     }
     public class ProofType
     {
