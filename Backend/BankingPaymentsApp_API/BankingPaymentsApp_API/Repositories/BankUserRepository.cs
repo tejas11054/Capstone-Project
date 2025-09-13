@@ -1,6 +1,6 @@
 ﻿namespace BankingPaymentsApp_API.Repositories
 {
-    public class BankUserRepository
+    public class BankUserRepository : IBankUserRepository
     {
     }
 }

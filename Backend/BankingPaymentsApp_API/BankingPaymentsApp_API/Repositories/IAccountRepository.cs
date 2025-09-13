@@ -2,7 +2,7 @@
 
 namespace BankingPaymentsApp_API.Repositories
 {
-    public interface IAccountRepository
+    public interface IAccountRepository 
     {
         IEnumerable<Account> GetAll();
         Account Add(Account account);

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BankingPaymentsApp_API.Repositories
 {
-    public class DocumentRepository
+    public class DocumentRepository : IDocumentRepository
     {
         private readonly BankingPaymentsDBContext _dbContext;
         public DocumentRepository(BankingPaymentsDBContext dBContext)

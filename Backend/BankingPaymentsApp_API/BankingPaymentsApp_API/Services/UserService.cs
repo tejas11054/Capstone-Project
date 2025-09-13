@@ -25,5 +25,13 @@ namespace BankingPaymentsApp_API.Services
         {
             return _userRepository.GetById(id);
         }
+        public User? Update(User user)
+        {
+            return _userRepository?.Update(user);
+        }
+        public void DeleteById(int id)
+        {
+            _userRepository.DeleteById(id);
+        }
     }
 }
