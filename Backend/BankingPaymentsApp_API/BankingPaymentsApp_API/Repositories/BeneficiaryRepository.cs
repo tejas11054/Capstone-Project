@@ -24,14 +24,14 @@ namespace BankingPaymentsApp_API.Repositories
             return beneficiary;
         }
 
-        public Beneficiary? getById(int id)
+        public Beneficiary? GetById(int id)
         {
             return _dbContext.Beneficiaries.FirstOrDefault(u => u.BeneficiaryId.Equals(id));
         }
 
         public Beneficiary? Update(Beneficiary beneficiary)
         {
-            Beneficiary? existingBeneficiary = getById(beneficiary.BeneficiaryId);
+            Beneficiary? existingBeneficiary = GetById(beneficiary.BeneficiaryId);
 
             if (existingBeneficiary == null)
                 return null;
@@ -48,7 +48,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public void DeleteById(int id)
         {
-            Beneficiary? exisitngBeneficiary = getById(id);
+            Beneficiary? exisitngBeneficiary = GetById(id);
             if (exisitngBeneficiary == null) return;
             _dbContext.Beneficiaries.Remove(exisitngBeneficiary);
         }

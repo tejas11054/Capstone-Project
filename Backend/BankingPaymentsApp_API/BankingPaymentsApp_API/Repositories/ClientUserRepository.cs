@@ -24,14 +24,14 @@ namespace BankingPaymentsApp_API.Repositories
             return user;
         }
 
-        public ClientUser? getById(int id)
+        public ClientUser? GetById(int id)
         {
             return _dbContext.ClientUsers.Include(u => u.Role).Include(u=> u.Account).FirstOrDefault(d => d.UserId.Equals(id));
         }
 
         public ClientUser? Update(ClientUser user)
         {
-            ClientUser? existingClientUser = getById(user.UserId);
+            ClientUser? existingClientUser = GetById(user.UserId);
 
             if (existingClientUser == null)
                 return null;
@@ -53,7 +53,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public void DeleteById(int id)
         {
-            ClientUser? exisitngClientUser = getById(id);
+            ClientUser? exisitngClientUser = GetById(id);
             if (exisitngClientUser == null) return;
             _dbContext.ClientUsers.Remove(exisitngClientUser);
         }

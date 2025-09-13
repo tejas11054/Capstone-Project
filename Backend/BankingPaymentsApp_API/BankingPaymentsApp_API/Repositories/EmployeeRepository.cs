@@ -24,14 +24,14 @@ namespace BankingPaymentsApp_API.Repositories
             return employee;
         }
 
-        public Employee? getById(int id)
+        public Employee? GetById(int id)
         {
             return _dbContext.Employees.Include(e=>e.ClientUser).FirstOrDefault(e => e.EmployeeId.Equals(id));
         }
 
         public Employee? Update(Employee employee)
         {
-            Employee? existingEmployee = getById(employee.EmployeeId);
+            Employee? existingEmployee = GetById(employee.EmployeeId);
 
             if (existingEmployee == null)
                 return null;
@@ -48,7 +48,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public void DeleteById(int id)
         {
-            Employee? exisitngEmployee = getById(id);
+            Employee? exisitngEmployee = GetById(id);
             if (exisitngEmployee == null) return;
             _dbContext.Employees.Remove(exisitngEmployee);
         }

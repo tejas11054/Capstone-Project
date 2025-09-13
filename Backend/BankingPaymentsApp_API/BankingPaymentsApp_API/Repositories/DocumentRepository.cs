@@ -24,14 +24,14 @@ namespace BankingPaymentsApp_API.Repositories
             return document;
         }
 
-        public Document? getById(int id)
+        public Document? GetById(int id)
         {
             return _dbContext.Documents.Include(d=>d.ProofType).FirstOrDefault(d => d.DocumentId.Equals(id));
         }
 
         public Document? Update(Document document)
         {
-            Document? existingDocument = getById(document.DocumentId);
+            Document? existingDocument = GetById(document.DocumentId);
 
             if (existingDocument == null)
                 return null;
@@ -46,7 +46,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public void DeleteById(int id)
         {
-            Document? exisitngDocument = getById(id);
+            Document? exisitngDocument = GetById(id);
             if (exisitngDocument == null) return;
             _dbContext.Documents.Remove(exisitngDocument);
         }
