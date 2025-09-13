@@ -14,3 +14,14 @@ dist/
 # General
 *.env
 *.DS_Store
+
+# Visual Studio
+.vs/
+*.vscode/
+*.user
+*.suo
+*.swp
+*.dbmdl
+bin/
+obj/
+
