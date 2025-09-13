@@ -12,26 +12,26 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        public IEnumerable<Payment> GetAll()
+        public async Task<IEnumerable<Payment>> GetAll()
         {
-            return _dbContext.Payments.ToList();
+            return await _dbContext.Payments.ToListAsync();
         }
 
-        public Payment Add(Payment payment)
+        public async Task<Payment> Add(Payment payment)
         {
-            _dbContext.Payments.Add(payment);
-            _dbContext.SaveChanges();
+            await _dbContext.Payments.AddAsync(payment);
+            await _dbContext.SaveChangesAsync();
             return payment;
         }
 
-        public Payment? GetById(int id)
+        public async Task<Payment?> GetById(int id)
         {
-            return _dbContext.Payments.Include(p=>p.PayerAccount).Include(p=>p.PayeeAccount).Include(p=>p.PaymentStatus).FirstOrDefault(p => p.PaymentId.Equals(id));
+            return await _dbContext.Payments.Include(p=>p.PayerAccount).Include(p=>p.PayeeAccount).Include(p=>p.PaymentStatus).FirstOrDefaultAsync(p => p.PaymentId.Equals(id));
         }
 
-        public Payment? Update(Payment payment)
+        public async Task<Payment?> Update(Payment payment)
         {
-            Payment? existingPayment = GetById(payment.PaymentId);
+            Payment? existingPayment = await GetById(payment.PaymentId);
 
             if (existingPayment == null)
                 return null;
@@ -41,15 +41,16 @@ namespace BankingPaymentsApp_API.Repositories
             existingPayment.Amount = payment.Amount;
             existingPayment.PaymentStatusId = payment.PaymentStatusId;
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             return existingPayment;
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            Payment? exisitngPayment = GetById(id);
+            Payment? exisitngPayment = await GetById(id);
             if (exisitngPayment == null) return;
             _dbContext.Payments.Remove(exisitngPayment);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
