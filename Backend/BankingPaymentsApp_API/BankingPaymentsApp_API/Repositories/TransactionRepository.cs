@@ -12,26 +12,26 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        public IEnumerable<Transaction> GetAll()
+        public async Task<IEnumerable<Transaction>> GetAll()
         {
-            return _dbContext.Transactions.ToList();
+            return await _dbContext.Transactions.ToListAsync();
         }
 
-        public Transaction Add(Transaction transaction)
+        public async Task<Transaction> Add(Transaction transaction)
         {
-            _dbContext.Transactions.Add(transaction);
-            _dbContext.SaveChanges();
+            await _dbContext.Transactions.AddAsync(transaction);
+            await _dbContext.SaveChangesAsync();
             return transaction;
         }
 
-        public Transaction? GetById(int id)
+        public async Task<Transaction?> GetById(int id)
         {
-            return _dbContext.Transactions.Include(t=>t.Account).Include(t=>t.Payment).Include(t=>t.TransactionType).FirstOrDefault(t=>t.TransactionId.Equals(id));
+            return await _dbContext.Transactions.Include(t => t.Account).Include(t => t.Payment).Include(t => t.TransactionType).FirstOrDefaultAsync(t => t.TransactionId.Equals(id));
         }
 
-        public Transaction? Update(Transaction transaction)
+        public async Task<Transaction?> Update(Transaction transaction)
         {
-            Transaction? existingTransaction = GetById(transaction.TransactionId);
+            Transaction? existingTransaction = await GetById(transaction.TransactionId);
 
             if (existingTransaction == null)
                 return null;
@@ -41,15 +41,16 @@ namespace BankingPaymentsApp_API.Repositories
             existingTransaction.PayementId = transaction.PayementId;
             existingTransaction.Amount = transaction.Amount;
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             return existingTransaction;
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            Transaction? existingTransaction = GetById(id);
+            Transaction? existingTransaction = await GetById(id);
             if (existingTransaction == null) return;
             _dbContext.Transactions.Remove(existingTransaction);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

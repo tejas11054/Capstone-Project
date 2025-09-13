@@ -4,11 +4,11 @@ namespace BankingPaymentsApp_API.Repositories
 {
     public interface ITransactionRepository
     {
-        public IEnumerable<Transaction> GetAll();
-        public Transaction Add(Transaction transaction);
-        public Transaction? GetById(int id);
-        public Transaction? Update(Transaction transaction);
-        public void DeleteById(int id);
+        public Task<IEnumerable<Transaction>> GetAll();
+        public Task<Transaction> Add(Transaction transaction);
+        public Task<Transaction?> GetById(int id);
+        public Task<Transaction?> Update(Transaction transaction);
+        public Task DeleteById(int id);
 
     }
 }
