@@ -1,6 +1,21 @@
-﻿namespace BankingPaymentsApp_API.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BankingPaymentsApp_API.Models
 {
-    public class ClientUser
+    public class ClientUser : User
     {
+        [ForeignKey("Account")]
+        public int? AccountId { get; set; }
+        public virtual Account? Account { get; set; }
+        public List<int>? BeneficiaryIds { get; set; } = new List<int>();
+        public List<int>? EmployeeIds { get; set; } = new List<int>();
+        [Required(ErrorMessage = "Date of Birth is Required!")]
+        [DataType(DataType.Date)]
+        public DateTime DateOfBirth { get; set; }
+        [Required(ErrorMessage = "Address is Required!")]
+        public string Address { get; set; } = null!;
+        public bool KycVierified { get; set; } = false;
+        public List<int>? DocumentIds { get; set; } = new List<int>();
     }
 }
