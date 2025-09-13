@@ -7,5 +7,7 @@ namespace BankingPaymentsApp_API.Services
         IEnumerable<User> GetAll();
         User Add(User user);
         User? GetById(int id);
+        public User? Update(User user);
+        public void DeleteById(int id);
     }
 }
