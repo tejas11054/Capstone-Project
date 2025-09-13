@@ -1,146 +1,130 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\",
+  "WorkspaceRootPath": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\bankuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\bankuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\registeruserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\registeruserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\beneficiaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\beneficiaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Migrations\\20250913183457_second.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BankingPaymentsApp_API\\Migrations\\20250913183457_second.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\userresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\userresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\transactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\transactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\documentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\documentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\clientuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\clientuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\beneficiaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\beneficiaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\ibeneficiaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\ibeneficiaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\bankuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\bankuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\ibankuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\ibankuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\ibankuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\ibankuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\ibeneficiaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\ibeneficiaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\iclientuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\iclientuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\iclientuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\iclientuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\clientuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\clientuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\idocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\idocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\documentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\documentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\idocumentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\idocumentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\iemployeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\iemployeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\itransactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\itransactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\itransactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\itransactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\transactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\transactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\ipayementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\ipayementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\swabhav\\capstone-project\\payment\\code\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\accountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\accountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\documentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\documentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\beneficiarydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\beneficiarydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\transactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\transactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\paymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\paymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\bankuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\bankuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\clientuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\clientuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\loginresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\loginresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\services\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\services\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\bankuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\bankuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\accountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\accountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\clientuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\clientuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\transactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\transactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\beneficiaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\beneficiaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\documentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\documentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|d:\\practicedotnet\\capstone project\\backend\\bankingpaymentsapp_api\\bankingpaymentsapp_api\\repositories\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03E3260-1E3C-4BA9-A382-66011AB7B3E0}|BankingPaymentsApp_API\\BankingPaymentsApp_API.csproj|solutionrelative:bankingpaymentsapp_api\\repositories\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -150,462 +134,432 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BankUserRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\BankUserRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\BankUserRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\BankUserRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\BankUserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:37:59.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Program.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Program.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Program.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:37:35.983Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AccountService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\AccountService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\AccountService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\AccountService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\AccountService.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAYwA0AAAAAAAAAAAAAAA==",
+              "Title": "20250913183457_second.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Migrations\\20250913183457_second.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Migrations\\20250913183457_second.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Migrations\\20250913183457_second.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Migrations\\20250913183457_second.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:36:59.673Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IAccountService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IAccountService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IAccountService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IAccountService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IAccountService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:36:48.281Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IAccountRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IAccountRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\IAccountRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IAccountRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\IAccountRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:36:00.87Z",
+              "WhenOpened": "2025-09-13T18:34:57.9Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "EmployeeService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\EmployeeService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\EmployeeService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\EmployeeService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\EmployeeService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAzAAAAAAAAAA==",
+              "Title": "IAccountService.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IAccountService.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IAccountService.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IAccountService.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IAccountService.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwAkAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:24:01.215Z",
+              "WhenOpened": "2025-09-13T16:51:01.225Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BeneficiaryRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\BeneficiaryRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\BeneficiaryRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\BeneficiaryRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\BeneficiaryRepository.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAgwDQAAABBAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAYAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:32:28.196Z",
+              "WhenOpened": "2025-09-13T16:40:14.273Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "DocumentService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\DocumentService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\DocumentService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\DocumentService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\DocumentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "UserResponseDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\UserResponseDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\UserResponseDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\UserResponseDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\UserResponseDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:26:52.012Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "PaymentService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\PaymentService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\PaymentService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\PaymentService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\PaymentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:16:47.009Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TransactionService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\TransactionService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\TransactionService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\TransactionService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\TransactionService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:12:26.998Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\UserService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\UserService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\UserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:03:10.022Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ClientUserService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\ClientUserService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\ClientUserService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\ClientUserService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\ClientUserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:29:28.158Z",
+              "WhenOpened": "2025-09-13T16:37:00.616Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "BeneficiaryService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\BeneficiaryService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\BeneficiaryService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\BeneficiaryService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\BeneficiaryService.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAYwA0AAAAAAAAAAAAAAA==",
+              "Title": "DocumentDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\DocumentDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\DocumentDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\DocumentDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\DocumentDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:33:02.924Z",
+              "WhenOpened": "2025-09-13T16:27:40.487Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "IBeneficiaryService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IBeneficiaryService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IBeneficiaryService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IBeneficiaryService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IBeneficiaryService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA8AAAAAAAAAA==",
+              "Title": "EmployeeDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\EmployeeDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\EmployeeDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\EmployeeDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\EmployeeDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:32:49.004Z",
+              "WhenOpened": "2025-09-13T16:27:30.824Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "BankUserService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\BankUserService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\BankUserService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\BankUserService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\BankUserService.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAgwA4AAAAtAAAAAAAAAA==",
+              "Title": "BeneficiaryDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\BeneficiaryDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\BeneficiaryDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\BeneficiaryDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\BeneficiaryDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:34:59.786Z",
+              "WhenOpened": "2025-09-13T16:27:07.902Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "IBankUserService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IBankUserService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IBankUserService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IBankUserService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IBankUserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
+              "Title": "TransactionDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\TransactionDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\TransactionDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\TransactionDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\TransactionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:34:36.128Z",
+              "WhenOpened": "2025-09-13T16:26:50.65Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "IBankUserRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IBankUserRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\IBankUserRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IBankUserRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\IBankUserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
+              "Title": "PaymentDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\PaymentDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\PaymentDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\PaymentDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\PaymentDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:33:59.12Z",
+              "WhenOpened": "2025-09-13T16:26:38.592Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
-              "Title": "IBeneficiaryRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IBeneficiaryRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\IBeneficiaryRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IBeneficiaryRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\IBeneficiaryRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
+              "Title": "BankUserDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\BankUserDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\BankUserDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\BankUserDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\BankUserDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:31:45.354Z",
+              "WhenOpened": "2025-09-13T16:25:30.979Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 18,
-              "Title": "IClientUserService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IClientUserService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IClientUserService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IClientUserService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IClientUserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAcAAAAAAAAAA==",
+              "Title": "ClientUserDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\ClientUserDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\ClientUserDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\ClientUserDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\ClientUserDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:29:12.689Z",
+              "WhenOpened": "2025-09-13T16:25:20.005Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "ClientUserRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\ClientUserRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\ClientUserRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\ClientUserRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\ClientUserRepository.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAowDcAAAAuAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "AccountDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\AccountDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\AccountDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\AccountDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\AccountDTO.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAYAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:28:45.691Z",
+              "WhenOpened": "2025-09-13T16:24:52.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RegisterUserDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\RegisterUserDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\RegisterUserDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\RegisterUserDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\RegisterUserDTO.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAcwA4AAABkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:24:40.792Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 19,
-              "Title": "IClientUserRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IClientUserRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\IClientUserRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IClientUserRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\IClientUserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAcAAAAAAAAAA==",
+              "Title": "LoginResponseDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\LoginResponseDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\LoginResponseDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\LoginResponseDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\LoginResponseDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:28:07.104Z",
+              "WhenOpened": "2025-09-13T16:22:36.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "LoginDTO.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\LoginDTO.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\DTOs\\LoginDTO.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\DTOs\\LoginDTO.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\DTOs\\LoginDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:22:13.168Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 21,
-              "Title": "IDocumentService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IDocumentService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IDocumentService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IDocumentService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IDocumentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
+              "Title": "IPaymentService.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IPaymentService.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IPaymentService.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IPaymentService.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IPaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:26:36.554Z",
+              "WhenOpened": "2025-09-13T16:19:47.928Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 22,
-              "Title": "DocumentRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\DocumentRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\DocumentRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\DocumentRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\DocumentRepository.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAswC8AAAAJAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Program.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Program.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Program.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Program.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAtwCgAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:26:17.43Z",
+              "WhenOpened": "2025-09-13T16:15:49.081Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "IDocumentRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IDocumentRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\IDocumentRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IDocumentRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\IDocumentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\UserService.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\UserService.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\UserService.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAgwCEAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:25:26.968Z",
+              "WhenOpened": "2025-09-13T16:12:20.374Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "IEmployeeService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IEmployeeService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IEmployeeService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IEmployeeService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IEmployeeService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IUserService.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IUserService.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IUserService.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:23:25.608Z",
+              "WhenOpened": "2025-09-13T16:12:13.046Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "EmployeeRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\EmployeeRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\EmployeeRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\EmployeeRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\EmployeeRepository.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowC4AAAAJAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\IUserRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IUserRepository.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:22:11.095Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "IEmployeeRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IEmployeeRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\IEmployeeRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IEmployeeRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\IEmployeeRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:22:00.956Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "ITransactionService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\ITransactionService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\ITransactionService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\ITransactionService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\ITransactionService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:12:03.642Z",
+              "WhenOpened": "2025-09-13T15:53:22.599Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 27,
-              "Title": "ITransactionRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\ITransactionRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\ITransactionRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\ITransactionRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\ITransactionRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAsAAAAAAAAAA==",
+              "Title": "IAccountRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IAccountRepository.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\IAccountRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IAccountRepository.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\IAccountRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:09:19.249Z",
+              "WhenOpened": "2025-09-13T15:47:34.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "TransactionRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\TransactionRepository.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\TransactionRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\TransactionRepository.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\TransactionRepository.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwAgAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T11:07:10.421Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "TransactionRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\TransactionRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\TransactionRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\TransactionRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\TransactionRepository.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowC4AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "PaymentRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\PaymentRepository.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\PaymentRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\PaymentRepository.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\PaymentRepository.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAowDAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:20:15.902Z",
+              "WhenOpened": "2025-09-13T11:06:55.006Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 30,
-              "Title": "IUserRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IUserRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\IUserRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IUserRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\IUserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAlAAAAAAAAAA==",
+              "Title": "EmployeeRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\EmployeeRepository.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\EmployeeRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\EmployeeRepository.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\EmployeeRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:05:12.406Z",
+              "WhenOpened": "2025-09-13T11:06:41.007Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "IPaymentRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IPaymentRepository.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\IPaymentRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\IPaymentRepository.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\IPaymentRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAsAAAAAAAAAA==",
+              "DocumentIndex": 29,
+              "Title": "DocumentRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\DocumentRepository.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\DocumentRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\DocumentRepository.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\DocumentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:15:18.598Z",
+              "WhenOpened": "2025-09-13T11:06:18.089Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "IPayementService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IPayementService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IPayementService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IPayementService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IPayementService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
+              "DocumentIndex": 28,
+              "Title": "BeneficiaryRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\BeneficiaryRepository.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\BeneficiaryRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\BeneficiaryRepository.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\BeneficiaryRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAYAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:16:29.51Z",
+              "WhenOpened": "2025-09-13T11:05:58.459Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 24,
+              "Title": "AccountRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\AccountRepository.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\AccountRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\AccountRepository.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\AccountRepository.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAkwAsAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T11:05:39.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ClientUserRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\ClientUserRepository.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\ClientUserRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\ClientUserRepository.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\ClientUserRepository.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T11:04:14.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "BankUserRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\BankUserRepository.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\BankUserRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\BankUserRepository.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\BankUserRepository.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAswDwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T11:03:57.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "UserRepository.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\UserRepository.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Repositories\\UserRepository.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Repositories\\UserRepository.cs",
               "RelativeToolTip": "BankingPaymentsApp_API\\Repositories\\UserRepository.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:05:51.073Z",
+              "WhenOpened": "2025-09-13T10:36:26.48Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "IUserService.cs",
-              "DocumentMoniker": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IUserService.cs",
-              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Services\\IUserService.cs",
-              "ToolTip": "D:\\Swabhav\\Capstone-Project\\Payment\\Code\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Services\\IUserService.cs",
-              "RelativeToolTip": "BankingPaymentsApp_API\\Services\\IUserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Models\\User.cs",
+              "RelativeDocumentMoniker": "BankingPaymentsApp_API\\Models\\User.cs",
+              "ToolTip": "D:\\practiceDotNet\\Capstone Project\\Backend\\BankingPaymentsApp_API\\BankingPaymentsApp_API\\Models\\User.cs",
+              "RelativeToolTip": "BankingPaymentsApp_API\\Models\\User.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAiwB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:00:15.727Z",
+              "WhenOpened": "2025-09-13T06:12:44.347Z",
               "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1268,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }

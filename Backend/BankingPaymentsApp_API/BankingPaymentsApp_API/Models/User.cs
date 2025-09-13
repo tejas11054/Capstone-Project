@@ -22,7 +22,7 @@ namespace BankingPaymentsApp_API.Models
         [DataType(DataType.EmailAddress)]
         public string UserEmail { get; set; } = null!;
         [Required(ErrorMessage = "User Phone is Required!")]
-        [RegularExpression(@"[0-9]{10}")]
+        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Phone number must be exactly 10 digits")]
         public string UserPhone { get; set; } = null!;
         [Required(ErrorMessage = "User Joining Date is Required!")]
         public DateTime UserJoiningDate { get; set; } = DateTime.Now.Date;  

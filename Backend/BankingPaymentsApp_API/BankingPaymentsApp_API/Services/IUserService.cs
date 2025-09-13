@@ -4,10 +4,10 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IUserService
     {
-        IEnumerable<User> GetAll();
-        User Add(User user);
-        User? GetById(int id);
-        public User? Update(User user);
-        public void DeleteById(int id);
+        Task<IEnumerable<User>> GetAll();
+        Task<User> Add(User user);
+        Task<User?> GetById(int id);
+        public Task<User?> Update(User user);
+        public Task DeleteById(int id);
     }
 }

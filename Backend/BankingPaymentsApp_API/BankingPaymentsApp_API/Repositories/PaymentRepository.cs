@@ -24,14 +24,14 @@ namespace BankingPaymentsApp_API.Repositories
             return payment;
         }
 
-        public Payment? getById(int id)
+        public Payment? GetById(int id)
         {
             return _dbContext.Payments.Include(p=>p.PayerAccount).Include(p=>p.PayeeAccount).Include(p=>p.PaymentStatus).FirstOrDefault(p => p.PaymentId.Equals(id));
         }
 
         public Payment? Update(Payment payment)
         {
-            Payment? existingPayment = getById(payment.PaymentId);
+            Payment? existingPayment = GetById(payment.PaymentId);
 
             if (existingPayment == null)
                 return null;
@@ -47,7 +47,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public void DeleteById(int id)
         {
-            Payment? exisitngPayment = getById(id);
+            Payment? exisitngPayment = GetById(id);
             if (exisitngPayment == null) return;
             _dbContext.Payments.Remove(exisitngPayment);
         }

@@ -12,6 +12,7 @@ namespace BankingPaymentsApp_API.DTOs
         public string ConfirmPassword { get; set; }
         public int UserRoleId { get; set; }
         public string UserEmail { get; set; } = null!;
+        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Phone number must be exactly 10 digits")]
         public string UserPhone { get; set; } = null!;
     }
 }

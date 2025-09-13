@@ -7,31 +7,31 @@ namespace BankingPaymentsApp_API.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly BankingPaymentsDBContext _dbContext;
-        public UserRepository(BankingPaymentsDBContext dBContext) 
+        public UserRepository(BankingPaymentsDBContext dBContext)
         {
             _dbContext = dBContext;
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            return _dbContext.Users.ToList();
+            return await _dbContext.Users.Include(u => u.Role).ToListAsync();
         }
 
-        public User Add(User user)
+        public async Task<User> Add(User user)
         {
-            _dbContext.Users.Add(user);
-            _dbContext.SaveChanges();
+            await _dbContext.Users.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
             return user;
         }
 
-        public User? GetById(int id)
+        public async Task<User?> GetById(int id)
         {
-            return _dbContext.Users.Include(u=>u.Role).FirstOrDefault(u => u.UserId.Equals(id));
+            return await _dbContext.Users.Include(u => u.Role).FirstOrDefaultAsync(u => u.UserId.Equals(id));
         }
 
-        public User? Update(User user)
+        public async Task<User?> Update(User user)
         {
-            User? existingUser = GetById(user.UserId);
+            User? existingUser = await GetById(user.UserId);
 
             if (existingUser == null)
                 return null;
@@ -43,17 +43,18 @@ namespace BankingPaymentsApp_API.Repositories
             existingUser.Password = user.Password;
             existingUser.UserRoleId = user.UserRoleId;
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             return existingUser;
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            User? existingUser = GetById(id);
+            User? existingUser = await GetById(id);
 
             if (existingUser == null) return;
 
             _dbContext.Users.Remove(existingUser);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
