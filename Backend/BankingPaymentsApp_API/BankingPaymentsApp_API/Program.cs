@@ -1,4 +1,7 @@
 
+using BankingPaymentsApp_API.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace BankingPaymentsApp_API
 {
     public class Program
@@ -13,6 +16,11 @@ namespace BankingPaymentsApp_API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<BankingPaymentsDBContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("connString"));
+            });
 
             var app = builder.Build();
 

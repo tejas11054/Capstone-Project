@@ -21,7 +21,9 @@ namespace BankingPaymentsApp_API.Models
         public int AccountTypeId { get; set; }
         public virtual AccountType? AccountType { get; set; }
         [Required(ErrorMessage = "Account Status is Required!")]
-        public AccStatus AccountStatus { get; set; } = AccStatus.ACTIVE;
+        [ForeignKey("AccountStatus")]
+        public int AccountStatusId { get; set; }
+        public virtual AccountStatus? AccountStatus { get; set; } 
         [Required(ErrorMessage = "Account Creation Date is Required!")]
         [DataType(DataType.Date)]
         public DateTime CreatedAt {  get; set; } = DateTime.Now.Date;
