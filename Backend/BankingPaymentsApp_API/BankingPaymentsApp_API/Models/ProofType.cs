@@ -13,8 +13,8 @@ namespace BankingPaymentsApp_API.Models
     public class ProofType
     {
         [Key]
-        public int ProofId { get; set; }
+        public int TypeId { get; set; }
         [Required(ErrorMessage = "Type is Required!")]
-        public AccStatus Type { get; set; }
+        public DocProofType Type { get; set; }
     }
 }
