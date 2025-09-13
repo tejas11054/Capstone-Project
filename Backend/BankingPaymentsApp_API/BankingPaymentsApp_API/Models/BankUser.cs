@@ -8,5 +8,6 @@ namespace BankingPaymentsApp_API.Models
         public string RefferalCode { get; set; }
         [Required(ErrorMessage = "branch is Required!")]
         public string Branch {  get; set; }
+        public List<int> ClientIds { get; set; } = new List<int>();
     }
 }
