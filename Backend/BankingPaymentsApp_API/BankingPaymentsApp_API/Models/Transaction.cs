@@ -14,7 +14,9 @@ namespace BankingPaymentsApp_API.Models
         public int PayementId {  get; set; }
         public virtual Payment? Payment { get; set; }
         [Required(ErrorMessage ="Transaction Type is Required!")]
-        public TxnType TransactionType { get; set; }
+        [ForeignKey("TransactionType")]
+        public int TransactionTypeId { get; set; }
+        public virtual TransactionType? TransactionType { get; set; } 
         [Required(ErrorMessage = "Transaction Amount is Required!")]
         [DataType(DataType.Currency)]
         public int Amount {  get; set; }

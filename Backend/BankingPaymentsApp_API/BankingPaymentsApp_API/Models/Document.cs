@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BankingPaymentsApp_API.Models
 {
@@ -11,6 +12,8 @@ namespace BankingPaymentsApp_API.Models
         [Required(ErrorMessage = "Document Name is Required!")]
         public string DocumentName { get; set; }
         [Required(ErrorMessage = "Document Type is Required!")]
-        public DocProofType DocumentProofType { get; set; } = DocProofType.OTHER;
+        [ForeignKey("ProofType")]
+        public int ProofTypeId { get; set; }
+        public virtual ProofType? ProofType { get; set; }
     }
 }

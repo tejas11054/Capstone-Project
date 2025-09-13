@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BankingPaymentsApp_API.Models
 {
@@ -10,8 +11,13 @@ namespace BankingPaymentsApp_API.Models
         public string UserFullName { get; set; }
         [Required(ErrorMessage = "UserName is Required!")]
         public string UserName { get; set; }
+        [Required(ErrorMessage = "UserName is Required!")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
         [Required(ErrorMessage = "User Role is Required!")]
-        public Role UserRole { get; set; }
+        [ForeignKey("Role")]
+        public int UserRoleId { get; set; }
+        public virtual UserRole? Role { get; set; }
         [Required(ErrorMessage = "User Email is Required!")]
         [DataType(DataType.EmailAddress)]
         public string UserEmail { get; set; } = null!;

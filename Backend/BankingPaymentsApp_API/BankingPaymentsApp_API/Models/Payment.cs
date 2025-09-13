@@ -19,7 +19,9 @@ namespace BankingPaymentsApp_API.Models
         [Required(ErrorMessage = "CreatedAt is Required!")]
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public PayStatus PaymentStatus { get; set; } = PayStatus.PENDING;
+        [ForeignKey("PaymentStatus")]
+        public int PaymentStatusId { get; set; }
+        public virtual PaymentStatus? PaymentStatus { get; set; }
         [Required(ErrorMessage = "ActionAt is Required!")]
         [DataType(DataType.DateTime)]
         public DateTime ActionAt { get; set; } = DateTime.Now;
