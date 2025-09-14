@@ -26,6 +26,12 @@ namespace BankingPaymentsApp_API.Repositories
             //new payment has been provided
             //it has no transaction yet before saving
             //hence we will create transaction
+            //Transaction debitTransaction = new Transaction
+            //{
+            //    AccountId = payment.PayerAccountId,
+            //    Amount = payment.Amount,
+
+            //}
             await _dbContext.Payments.AddAsync(payment);
             await _dbContext.SaveChangesAsync();
             return payment;
