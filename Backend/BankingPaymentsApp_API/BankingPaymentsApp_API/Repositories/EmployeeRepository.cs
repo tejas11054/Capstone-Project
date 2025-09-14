@@ -12,26 +12,26 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        public IEnumerable<Employee> GetAll()
+        public async Task<IEnumerable<Employee>> GetAll()
         {
-            return _dbContext.Employees.ToList();
+            return await _dbContext.Employees.ToListAsync();
         }
 
-        public Employee Add(Employee employee)
+        public async Task<Employee> Add(Employee employee)
         {
-            _dbContext.Employees.Add(employee);
-            _dbContext.SaveChanges();
+            await _dbContext.Employees.AddAsync(employee);
+            await _dbContext.SaveChangesAsync();
             return employee;
         }
 
-        public Employee? GetById(int id)
+        public async Task<Employee?> GetById(int id)
         {
-            return _dbContext.Employees.Include(e=>e.ClientUser).FirstOrDefault(e => e.EmployeeId.Equals(id));
+            return await _dbContext.Employees.Include(e => e.ClientUser).FirstOrDefaultAsync(e => e.EmployeeId.Equals(id));
         }
 
-        public Employee? Update(Employee employee)
+        public async Task<Employee?> Update(Employee employee)
         {
-            Employee? existingEmployee = GetById(employee.EmployeeId);
+            Employee? existingEmployee = await GetById(employee.EmployeeId);
 
             if (existingEmployee == null)
                 return null;
@@ -40,17 +40,18 @@ namespace BankingPaymentsApp_API.Repositories
             existingEmployee.ClientId = employee.ClientId;
             existingEmployee.AccountNumber = employee.AccountNumber;
             existingEmployee.BankName = employee.BankName;
-            existingEmployee.IFSC=employee.IFSC;
+            existingEmployee.IFSC = employee.IFSC;
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             return existingEmployee;
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            Employee? exisitngEmployee = GetById(id);
+            Employee? exisitngEmployee = await GetById(id);
             if (exisitngEmployee == null) return;
             _dbContext.Employees.Remove(exisitngEmployee);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
