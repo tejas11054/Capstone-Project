@@ -11,7 +11,7 @@ namespace BankingPaymentsApp_API.Models
         public int AccountId {  get; set; }
         public virtual Account? Account { get; set; }
         [ForeignKey("Payment")]
-        public int PayementId {  get; set; }
+        public int PaymentId {  get; set; }
         public virtual Payment? Payment { get; set; }
         [Required(ErrorMessage ="Transaction Type is Required!")]
         [ForeignKey("TransactionType")]
@@ -19,7 +19,7 @@ namespace BankingPaymentsApp_API.Models
         public virtual TransactionType? TransactionType { get; set; } 
         [Required(ErrorMessage = "Transaction Amount is Required!")]
         [DataType(DataType.Currency)]
-        public int Amount {  get; set; }
+        public double Amount {  get; set; }
         [Required(ErrorMessage = "Transaction Date is Required!")]
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; } = DateTime.Now;

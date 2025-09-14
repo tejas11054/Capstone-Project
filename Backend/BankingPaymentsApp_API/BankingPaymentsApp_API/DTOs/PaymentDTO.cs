@@ -12,10 +12,6 @@ namespace BankingPaymentsApp_API.DTOs
         [DataType(DataType.Currency)]
         public double Amount { get; set; }
         public int PaymentStatusId { get; set; } = 3;
-        public virtual PaymentStatus? PaymentStatus { get; set; }
-        [Required(ErrorMessage = "ActionAt is Required!")]
-        [DataType(DataType.DateTime)]
-        public DateTime ActionAt { get; set; } = DateTime.Now;
         public List<int>? TransactionIds { get; set; } = new List<int>();
     }
 }
