@@ -4,10 +4,10 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IEmployeeService
     {
-        public IEnumerable<Employee> GetAll();
-        public Employee Add(Employee employee);
-        public Employee? GetById(int id);
-        public Employee? Update(Employee employee);
-        public void DeleteById(int id);
+        public Task<IEnumerable<Employee>> GetAll();
+        public Task<Employee> Add(Employee employee);
+        public Task<Employee?> GetById(int id);
+        public Task<Employee?> Update(Employee employee);
+        public Task DeleteById(int id);
     }
 }

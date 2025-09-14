@@ -12,29 +12,29 @@ namespace BankingPaymentsApp_API.Services
             _employeeRepository = employeeRepository;
         }
 
-        public IEnumerable<Employee> GetAll()
+        public async Task<IEnumerable<Employee>> GetAll()
         {
-            return _employeeRepository.GetAll();
+            return await _employeeRepository.GetAll();
         }
 
-        public Employee Add(Employee employee)
+        public async Task<Employee> Add(Employee employee)
         {
-            return _employeeRepository.Add(employee);
+            return await _employeeRepository.Add(employee);
         }
 
-        public Employee? GetById(int id)
+        public async Task<Employee?> GetById(int id)
         {
-            return _employeeRepository.GetById(id);
+            return await _employeeRepository.GetById(id);
         }
 
-        public Employee? Update(Employee employee)
+        public async Task<Employee?> Update(Employee employee)
         {
-            return _employeeRepository.Update(employee);
+            return await _employeeRepository.Update(employee);
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            _employeeRepository.DeleteById(id);
+            await _employeeRepository.DeleteById(id);
         }
     }
 }

@@ -20,11 +20,11 @@ namespace BankingPaymentsApp_API.Models
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         [ForeignKey("PaymentStatus")]
-        public int PaymentStatusId { get; set; }
+        public int PaymentStatusId { get; set; } = 3;
         public virtual PaymentStatus? PaymentStatus { get; set; }
         [Required(ErrorMessage = "ActionAt is Required!")]
         [DataType(DataType.DateTime)]
         public DateTime ActionAt { get; set; } = DateTime.Now;
-        public List<int>? TransactionIds { get; set; } = new List<int>();
+        public List<Transaction>? Transactions { get; set; } = new List<Transaction>();
     }
 }
