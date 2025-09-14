@@ -11,7 +11,5 @@ namespace BankingPaymentsApp_API.DTOs
         [Required(ErrorMessage = "Amount is Required!")]
         [DataType(DataType.Currency)]
         public double Amount { get; set; }
-        public int PaymentStatusId { get; set; } = 3;
-        public List<int>? TransactionIds { get; set; } = new List<int>();
     }
 }

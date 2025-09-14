@@ -19,19 +19,6 @@ namespace BankingPaymentsApp_API.Repositories
 
         public async Task<Payment> Add(Payment payment)
         {
-            // whenever a Payment is created 1 or 2 transactions are created 
-            // if both payer and payee have accounts in the system 2 transactions (DEBIT and CREDIT)
-            // if only payer has then only one (DEBIT)
-
-            //new payment has been provided
-            //it has no transaction yet before saving
-            //hence we will create transaction
-            //Transaction debitTransaction = new Transaction
-            //{
-            //    AccountId = payment.PayerAccountId,
-            //    Amount = payment.Amount,
-
-            //}
             await _dbContext.Payments.AddAsync(payment);
             await _dbContext.SaveChangesAsync();
             return payment;
