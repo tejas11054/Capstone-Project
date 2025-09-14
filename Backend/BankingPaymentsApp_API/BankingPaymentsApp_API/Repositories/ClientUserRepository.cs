@@ -12,26 +12,26 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        public IEnumerable<ClientUser> GetAll()
+        public async Task<IEnumerable<ClientUser>> GetAll()
         {
-            return _dbContext.ClientUsers.ToList();
+            return await _dbContext.ClientUsers.ToListAsync();
         }
 
-        public ClientUser Add(ClientUser user)
+        public async Task<ClientUser> Add(ClientUser user)
         {
-            _dbContext.ClientUsers.Add(user);
-            _dbContext.SaveChanges();
+            await _dbContext.ClientUsers.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
             return user;
         }
 
-        public ClientUser? GetById(int id)
+        public async Task<ClientUser?> GetById(int id)
         {
-            return _dbContext.ClientUsers.Include(u => u.Role).Include(u=> u.Account).FirstOrDefault(d => d.UserId.Equals(id));
+            return await _dbContext.ClientUsers.Include(u => u.Role).Include(u => u.Account).FirstOrDefaultAsync(d => d.UserId.Equals(id));
         }
 
-        public ClientUser? Update(ClientUser user)
+        public async Task<ClientUser?> Update(ClientUser user)
         {
-            ClientUser? existingClientUser = GetById(user.UserId);
+            ClientUser? existingClientUser = await GetById(user.UserId);
 
             if (existingClientUser == null)
                 return null;
@@ -47,15 +47,16 @@ namespace BankingPaymentsApp_API.Repositories
             existingClientUser.KycVierified = user.KycVierified;
             existingClientUser.AccountId = user.AccountId;
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             return existingClientUser;
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            ClientUser? exisitngClientUser = GetById(id);
+            ClientUser? exisitngClientUser = await GetById(id);
             if (exisitngClientUser == null) return;
             _dbContext.ClientUsers.Remove(exisitngClientUser);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

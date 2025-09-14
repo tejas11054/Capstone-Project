@@ -4,10 +4,10 @@ namespace BankingPaymentsApp_API.Repositories
 {
     public interface IClientUserRepository
     {
-        public IEnumerable<ClientUser> GetAll();
-        public ClientUser Add(ClientUser user);
-        public ClientUser? GetById(int id);
-        public ClientUser? Update(ClientUser user);
-        public void DeleteById(int id);
+        public Task<IEnumerable<ClientUser>> GetAll();
+        public Task<ClientUser> Add(ClientUser user);
+        public Task<ClientUser?> GetById(int id);
+        public Task<ClientUser?> Update(ClientUser user);
+        public Task DeleteById(int id);
     }
 }
