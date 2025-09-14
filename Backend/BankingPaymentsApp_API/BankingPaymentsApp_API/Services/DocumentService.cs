@@ -12,29 +12,29 @@ namespace BankingPaymentsApp_API.Services
             _documentRepository = documentRepository;
         }
 
-        public IEnumerable<Document> GetAll()
+        public async Task<IEnumerable<Document>> GetAll()
         {
-            return _documentRepository.GetAll();
+            return await _documentRepository.GetAll();
         }
 
-        public Document Add(Document document)
+        public async Task<Document> Add(Document document)
         {
-            return _documentRepository.Add(document);
+            return await _documentRepository.Add(document);
         }
 
-        public Document? GetById(int id)
+        public async Task<Document?> GetById(int id)
         {
-            return _documentRepository.GetById(id);
+            return await _documentRepository.GetById(id);
         }
 
-        public Document? Update(Document document)
+        public async Task<Document?> Update(Document document)
         {
-            return _documentRepository.Update(document);
+            return await _documentRepository.Update(document);
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            _documentRepository.DeleteById(id);
+            await _documentRepository.DeleteById(id);
         }
     }
 }

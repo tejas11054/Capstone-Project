@@ -4,10 +4,10 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IDocumentService
     {
-        public IEnumerable<Document> GetAll();
-        public Document Add(Document document);
-        public Document? GetById(int id);
-        public Document? Update(Document document);
-        public void DeleteById(int id);
+        public Task<IEnumerable<Document>> GetAll();
+        public Task<Document> Add(Document document);
+        public Task<Document?> GetById(int id);
+        public Task<Document?> Update(Document document);
+        public Task DeleteById(int id);
     }
 }

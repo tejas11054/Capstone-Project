@@ -12,26 +12,26 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        public IEnumerable<Document> GetAll()
+        public async Task<IEnumerable<Document>> GetAll()
         {
-            return _dbContext.Documents.ToList();
+            return await _dbContext.Documents.ToListAsync();
         }
 
-        public Document Add(Document document)
+        public async Task<Document> Add(Document document)
         {
-            _dbContext.Documents.Add(document);
-            _dbContext.SaveChanges();
+            await _dbContext.Documents.AddAsync(document);
+            await _dbContext.SaveChangesAsync();
             return document;
         }
 
-        public Document? GetById(int id)
+        public async Task<Document?> GetById(int id)
         {
-            return _dbContext.Documents.Include(d=>d.ProofType).FirstOrDefault(d => d.DocumentId.Equals(id));
+            return await _dbContext.Documents.Include(d=>d.ProofType).FirstOrDefaultAsync(d => d.DocumentId.Equals(id));
         }
 
-        public Document? Update(Document document)
+        public async Task<Document?> Update(Document document)
         {
-            Document? existingDocument = GetById(document.DocumentId);
+            Document? existingDocument = await GetById(document.DocumentId);
 
             if (existingDocument == null)
                 return null;
@@ -40,15 +40,16 @@ namespace BankingPaymentsApp_API.Repositories
             existingDocument.DocumentURL = document.DocumentURL;
             existingDocument.ProofTypeId = document.ProofTypeId;
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             return existingDocument;
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            Document? exisitngDocument = GetById(id);
+            Document? exisitngDocument = await GetById(id);
             if (exisitngDocument == null) return;
             _dbContext.Documents.Remove(exisitngDocument);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
