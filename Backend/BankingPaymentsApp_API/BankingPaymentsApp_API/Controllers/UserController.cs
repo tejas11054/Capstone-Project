@@ -1,4 +1,5 @@
-﻿using BankingPaymentsApp_API.DTOs;
+﻿using AutoMapper;
+using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
 using Microsoft.AspNetCore.Http;
@@ -11,9 +12,11 @@ namespace BankingPaymentsApp_API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _service;
-        public UserController(IUserService service)
+        private readonly IMapper _mapper;
+        public UserController(IUserService service,IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
@@ -63,16 +66,18 @@ namespace BankingPaymentsApp_API.Controllers
             User? existingUser = await _service.GetById(id);
             if(existingUser == null) return NotFound($"No user of id: {id}");
 
-            UserResponseDTO response = new UserResponseDTO
-            {
-                UserId = existingUser.UserId,
-                UserFullName = existingUser.UserName,
-                UserName = existingUser.UserName,
-                UserRoleId = existingUser.UserRoleId,
-                UserEmail = existingUser.UserEmail,
-                UserPhone = existingUser.UserPhone,
-                UserJoiningDate = existingUser.UserJoiningDate
-            };
+            //UserResponseDTO response = new UserResponseDTO
+            //{
+            //    UserId = existingUser.UserId,
+            //    UserFullName = existingUser.UserName,
+            //    UserName = existingUser.UserName,
+            //    UserRoleId = existingUser.UserRoleId,
+            //    UserEmail = existingUser.UserEmail,
+            //    UserPhone = existingUser.UserPhone,
+            //    UserJoiningDate = existingUser.UserJoiningDate
+            //};
+
+            UserResponseDTO response = _mapper.Map<UserResponseDTO>(existingUser);
             return Ok(response);
         }
         [HttpPut]

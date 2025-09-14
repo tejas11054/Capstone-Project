@@ -1,5 +1,7 @@
 
 using BankingPaymentsApp_API.Data;
+using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using BankingPaymentsApp_API.Services;
 using Microsoft.EntityFrameworkCore;
@@ -19,10 +21,12 @@ namespace BankingPaymentsApp_API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            //Adding DBContext
             builder.Services.AddDbContext<BankingPaymentsDBContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("connString"));
             });
+            //Adding Repositories
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<IBankUserRepository, BankUserRepository>();
             builder.Services.AddScoped<IBeneficiaryRepository, BeneficiaryRepository>();
@@ -32,6 +36,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
             builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            //Adding Services
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IBankUserService, BankUserService>();
             builder.Services.AddScoped<IBeneficiaryService, BeneficiaryService>();
@@ -41,6 +46,12 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IPaymentService, PaymentService>();
             builder.Services.AddScoped<ITransactionService, TransactionService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            //Adding AutoMapper
+            builder.Services.AddAutoMapper(options =>
+            {
+                options.CreateMap<User, UserResponseDTO>();
+            });
+
 
             var app = builder.Build();
 
