@@ -12,26 +12,26 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        public IEnumerable<Beneficiary> GetAll()
+        public async Task<IEnumerable<Beneficiary>> GetAll()
         {
-            return _dbContext.Beneficiaries.ToList();
+            return await _dbContext.Beneficiaries.ToListAsync();
         }
 
-        public Beneficiary Add(Beneficiary beneficiary)
+        public async Task<Beneficiary> Add(Beneficiary beneficiary)
         {
-            _dbContext.Beneficiaries.Add(beneficiary);
-            _dbContext.SaveChanges();
+            await _dbContext.Beneficiaries.AddAsync(beneficiary);
+            await _dbContext.SaveChangesAsync();
             return beneficiary;
         }
 
-        public Beneficiary? GetById(int id)
+        public async Task<Beneficiary?> GetById(int id)
         {
-            return _dbContext.Beneficiaries.FirstOrDefault(u => u.BeneficiaryId.Equals(id));
+            return await _dbContext.Beneficiaries.FirstOrDefaultAsync(u => u.BeneficiaryId.Equals(id));
         }
 
-        public Beneficiary? Update(Beneficiary beneficiary)
+        public async Task<Beneficiary?> Update(Beneficiary beneficiary)
         {
-            Beneficiary? existingBeneficiary = GetById(beneficiary.BeneficiaryId);
+            Beneficiary? existingBeneficiary = await GetById(beneficiary.BeneficiaryId);
 
             if (existingBeneficiary == null)
                 return null;
@@ -42,15 +42,16 @@ namespace BankingPaymentsApp_API.Repositories
             existingBeneficiary.BankName = beneficiary.BankName;
             existingBeneficiary.IFSC = beneficiary.IFSC;
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             return existingBeneficiary;
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            Beneficiary? exisitngBeneficiary = GetById(id);
+            Beneficiary? exisitngBeneficiary = await GetById(id);
             if (exisitngBeneficiary == null) return;
             _dbContext.Beneficiaries.Remove(exisitngBeneficiary);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

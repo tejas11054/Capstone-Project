@@ -4,10 +4,10 @@ namespace BankingPaymentsApp_API.Repositories
 {
     public interface IBeneficiaryRepository
     {
-        public IEnumerable<Beneficiary> GetAll();
-        public Beneficiary Add(Beneficiary beneficiary);
-        public Beneficiary? GetById(int id);
-        public Beneficiary? Update(Beneficiary beneficiary);
-        public void DeleteById(int id);
+        public Task<IEnumerable<Beneficiary>> GetAll();
+        public Task<Beneficiary> Add(Beneficiary beneficiary);
+        public Task<Beneficiary?> GetById(int id);
+        public Task<Beneficiary?> Update(Beneficiary beneficiary);
+        public Task DeleteById(int id);
     }
 }
