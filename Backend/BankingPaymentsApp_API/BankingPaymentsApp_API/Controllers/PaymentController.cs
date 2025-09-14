@@ -38,5 +38,48 @@ namespace BankingPaymentsApp_API.Controllers
             Payment addedPayment = await _paymentService.Add(newPayment);
             return Ok(addedPayment);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetPaymentById(int id)
+        {
+            Payment? existingPayment = await _paymentService.GetById(id);
+            if (existingPayment == null)
+                return NotFound($"No Payment of id: {id}");
+            return Ok(existingPayment);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdatePayment(int id,PaymentDTO payment)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            Payment? existingPayment = await _paymentService.GetById(id);
+            if(existingPayment == null)
+                return NotFound($"No Payment of id: {id}");
+
+            existingPayment.Amount = payment.Amount;
+            existingPayment.PayerAccountId = payment.PayerAccountId;
+            existingPayment.PayeeAccountId = payment.PayeeAccountId;
+
+            Payment? updatedPayment = await _paymentService.Update(existingPayment);
+            return Ok(updatedPayment);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeletePayment(int id)
+        {
+            Payment? existingPayment = await _paymentService.GetById(id);
+            if (existingPayment == null)
+                return NotFound($"No Payment of id: {id}");
+
+            await _paymentService.DeleteById(id);
+            return Ok("Payment has been deleted Sucessfully!");
+        }
+
+
     }
 }
