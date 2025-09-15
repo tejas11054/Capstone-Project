@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BankingPaymentsApp_API.DTOs
 {
-    public class TransactionDTO
+    public class RegisterTransactionDTO
     {
         public int AccountId { get; set; }
         public int PayementId { get; set; }
         public int TransactionTypeId { get; set; }
         [Required(ErrorMessage = "Transaction Amount is Required!")]
         [DataType(DataType.Currency)]
-        public int Amount { get; set; }
+        public double Amount { get; set; }
     }
 }

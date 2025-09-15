@@ -45,7 +45,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Account
         [HttpPost]
-        public async Task<IActionResult> CreateAccount([FromBody] AccountDTO dto)
+        public async Task<IActionResult> CreateAccount([FromBody] RegisterAccountDTO dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

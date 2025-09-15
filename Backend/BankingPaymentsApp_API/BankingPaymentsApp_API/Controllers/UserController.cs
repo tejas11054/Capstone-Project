@@ -34,28 +34,21 @@ namespace BankingPaymentsApp_API.Controllers
             if (regUser.Password != regUser.ConfirmPassword)
                 return BadRequest("Password and Confirm Password should Match!");
 
-            User newUser = new User
-            {
-                UserFullName = regUser.UserName,
-                UserName = regUser.UserName,
-                UserEmail = regUser.UserEmail,
-                UserPhone = regUser.UserPhone,
-                Password = regUser.Password,
-                UserRoleId = regUser.UserRoleId
-            };
+            //User newUser = new User
+            //{
+            //    UserFullName = regUser.UserName,
+            //    UserName = regUser.UserName,
+            //    UserEmail = regUser.UserEmail,
+            //    UserPhone = regUser.UserPhone,
+            //    Password = regUser.Password,
+            //    UserRoleId = regUser.UserRoleId
+            //};
+            User newUser = _mapper.Map<User>(regUser);
             User addedUser = await _service.Add(newUser);
 
             if (addedUser == null) return BadRequest("Unable to add User!");
 
-            UserResponseDTO response = new UserResponseDTO
-            {
-                UserId = addedUser.UserId,
-                UserFullName = addedUser.UserName,
-                UserName = addedUser.UserName,
-                UserEmail = addedUser.UserEmail,
-                UserPhone = addedUser.UserPhone,
-                UserJoiningDate = addedUser.UserJoiningDate
-            };
+            UserResponseDTO response = _mapper.Map<UserResponseDTO>(addedUser);
             return Ok(response);
         }
 
@@ -65,17 +58,6 @@ namespace BankingPaymentsApp_API.Controllers
         {
             User? existingUser = await _service.GetById(id);
             if(existingUser == null) return NotFound($"No user of id: {id}");
-
-            //UserResponseDTO response = new UserResponseDTO
-            //{
-            //    UserId = existingUser.UserId,
-            //    UserFullName = existingUser.UserName,
-            //    UserName = existingUser.UserName,
-            //    UserRoleId = existingUser.UserRoleId,
-            //    UserEmail = existingUser.UserEmail,
-            //    UserPhone = existingUser.UserPhone,
-            //    UserJoiningDate = existingUser.UserJoiningDate
-            //};
 
             UserResponseDTO response = _mapper.Map<UserResponseDTO>(existingUser);
             return Ok(response);
@@ -91,11 +73,7 @@ namespace BankingPaymentsApp_API.Controllers
 
             if(existingUser.UserId != user.UserId) return BadRequest("user Id doesnt match!");
 
-            existingUser.UserName = user.UserName;
-            existingUser.UserFullName = user.UserFullName;
-            existingUser.UserRoleId = user.UserRoleId;
-            existingUser.UserPhone = user.UserPhone;
-            existingUser.UserEmail = user.UserEmail;
+            _mapper.Map(user, existingUser);
 
             User? updatedUser = await _service.Update(existingUser);
             return Ok(updatedUser);
