@@ -82,8 +82,8 @@ namespace BankingPaymentsApp_API
             //Logger Configuration
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
-                .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning) // suppress ASP.NET logs
-                .MinimumLevel.Override("Microsoft.EntityFrameworkCore", Serilog.Events.LogEventLevel.Warning) // suppress EF Core logs
+                //.MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning) // suppress ASP.NET logs
+                //.MinimumLevel.Override("Microsoft.EntityFrameworkCore", Serilog.Events.LogEventLevel.Warning) // suppress EF Core logs
                 .WriteTo.Console()
                 .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day, shared: true)
                 .CreateLogger();

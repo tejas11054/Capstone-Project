@@ -362,3 +362,17 @@ Error Number:-1,State:0,Class:20
 2025-09-16 16:00:22.193 +05:30 [INF] Login Started
 2025-09-16 16:00:22.725 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
 2025-09-16 16:00:23.933 +05:30 [INF] Login Sucessfull
+2025-09-16 16:04:46.299 +05:30 [INF] User profile is available. Using 'C:\Users\youbraj.singh\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-16 16:04:46.518 +05:30 [INF] Now listening on: https://localhost:7030
+2025-09-16 16:04:46.521 +05:30 [INF] Now listening on: http://localhost:5086
+2025-09-16 16:04:46.625 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-16 16:04:46.627 +05:30 [INF] Hosting environment: Development
+2025-09-16 16:04:46.628 +05:30 [INF] Content root path: D:\practiceDotNet\Capstone Project\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API
+2025-09-16 16:04:47.138 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/index.html - null null
+2025-09-16 16:04:47.397 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/index.html - 200 null text/html;charset=utf-8 264.1797ms
+2025-09-16 16:04:47.404 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-16 16:04:47.404 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_vs/browserLink - null null
+2025-09-16 16:04:47.417 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - 200 16529 application/javascript; charset=utf-8 13.4849ms
+2025-09-16 16:04:47.447 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_vs/browserLink - 200 null text/javascript; charset=UTF-8 43.3202ms
+2025-09-16 16:04:47.511 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - null null
+2025-09-16 16:04:47.546 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 35.3147ms

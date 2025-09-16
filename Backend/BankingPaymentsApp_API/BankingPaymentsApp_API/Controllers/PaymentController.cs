@@ -80,7 +80,19 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok("Payment has been deleted Sucessfully!");
         }
 
+        [HttpPut]
+        [Route("approve/{id}")]
+        public async Task<IActionResult> ApprovePayment(int id, [FromBody] Payment payment)
+        {
+            //RegisterTransactionDTO debitTransaction = new RegisterTransactionDTO
+            //{
+            //    PayementId = payment.PaymentId,
+            //    Amount = payment.Amount,
+            //    AccountId = payment.PayerAccountId,
 
+            //}
+            return  Ok("");
+        }
 
 
     }
