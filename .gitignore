@@ -1,4 +1,4 @@
-# ASP.NET
+# ASP.NET / .NET
 bin/
 obj/
 *.user
@@ -6,22 +6,16 @@ obj/
 *.dbmdl
 *.log
 
+# Visual Studio / IDE
+.vs/
+*.vscode/
+*.swp
+
 # Angular / Node
 node_modules/
 dist/
 .angular/
 
-# General
+# General / System
 *.env
 *.DS_Store
-
-# Visual Studio
-.vs/
-*.vscode/
-*.user
-*.suo
-*.swp
-*.dbmdl
-bin/
-obj/
-
