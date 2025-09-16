@@ -9,6 +9,7 @@ namespace BankingPaymentsApp_API.Services
         Task<Account?> GetById(int id);
         Task<Account?> Update(Account account);
         Task DeleteById(int id);
+        Task<string> GenerateAccountNumber();
     }
 }
 

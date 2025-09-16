@@ -50,6 +50,8 @@ namespace BankingPaymentsApp_API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            dto.AccountNumber = await _service.GenerateAccountNumber();
+
             var newAccount = _mapper.Map<Account>(dto);
             var addedAccount = await _service.Add(newAccount);
 

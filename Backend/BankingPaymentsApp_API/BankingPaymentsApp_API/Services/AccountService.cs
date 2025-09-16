@@ -36,5 +36,10 @@ namespace BankingPaymentsApp_API.Services
         {
             await _accountRepository.DeleteById(id);
         }
+
+        public async Task<string> GenerateAccountNumber()
+        {
+            return await _accountRepository.GenerateAccountNumber();
+        }
     }
 }
