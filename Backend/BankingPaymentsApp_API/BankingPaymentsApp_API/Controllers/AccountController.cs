@@ -11,12 +11,14 @@ namespace BankingPaymentsApp_API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _service;
+        private readonly ICloudinaryService _cloudinaryService;
         private readonly IMapper _mapper;
 
-        public AccountController(IAccountService service, IMapper mapper)
+        public AccountController(IAccountService service, IMapper mapper, ICloudinaryService cloudinaryService)
         {
             _service = service;
             _mapper = mapper;
+            _cloudinaryService = cloudinaryService;
         }
 
         // GET: api/Account
@@ -96,6 +98,26 @@ namespace BankingPaymentsApp_API.Controllers
 
             await _service.DeleteById(id);
             return Ok("Account deleted successfully!");
+        }
+
+        [HttpPost("{accountId}/upload")]
+        public async Task<IActionResult> UploadFile(int accountId, IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file selected!");
+
+            var account = await _service.GetById(accountId);
+            if (account == null)
+                return NotFound($"Account with id {accountId} not found!");
+
+            var fileUrl = await _cloudinaryService.UploadFileAsync(file);
+
+            return Ok(new
+            {
+                AccountId = accountId,
+                FileUrl = fileUrl,
+                Message = "File uploaded successfully!"
+            });
         }
     }
 }
