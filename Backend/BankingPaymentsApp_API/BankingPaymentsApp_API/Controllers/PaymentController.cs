@@ -84,14 +84,11 @@ namespace BankingPaymentsApp_API.Controllers
         [Route("approve/{id}")]
         public async Task<IActionResult> ApprovePayment(int id, [FromBody] Payment payment)
         {
-            //RegisterTransactionDTO debitTransaction = new RegisterTransactionDTO
-            //{
-            //    PayementId = payment.PaymentId,
-            //    Amount = payment.Amount,
-            //    AccountId = payment.PayerAccountId,
+            if(!ModelState.IsValid) return BadRequest(ModelState);
 
-            //}
-            return  Ok("");
+            Payment? approvedPayment = await _paymentService.ApprovePayment(payment);
+            if (approvedPayment == null) return BadRequest();
+            return  Ok(approvedPayment);
         }
 
 
