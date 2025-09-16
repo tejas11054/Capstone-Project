@@ -33,6 +33,10 @@ namespace BankingPaymentsApp_API
                 options.UseSqlServer(builder.Configuration.GetConnectionString("connString"));
             });
 
+            // Bind Cloudinary settings from appsettings.json
+            builder.Services.Configure<CloudinarySettingsDTO>(
+                builder.Configuration.GetSection("CloudinarySettings"));
+
             //Adding Repositories
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<IBankUserRepository, BankUserRepository>();
@@ -43,6 +47,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
             builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ICloudinaryRepository, CloudinaryRepository>();
             builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
             //Adding Services
@@ -55,6 +60,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IPaymentService, PaymentService>();
             builder.Services.AddScoped<ITransactionService, TransactionService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
 
             //Adding AutoMapper
