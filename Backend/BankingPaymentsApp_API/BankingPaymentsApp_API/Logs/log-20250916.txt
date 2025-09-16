@@ -362,3 +362,10 @@ Error Number:-1,State:0,Class:20
 2025-09-16 16:00:22.193 +05:30 [INF] Login Started
 2025-09-16 16:00:22.725 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
 2025-09-16 16:00:23.933 +05:30 [INF] Login Sucessfull
+2025-09-16 20:58:31.647 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-16 20:59:46.903 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-16 21:00:50.778 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-16 21:00:51.105 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-16 21:01:01.592 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-16 21:02:03.905 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-09-16 21:02:04.896 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.

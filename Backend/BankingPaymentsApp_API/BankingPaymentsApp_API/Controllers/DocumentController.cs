@@ -11,12 +11,16 @@ namespace BankingPaymentsApp_API.Controllers
     public class DocumentController : ControllerBase
     {
         private readonly IDocumentRepository _documentRepository;
+        private readonly ICloudinaryRepository _cloudinaryRepository;
+        private readonly IAccountRepository _accountRepository;
         private readonly IMapper _mapper;
 
-        public DocumentController(IDocumentRepository documentRepository, IMapper mapper)
+        public DocumentController(IDocumentRepository documentRepository, IMapper mapper, ICloudinaryRepository cloudinaryRepository, IAccountRepository accountRepository)
         {
             _documentRepository = documentRepository;
             _mapper = mapper;
+            _cloudinaryRepository = cloudinaryRepository;
+            _accountRepository = accountRepository;
         }
 
         // GET: api/Document
@@ -73,6 +77,42 @@ namespace BankingPaymentsApp_API.Controllers
 
             await _documentRepository.DeleteById(id);
             return NoContent();
+        }
+
+        [HttpPost("upload")]
+        public async Task<IActionResult> UploadFile([FromForm] DocumentDTO dto, IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file selected!");
+
+            // Check if account exists
+            var account = await _accountRepository.GetById(dto.AccountId);
+            if (account == null)
+                return NotFound($"Account with id {dto.AccountId} not found!");
+
+            // Upload to Cloudinary
+            var uploadResult = await _cloudinaryRepository.UploadFileAsync(file);
+
+            // Save in database
+            var document = new Document
+            {
+                DocumentURL = uploadResult.FileUrl,
+                DocumentName = dto.DocumentName ?? file.FileName,
+                ProofTypeId = dto.ProofTypeId,
+                PublicId = uploadResult.PublicId,
+                AccountId = dto.AccountId
+            };
+
+            await _documentRepository.Add(document);
+
+            return Ok(new
+            {
+                DocumentId = document.DocumentId,
+                AccountId = document.AccountId,
+                DocumentURL = document.DocumentURL,
+                PublicId = document.PublicId,
+                Message = "File uploaded successfully!"
+            });
         }
     }
 }

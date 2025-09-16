@@ -1,7 +1,9 @@
-﻿namespace BankingPaymentsApp_API.Services
+﻿using BankingPaymentsApp_API.DTOs;
+
+namespace BankingPaymentsApp_API.Services
 {
     public interface ICloudinaryService
     {
-        Task<string> UploadFileAsync(IFormFile file);
+        Task<UploadResultDTO> UploadFileAsync(IFormFile file);
     }
 }

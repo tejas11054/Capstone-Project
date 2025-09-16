@@ -20,23 +20,25 @@ namespace BankingPaymentsApp_API.Repositories
             _cloudinary = new Cloudinary(account);
         }
 
-        public async Task<string> UploadFileAsync(IFormFile file)
+        public async Task<UploadResultDTO> UploadFileAsync(IFormFile file)
         {
             if (file == null || file.Length == 0)
-                throw new ArgumentException("File cannot be empty");
+                throw new ArgumentException("File cannot be null or empty");
 
-            await using var stream = file.OpenReadStream();
-            var uploadParams = new RawUploadParams()
+            using var stream = file.OpenReadStream();
+            var uploadParams = new ImageUploadParams
             {
-                File = new FileDescription(file.FileName, stream)
+                File = new FileDescription(file.FileName, stream),
+                PublicId = Guid.NewGuid().ToString() 
             };
 
             var uploadResult = await _cloudinary.UploadAsync(uploadParams);
 
-            if (uploadResult.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new Exception("File upload failed!");
-
-            return uploadResult.SecureUrl.ToString();
+            return new UploadResultDTO
+            {
+                FileUrl = uploadResult.SecureUrl.ToString(),
+                PublicId = uploadResult.PublicId
+            };
         }
     }
 }

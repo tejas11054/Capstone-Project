@@ -1,4 +1,5 @@
-﻿using BankingPaymentsApp_API.Repositories;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Repositories;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -11,7 +12,7 @@ namespace BankingPaymentsApp_API.Services
             _cloudinaryRepository = cloudinaryRepository;
         }
 
-        public async Task<string> UploadFileAsync(IFormFile file)
+        public async Task<UploadResultDTO> UploadFileAsync(IFormFile file)
         {
             return await _cloudinaryRepository.UploadFileAsync(file);
         }
