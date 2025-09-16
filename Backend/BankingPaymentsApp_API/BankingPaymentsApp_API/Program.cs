@@ -4,7 +4,12 @@ using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using BankingPaymentsApp_API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace BankingPaymentsApp_API
 {
@@ -26,6 +31,7 @@ namespace BankingPaymentsApp_API
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("connString"));
             });
+
             //Adding Repositories
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<IBankUserRepository, BankUserRepository>();
@@ -36,6 +42,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
             builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+
             //Adding Services
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IBankUserService, BankUserService>();
@@ -46,6 +53,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IPaymentService, PaymentService>();
             builder.Services.AddScoped<ITransactionService, TransactionService>();
             builder.Services.AddScoped<IUserService, UserService>();
+
             //Adding AutoMapper
             builder.Services.AddAutoMapper(options =>
             {
@@ -68,6 +76,60 @@ namespace BankingPaymentsApp_API
                 options.CreateMap<EmployeeDTO, Employee>();
             });
 
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+            });
+
+            builder.Services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "https://localhost:7030",
+                    ValidAudience = "https://localhost:7030",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetConnectionString("secretkey")))
+
+                };
+            });
+
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v1",
+                    Description = "Banking Payments Application"
+                });
+
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Description = "Enter Jwt Web token Only",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                options.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {securityScheme,new string[] {}}
+                });
+            });
+
 
             var app = builder.Build();
 
@@ -75,7 +137,11 @@ namespace BankingPaymentsApp_API
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Banking Payments Application");
+                    options.EnablePersistAuthorization();
+                });
             }
 
             app.UseHttpsRedirection();
