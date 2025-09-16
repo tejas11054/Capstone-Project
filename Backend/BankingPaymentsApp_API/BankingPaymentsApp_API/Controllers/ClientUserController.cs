@@ -76,7 +76,7 @@ namespace BankingPaymentsApp_API.Controllers
 
             if (existingClientUser.UserId != dto.UserId)
                 return BadRequest("User Id mismatch!");
-
+            
             _mapper.Map(dto, existingClientUser);
 
             var updatedClientUser = await _service.Update(existingClientUser);

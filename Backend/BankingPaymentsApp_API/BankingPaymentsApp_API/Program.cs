@@ -49,7 +49,23 @@ namespace BankingPaymentsApp_API
             //Adding AutoMapper
             builder.Services.AddAutoMapper(options =>
             {
+                options.CreateMap<RegisterUserDTO, User>();
+                options.CreateMap<UserResponseDTO, User>();
                 options.CreateMap<User, UserResponseDTO>();
+                options.CreateMap<Account, AccountResponseDTO>();
+                options.CreateMap<AccountResponseDTO, Account>();
+                options.CreateMap<RegisterAccountDTO, Account>();
+                options.CreateMap<RegisterClientUserDTO, ClientUser>();
+                options.CreateMap<ClientUser, ClientUserResponseDTO>();
+                options.CreateMap<ClientUserResponseDTO, ClientUser>();
+                options.CreateMap<RegisterBankUserDTO, BankUser>();
+                options.CreateMap<BankUserResponseDTO, BankUser>();
+                options.CreateMap<BankUser, BankUserResponseDTO>();
+                options.CreateMap<RegisterTransactionDTO, Transaction>();
+                options.CreateMap<DocumentDTO, Document>();
+                options.CreateMap<EmployeeDTO, Employee>();
+                options.CreateMap<BeneficiaryDTO, Beneficiary>();
+                options.CreateMap<EmployeeDTO, Employee>();
             });
 
 
