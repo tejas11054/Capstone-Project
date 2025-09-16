@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Text;
 
 namespace BankingPaymentsApp_API
@@ -77,6 +78,17 @@ namespace BankingPaymentsApp_API
                 options.CreateMap<BeneficiaryDTO, Beneficiary>();
                 options.CreateMap<EmployeeDTO, Employee>();
             });
+
+            //Logger Configuration
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning) // suppress ASP.NET logs
+                .MinimumLevel.Override("Microsoft.EntityFrameworkCore", Serilog.Events.LogEventLevel.Warning) // suppress EF Core logs
+                .WriteTo.Console()
+                .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day, shared: true)
+                .CreateLogger();
+
+            builder.Host.UseSerilog(); // here we changed the default logger to serilog
 
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
