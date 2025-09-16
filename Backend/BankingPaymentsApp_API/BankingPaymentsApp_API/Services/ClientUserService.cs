@@ -1,4 +1,6 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using AutoMapper;
+using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 
 namespace BankingPaymentsApp_API.Services
@@ -6,10 +8,14 @@ namespace BankingPaymentsApp_API.Services
     public class ClientUserService : IClientUserService
     {
         private readonly IClientUserRepository _clientUserRepository;
+        private readonly IAccountService _accountService;
+        private readonly IMapper _mapper;
 
-        public ClientUserService(IClientUserRepository clientUserRepository)
+        public ClientUserService(IClientUserRepository clientUserRepository, IAccountService accountService, IMapper mapper)
         {
             _clientUserRepository = clientUserRepository;
+            _accountService = accountService;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<ClientUser>> GetAll()
@@ -35,6 +41,35 @@ namespace BankingPaymentsApp_API.Services
         public async Task DeleteById(int id)
         {
             await _clientUserRepository.DeleteById(id);
+        }
+
+        public async Task<ClientUser> ApproveClient(ClientUser clientUser)
+        {
+            clientUser.KycVierified = true;
+            RegisterAccountDTO registerAccount = new RegisterAccountDTO
+            {
+                AccountNumber = await _accountService.GenerateAccountNumber(),
+                AccountStatusId = 1,
+                AccountTypeId = 1,
+                ClientId = clientUser.UserId,
+                Balance = 0,
+            };
+
+            Account newAccount = _mapper.Map<Account>(registerAccount);
+            Account addedAccount = await _accountService.Add(newAccount);
+
+            clientUser.AccountId = newAccount.AccountId;
+
+            ClientUser? updatedUser = await _clientUserRepository.Update(clientUser);
+
+            if (updatedUser == null) throw new KeyNotFoundException($"Client user with userId: {clientUser.UserId} was Not Found");
+
+            return updatedUser;
+
+
+            
+
+            
         }
     }
 }

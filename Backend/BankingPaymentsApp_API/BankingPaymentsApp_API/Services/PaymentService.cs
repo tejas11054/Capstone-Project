@@ -81,14 +81,14 @@ namespace BankingPaymentsApp_API.Services
                 var transactions = new List<Transaction> { debitTxn };
 
                 // If payee has account, create credit transaction
-                bool payeeExists = await _accountService.AccountExistsWithAccountNumber(payment.PayeeAccount.AccountNumber);
-                if (payeeExists)
+                Account? payeeAccount = await _accountService.AccountExistsWithAccountNumber(payment.PayeeAccountNumber);
+                if (payeeAccount != null)
                 {
                     var creditTxn = new Transaction
                     {
                         PaymentId = payment.PaymentId,
                         Amount = payment.Amount,
-                        AccountId = payment.PayeeAccountId,
+                        AccountId = payeeAccount.AccountId,
                         TransactionTypeId = 1 // credit
                     };
 
@@ -101,12 +101,15 @@ namespace BankingPaymentsApp_API.Services
 
                 // updating the balance
                 payerAccount.Balance -= payment.Amount;
-                if (payeeExists)
-                {
-                    var payeeAccount = await _accountService.GetById(payment.PayeeAccountId);
+                int id = addedTransactions.FirstOrDefault(t => t.TransactionTypeId == 2).TransactionId;
+                payerAccount.TransactionIds.Add(id);
+                if (payeeAccount != null)
+                { 
                     if (payeeAccount != null)
                     {
                         payeeAccount.Balance += payment.Amount;
+                        id = addedTransactions.FirstOrDefault(t => t.TransactionTypeId == 1).TransactionId;
+                        payeeAccount.TransactionIds.Add(id);
                     }
                 }
 

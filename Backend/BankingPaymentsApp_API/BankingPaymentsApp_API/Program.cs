@@ -94,7 +94,7 @@ namespace BankingPaymentsApp_API
                 .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day, shared: true)
                 .CreateLogger();
 
-            builder.Host.UseSerilog(); // here we changed the default logger to serilog
+            //builder.Host.UseSerilog(); // here we changed the default logger to serilog
 
             builder.Services.AddControllers().AddJsonOptions(options =>
             {

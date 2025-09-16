@@ -42,11 +42,13 @@ namespace BankingPaymentsApp_API.Services
             return await _accountRepository.GenerateAccountNumber();
         }
 
-        public async Task<bool> AccountExistsWithAccountNumber(string accountNumber)
+        public async Task<Account?> AccountExistsWithAccountNumber(string accountNumber)
         {
             var accounts = await _accountRepository.GetAll();
             //return true if any account has the given account Number 
-            return accounts.Any(a => a.AccountNumber.Equals(accountNumber));
+            Account? account = accounts.FirstOrDefault(a=>a.AccountNumber.Equals(accountNumber));
+            if (account == null) return null;
+            return account;
         }
 
         public async Task<bool?> CheckAccountBalance(int accountId ,double amount)
