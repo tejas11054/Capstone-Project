@@ -10,9 +10,11 @@ namespace BankingPaymentsApp_API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private readonly ILogger<AuthController> _logger;
+        public AuthController(IAuthService authService, ILogger<AuthController> logger)
         {
             _authService = authService;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -21,13 +23,17 @@ namespace BankingPaymentsApp_API.Controllers
         {
             if (ModelState.IsValid)
             {
+                _logger.LogInformation("Login Started");
                 var response = _authService.Login(usr);
                 if (response.IsSuccess)
                 {
+                    _logger.LogInformation("Login Sucessfull");
                     return Ok(response.Token);
                 }
+                _logger.LogInformation("Login unSucessfull");
                 return Unauthorized();
             }
+            _logger.LogInformation("sent a Bad Request");
             return BadRequest();
         }
     }

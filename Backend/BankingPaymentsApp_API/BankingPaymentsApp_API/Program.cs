@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Text;
 
 namespace BankingPaymentsApp_API
@@ -47,6 +48,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ICloudinaryRepository, CloudinaryRepository>();
+            builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
             //Adding Services
             builder.Services.AddScoped<IAccountService, AccountService>();
@@ -59,6 +61,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<ITransactionService, TransactionService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
             //Adding AutoMapper
             builder.Services.AddAutoMapper(options =>
@@ -81,6 +84,17 @@ namespace BankingPaymentsApp_API
                 options.CreateMap<BeneficiaryDTO, Beneficiary>();
                 options.CreateMap<EmployeeDTO, Employee>();
             });
+
+            //Logger Configuration
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning) // suppress ASP.NET logs
+                .MinimumLevel.Override("Microsoft.EntityFrameworkCore", Serilog.Events.LogEventLevel.Warning) // suppress EF Core logs
+                .WriteTo.Console()
+                .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day, shared: true)
+                .CreateLogger();
+
+            builder.Host.UseSerilog(); // here we changed the default logger to serilog
 
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
