@@ -55,5 +55,30 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext.Accounts.Remove(existingAccount);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<string> GenerateAccountNumber()
+        {
+            
+            string prefix = "BPA";
+            string datePart = DateTime.Now.ToString("yyyyMMdd");
+
+            // Generate random 6-character alphanumeric string
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            string randomPart = new string(Enumerable.Repeat(chars, 6)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+
+            string accountNumber = $"{prefix}{datePart}{randomPart}";
+
+            bool exists = await _dbContext.Accounts.AnyAsync(a => a.AccountNumber == accountNumber);
+            if (exists)
+            {
+                // Regenerate if already exists
+                return await GenerateAccountNumber();
+            }
+
+            return accountNumber;
+
+        }
     }
 }

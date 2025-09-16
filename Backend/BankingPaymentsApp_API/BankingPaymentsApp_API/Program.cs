@@ -42,6 +42,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
             builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
             //Adding Services
             builder.Services.AddScoped<IAccountService, AccountService>();
@@ -53,6 +54,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IPaymentService, PaymentService>();
             builder.Services.AddScoped<ITransactionService, TransactionService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
             //Adding AutoMapper
             builder.Services.AddAutoMapper(options =>
