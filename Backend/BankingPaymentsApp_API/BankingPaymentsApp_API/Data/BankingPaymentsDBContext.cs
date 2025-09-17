@@ -24,7 +24,7 @@ namespace BankingPaymentsApp_API.Data
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> Roles { get; set; }
         public DbSet<SalaryDisbursement> SalaryDisbursements { get; set; }
-        public DbSet<DisbursementDetails> DisbursementDetails { get; set; }
+        public DbSet<SalaryDisbursementDetails> SalaryDisbursementDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -87,24 +87,24 @@ namespace BankingPaymentsApp_API.Data
                 .OnDelete(DeleteBehavior.Restrict); // ❌ never delete a ClientUser if disbursement is deleted
 
             // 2. SalaryDisbursement -> DisbursementDetails
-            modelBuilder.Entity<DisbursementDetails>()
+            modelBuilder.Entity<SalaryDisbursementDetails>()
                 .HasOne(d => d.SalaryDisbursement)
                 .WithMany(s => s.DisbursementDetails)
                 .HasForeignKey(d => d.SalaryDisbursementId)
                 .OnDelete(DeleteBehavior.Restrict); // ✅ only cascade allowed (delete details if batch deleted)
 
             // 3. DisbursementDetails -> Employee
-            modelBuilder.Entity<DisbursementDetails>()
+            modelBuilder.Entity<SalaryDisbursementDetails>()
                 .HasOne(d => d.Employee)
                 .WithMany() // optional to expose navigation in Employee
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.Restrict); // ❌ don’t cascade delete Employee
 
             // 4. DisbursementDetails -> Transaction
-            modelBuilder.Entity<DisbursementDetails>()
+            modelBuilder.Entity<SalaryDisbursementDetails>()
                 .HasOne(d => d.Transaction)
                 .WithOne() // no collection in Transaction needed
-                .HasForeignKey<DisbursementDetails>(d => d.TransactionId)
+                .HasForeignKey<SalaryDisbursementDetails>(d => d.TransactionId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             //modelBuilder.Entity<Payment>()

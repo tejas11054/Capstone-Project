@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BankingPaymentsApp_API.Models
 {
-    public class DisbursementDetails
+    public class SalaryDisbursementDetails
     {
         [Key]
         public int DetailId {  get; set; }

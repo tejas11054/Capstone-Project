@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    [Migration("20250917162108_update employee")]
-    partial class updateemployee
+    [Migration("20250917171508_restarted migration")]
+    partial class restartedmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -355,6 +355,63 @@ namespace BankingPaymentsApp_API.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursement", b =>
+                {
+                    b.Property<int>("SalaryDisbursementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SalaryDisbursementId"));
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DisbursementDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("SalaryDisbursementId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("SalaryDisbursements");
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursementDetails", b =>
+                {
+                    b.Property<int>("DetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DetailId"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SalaryDisbursementId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TransactionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DetailId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("SalaryDisbursementId");
+
+                    b.HasIndex("TransactionId")
+                        .IsUnique()
+                        .HasFilter("[TransactionId] IS NOT NULL");
+
+                    b.ToTable("SalaryDisbursementDetails");
+                });
+
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Transaction", b =>
                 {
                     b.Property<int>("TransactionId")
@@ -624,6 +681,43 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Navigation("PaymentStatus");
                 });
 
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursement", b =>
+                {
+                    b.HasOne("BankingPaymentsApp_API.Models.ClientUser", "ClientUser")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ClientUser");
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursementDetails", b =>
+                {
+                    b.HasOne("BankingPaymentsApp_API.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BankingPaymentsApp_API.Models.SalaryDisbursement", "SalaryDisbursement")
+                        .WithMany("DisbursementDetails")
+                        .HasForeignKey("SalaryDisbursementId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BankingPaymentsApp_API.Models.Transaction", "Transaction")
+                        .WithOne()
+                        .HasForeignKey("BankingPaymentsApp_API.Models.SalaryDisbursementDetails", "TransactionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("SalaryDisbursement");
+
+                    b.Navigation("Transaction");
+                });
+
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Transaction", b =>
                 {
                     b.HasOne("BankingPaymentsApp_API.Models.Account", "Account")
@@ -674,6 +768,11 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Payment", b =>
                 {
                     b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursement", b =>
+                {
+                    b.Navigation("DisbursementDetails");
                 });
 #pragma warning restore 612, 618
         }
