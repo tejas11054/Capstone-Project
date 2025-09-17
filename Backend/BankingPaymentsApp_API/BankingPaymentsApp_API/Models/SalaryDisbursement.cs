@@ -15,6 +15,12 @@ namespace BankingPaymentsApp_API.Models
         public decimal TotalAmount { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime DisbursementDate { get; set; } = DateTime.UtcNow;
+        [ForeignKey("DisbursementStatus")]
+        public int DisbursementStatusId { get; set; } = 3;
+        public virtual PaymentStatus? DisbursementStatus { get; set; }
+        [Required(ErrorMessage = "AllEmployee check is Mandatory")]
+        public bool AllEmployees { get; set; } = true;
+        public virtual ICollection<Employee>? Employees { get; set; } = new List<Employee>();
         public virtual ICollection<SalaryDisbursementDetails>? DisbursementDetails { get; set; } = new List<SalaryDisbursementDetails>();
 
     }

@@ -9,7 +9,7 @@ namespace BankingPaymentsApp_API.Models
         public int? AccountId { get; set; }
         public virtual Account? Account { get; set; }
         public List<int>? BeneficiaryIds { get; set; } = new List<int>();
-        public List<int>? EmployeeIds { get; set; } = new List<int>();
+        public List<Employee>? Employees { get; set; } = new List<Employee>();
         [Required(ErrorMessage = "Date of Birth is Required!")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }

@@ -1,4 +1,6 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using AutoMapper;
+using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +12,12 @@ namespace BankingPaymentsApp_API.Controllers
     public class SalaryDisbursementController : ControllerBase
     {
         private readonly ISalaryDisbursementService _service;
+        private readonly IMapper _mapper;
 
-        public SalaryDisbursementController(ISalaryDisbursementService service)
+        public SalaryDisbursementController(ISalaryDisbursementService service,IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -35,11 +39,12 @@ namespace BankingPaymentsApp_API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateDisbursement([FromBody] SalaryDisbursement disbursement)
+        public async Task<IActionResult> CreateDisbursement([FromBody] CreateSalaryDisbursmentDTO disbursementDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            SalaryDisbursement disbursement = _mapper.Map<SalaryDisbursement>(disbursementDto);
             var addedDisbursement = await _service.Add(disbursement);
             if (addedDisbursement == null)
                 return BadRequest("Unable to add Salary Disbursement!");

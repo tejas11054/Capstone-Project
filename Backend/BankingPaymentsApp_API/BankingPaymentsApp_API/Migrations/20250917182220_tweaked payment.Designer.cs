@@ -4,6 +4,7 @@ using BankingPaymentsApp_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    partial class BankingPaymentsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250917182220_tweaked payment")]
+    partial class tweakedpayment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,14 +231,9 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<int>("Salary")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SalaryDisbursementId")
-                        .HasColumnType("int");
-
                     b.HasKey("EmployeeId");
 
                     b.HasIndex("ClientId");
-
-                    b.HasIndex("SalaryDisbursementId");
 
                     b.ToTable("Employees");
                 });
@@ -364,9 +362,6 @@ namespace BankingPaymentsApp_API.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SalaryDisbursementId"));
-
-                    b.Property<bool>("AllEmployees")
-                        .HasColumnType("bit");
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
@@ -611,6 +606,9 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<string>("DocumentIds")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("EmployeeIds")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("KycVierified")
                         .HasColumnType("bit");
 
@@ -666,14 +664,10 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
                 {
                     b.HasOne("BankingPaymentsApp_API.Models.ClientUser", "ClientUser")
-                        .WithMany("Employees")
+                        .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("BankingPaymentsApp_API.Models.SalaryDisbursement", null)
-                        .WithMany("Employees")
-                        .HasForeignKey("SalaryDisbursementId");
 
                     b.Navigation("ClientUser");
                 });
@@ -801,13 +795,6 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursement", b =>
                 {
                     b.Navigation("DisbursementDetails");
-
-                    b.Navigation("Employees");
-                });
-
-            modelBuilder.Entity("BankingPaymentsApp_API.Models.ClientUser", b =>
-                {
-                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }
