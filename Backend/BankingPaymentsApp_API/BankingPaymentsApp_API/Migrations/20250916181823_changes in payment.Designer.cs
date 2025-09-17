@@ -4,6 +4,7 @@ using BankingPaymentsApp_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    partial class BankingPaymentsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250916181823_changes in payment")]
+    partial class changesinpayment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,9 +174,6 @@ namespace BankingPaymentsApp_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
                     b.Property<string>("DocumentName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -185,13 +185,7 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<int>("ProofTypeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PublicId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("DocumentId");
-
-                    b.HasIndex("AccountId");
 
                     b.HasIndex("ProofTypeId");
 
@@ -571,19 +565,11 @@ namespace BankingPaymentsApp_API.Migrations
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Document", b =>
                 {
-                    b.HasOne("BankingPaymentsApp_API.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BankingPaymentsApp_API.Models.ProofType", "ProofType")
                         .WithMany()
                         .HasForeignKey("ProofTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Account");
 
                     b.Navigation("ProofType");
                 });

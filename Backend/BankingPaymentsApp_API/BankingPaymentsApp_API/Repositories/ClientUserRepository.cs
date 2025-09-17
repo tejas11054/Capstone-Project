@@ -14,7 +14,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public async Task<IEnumerable<ClientUser>> GetAll()
         {
-            return await _dbContext.ClientUsers.ToListAsync();
+            return await _dbContext.ClientUsers.Include(u => u.Role).Include(u => u.Account).ToListAsync();
         }
 
         public async Task<ClientUser> Add(ClientUser user)

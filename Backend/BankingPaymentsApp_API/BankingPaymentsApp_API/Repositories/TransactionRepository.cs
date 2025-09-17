@@ -24,6 +24,12 @@ namespace BankingPaymentsApp_API.Repositories
             return transaction;
         }
 
+        public async Task<IEnumerable<Transaction>> AddMany(IEnumerable<Transaction> transactions)
+        {
+            await _dbContext.Transactions.AddRangeAsync(transactions);
+            await _dbContext.SaveChangesAsync();
+            return transactions;
+        }
         public async Task<Transaction?> GetById(int id)
         {
             return await _dbContext.Transactions.Include(t => t.Account).Include(t => t.Payment).Include(t => t.TransactionType).FirstOrDefaultAsync(t => t.TransactionId.Equals(id));

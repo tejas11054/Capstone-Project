@@ -32,7 +32,7 @@ namespace BankingPaymentsApp_API.Controllers
             Payment newPayment = new Payment
             {
                 PayerAccountId = payment.PayerAccountId,
-                PayeeAccountId = payment.PayeeAccountId,
+                PayeeAccountNumber = payment.PayeeAccountNumber,
                 Amount = payment.Amount
             };
             Payment addedPayment = await _paymentService.Add(newPayment);
@@ -62,7 +62,7 @@ namespace BankingPaymentsApp_API.Controllers
 
             existingPayment.Amount = payment.Amount;
             existingPayment.PayerAccountId = payment.PayerAccountId;
-            existingPayment.PayeeAccountId = payment.PayeeAccountId;
+            existingPayment.PayeeAccountNumber = payment.PayeeAccountNumber;
 
             Payment? updatedPayment = await _paymentService.Update(existingPayment);
             return Ok(updatedPayment);
@@ -80,8 +80,17 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok("Payment has been deleted Sucessfully!");
         }
 
+        [HttpPut]
+        [Route("approve/{id}")]
+        public async Task<IActionResult> ApprovePayment(int id, [FromBody] Payment payment)
+        {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
 
-
+            Payment? approvedPayment = await _paymentService.ApprovePayment(payment);
+            if (approvedPayment == null) return BadRequest("something went wrong");
+            return  Ok(approvedPayment);
+        }
+        
 
     }
 }

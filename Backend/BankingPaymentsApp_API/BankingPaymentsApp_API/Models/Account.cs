@@ -8,7 +8,7 @@ namespace BankingPaymentsApp_API.Models
         [Key]
         public int AccountId {  get; set; }
         [Required(ErrorMessage = "Account Number is Required!")]
-        [RegularExpression(@"BPS[0-9]{9}",ErrorMessage ="Account Number is Not Valid")]
+        [RegularExpression(@"^BPA\d{8}[A-Z0-9]{6}$", ErrorMessage ="Account Number is Not Valid")]
         public string AccountNumber {  get; set; }
         [ForeignKey("ClientUser")]
         public int? ClientId {  get; set; }
@@ -27,6 +27,6 @@ namespace BankingPaymentsApp_API.Models
         [Required(ErrorMessage = "Account Creation Date is Required!")]
         [DataType(DataType.Date)]
         public DateTime CreatedAt {  get; set; } = DateTime.Now.Date;
-        public virtual List<int>? TransactionIds { get; set; }
+        public virtual List<int>? TransactionIds { get; set; } = new List<int>();
     }
 }

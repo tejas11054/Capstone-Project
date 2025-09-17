@@ -78,11 +78,11 @@ namespace BankingPaymentsApp_API.Data
                 .HasForeignKey(p => p.PayerAccountId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Payment>()
-                .HasOne(p => p.PayeeAccount)
-                .WithMany()
-                .HasForeignKey(p => p.PayeeAccountId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Payment>()
+            //    .HasOne(p => p.PayeeAccount)
+            //    .WithMany()
+            //    .HasForeignKey(p => p.PayeeAccountId)
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

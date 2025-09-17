@@ -39,8 +39,8 @@ namespace BankingPaymentsApp_API.Controllers
             if (clientUser == null)
                 return NotFound($"No Client User found with id: {id}");
 
-            var response = _mapper.Map<ClientUserResponseDTO>(clientUser);
-            return Ok(response);
+            //var response = _mapper.Map<ClientUserResponseDTO>(clientUser);
+            return Ok(clientUser);
         }
 
         // POST: api/ClientUser
@@ -98,5 +98,16 @@ namespace BankingPaymentsApp_API.Controllers
             await _service.DeleteById(id);
             return Ok("Client User deleted successfully!");
         }
+
+        [HttpPut("approve/{id}")]
+        public async Task<IActionResult> ApproveClientUser(int id, [FromBody] ClientUser client)
+        {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+            //ClientUser client = _mapper.Map<ClientUser>(clientdto);
+            ClientUser approvedClient = await _service.ApproveClient(client);
+            return Ok(approvedClient);
+
+        }
+
     }
 }
