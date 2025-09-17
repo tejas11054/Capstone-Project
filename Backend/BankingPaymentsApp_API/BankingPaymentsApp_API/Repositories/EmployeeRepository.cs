@@ -53,5 +53,14 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext.Employees.Remove(exisitngEmployee);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Employee>> BulkInsert(List<Employee> employees)
+        {
+            await _dbContext.Employees.AddRangeAsync(employees);
+            await _dbContext.SaveChangesAsync();
+            return employees;
+        }
+
+
     }
 }

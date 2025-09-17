@@ -18,5 +18,6 @@ namespace BankingPaymentsApp_API.Models
         public string BankName {  get; set; }
         [Required(ErrorMessage = "IFSC Code is Required!")]
         public string IFSC {  get; set; }
+        public int Salary { get; set; }
     }
 }
