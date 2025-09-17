@@ -15,7 +15,7 @@ namespace BankingPaymentsApp_API.Models
         public decimal TotalAmount { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime DisbursementDate { get; set; } = DateTime.UtcNow;
-        public virtual ICollection<DisbursementDetails> DisbursementDetailId { get; set; } = new List<DisbursementDetails>();
+        public virtual ICollection<DisbursementDetails> DisbursementDetails { get; set; } = new List<DisbursementDetails>();
 
     }
 }

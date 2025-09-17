@@ -8,7 +8,7 @@ namespace BankingPaymentsApp_API.Models
         [Key]
         public int DetailId {  get; set; }
         [ForeignKey("SalaryDisbursement")]
-        public int SalaryDisburementId {  get; set; }
+        public int SalaryDisbursementId { get; set; }
         public virtual SalaryDisbursement SalaryDisbursement { get; set; }
         [ForeignKey("Employee")]
         public int EmployeeId { get; set; }
