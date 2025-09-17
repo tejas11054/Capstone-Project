@@ -30,7 +30,7 @@ namespace BankingPaymentsApp_API.Services
         }
         public async Task DeleteById(int id)
         {
-            return await _salaryDisbursementRepository.DeleteById(id);
+            await _salaryDisbursementRepository.DeleteById(id);
         }
     }
 }
