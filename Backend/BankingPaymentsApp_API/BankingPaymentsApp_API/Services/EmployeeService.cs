@@ -36,5 +36,12 @@ namespace BankingPaymentsApp_API.Services
         {
             await _employeeRepository.DeleteById(id);
         }
+
+        public async Task<IEnumerable<Employee>> BulkInsert(List<Employee> employees)
+        {
+            return await _employeeRepository.BulkInsert(employees);
+        }
+
+
     }
 }

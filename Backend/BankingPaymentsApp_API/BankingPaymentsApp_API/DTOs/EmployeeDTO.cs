@@ -16,5 +16,8 @@ namespace BankingPaymentsApp_API.DTOs
         public string BankName { get; set; }
         [Required(ErrorMessage = "IFSC Code is Required!")]
         public string IFSC { get; set; }
+        [Required(ErrorMessage = "Salary is Required!")]
+        [Range(0, int.MaxValue, ErrorMessage = "Salary must be a positive number.")]
+        public int Salary { get; set; }
     }
 }
