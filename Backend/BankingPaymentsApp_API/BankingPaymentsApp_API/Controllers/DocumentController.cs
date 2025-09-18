@@ -86,9 +86,9 @@ namespace BankingPaymentsApp_API.Controllers
                 return BadRequest("No file selected!");
 
             // Check if account exists
-            var account = await _accountRepository.GetById(dto.AccountId);
+            var account = await _accountRepository.GetById(dto.ClientId);
             if (account == null)
-                return NotFound($"Account with id {dto.AccountId} not found!");
+                return NotFound($"Account with id {dto.ClientId} not found!");
 
             // Upload to Cloudinary
             var uploadResult = await _cloudinaryRepository.UploadFileAsync(file);
@@ -100,7 +100,7 @@ namespace BankingPaymentsApp_API.Controllers
                 DocumentName = dto.DocumentName ?? file.FileName,
                 ProofTypeId = dto.ProofTypeId,
                 PublicId = uploadResult.PublicId,
-                AccountId = dto.AccountId
+                ClientId = dto.ClientId
             };
 
             await _documentRepository.Add(document);
@@ -108,7 +108,7 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(new
             {
                 DocumentId = document.DocumentId,
-                AccountId = document.AccountId,
+                AccountId = document.ClientId,
                 DocumentURL = document.DocumentURL,
                 PublicId = document.PublicId,
                 Message = "File uploaded successfully!"

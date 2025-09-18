@@ -17,8 +17,9 @@ namespace BankingPaymentsApp_API.Models
         public virtual ProofType? ProofType { get; set; }
 
         public string PublicId { get; set; }
+
         [ForeignKey("Account")]
-        public int AccountId { get; set; }
-        public virtual Account? Account { get; set; }
+        public int ClientId { get; set; }
+        public virtual ClientUser? Account { get; set; }
     }
 }

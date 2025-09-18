@@ -4,6 +4,7 @@ using BankingPaymentsApp_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    partial class BankingPaymentsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250918093538_update documents model")]
+    partial class updatedocumentsmodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,7 +174,7 @@ namespace BankingPaymentsApp_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"));
 
-                    b.Property<int>("ClientUserId")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<string>("DocumentName")
@@ -189,11 +192,14 @@ namespace BankingPaymentsApp_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("DocumentId");
 
-                    b.HasIndex("ClientUserId");
-
                     b.HasIndex("ProofTypeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Documents");
                 });
@@ -533,6 +539,9 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("DocumentIds")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("EmployeeIds")
                         .HasColumnType("nvarchar(max)");
 
@@ -571,21 +580,19 @@ namespace BankingPaymentsApp_API.Migrations
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Document", b =>
                 {
-                    b.HasOne("BankingPaymentsApp_API.Models.ClientUser", "ClientUser")
-                        .WithMany("Documents")
-                        .HasForeignKey("ClientUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BankingPaymentsApp_API.Models.ProofType", "ProofType")
                         .WithMany()
                         .HasForeignKey("ProofTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ClientUser");
+                    b.HasOne("BankingPaymentsApp_API.Models.ClientUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("ProofType");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
@@ -668,11 +675,6 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Payment", b =>
                 {
                     b.Navigation("Transactions");
-                });
-
-            modelBuilder.Entity("BankingPaymentsApp_API.Models.ClientUser", b =>
-                {
-                    b.Navigation("Documents");
                 });
 #pragma warning restore 612, 618
         }
