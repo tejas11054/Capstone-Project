@@ -13,14 +13,16 @@ namespace BankingPaymentsApp_API.Controllers
         private readonly IDocumentRepository _documentRepository;
         private readonly ICloudinaryRepository _cloudinaryRepository;
         private readonly IAccountRepository _accountRepository;
+        private readonly IClientUserRepository _clientUserRepository;
         private readonly IMapper _mapper;
 
-        public DocumentController(IDocumentRepository documentRepository, IMapper mapper, ICloudinaryRepository cloudinaryRepository, IAccountRepository accountRepository)
+        public DocumentController(IDocumentRepository documentRepository, IMapper mapper, ICloudinaryRepository cloudinaryRepository, IAccountRepository accountRepository, IClientUserRepository clientUserRepository)
         {
             _documentRepository = documentRepository;
             _mapper = mapper;
             _cloudinaryRepository = cloudinaryRepository;
             _accountRepository = accountRepository;
+            _clientUserRepository = clientUserRepository;
         }
 
         // GET: api/Document
@@ -86,7 +88,7 @@ namespace BankingPaymentsApp_API.Controllers
                 return BadRequest("No file selected!");
 
             // Check if account exists
-            var account = await _accountRepository.GetById(dto.ClientId);
+            var account = await _clientUserRepository.GetById(dto.ClientId);
             if (account == null)
                 return NotFound($"Account with id {dto.ClientId} not found!");
 
@@ -103,7 +105,10 @@ namespace BankingPaymentsApp_API.Controllers
                 ClientId = dto.ClientId
             };
 
-            await _documentRepository.Add(document);
+            Document addedDocument = await _documentRepository.Add(document);
+            ClientUser client = await _clientUserRepository.GetById(dto.ClientId);
+            client.Documents.Add(addedDocument);
+
 
             return Ok(new
             {
