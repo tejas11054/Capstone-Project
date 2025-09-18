@@ -42,6 +42,12 @@ namespace BankingPaymentsApp_API.Services
             return await _employeeRepository.BulkInsert(employees);
         }
 
+        public async Task<IEnumerable<Employee>> GetEmployeesByClientId(int clientId)
+        {
+            var employees = await _employeeRepository.GetAll();
+            return employees.Where(x => x.ClientId == clientId);
+        }
+
 
     }
 }

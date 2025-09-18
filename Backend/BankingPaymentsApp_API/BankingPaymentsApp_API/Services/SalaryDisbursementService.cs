@@ -1,4 +1,5 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.Data;
+using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 
 namespace BankingPaymentsApp_API.Services
@@ -6,12 +7,23 @@ namespace BankingPaymentsApp_API.Services
     public class SalaryDisbursementService : ISalaryDisbursementService
     {
         private readonly ISalaryDisbursementRepository _salaryDisbursementRepository;
-        private readonly IClientUserRepository _clientUserRepository;
+        private readonly ISalaryDisbursementDetailsRepository _salaryDisbursementDetailsRepository;
+        private readonly IAccountService _accountService;
+        private readonly ITransactionRepository _transactionRepository;
+        private readonly IEmployeeService _employeeService;
+        private readonly BankingPaymentsDBContext _dbContext;
+        private readonly ILogger<SalaryDisbursementService> _logger;
 
-        public SalaryDisbursementService(ISalaryDisbursementRepository salaryDisbursementRepository, IClientUserRepository clientUserRepository)
+
+        public SalaryDisbursementService(ISalaryDisbursementRepository salaryDisbursementRepository, IAccountService accountService, BankingPaymentsDBContext dBContext, ITransactionRepository transactionRepository, ISalaryDisbursementDetailsRepository detailsRepository,IEmployeeService employeeService, ILogger<SalaryDisbursementService> logger)
         {
             _salaryDisbursementRepository = salaryDisbursementRepository;
-            _clientUserRepository = clientUserRepository;
+            _accountService = accountService;
+            _dbContext = dBContext;
+            _transactionRepository = transactionRepository;
+            _salaryDisbursementDetailsRepository = detailsRepository;
+            _employeeService = employeeService;
+            _logger = logger;
         }
 
         public async Task<IEnumerable<SalaryDisbursement>> GetAll()
@@ -24,11 +36,27 @@ namespace BankingPaymentsApp_API.Services
         }
         public async Task<SalaryDisbursement> Add(SalaryDisbursement disbursement)
         {
-            //if (disbursement.AllEmployees)
-            //{
-            //    ClientUser? clientUser = await _clientUserRepository.GetById(disbursement.ClientId);
-            //    if (clientUser == null) throw new InvalidOperationException($"No client of id: {disbursement.ClientId}");
-            //}
+            decimal tAmount = 0;
+            if (disbursement.AllEmployees)
+            {
+                //gives reference error should get all the employees from db
+                var employees = await _employeeService.GetEmployeesByClientId(disbursement.ClientId);
+                foreach (Employee emp in employees)
+                {
+                    tAmount += emp.Salary;
+                    disbursement.Employees.Add(emp);
+                }
+                disbursement.TotalAmount = tAmount;
+            }
+            else
+            {
+                foreach (Employee emp in disbursement.Employees)
+                {
+                    tAmount += emp.Salary;
+                }
+                disbursement.TotalAmount = tAmount;
+            }
+
             return await _salaryDisbursementRepository.Add(disbursement);
         }
         public async Task<SalaryDisbursement?> Update(SalaryDisbursement disbursement)
@@ -38,6 +66,83 @@ namespace BankingPaymentsApp_API.Services
         public async Task DeleteById(int id)
         {
             await _salaryDisbursementRepository.DeleteById(id);
+        }
+
+        public async Task<SalaryDisbursement> ApproveSalaryDisbursement(int disbursementId)
+        {
+            var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                SalaryDisbursement? salaryDisbursement = await _salaryDisbursementRepository.GetById(disbursementId);
+
+                if (salaryDisbursement == null) throw new NullReferenceException("did not find this salary disbursement!");
+
+                int ClientAccountId = salaryDisbursement.ClientUser.Account.AccountId;
+                Account? ClientAccount = await _accountService.GetById(ClientAccountId);
+                if (ClientAccount.Balance < (double)salaryDisbursement.TotalAmount)
+                {
+                    salaryDisbursement.DisbursementStatusId = 2;
+                    throw new Exception("insufficient Balance!");
+                }
+                ClientAccount.Balance -= (double)salaryDisbursement.TotalAmount;
+
+                await _accountService.Update(ClientAccount);
+
+                var details = new List<SalaryDisbursementDetails>();
+                foreach (Employee emp in salaryDisbursement.Employees)
+                {
+                    SalaryDisbursementDetails detail = new SalaryDisbursementDetails
+                    {
+                        SalaryDisbursementId = salaryDisbursement.SalaryDisbursementId,
+                        EmployeeId = emp.EmployeeId,
+                        Amount = emp.Salary
+                    };
+
+                    Account? employeeAccount = await _accountService.AccountExistsWithAccountNumber(emp.AccountNumber);
+                    if (employeeAccount != null)
+                    {
+                        employeeAccount.Balance += emp.Salary;
+                        Transaction creditTransaction = new Transaction
+                        {
+                            TransactionTypeId = 1,
+                            AccountId = employeeAccount.AccountId,
+                            CreatedAt = DateTime.UtcNow,
+                            Amount = emp.Salary,
+                            SalaryDisbursementId = disbursementId
+                        };
+                        Transaction addedTransacation = await _transactionRepository.Add(creditTransaction);
+                        detail.TransactionId = addedTransacation.TransactionId;
+                        await _accountService.Update(employeeAccount);
+                    }
+
+                    SalaryDisbursementDetails addedDetail = await _salaryDisbursementDetailsRepository.Add(detail);
+                    details.Add(addedDetail);
+                }
+
+                salaryDisbursement.DisbursementDetails = details;
+                salaryDisbursement.DisbursementStatusId = 1;
+
+                Transaction debitTransaction = new Transaction
+                {
+                    TransactionTypeId = 2,
+                    AccountId = ClientAccount.AccountId,
+                    CreatedAt = DateTime.UtcNow,
+                    Amount = (double)salaryDisbursement.TotalAmount,
+                    SalaryDisbursementId = disbursementId
+                };
+                Transaction addDebTransacation = await _transactionRepository.Add(debitTransaction);
+                ClientAccount.TransactionIds.Add(addDebTransacation.TransactionId);
+
+                SalaryDisbursement? updatedDisbursement = await _salaryDisbursementRepository.Update(salaryDisbursement);
+                await transaction.CommitAsync();
+                return updatedDisbursement;
+
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
     }
 }

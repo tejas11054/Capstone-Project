@@ -3,6 +3,7 @@ using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankingPaymentsApp_API.Controllers
@@ -33,9 +34,10 @@ namespace BankingPaymentsApp_API.Controllers
         public async Task<IActionResult> GetDisbursementById(int id)
         {
             var disbursement = await _service.GetById(id);
+            SalaryResponseDTO salaryResponse = _mapper.Map<SalaryResponseDTO>(disbursement);
             if (disbursement == null)
                 return NotFound($"No Salary Disbursement found with id: {id}");
-            return Ok(disbursement);
+            return Ok(salaryResponse);
         }
 
         [HttpPost]
@@ -75,6 +77,14 @@ namespace BankingPaymentsApp_API.Controllers
         {
             await _service.DeleteById(id);
             return Ok($"Salary Disbursement with id: {id} deleted successfully.");
+        }
+
+        [HttpPut("approve/{id}")]
+        public async Task<IActionResult> ApproveSalaryDisbursement(int id)
+        {
+            SalaryDisbursement approvedDisbursement = await _service.ApproveSalaryDisbursement(id);
+            SalaryResponseDTO salaryResponse = _mapper.Map<SalaryResponseDTO>(approvedDisbursement);
+            return Ok(salaryResponse);
         }
     }
 }

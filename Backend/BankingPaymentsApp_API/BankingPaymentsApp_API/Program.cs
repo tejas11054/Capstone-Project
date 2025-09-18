@@ -88,6 +88,7 @@ namespace BankingPaymentsApp_API
                 options.CreateMap<BeneficiaryDTO, Beneficiary>();
                 options.CreateMap<EmployeeDTO, Employee>();
                 options.CreateMap<CreateSalaryDisbursmentDTO, SalaryDisbursement>();
+                options.CreateMap<SalaryDisbursement,SalaryResponseDTO>();
             });
 
             //Logger Configuration

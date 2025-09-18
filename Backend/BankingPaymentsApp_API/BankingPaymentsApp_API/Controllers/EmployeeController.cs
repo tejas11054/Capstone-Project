@@ -19,11 +19,13 @@ namespace BankingPaymentsApp_API.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
+        private readonly IClientUserService _clientUserService;
         private readonly IMapper _mapper;
-        public EmployeeController(IEmployeeService employeeService, IMapper mapper)
+        public EmployeeController(IEmployeeService employeeService, IMapper mapper, IClientUserService clientUserService)
         {
             _employeeService = employeeService;
             _mapper = mapper;
+            _clientUserService = clientUserService;
         }
 
         [HttpGet]
@@ -126,7 +128,10 @@ namespace BankingPaymentsApp_API.Controllers
             // Bulk insert with FK exception handling
             try
             {
-                await _employeeService.BulkInsert(employeeEntities);
+                var employees = await _employeeService.BulkInsert(employeeEntities);
+                ClientUser? client = await _clientUserService.GetById(employeeDtos[1].ClientId);
+                client.Employees.AddRange(employees);
+
             }
             catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx && sqlEx.Number == 547)
             {

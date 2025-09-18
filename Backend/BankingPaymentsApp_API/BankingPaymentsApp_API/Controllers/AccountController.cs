@@ -98,5 +98,13 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok("Account deleted successfully!");
         }
 
+        [HttpGet("acc/{accountNumber}")]
+        public async Task<IActionResult> getAccountbyAccountNumber(string accountNumber)
+        {
+            Account? account = await _service.AccountExistsWithAccountNumber(accountNumber);
+            if (account == null) return NotFound();
+            return Ok(account);
+        }
+
     }
 }

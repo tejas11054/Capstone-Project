@@ -9,5 +9,6 @@ namespace BankingPaymentsApp_API.Services
         Task<SalaryDisbursement> Add(SalaryDisbursement disbursement);
         Task<SalaryDisbursement?> Update(SalaryDisbursement disbursement);
         Task DeleteById(int id);
+        public Task<SalaryDisbursement> ApproveSalaryDisbursement(int disbursementId);
     }
 }

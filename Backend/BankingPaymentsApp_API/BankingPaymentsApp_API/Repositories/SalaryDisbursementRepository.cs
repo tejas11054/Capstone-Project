@@ -18,8 +18,9 @@ namespace BankingPaymentsApp_API.Repositories
         public async Task<IEnumerable<SalaryDisbursement>> GetAll()
         {
             return await _dbContext.SalaryDisbursements
-                .Include(s => s.ClientUser)
+                .Include(s => s.ClientUser).ThenInclude(u=>u.Employees)
                 .Include(s => s.DisbursementDetails)
+                .Include(s=>s.Employees)
                 .ToListAsync();
         }
 
@@ -27,8 +28,9 @@ namespace BankingPaymentsApp_API.Repositories
         public async Task<SalaryDisbursement?> GetById(int id)
         {
             return await _dbContext.SalaryDisbursements
-                .Include(s => s.ClientUser)
+                .Include(s => s.ClientUser).ThenInclude(u => u.Account)
                 .Include(s => s.DisbursementDetails)
+                .Include(s => s.Employees)
                 .FirstOrDefaultAsync(s => s.SalaryDisbursementId == id);
         }
 
