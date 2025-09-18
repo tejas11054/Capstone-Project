@@ -16,6 +16,6 @@ namespace BankingPaymentsApp_API.Models
         [Required(ErrorMessage = "Address is Required!")]
         public string Address { get; set; } = null!;
         public bool KycVierified { get; set; } = false;
-        public List<int>? DocumentIds { get; set; } = new List<int>();
+        public virtual ICollection<Document> Documents { get; set; } = new List<Document>();
     }
 }
