@@ -1,5 +1,4 @@
 ﻿using BankingPaymentsApp_API.Data;
-using BankingPaymentsApp_API.Migrations;
 using BankingPaymentsApp_API.Models;
 using Microsoft.EntityFrameworkCore;
 

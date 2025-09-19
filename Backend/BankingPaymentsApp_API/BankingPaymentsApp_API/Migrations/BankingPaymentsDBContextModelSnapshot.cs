@@ -171,7 +171,7 @@ namespace BankingPaymentsApp_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"));
 
-                    b.Property<int>("ClientUserId")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<string>("DocumentName")
@@ -191,7 +191,7 @@ namespace BankingPaymentsApp_API.Migrations
 
                     b.HasKey("DocumentId");
 
-                    b.HasIndex("ClientUserId");
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("ProofTypeId");
 
@@ -608,9 +608,6 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DocumentIds")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("KycVierified")
                         .HasColumnType("bit");
 
@@ -646,9 +643,9 @@ namespace BankingPaymentsApp_API.Migrations
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Document", b =>
                 {
-                    b.HasOne("BankingPaymentsApp_API.Models.ClientUser", "ClientUser")
+                    b.HasOne("BankingPaymentsApp_API.Models.ClientUser", "Account")
                         .WithMany("Documents")
-                        .HasForeignKey("ClientUserId")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -658,7 +655,7 @@ namespace BankingPaymentsApp_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ClientUser");
+                    b.Navigation("Account");
 
                     b.Navigation("ProofType");
                 });
@@ -719,7 +716,7 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursementDetails", b =>
                 {
                     b.HasOne("BankingPaymentsApp_API.Models.Employee", "Employee")
-                        .WithMany()
+                        .WithMany("SalaryDisbursementDetails")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -793,6 +790,11 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Navigation("Account");
                 });
 
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
+                {
+                    b.Navigation("SalaryDisbursementDetails");
+                });
+
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Payment", b =>
                 {
                     b.Navigation("Transactions");
@@ -807,6 +809,8 @@ namespace BankingPaymentsApp_API.Migrations
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.ClientUser", b =>
                 {
+                    b.Navigation("Documents");
+
                     b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618

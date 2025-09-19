@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    [Migration("20250917184132_tweaked clientUSer")]
-    partial class tweakedclientUSer
+    [Migration("20250919095929_initial-2")]
+    partial class initial2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -174,7 +174,7 @@ namespace BankingPaymentsApp_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"));
 
-                    b.Property<int>("AccountId")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<string>("DocumentName")
@@ -194,7 +194,7 @@ namespace BankingPaymentsApp_API.Migrations
 
                     b.HasKey("DocumentId");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("ProofTypeId");
 
@@ -406,6 +406,9 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("EmployeeId1")
+                        .HasColumnType("int");
+
                     b.Property<int>("SalaryDisbursementId")
                         .HasColumnType("int");
 
@@ -415,6 +418,8 @@ namespace BankingPaymentsApp_API.Migrations
                     b.HasKey("DetailId");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("EmployeeId1");
 
                     b.HasIndex("SalaryDisbursementId");
 
@@ -611,9 +616,6 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DocumentIds")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("KycVierified")
                         .HasColumnType("bit");
 
@@ -649,9 +651,9 @@ namespace BankingPaymentsApp_API.Migrations
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Document", b =>
                 {
-                    b.HasOne("BankingPaymentsApp_API.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
+                    b.HasOne("BankingPaymentsApp_API.Models.ClientUser", "Account")
+                        .WithMany("Documents")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -727,6 +729,10 @@ namespace BankingPaymentsApp_API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("BankingPaymentsApp_API.Models.Employee", null)
+                        .WithMany("SalaryDisbursementDetails")
+                        .HasForeignKey("EmployeeId1");
+
                     b.HasOne("BankingPaymentsApp_API.Models.SalaryDisbursement", "SalaryDisbursement")
                         .WithMany("DisbursementDetails")
                         .HasForeignKey("SalaryDisbursementId")
@@ -796,6 +802,11 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Navigation("Account");
                 });
 
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
+                {
+                    b.Navigation("SalaryDisbursementDetails");
+                });
+
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Payment", b =>
                 {
                     b.Navigation("Transactions");
@@ -810,6 +821,8 @@ namespace BankingPaymentsApp_API.Migrations
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.ClientUser", b =>
                 {
+                    b.Navigation("Documents");
+
                     b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618

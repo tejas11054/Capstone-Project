@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    [Migration("20250917183504_tweaked salarydis")]
-    partial class tweakedsalarydis
+    [Migration("20250919100147_initial-3")]
+    partial class initial3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -174,7 +174,7 @@ namespace BankingPaymentsApp_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"));
 
-                    b.Property<int>("AccountId")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<string>("DocumentName")
@@ -194,7 +194,7 @@ namespace BankingPaymentsApp_API.Migrations
 
                     b.HasKey("DocumentId");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("ProofTypeId");
 
@@ -611,12 +611,6 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DocumentIds")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeIds")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("KycVierified")
                         .HasColumnType("bit");
 
@@ -652,9 +646,9 @@ namespace BankingPaymentsApp_API.Migrations
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Document", b =>
                 {
-                    b.HasOne("BankingPaymentsApp_API.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
+                    b.HasOne("BankingPaymentsApp_API.Models.ClientUser", "Account")
+                        .WithMany("Documents")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -672,7 +666,7 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
                 {
                     b.HasOne("BankingPaymentsApp_API.Models.ClientUser", "ClientUser")
-                        .WithMany()
+                        .WithMany("Employees")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -725,7 +719,7 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursementDetails", b =>
                 {
                     b.HasOne("BankingPaymentsApp_API.Models.Employee", "Employee")
-                        .WithMany()
+                        .WithMany("SalaryDisbursementDetails")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -799,6 +793,11 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Navigation("Account");
                 });
 
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
+                {
+                    b.Navigation("SalaryDisbursementDetails");
+                });
+
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Payment", b =>
                 {
                     b.Navigation("Transactions");
@@ -807,6 +806,13 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursement", b =>
                 {
                     b.Navigation("DisbursementDetails");
+
+                    b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.ClientUser", b =>
+                {
+                    b.Navigation("Documents");
 
                     b.Navigation("Employees");
                 });

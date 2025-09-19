@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BankingPaymentsApp_API.Migrations
 {
     /// <inheritdoc />
-    public partial class restartedmigration : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -140,35 +140,6 @@ namespace BankingPaymentsApp_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Documents",
-                columns: table => new
-                {
-                    DocumentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DocumentURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DocumentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProofTypeId = table.Column<int>(type: "int", nullable: false),
-                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AccountId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Documents", x => x.DocumentId);
-                    table.ForeignKey(
-                        name: "FK_Documents_Accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "AccountId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Documents_ProofTypes_ProofTypeId",
-                        column: x => x.ProofTypeId,
-                        principalTable: "ProofTypes",
-                        principalColumn: "TypeId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Payments",
                 columns: table => new
                 {
@@ -217,11 +188,9 @@ namespace BankingPaymentsApp_API.Migrations
                     ClientIds = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccountId = table.Column<int>(type: "int", nullable: true),
                     BeneficiaryIds = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EmployeeIds = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    KycVierified = table.Column<bool>(type: "bit", nullable: true),
-                    DocumentIds = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    KycVierified = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -240,13 +209,102 @@ namespace BankingPaymentsApp_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Documents",
+                columns: table => new
+                {
+                    DocumentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DocumentURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DocumentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProofTypeId = table.Column<int>(type: "int", nullable: false),
+                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Documents", x => x.DocumentId);
+                    table.ForeignKey(
+                        name: "FK_Documents_ProofTypes_ProofTypeId",
+                        column: x => x.ProofTypeId,
+                        principalTable: "ProofTypes",
+                        principalColumn: "TypeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Documents_Users_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SalaryDisbursements",
+                columns: table => new
+                {
+                    SalaryDisbursementId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DisbursementDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DisbursementStatusId = table.Column<int>(type: "int", nullable: false),
+                    AllEmployees = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SalaryDisbursements", x => x.SalaryDisbursementId);
+                    table.ForeignKey(
+                        name: "FK_SalaryDisbursements_PaymentStatuses_DisbursementStatusId",
+                        column: x => x.DisbursementStatusId,
+                        principalTable: "PaymentStatuses",
+                        principalColumn: "StatusId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SalaryDisbursements_Users_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BankName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IFSC = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Salary = table.Column<int>(type: "int", nullable: false),
+                    SalaryDisbursementId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
+                    table.ForeignKey(
+                        name: "FK_Employees_SalaryDisbursements_SalaryDisbursementId",
+                        column: x => x.SalaryDisbursementId,
+                        principalTable: "SalaryDisbursements",
+                        principalColumn: "SalaryDisbursementId");
+                    table.ForeignKey(
+                        name: "FK_Employees_Users_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Transactions",
                 columns: table => new
                 {
                     TransactionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AccountId = table.Column<int>(type: "int", nullable: false),
-                    PaymentId = table.Column<int>(type: "int", nullable: false),
+                    PaymentId = table.Column<int>(type: "int", nullable: true),
+                    SalaryDisbursementId = table.Column<int>(type: "int", nullable: true),
                     TransactionTypeId = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<double>(type: "float", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -264,59 +322,18 @@ namespace BankingPaymentsApp_API.Migrations
                         name: "FK_Transactions_Payments_PaymentId",
                         column: x => x.PaymentId,
                         principalTable: "Payments",
-                        principalColumn: "PaymentId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PaymentId");
+                    table.ForeignKey(
+                        name: "FK_Transactions_SalaryDisbursements_SalaryDisbursementId",
+                        column: x => x.SalaryDisbursementId,
+                        principalTable: "SalaryDisbursements",
+                        principalColumn: "SalaryDisbursementId");
                     table.ForeignKey(
                         name: "FK_Transactions_TransactionTypes_TransactionTypeId",
                         column: x => x.TransactionTypeId,
                         principalTable: "TransactionTypes",
                         principalColumn: "TypeId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Employees",
-                columns: table => new
-                {
-                    EmployeeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BankName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IFSC = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Salary = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
-                    table.ForeignKey(
-                        name: "FK_Employees_Users_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SalaryDisbursements",
-                columns: table => new
-                {
-                    SalaryDisbursementId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DisbursementDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SalaryDisbursements", x => x.SalaryDisbursementId);
-                    table.ForeignKey(
-                        name: "FK_SalaryDisbursements_Users_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -433,9 +450,9 @@ namespace BankingPaymentsApp_API.Migrations
                 filter: "[ClientId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Documents_AccountId",
+                name: "IX_Documents_ClientId",
                 table: "Documents",
-                column: "AccountId");
+                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Documents_ProofTypeId",
@@ -446,6 +463,11 @@ namespace BankingPaymentsApp_API.Migrations
                 name: "IX_Employees_ClientId",
                 table: "Employees",
                 column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_SalaryDisbursementId",
+                table: "Employees",
+                column: "SalaryDisbursementId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payments_PayerAccountId",
@@ -480,6 +502,11 @@ namespace BankingPaymentsApp_API.Migrations
                 column: "ClientId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SalaryDisbursements_DisbursementStatusId",
+                table: "SalaryDisbursements",
+                column: "DisbursementStatusId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Transactions_AccountId",
                 table: "Transactions",
                 column: "AccountId");
@@ -488,6 +515,11 @@ namespace BankingPaymentsApp_API.Migrations
                 name: "IX_Transactions_PaymentId",
                 table: "Transactions",
                 column: "PaymentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_SalaryDisbursementId",
+                table: "Transactions",
+                column: "SalaryDisbursementId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transactions_TransactionTypeId",
@@ -543,13 +575,13 @@ namespace BankingPaymentsApp_API.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "SalaryDisbursements");
-
-            migrationBuilder.DropTable(
                 name: "Transactions");
 
             migrationBuilder.DropTable(
                 name: "Payments");
+
+            migrationBuilder.DropTable(
+                name: "SalaryDisbursements");
 
             migrationBuilder.DropTable(
                 name: "TransactionTypes");

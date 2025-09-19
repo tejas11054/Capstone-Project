@@ -5,8 +5,8 @@ namespace BankingPaymentsApp_API.Data
 {
     public class BankingPaymentsDBContext : DbContext
     {
-        public BankingPaymentsDBContext() { }
         public BankingPaymentsDBContext(DbContextOptions options) : base(options) { }
+        //public BankingPaymentsDBContext() { }
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountStatus> AccountStatuses { get; set; }
@@ -112,6 +112,15 @@ namespace BankingPaymentsApp_API.Data
             //    .WithMany()
             //    .HasForeignKey(p => p.PayeeAccountId)
             //    .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<SalaryDisbursementDetails>()
+                .HasOne(s => s.Employee)
+                .WithMany(e => e.SalaryDisbursementDetails)
+                .HasForeignKey(s => s.EmployeeId);
+
+            modelBuilder.Entity<SalaryDisbursementDetails>()
+                .HasOne(s => s.SalaryDisbursement)
+                .WithMany(d => d.DisbursementDetails)
+                .HasForeignKey(s => s.SalaryDisbursementId);
         }
     }
 }
