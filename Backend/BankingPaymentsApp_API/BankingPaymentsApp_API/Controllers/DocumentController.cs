@@ -82,6 +82,7 @@ namespace BankingPaymentsApp_API.Controllers
             return NoContent();
         }
 
+        // upload documents
         [HttpPost("upload")]
         public async Task<IActionResult> UploadFile([FromForm] DocumentDTO dto, IFormFile file)
         {
@@ -114,7 +115,7 @@ namespace BankingPaymentsApp_API.Controllers
                 return NotFound($"Client with id {dto.ClientId} not found!");
 
             // Assign DocumentId to ClientUser
-            client.Documents = (ICollection<Document>)addedDocument;
+            client.Documents.Add(addedDocument);
 
             // Update client in DB
             await _clientUserService.Update(client);
@@ -129,5 +130,29 @@ namespace BankingPaymentsApp_API.Controllers
             });
 
         }
+
+        // GET: api/Document/client/{clientId}
+        [HttpGet("client/{clientId}")]
+        public async Task<ActionResult<IEnumerable<DocumentDTO>>> GetDocumentsByClientId(int clientId)
+        {
+            var documents = await _documentService.GetDocumentByClientId(clientId);
+
+            if (documents == null || !documents.Any())
+                return NotFound($"No documents found for ClientId {clientId}");
+
+            // Map to DocumentDTO 
+            var docDtos = documents.Select(d => new DocumentDTO
+            {
+                DocumentName = d.DocumentName,
+                DocumentURL = d.DocumentURL,
+                ProofTypeId = d.ProofTypeId,
+                ClientId = d.ClientId,
+                PublicId = d.PublicId
+            }).ToList();
+
+            return Ok(docDtos);
+        }
+
+
     }
 }
