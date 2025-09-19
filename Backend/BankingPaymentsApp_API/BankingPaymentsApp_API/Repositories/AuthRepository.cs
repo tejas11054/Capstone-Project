@@ -1,5 +1,7 @@
 ﻿using BankingPaymentsApp_API.Data;
 using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankingPaymentsApp_API.Repositories
@@ -7,14 +9,18 @@ namespace BankingPaymentsApp_API.Repositories
     public class AuthRepository : IAuthRepository
     {
         private readonly BankingPaymentsDBContext _dbContext;
-        public AuthRepository(BankingPaymentsDBContext dBContext) {
+        private readonly IPasswordHasher<User> _passwordHasher;
+        public AuthRepository(BankingPaymentsDBContext dBContext,IPasswordHasher<User> passwordHasher) {
             _dbContext = dBContext;
+            _passwordHasher = passwordHasher;
         }
         public LoginResponseDTO Login(LoginDTO usr)
         {
-            var user = _dbContext.Users.Include(u => u.Role).FirstOrDefault((u) => (u.UserName.Equals(usr.UserName) && u.Password.Equals(usr.Password)));
+            var user = _dbContext.Users.Include(u => u.Role).FirstOrDefault((u) => (u.UserName.Equals(usr.UserName)));
+
+            bool isPasswordCorrect = VerifyPassword(user, usr.Password);
             LoginResponseDTO response;
-            if (user != null)
+            if (isPasswordCorrect)
             {
                 response = new LoginResponseDTO
                 {
@@ -32,6 +38,13 @@ namespace BankingPaymentsApp_API.Repositories
 
             };
             return response;
+        }
+
+        public bool VerifyPassword(User user,string password)
+        {
+            var result = _passwordHasher.VerifyHashedPassword(user,user.Password,password);
+            if (result == PasswordVerificationResult.Success) return true;
+            return false;
         }
     }
 }
