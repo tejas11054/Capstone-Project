@@ -9,5 +9,6 @@ namespace BankingPaymentsApp_API.Repositories
         public Task<Document?> GetById(int id);
         public Task<Document?> Update(Document document);
         public Task DeleteById(int id);
+        public Task<IEnumerable<Document>> GetDocumentByClientId(int clientId);
     }
 }

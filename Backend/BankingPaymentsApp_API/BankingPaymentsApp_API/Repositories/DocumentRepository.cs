@@ -51,5 +51,14 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext.Documents.Remove(exisitngDocument);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Document>> GetDocumentByClientId(int clientId)
+        {
+            return await _dbContext.Documents
+                                   .Include(d => d.ProofType) 
+                                   .Where(d => d.ClientId == clientId)
+                                   .ToListAsync();
+        }
+
     }
 }

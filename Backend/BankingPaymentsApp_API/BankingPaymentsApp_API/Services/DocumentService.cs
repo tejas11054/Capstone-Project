@@ -36,5 +36,10 @@ namespace BankingPaymentsApp_API.Services
         {
             await _documentRepository.DeleteById(id);
         }
+
+        public async Task<IEnumerable<Document>> GetDocumentByClientId(int clientId)
+        {
+            return await _documentRepository.GetDocumentByClientId(clientId);
+        }
     }
 }
