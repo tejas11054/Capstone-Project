@@ -2,6 +2,7 @@
 using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,9 @@ namespace BankingPaymentsApp_API.Controllers
             _mapper = mapper;
         }
 
+        // GET: api/Beneficiary/
         [HttpGet]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllBeneficiarys()
         {
             var beneficiaries = await _beneficiaryService.GetAll();
@@ -28,7 +31,9 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(beneficiaries);
         }
 
+        // POST: api/Beneficiary
         [HttpPost]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateBeneficiary(BeneficiaryDTO beneficiary)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -37,8 +42,10 @@ namespace BankingPaymentsApp_API.Controllers
             return CreatedAtAction("CreateBeneficiary", addedBeneficiary);
         }
 
+        // GET: api/Beneficiary/{id}
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetBeneficiaryById(int id)
         {
             Beneficiary? existingBeneficiary = await _beneficiaryService.GetById(id);
@@ -47,8 +54,10 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(existingBeneficiary);
         }
 
+        // PUT: api/Beneficiary/{id}
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateBeneficiary(int id, BeneficiaryDTO beneficiary)
         {
             if (!ModelState.IsValid)
@@ -64,8 +73,10 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(updatedBeneficiary);
         }
 
+        // DELETE: api/Beneficiary/{id}
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteBeneficiary(int id)
         {
             Beneficiary? existingBeneficiary = await _beneficiaryService.GetById(id);

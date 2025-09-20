@@ -2,6 +2,7 @@
 using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankingPaymentsApp_API.Controllers
@@ -21,6 +22,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/BankUser
         [HttpGet]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> GetAllBankUsers()
         {
             var bankUsers = await _service.GetAll();
@@ -33,6 +35,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/BankUser/{id}
         [HttpGet("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetBankUserById(int id)
         {
             var bankUser = await _service.GetById(id);
@@ -45,6 +48,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/BankUser
         [HttpPost]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> CreateBankUser([FromBody] RegisterBankUserDTO dto)
         {
             if (!ModelState.IsValid)
@@ -65,6 +69,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // PUT: api/BankUser/{id}
         [HttpPut("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateBankUser(int id, [FromBody] BankUserResponseDTO dto)
         {
             if (!ModelState.IsValid)
@@ -89,6 +94,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // DELETE: api/BankUser/{id}
         [HttpDelete("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteBankUserById(int id)
         {
             var existingBankUser = await _service.GetById(id);

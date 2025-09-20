@@ -2,6 +2,7 @@
 using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,10 @@ namespace BankingPaymentsApp_API.Controllers
             _service = service;
             _mapper = mapper;
         }
+
+        //GET: api/User
         [HttpGet]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _service.GetAll();
@@ -26,7 +30,10 @@ namespace BankingPaymentsApp_API.Controllers
                 return NotFound("No Users to Display!");
             return Ok(users);
         }
+
+        //POST: api/User
         [HttpPost]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateUser([FromBody] RegisterUserDTO regUser)
         {
             if (!ModelState.IsValid)
@@ -52,8 +59,10 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(response);
         }
 
+        //GET: api/User/{id}
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetUserById(int id)
         {
             User? existingUser = await _service.GetById(id);
@@ -62,8 +71,11 @@ namespace BankingPaymentsApp_API.Controllers
             UserResponseDTO response = _mapper.Map<UserResponseDTO>(existingUser);
             return Ok(response);
         }
+
+        //PUT: api/User/{id}
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateUser(int id, [FromBody] UserResponseDTO user)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
@@ -79,8 +91,10 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(updatedUser);
         }
 
+        //GET: api/User{id}
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteUserById(int id)
         {
             User? exisitngUser = await _service.GetById(id);
@@ -88,10 +102,6 @@ namespace BankingPaymentsApp_API.Controllers
             await _service.DeleteById(id);
             return Ok("The user has been deleted Sucessfully!");
         }
-
-
-
-
 
     }
 }

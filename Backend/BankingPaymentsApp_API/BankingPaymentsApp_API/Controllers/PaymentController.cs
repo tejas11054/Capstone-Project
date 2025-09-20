@@ -1,6 +1,7 @@
 ﻿using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,9 @@ namespace BankingPaymentsApp_API.Controllers
             _paymentService = paymentService;
         }
 
+        // GET: api/Payment
         [HttpGet]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllPayments()
         {
             var payments =await _paymentService.GetAll();
@@ -25,7 +28,9 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(payments);
         }
 
+        // POST: api/Payment
         [HttpPost]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreatePayment(PaymentDTO payment)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
@@ -39,8 +44,10 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(addedPayment);
         }
 
+        // GET: api/Payment/{id}
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetPaymentById(int id)
         {
             Payment? existingPayment = await _paymentService.GetById(id);
@@ -49,8 +56,10 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(existingPayment);
         }
 
+        // PUT: api/Payment/{id}
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdatePayment(int id,PaymentDTO payment)
         {
             if(!ModelState.IsValid)
@@ -68,8 +77,10 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(updatedPayment);
         }
 
+        // DELETE: api/Payment/{id}
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeletePayment(int id)
         {
             Payment? existingPayment = await _paymentService.GetById(id);
@@ -80,8 +91,10 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok("Payment has been deleted Sucessfully!");
         }
 
+        // PUT: api/Payment/approve/{id}
         [HttpPut]
         [Route("approve/{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> ApprovePayment(int id, [FromBody] Payment payment)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
