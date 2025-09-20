@@ -12,12 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-<<<<<<<< HEAD:Backend/BankingPaymentsApp_API/BankingPaymentsApp_API/Migrations/20250919095226_initial.Designer.cs
-    [Migration("20250919095226_initial")]
-========
-    [Migration("20250919101100_initial")]
->>>>>>>> f3e043acde9f69764b53d12ae54c21e1f465b502:Backend/BankingPaymentsApp_API/BankingPaymentsApp_API/Migrations/20250919101100_initial.Designer.cs
-    partial class initial
+    [Migration("20250919100147_initial-3")]
+    partial class initial3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -723,7 +719,7 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursementDetails", b =>
                 {
                     b.HasOne("BankingPaymentsApp_API.Models.Employee", "Employee")
-                        .WithMany()
+                        .WithMany("SalaryDisbursementDetails")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -795,6 +791,11 @@ namespace BankingPaymentsApp_API.Migrations
                         .HasForeignKey("AccountId");
 
                     b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
+                {
+                    b.Navigation("SalaryDisbursementDetails");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Payment", b =>

@@ -12,12 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-<<<<<<<< HEAD:Backend/BankingPaymentsApp_API/BankingPaymentsApp_API/Migrations/20250919095226_initial.Designer.cs
-    [Migration("20250919095226_initial")]
-========
-    [Migration("20250919101100_initial")]
->>>>>>>> f3e043acde9f69764b53d12ae54c21e1f465b502:Backend/BankingPaymentsApp_API/BankingPaymentsApp_API/Migrations/20250919101100_initial.Designer.cs
-    partial class initial
+    [Migration("20250919095929_initial-2")]
+    partial class initial2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -410,6 +406,9 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("EmployeeId1")
+                        .HasColumnType("int");
+
                     b.Property<int>("SalaryDisbursementId")
                         .HasColumnType("int");
 
@@ -419,6 +418,8 @@ namespace BankingPaymentsApp_API.Migrations
                     b.HasKey("DetailId");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("EmployeeId1");
 
                     b.HasIndex("SalaryDisbursementId");
 
@@ -728,6 +729,10 @@ namespace BankingPaymentsApp_API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("BankingPaymentsApp_API.Models.Employee", null)
+                        .WithMany("SalaryDisbursementDetails")
+                        .HasForeignKey("EmployeeId1");
+
                     b.HasOne("BankingPaymentsApp_API.Models.SalaryDisbursement", "SalaryDisbursement")
                         .WithMany("DisbursementDetails")
                         .HasForeignKey("SalaryDisbursementId")
@@ -795,6 +800,11 @@ namespace BankingPaymentsApp_API.Migrations
                         .HasForeignKey("AccountId");
 
                     b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
+                {
+                    b.Navigation("SalaryDisbursementDetails");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Payment", b =>

@@ -19,5 +19,6 @@ namespace BankingPaymentsApp_API.Models
         [Required(ErrorMessage = "IFSC Code is Required!")]
         public string IFSC {  get; set; }
         public int Salary { get; set; }
+        public virtual ICollection<SalaryDisbursementDetails>? SalaryDisbursementDetails { get; set; }
     }
 }

@@ -716,7 +716,7 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursementDetails", b =>
                 {
                     b.HasOne("BankingPaymentsApp_API.Models.Employee", "Employee")
-                        .WithMany()
+                        .WithMany("SalaryDisbursementDetails")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -788,6 +788,11 @@ namespace BankingPaymentsApp_API.Migrations
                         .HasForeignKey("AccountId");
 
                     b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
+                {
+                    b.Navigation("SalaryDisbursementDetails");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Payment", b =>

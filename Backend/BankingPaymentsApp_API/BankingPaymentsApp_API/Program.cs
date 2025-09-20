@@ -5,6 +5,7 @@ using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using BankingPaymentsApp_API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -52,6 +53,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<ISalaryDisbursementRepository, SalaryDisbursementRepository>();
             builder.Services.AddScoped<ISalaryDisbursementDetailsRepository, SalaryDisbursementDetailsRepository>();
 
+
             //Adding Services
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IBankUserService, BankUserService>();
@@ -66,6 +68,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ISalaryDisbursementService, SalaryDisbursementService>();
             builder.Services.AddScoped<ISalaryDisbursementDetailsService, SalaryDisbursementDetailsService>();
+            builder.Services.AddScoped<IPasswordHasher<User>,PasswordHasher<User>>();
 
             //Adding AutoMapper
             builder.Services.AddAutoMapper(options =>
