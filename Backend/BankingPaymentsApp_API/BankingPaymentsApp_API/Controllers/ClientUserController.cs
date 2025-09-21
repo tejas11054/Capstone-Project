@@ -12,12 +12,14 @@ namespace BankingPaymentsApp_API.Controllers
     public class ClientUserController : ControllerBase
     {
         private readonly IClientUserService _service;
+        private readonly ILogger _logger;
         private readonly IMapper _mapper;
 
-        public ClientUserController(IClientUserService service, IMapper mapper)
+        public ClientUserController(IClientUserService service, IMapper mapper, ILogger logger)
         {
             _service = service;
             _mapper = mapper;
+            _logger = logger;
         }
 
         // GET: api/ClientUser
@@ -25,11 +27,15 @@ namespace BankingPaymentsApp_API.Controllers
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllClientUsers()
         {
+            _logger.LogInformation("GetAllCLientUsers started!");
+
             var clientUsers = await _service.GetAll();
             if (!clientUsers.Any())
                 return NotFound("No Client Users found!");
 
             var response = clientUsers.Select(u => _mapper.Map<ClientUserResponseDTO>(u));
+            _logger.LogInformation($"{response.Count()} client users were displayed!");
+
             return Ok(response);
         }
 
@@ -38,11 +44,15 @@ namespace BankingPaymentsApp_API.Controllers
         //////[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetClientUserById(int id)
         {
+            _logger.LogInformation("GetClientUserById started!");
+
             var clientUser = await _service.GetById(id);
             if (clientUser == null)
                 return NotFound($"No Client User found with id: {id}");
 
             //var response = _mapper.Map<ClientUserResponseDTO>(clientUser);
+            _logger.LogInformation("Client user was Dispalyed");
+
             return Ok(clientUser);
         }
 
@@ -51,6 +61,8 @@ namespace BankingPaymentsApp_API.Controllers
         //[Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateClientUser([FromBody] RegisterClientUserDTO dto)
         {
+            _logger.LogInformation("CreateClientUser started!");
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -64,6 +76,8 @@ namespace BankingPaymentsApp_API.Controllers
                 return BadRequest("Unable to add Client User!");
 
             var response = _mapper.Map<ClientUserResponseDTO>(addedClientUser);
+            _logger.LogInformation("Creation Sucessfull!");
+
             return Ok(response);
         }
 
@@ -72,6 +86,8 @@ namespace BankingPaymentsApp_API.Controllers
         //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateClientUser(int id, [FromBody] ClientUserResponseDTO dto)
         {
+            _logger.LogInformation("UpdateClientUser started!");
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -89,6 +105,8 @@ namespace BankingPaymentsApp_API.Controllers
                 return BadRequest("Unable to update Client User!");
 
             var response = _mapper.Map<ClientUserResponseDTO>(updatedClientUser);
+            _logger.LogInformation("CLient User was Updated Sucessfully!");
+
             return Ok(response);
         }
 
@@ -97,11 +115,15 @@ namespace BankingPaymentsApp_API.Controllers
         //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteClientUserById(int id)
         {
+            _logger.LogInformation("DeleteClientUserById started!");
+
             var existingClientUser = await _service.GetById(id);
             if (existingClientUser == null)
                 return NotFound($"No Client User exists with id {id}");
 
             await _service.DeleteById(id);
+            _logger.LogInformation("Client User was Deleted Sucessfully!");
+
             return Ok("Client User deleted successfully!");
         }
 
@@ -110,18 +132,26 @@ namespace BankingPaymentsApp_API.Controllers
         //[Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> ApproveClientUser(int id, [FromBody] ClientUser client)
         {
-            if(!ModelState.IsValid) return BadRequest(ModelState);
+            _logger.LogInformation("ApproveClientUser started!");
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             //ClientUser client = _mapper.Map<ClientUser>(clientdto);
             ClientUser approvedClient = await _service.ApproveClient(client);
+            _logger.LogInformation("Client Was Approved!");
+
             return Ok(approvedClient);
         }
 
         [HttpPut("reject/{id}")]
         public async Task<IActionResult> RejectClientUser(int id, [FromBody] RejectDTO rejectDTO)
         {
+            _logger.LogInformation("RejectClientUser started!");
+
             if (!ModelState.IsValid) return BadRequest(ModelState);
             ClientUser client = await _service.GetById(id);
             await _service.RejectClient(client, rejectDTO.reason);
+            _logger.LogInformation("Client user was Rejected!");
+
             return Ok("Reject Email Sent to " + client.UserName);
         }
 

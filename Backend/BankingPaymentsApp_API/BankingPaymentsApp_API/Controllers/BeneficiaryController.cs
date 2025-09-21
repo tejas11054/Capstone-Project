@@ -13,11 +13,13 @@ namespace BankingPaymentsApp_API.Controllers
     public class BeneficiaryController : ControllerBase
     {
         private readonly IBeneficiaryService _beneficiaryService;
+        private readonly ILogger _logger;
         private readonly IMapper _mapper;
-        public BeneficiaryController(IBeneficiaryService beneficiaryService, IMapper mapper)
+        public BeneficiaryController(IBeneficiaryService beneficiaryService, IMapper mapper, ILogger logger)
         {
             _beneficiaryService = beneficiaryService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         // GET: api/Beneficiary/
@@ -25,9 +27,12 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllBeneficiarys()
         {
+            _logger.LogInformation("GetAllBeneficiarys started!");
+
             var beneficiaries = await _beneficiaryService.GetAll();
             if (beneficiaries.Count() == 0)
                 return NotFound("No Beneficiary to display");
+            _logger.LogInformation($"{beneficiaries.Count()} displayed!");
             return Ok(beneficiaries);
         }
 
@@ -36,9 +41,13 @@ namespace BankingPaymentsApp_API.Controllers
         //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateBeneficiary(BeneficiaryDTO beneficiary)
         {
+            _logger.LogInformation("CreateBeneficiary started!");
+
             if (!ModelState.IsValid) return BadRequest(ModelState);
             Beneficiary newBeneficiary = _mapper.Map<Beneficiary>(beneficiary);
             Beneficiary addedBeneficiary = await _beneficiaryService.Add(newBeneficiary);
+
+            _logger.LogInformation("Beneficiary was created");
             return CreatedAtAction("CreateBeneficiary", addedBeneficiary);
         }
 
@@ -48,9 +57,13 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetBeneficiaryById(int id)
         {
+            _logger.LogInformation("GetBeneficiaryById started!");
+
             Beneficiary? existingBeneficiary = await _beneficiaryService.GetById(id);
             if (existingBeneficiary == null)
                 return NotFound($"No Beneficiary of id: {id}");
+
+            _logger.LogInformation($"Beneficiary with id {id} was displayed!");
             return Ok(existingBeneficiary);
         }
 
@@ -60,6 +73,8 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateBeneficiary(int id, BeneficiaryDTO beneficiary)
         {
+            _logger.LogInformation("UpdateBeneficiary started!");
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -70,6 +85,8 @@ namespace BankingPaymentsApp_API.Controllers
             _mapper.Map(beneficiary, existingBeneficiary);
 
             Beneficiary? updatedBeneficiary = await _beneficiaryService.Update(existingBeneficiary);
+            _logger.LogInformation("Beneficiary was updated!");
+
             return Ok(updatedBeneficiary);
         }
 
@@ -79,11 +96,15 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteBeneficiary(int id)
         {
+            _logger.LogInformation("DeleteBeneficiary started!");
+
             Beneficiary? existingBeneficiary = await _beneficiaryService.GetById(id);
             if (existingBeneficiary == null)
                 return NotFound($"No Beneficiary of id: {id}");
 
             await _beneficiaryService.DeleteById(id);
+            _logger.LogInformation("UpdateBeneficiary sucessfull!");
+
             return Ok("Beneficiary has been deleted Sucessfully!");
         }
     }

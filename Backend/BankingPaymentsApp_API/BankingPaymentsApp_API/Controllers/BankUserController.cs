@@ -12,12 +12,14 @@ namespace BankingPaymentsApp_API.Controllers
     public class BankUserController : ControllerBase
     {
         private readonly IBankUserService _service;
+        private readonly ILogger _logger;
         private readonly IMapper _mapper;
 
-        public BankUserController(IBankUserService service, IMapper mapper)
+        public BankUserController(IBankUserService service, IMapper mapper, ILogger logger)
         {
             _service = service;
             _mapper = mapper;
+            _logger = logger;
         }
 
         // GET: api/BankUser
@@ -25,11 +27,13 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> GetAllBankUsers()
         {
+            _logger.LogInformation("GetAllBankUsers started!");
             var bankUsers = await _service.GetAll();
             if (!bankUsers.Any())
                 return NotFound("No Bank Users found!");
 
             var response = bankUsers.Select(u => _mapper.Map<BankUserResponseDTO>(u));
+            _logger.LogInformation($"Found Bank user");
             return Ok(response);
         }
 
@@ -38,11 +42,14 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetBankUserById(int id)
         {
+            _logger.LogInformation("GetBankUserById started!");
+
             var bankUser = await _service.GetById(id);
             if (bankUser == null)
                 return NotFound($"No Bank User found with id: {id}");
 
             var response = _mapper.Map<BankUserResponseDTO>(bankUser);
+            _logger.LogInformation($"Bank user id: {id} Displayed");
             return Ok(response);
         }
 
@@ -51,6 +58,8 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> CreateBankUser([FromBody] RegisterBankUserDTO dto)
         {
+            _logger.LogInformation("CreateBankUser started!");
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -64,6 +73,7 @@ namespace BankingPaymentsApp_API.Controllers
                 return BadRequest("Unable to add Bank User!");
 
             var response = _mapper.Map<BankUserResponseDTO>(addedBankUser);
+            _logger.LogInformation("bank user Created!");
             return Ok(response);
         }
 
@@ -72,6 +82,8 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateBankUser(int id, [FromBody] BankUserResponseDTO dto)
         {
+            _logger.LogInformation("UpdateBankUser started!");
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -89,6 +101,7 @@ namespace BankingPaymentsApp_API.Controllers
                 return BadRequest("Unable to update Bank User!");
 
             var response = _mapper.Map<BankUserResponseDTO>(updatedBankUser);
+            _logger.LogInformation("bank user info updated sucessfully");
             return Ok(response);
         }
 
@@ -97,11 +110,15 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteBankUserById(int id)
         {
+            _logger.LogInformation("DeleteBankUserById started!");
+
             var existingBankUser = await _service.GetById(id);
             if (existingBankUser == null)
                 return NotFound($"No Bank User exists with id {id}");
 
             await _service.DeleteById(id);
+            _logger.LogInformation("Bnak user was deleted Sucessfully!");
+
             return Ok("Bank User deleted successfully!");
         }
     }

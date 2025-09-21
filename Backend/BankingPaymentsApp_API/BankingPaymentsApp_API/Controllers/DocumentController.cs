@@ -16,15 +16,17 @@ namespace BankingPaymentsApp_API.Controllers
         private readonly ICloudinaryService _cloudinaryService;
         private readonly IAccountService _accountService;
         private readonly IClientUserService _clientUserService;
+        private readonly ILogger _logger;
         private readonly IMapper _mapper;
 
-        public DocumentController(IDocumentService documentService, IMapper mapper, ICloudinaryService cloudinaryService, IAccountService accountService, IClientUserService clientUserService)
+        public DocumentController(IDocumentService documentService, IMapper mapper, ICloudinaryService cloudinaryService, IAccountService accountService, IClientUserService clientUserService, ILogger logger)
         {
             _documentService = documentService;
             _mapper = mapper;
             _cloudinaryService = cloudinaryService;
             _accountService = accountService;
             _clientUserService = clientUserService;
+            _logger = logger;
         }
 
         // GET: api/Document
@@ -94,6 +96,8 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UploadFile([FromForm] DocumentDTO dto, IFormFile file)
         {
+            _logger.LogInformation("UploadDocument started!");
+
             if (file == null || file.Length == 0)
                 return BadRequest("No file selected!");
 
@@ -127,6 +131,8 @@ namespace BankingPaymentsApp_API.Controllers
 
             // Update client in DB
             await _clientUserService.Update(client);
+            _logger.LogInformation("Documnet was uploaded!");
+
 
             return Ok(new
             {
@@ -144,6 +150,8 @@ namespace BankingPaymentsApp_API.Controllers
         [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<IEnumerable<DocumentDTO>>> GetDocumentsByClientId(int clientId)
         {
+            _logger.LogInformation("GetDocumentsByClientId started!");
+
             var documents = await _documentService.GetDocumentByClientId(clientId);
 
             if (documents == null || !documents.Any())
@@ -158,6 +166,9 @@ namespace BankingPaymentsApp_API.Controllers
                 ClientId = d.ClientId,
                 PublicId = d.PublicId
             }).ToList();
+
+            _logger.LogInformation($"{docDtos.Count()} was displayed");
+
 
             return Ok(docDtos);
         }

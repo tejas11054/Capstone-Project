@@ -21,12 +21,14 @@ namespace BankingPaymentsApp_API.Controllers
     {
         private readonly IEmployeeService _employeeService;
         private readonly IClientUserService _clientUserService;
+        private readonly ILogger _logger;
         private readonly IMapper _mapper;
-        public EmployeeController(IEmployeeService employeeService, IMapper mapper, IClientUserService clientUserService)
+        public EmployeeController(IEmployeeService employeeService, IMapper mapper, IClientUserService clientUserService, ILogger logger)
         {
             _employeeService = employeeService;
             _mapper = mapper;
             _clientUserService = clientUserService;
+            _logger = logger;
         }
 
         // GET: api/Employee
@@ -101,6 +103,8 @@ namespace BankingPaymentsApp_API.Controllers
         //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UploadEmployees(IFormFile file)
         {
+            _logger.LogInformation("UploadEmployees started!");
+
             //if (file == null || file.Length == 0)
             //    return BadRequest("No file uploaded!");
 
@@ -154,6 +158,7 @@ namespace BankingPaymentsApp_API.Controllers
             {
                 return BadRequest("CSV contains invalid ClientIds that do not exist in Users table.");
             }
+            _logger.LogInformation($"{employeeEntities.Count} employees inserted successfully.");
 
             return Ok($"{employeeEntities.Count} employees inserted successfully.");
         }
