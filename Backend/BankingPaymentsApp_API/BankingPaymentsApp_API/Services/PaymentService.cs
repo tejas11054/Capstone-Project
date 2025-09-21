@@ -96,6 +96,13 @@ namespace BankingPaymentsApp_API.Services
                     };
 
                     transactions.Add(creditTxn);
+
+                    string subject1 = "Your Account got credited!";
+                    string body1 =
+                        $"""
+                        Your Account ({payeeAccount.AccountNumber}) got credited with Rs {payment.Amount}.
+                        """;
+                    await _emailService.SendEmailToClientAsync((int)payeeAccount.ClientId, subject1, body1);
                 }
 
                 // adding transactions in the database 
@@ -120,6 +127,14 @@ namespace BankingPaymentsApp_API.Services
                 payment.PaymentStatusId = 1;
                 payment.ActionAt = DateTime.Now;
                 var updatedPayment = await _paymentRepository.Update(payment);
+
+                string subject = $"Your Payment ID {payment.PaymentId} is Approved!";
+                string body =
+                    $"""
+                    Your Payment ({payment.PaymentId}) has been approved at {payment.ActionAt}
+                    Your Account ({payerAccount.AccountNumber}) is Debited with Rs {payment.Amount} 
+                    """;
+                await _emailService.SendEmailToClientAsync((int)payerAccount.ClientId, subject, body);
 
                 // commiting
                 await dbTransaction.CommitAsync();

@@ -70,6 +70,17 @@ namespace BankingPaymentsApp_API.Services
 
             if (updatedUser == null) throw new KeyNotFoundException($"Client user with userId: {clientUser.UserId} was Not Found");
 
+            string subject = "Your application is Verified!";
+            string body =
+                $"""
+                Congratulations your application is sucessfully Verfied!
+                You are now a KYC VERIFIED USER
+                Your ACCOUNT CREDENTIALS ARE:
+                Account Number : {addedAccount.AccountNumber}
+                IFSC Code : BPS12345
+                """;
+            await _emailService.SendEmailToClientAsync(clientUser.UserId, subject, body);
+
             return updatedUser;  
         }
 

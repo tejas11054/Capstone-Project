@@ -116,6 +116,13 @@ namespace BankingPaymentsApp_API.Services
                         Transaction addedTransacation = await _transactionRepository.Add(creditTransaction);
                         detail.TransactionId = addedTransacation.TransactionId;
                         await _accountService.Update(employeeAccount);
+
+                        string subject1 = $"Your Salary Has Been Credited";
+                        string body1 =
+                            $"""
+                            Your Account ({ClientAccount.AccountNumber}) is Credited with Rs {emp.Salary}; 
+                            """;
+                        await _emailService.SendEmailToClientAsync((int)employeeAccount.ClientId, subject1, body1);
                     }
 
                     SalaryDisbursementDetails addedDetail = await _salaryDisbursementDetailsRepository.Add(detail);
@@ -138,6 +145,13 @@ namespace BankingPaymentsApp_API.Services
 
                 SalaryDisbursement? updatedDisbursement = await _salaryDisbursementRepository.Update(salaryDisbursement);
                 await transaction.CommitAsync();
+                string subject = $"Your SalaryDisbursement ID {disbursementId} is Approved!";
+                string body =
+                    $"""
+                    Your SalaryDisbursement ({disbursementId}) has been approved at {DateTime.UtcNow}
+                    Your Account ({ClientAccount.AccountNumber}) is Debited with Rs {salaryDisbursement.TotalAmount} 
+                    """;
+                await _emailService.SendEmailToClientAsync((int)salaryDisbursement.ClientId, subject, body);
                 return updatedDisbursement;
 
             }
