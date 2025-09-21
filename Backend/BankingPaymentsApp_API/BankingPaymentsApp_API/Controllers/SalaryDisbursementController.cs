@@ -2,6 +2,7 @@
 using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,9 @@ namespace BankingPaymentsApp_API.Controllers
             _mapper = mapper;
         }
 
+        // GET: api/SalaryDisbursement
         [HttpGet]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllDisbursements()
         {
             var disbursements = await _service.GetAll();
@@ -30,7 +33,9 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(disbursements);
         }
 
+        // GET: api/SalaryDisbursement/{id}
         [HttpGet("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetDisbursementById(int id)
         {
             var disbursement = await _service.GetById(id);
@@ -40,7 +45,9 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(salaryResponse);
         }
 
+        // POST: api/SalaryDisbursement
         [HttpPost]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)}")]
         public async Task<IActionResult> CreateDisbursement([FromBody] CreateSalaryDisbursmentDTO disbursementDto)
         {
             if (!ModelState.IsValid)
@@ -54,7 +61,9 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(addedDisbursement);
         }
 
+        // PUT: api/SalaryDisbursement/{id}
         [HttpPut("{id}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)}")]
         public async Task<IActionResult> UpdateDisbursement(int id, [FromBody] SalaryDisbursement disbursement)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -72,14 +81,18 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(updatedDisbursement);
         }
 
+        // DELETE: api/SalaryDisbursement/{id}
         [HttpDelete("{id}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteDisbursement(int id)
         {
             await _service.DeleteById(id);
             return Ok($"Salary Disbursement with id: {id} deleted successfully.");
         }
 
+        // PUT: api/SalaryDisbursement/approve/{id}
         [HttpPut("approve/{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> ApproveSalaryDisbursement(int id)
         {
             SalaryDisbursement approvedDisbursement = await _service.ApproveSalaryDisbursement(id);

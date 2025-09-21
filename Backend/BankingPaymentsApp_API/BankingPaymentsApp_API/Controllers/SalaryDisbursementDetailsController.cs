@@ -1,5 +1,6 @@
 ﻿using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,9 @@ namespace BankingPaymentsApp_API.Controllers
             _service = service;
         }
 
+        // GET: api/SalaryDisbursementDetail
         [HttpGet]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllDetails()
         {
             var details = await _service.GetAll();
@@ -25,7 +28,9 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(details);
         }
 
+        // GET: api/SalaryDisbursementDetail/{id}
         [HttpGet("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetDetailById(int id)
         {
             SalaryDisbursementDetails? detail = await _service.GetById(id);
@@ -34,7 +39,9 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(detail);
         }
 
+        // POST: api/SalaryDisbursementDetail
         [HttpPost]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateDetail([FromBody] SalaryDisbursementDetails detail)
         {
             if (!ModelState.IsValid)
@@ -47,7 +54,9 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(addedDetail);
         }
 
+        // PUT: api/SalaryDisbursementDetail/{id}
         [HttpPut("{id}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateDetail(int id, [FromBody] SalaryDisbursementDetails detail)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -68,7 +77,9 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(updatedDetail);
         }
 
+        // DELETE: api/SalaryDisbursementDetail/{id}
         [HttpDelete("{id}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteDetail(int id)
         {
             await _service.DeleteById(id);

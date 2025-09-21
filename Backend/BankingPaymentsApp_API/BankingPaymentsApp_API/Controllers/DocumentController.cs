@@ -3,6 +3,7 @@ using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using BankingPaymentsApp_API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankingPaymentsApp_API.Controllers
@@ -28,6 +29,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Document
         [HttpGet]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<IEnumerable<DocumentDTO>>> GetAll()
         {
             var docs = await _documentService.GetAll();
@@ -37,6 +39,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Document/{id}
         [HttpGet("{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<DocumentDTO>> GetById(int id)
         {
             var doc = await _documentService.GetById(id);
@@ -48,6 +51,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Document
         [HttpPost]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<DocumentDTO>> Add(DocumentDTO dto)
         {
             var document = _mapper.Map<Document>(dto);
@@ -59,6 +63,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // PUT: api/Document/{id}
         [HttpPut("{id}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<DocumentDTO>> Update(int id, DocumentDTO dto)
         {
             var existingDoc = await _documentService.GetById(id);
@@ -73,6 +78,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // DELETE: api/Document/{id}
         [HttpDelete("{id}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult> Delete(int id)
         {
             var existingDoc = await _documentService.GetById(id);
@@ -83,7 +89,9 @@ namespace BankingPaymentsApp_API.Controllers
         }
 
         // upload documents
+        // POST: api/Document/upload/{id}
         [HttpPost("upload")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UploadFile([FromForm] DocumentDTO dto, IFormFile file)
         {
             if (file == null || file.Length == 0)
@@ -133,6 +141,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Document/client/{clientId}
         [HttpGet("client/{clientId}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<IEnumerable<DocumentDTO>>> GetDocumentsByClientId(int clientId)
         {
             var documents = await _documentService.GetDocumentByClientId(clientId);
