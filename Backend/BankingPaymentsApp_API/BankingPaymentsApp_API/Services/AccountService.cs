@@ -42,6 +42,22 @@ namespace BankingPaymentsApp_API.Services
             return await _accountRepository.GenerateAccountNumber();
         }
 
+        public async Task CreditAccount(int accountId,double amount)
+        {
+            Account? account = await _accountRepository.GetById(accountId);
+            if (account == null) throw new NullReferenceException("No account of id: " + accountId);
+
+            account.Balance += amount;
+            await _accountRepository.Update(account);
+        }
+        public async Task DebitAccount(int accountId,double amount)
+        {
+            Account? account = await _accountRepository.GetById(accountId);
+            if (account == null) throw new NullReferenceException("No account of id: " + accountId);
+
+            account.Balance -= amount;
+            await _accountRepository.Update(account);
+        }
         public async Task<Account?> AccountExistsWithAccountNumber(string accountNumber)
         {
             var accounts = await _accountRepository.GetAll();

@@ -14,10 +14,10 @@ namespace BankingPaymentsApp_API.Repositories
             _configuration = configuration;
         }
 
-        public async Task SendEmailToAuthorAsync(int id)
+        public async Task SendEmailToClientAsync(int id,string subject,string body)
         {
-            var author = _dbContext.Users.Find(id);
-            if (author == null)
+            var client = _dbContext.ClientUsers.FirstOrDefault(c=>c.UserId.Equals(id));
+            if (client == null)
                 throw new Exception($"Author with id {id} not found!");
 
             var smtpSection = _configuration.GetSection("SmtpSettings");
@@ -34,12 +34,12 @@ namespace BankingPaymentsApp_API.Repositories
                 var mailMessage = new MailMessage
                 {
                     From = new MailAddress(smtpSection["FromEmail"]),
-                    Subject = "Hello from SmartLibrary!",
-                    Body = $"<h2>Hello {author.UserName},</h2><p>This is a message from SmartLibrary team.</p>",
+                    Subject = $"{subject}",
+                    Body = $"<h2>Hello {client.UserName},</h2><p>{body}</p>",
                     IsBodyHtml = true
                 };
 
-                mailMessage.To.Add(author.UserEmail);
+                mailMessage.To.Add(client.UserEmail);
 
                 await smtpClient.SendMailAsync(mailMessage);
             }

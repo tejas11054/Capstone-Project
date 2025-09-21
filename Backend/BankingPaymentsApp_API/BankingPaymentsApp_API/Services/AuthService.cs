@@ -40,6 +40,7 @@ namespace BankingPaymentsApp_API.Services
                 new Claim(ClaimTypes.Email,user.UserEmail),
                 new Claim(ClaimTypes.Role,user.Role.Role.ToString()),
                 new Claim("MyClaim",user.UserPhone),
+                new Claim("Role",user.Role.Role.ToString())
             };
 
             var tokenOptions = new JwtSecurityToken(

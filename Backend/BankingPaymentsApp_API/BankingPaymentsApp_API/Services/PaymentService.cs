@@ -3,6 +3,7 @@ using BankingPaymentsApp_API.Data;
 using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
+using System.Runtime.InteropServices;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -12,15 +13,17 @@ namespace BankingPaymentsApp_API.Services
         private readonly ITransactionService _transactionService;
         private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
+        private readonly IEmailService _emailService;
         private readonly BankingPaymentsDBContext _dbContext;
 
-        public PaymentService(IPaymentRepository paymentRepository, ITransactionService transactionService, IAccountService accountService, IMapper mapper, BankingPaymentsDBContext dBContext)
+        public PaymentService(IPaymentRepository paymentRepository, ITransactionService transactionService, IAccountService accountService, IMapper mapper, BankingPaymentsDBContext dBContext, IEmailService emailService)
         {
             _paymentRepository = paymentRepository;
             _transactionService = transactionService;
             _accountService = accountService;
             _mapper = mapper;
             _dbContext = dBContext;
+            _emailService = emailService;
         }
 
         public async Task<IEnumerable<Payment>> GetAll()
@@ -128,6 +131,24 @@ namespace BankingPaymentsApp_API.Services
                 return null;
             }
             //return null;
+        }
+
+
+        public async Task<Payment> RejectPayment(int paymentId,string reason)
+        {
+            Payment? payment = await _paymentRepository.GetById(paymentId);
+            if (payment == null) throw new NullReferenceException("No Payment of id :" + paymentId);
+
+            payment.PaymentStatusId = 2;
+            payment.ActionAt = DateTime.Now;
+
+            string subject = $"Payment ID {paymentId} was Rejected!";
+            string body = reason;
+
+            await _emailService.SendEmailToClientAsync((int)payment.PayerAccount?.ClientId,subject,body);
+
+            Payment? updatedPayment = await _paymentRepository.Update(payment);
+            return updatedPayment;
         }
 
     }

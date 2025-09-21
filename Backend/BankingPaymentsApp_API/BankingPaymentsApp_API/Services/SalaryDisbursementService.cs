@@ -11,11 +11,12 @@ namespace BankingPaymentsApp_API.Services
         private readonly IAccountService _accountService;
         private readonly ITransactionRepository _transactionRepository;
         private readonly IEmployeeService _employeeService;
+        private readonly IEmailService _emailService;
         private readonly BankingPaymentsDBContext _dbContext;
         private readonly ILogger<SalaryDisbursementService> _logger;
 
 
-        public SalaryDisbursementService(ISalaryDisbursementRepository salaryDisbursementRepository, IAccountService accountService, BankingPaymentsDBContext dBContext, ITransactionRepository transactionRepository, ISalaryDisbursementDetailsRepository detailsRepository,IEmployeeService employeeService, ILogger<SalaryDisbursementService> logger)
+        public SalaryDisbursementService(ISalaryDisbursementRepository salaryDisbursementRepository, IAccountService accountService, BankingPaymentsDBContext dBContext, ITransactionRepository transactionRepository, ISalaryDisbursementDetailsRepository detailsRepository,IEmployeeService employeeService, ILogger<SalaryDisbursementService> logger, IEmailService emailService)
         {
             _salaryDisbursementRepository = salaryDisbursementRepository;
             _accountService = accountService;
@@ -24,6 +25,7 @@ namespace BankingPaymentsApp_API.Services
             _salaryDisbursementDetailsRepository = detailsRepository;
             _employeeService = employeeService;
             _logger = logger;
+            _emailService = emailService;
         }
 
         public async Task<IEnumerable<SalaryDisbursement>> GetAll()
@@ -84,9 +86,10 @@ namespace BankingPaymentsApp_API.Services
                     salaryDisbursement.DisbursementStatusId = 2;
                     throw new Exception("insufficient Balance!");
                 }
-                ClientAccount.Balance -= (double)salaryDisbursement.TotalAmount;
+                //ClientAccount.Balance -= (double)salaryDisbursement.TotalAmount;
 
-                await _accountService.Update(ClientAccount);
+                //await _accountService.Update(ClientAccount);
+                await _accountService.DebitAccount(ClientAccountId, (double)salaryDisbursement.TotalAmount);
 
                 var details = new List<SalaryDisbursementDetails>();
                 foreach (Employee emp in salaryDisbursement.Employees)
@@ -143,6 +146,22 @@ namespace BankingPaymentsApp_API.Services
                 await transaction.RollbackAsync();
                 throw;
             }
+        }
+
+        public async Task<SalaryDisbursement> RejectSalaryDisbursement(int Id, string reason)
+        {
+            SalaryDisbursement? disbursement = await _salaryDisbursementRepository.GetById(Id);
+            if (disbursement == null) throw new NullReferenceException("No Payment of id :" + Id);
+
+            disbursement.DisbursementStatusId = 2;
+
+            string subject = $"Salary Disbursement ID {Id} was Rejected!";
+            string body = reason;
+
+            await _emailService.SendEmailToClientAsync((int)disbursement.ClientId, subject, body);
+
+            SalaryDisbursement? updatedPayment = await _salaryDisbursementRepository.Update(disbursement);
+            return updatedPayment;
         }
     }
 }

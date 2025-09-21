@@ -52,6 +52,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IAuthRepository, AuthRepository>();
             builder.Services.AddScoped<ISalaryDisbursementRepository, SalaryDisbursementRepository>();
             builder.Services.AddScoped<ISalaryDisbursementDetailsRepository, SalaryDisbursementDetailsRepository>();
+            builder.Services.AddScoped<IEmailRepository, EmailRepository>();
 
 
             //Adding Services
@@ -69,6 +70,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<ISalaryDisbursementService, SalaryDisbursementService>();
             builder.Services.AddScoped<ISalaryDisbursementDetailsService, SalaryDisbursementDetailsService>();
             builder.Services.AddScoped<IPasswordHasher<User>,PasswordHasher<User>>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
             //Adding AutoMapper
             builder.Services.AddAutoMapper(options =>
