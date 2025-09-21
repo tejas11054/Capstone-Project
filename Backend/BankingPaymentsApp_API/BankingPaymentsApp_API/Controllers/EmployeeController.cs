@@ -98,42 +98,46 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Employee/upload/
         [HttpPost("upload")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UploadEmployees(IFormFile file)
         {
-            if (file == null || file.Length == 0)
-                return BadRequest("No file uploaded!");
+            //if (file == null || file.Length == 0)
+            //    return BadRequest("No file uploaded!");
 
+            //var employeeDtos = new List<EmployeeDTO>();
+
+            //using (var stream = new StreamReader(file.OpenReadStream()))
+            //using (var csv = new CsvReader(stream, new CsvHelper.Configuration.CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture)
+            //{
+            //    HasHeaderRecord = true,
+            //    HeaderValidated = null,
+            //    MissingFieldFound = null
+            //}))
+            //{
+            //    try
+            //    {
+            //        employeeDtos = csv.GetRecords<EmployeeDTO>().ToList();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        return BadRequest($"Error parsing CSV: {ex.Message}");
+            //    }
+            //}
+
+            //// Validate DTOs
+            //foreach (var dto in employeeDtos)
+            //{
+            //    var context = new ValidationContext(dto, null, null);
+            //    var results = new List<ValidationResult>();
+            //    if (!Validator.TryValidateObject(dto, context, results, true))
+            //    {
+            //        return BadRequest($"Validation failed for Employee: {dto.EmployeeName}, Errors: {string.Join(", ", results.Select(r => r.ErrorMessage))}");
+            //    }
+            //}
             var employeeDtos = new List<EmployeeDTO>();
-
-            using (var stream = new StreamReader(file.OpenReadStream()))
-            using (var csv = new CsvReader(stream, new CsvHelper.Configuration.CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture)
-            {
-                HasHeaderRecord = true,
-                HeaderValidated = null,
-                MissingFieldFound = null
-            }))
-            {
-                try
-                {
-                    employeeDtos = csv.GetRecords<EmployeeDTO>().ToList();
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest($"Error parsing CSV: {ex.Message}");
-                }
-            }
-
-            // Validate DTOs
-            foreach (var dto in employeeDtos)
-            {
-                var context = new ValidationContext(dto, null, null);
-                var results = new List<ValidationResult>();
-                if (!Validator.TryValidateObject(dto, context, results, true))
-                {
-                    return BadRequest($"Validation failed for Employee: {dto.EmployeeName}, Errors: {string.Join(", ", results.Select(r => r.ErrorMessage))}");
-                }
-            }
+            employeeDtos.AddRange(await _employeeService.UploadEmployees(file));
+            if (employeeDtos == null || employeeDtos.Count() == 0)
+                return BadRequest("No employees to add");
 
             // Map DTO -> Employee
             var employeeEntities = _mapper.Map<List<Employee>>(employeeDtos);

@@ -1,4 +1,5 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -11,6 +12,7 @@ namespace BankingPaymentsApp_API.Services
         public Task DeleteById(int id);
         public Task<IEnumerable<Employee>> BulkInsert(List<Employee> employees);
         public Task<IEnumerable<Employee>> GetEmployeesByClientId(int clientId);
+        public Task<IEnumerable<EmployeeDTO>?> UploadEmployees(IFormFile file);
 
-    }
+        }
 }
