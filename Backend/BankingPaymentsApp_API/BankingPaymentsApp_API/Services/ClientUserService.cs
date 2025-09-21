@@ -2,6 +2,7 @@
 using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
+using Microsoft.AspNetCore.Identity;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -9,13 +10,17 @@ namespace BankingPaymentsApp_API.Services
     {
         private readonly IClientUserRepository _clientUserRepository;
         private readonly IAccountService _accountService;
+        private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
 
-        public ClientUserService(IClientUserRepository clientUserRepository, IAccountService accountService, IMapper mapper)
+        public ClientUserService(IClientUserRepository clientUserRepository, IAccountService accountService, IMapper mapper,IPasswordHasher<User> passwordHasher, IEmailService emailService)
         {
             _clientUserRepository = clientUserRepository;
             _accountService = accountService;
             _mapper = mapper;
+            _passwordHasher = passwordHasher;
+            _emailService = emailService;
         }
 
         public async Task<IEnumerable<ClientUser>> GetAll()
@@ -25,6 +30,7 @@ namespace BankingPaymentsApp_API.Services
 
         public async Task<ClientUser> Add(ClientUser user)
         {
+            user.Password = _passwordHasher.HashPassword(user, user.Password);
             return await _clientUserRepository.Add(user);
         }
 
@@ -64,12 +70,15 @@ namespace BankingPaymentsApp_API.Services
 
             if (updatedUser == null) throw new KeyNotFoundException($"Client user with userId: {clientUser.UserId} was Not Found");
 
-            return updatedUser;
-
-
-            
-
-            
+            return updatedUser;  
         }
+
+        public async Task RejectClient(ClientUser clientUser,string reason)
+        {
+            string subject = "Appication Reverted back";
+            await _emailService.SendEmailToClientAsync(clientUser.UserId, subject, reason);
+        }
+
+
     }
 }

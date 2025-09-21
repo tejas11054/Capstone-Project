@@ -36,7 +36,7 @@ namespace BankingPaymentsApp_API.Repositories
                     From = new MailAddress(smtpSection["FromEmail"]),
                     Subject = $"{subject}",
                     Body = $"<h2>Hello {client.UserName},</h2><p>{body}</p>",
-                    IsBodyHtml = true
+                    IsBodyHtml = true,
                 };
 
                 mailMessage.To.Add(client.UserEmail);

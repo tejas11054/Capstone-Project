@@ -10,5 +10,6 @@ namespace BankingPaymentsApp_API.Services
         public  Task<ClientUser?> Update(ClientUser user);
         public Task DeleteById(int id);
         public Task<ClientUser> ApproveClient(ClientUser clientUser);
+        public Task RejectClient(ClientUser clientUser, string reason);
     }
 }

@@ -22,7 +22,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/ClientUser
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllClientUsers()
         {
             var clientUsers = await _service.GetAll();
@@ -35,7 +35,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/ClientUser/{id}
         [HttpGet("{id}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //////[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetClientUserById(int id)
         {
             var clientUser = await _service.GetById(id);
@@ -48,7 +48,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/ClientUser
         [HttpPost]
-        [Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateClientUser([FromBody] RegisterClientUserDTO dto)
         {
             if (!ModelState.IsValid)
@@ -69,7 +69,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // PUT: api/ClientUser/{id}
         [HttpPut("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateClientUser(int id, [FromBody] ClientUserResponseDTO dto)
         {
             if (!ModelState.IsValid)
@@ -94,7 +94,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // DELETE: api/ClientUser/{id}
         [HttpDelete("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteClientUserById(int id)
         {
             var existingClientUser = await _service.GetById(id);
@@ -107,15 +107,25 @@ namespace BankingPaymentsApp_API.Controllers
 
         // PUT: api/ClientUser/approve/{id}
         [HttpPut("approve/{id}")]
-        [Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> ApproveClientUser(int id, [FromBody] ClientUser client)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             //ClientUser client = _mapper.Map<ClientUser>(clientdto);
             ClientUser approvedClient = await _service.ApproveClient(client);
             return Ok(approvedClient);
-
         }
+
+        [HttpPut("reject/{id}")]
+        public async Task<IActionResult> RejectClientUser(int id, [FromBody] RejectDTO rejectDTO)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            ClientUser client = await _service.GetById(id);
+            await _service.RejectClient(client, rejectDTO.reason);
+            return Ok("Reject Email Sent to " + client.UserName);
+        }
+
+
 
     }
 }

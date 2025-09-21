@@ -145,7 +145,9 @@ namespace BankingPaymentsApp_API.Services
             string subject = $"Payment ID {paymentId} was Rejected!";
             string body = reason;
 
-            await _emailService.SendEmailToClientAsync((int)payment.PayerAccount?.ClientId,subject,body);
+            int clientId = (int)payment.PayerAccount.ClientId;
+
+            await _emailService.SendEmailToClientAsync(clientId,subject,body);
 
             Payment? updatedPayment = await _paymentRepository.Update(payment);
             return updatedPayment;

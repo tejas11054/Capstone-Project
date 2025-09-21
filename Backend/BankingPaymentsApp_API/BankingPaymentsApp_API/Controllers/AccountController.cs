@@ -22,7 +22,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Account
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> GetAllAccounts()
         {
             var accounts = await _service.GetAll();
@@ -35,7 +35,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Account/{id}
         [HttpGet("{id}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> GetAccountById(int id)
         {
             var account = await _service.GetById(id);
@@ -48,7 +48,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Account
         [HttpPost]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateAccount([FromBody] RegisterAccountDTO dto)
         {
             if (!ModelState.IsValid)
@@ -68,7 +68,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // PUT: api/Account/{id}
         [HttpPut("{id}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateAccount(int id, [FromBody] AccountResponseDTO dto)
         {
             if (!ModelState.IsValid)
@@ -93,7 +93,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // DELETE: api/Account/{id}
         [HttpDelete("{id}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteAccountById(int id)
         {
             var existingAccount = await _service.GetById(id);
@@ -105,7 +105,7 @@ namespace BankingPaymentsApp_API.Controllers
         }
 
         [HttpGet("acc/{accountNumber}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> getAccountbyAccountNumber(string accountNumber)
         {
             Account? account = await _service.AccountExistsWithAccountNumber(accountNumber);

@@ -19,7 +19,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Payment
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllPayments()
         {
             var payments =await _paymentService.GetAll();
@@ -30,7 +30,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Payment
         [HttpPost]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreatePayment(PaymentDTO payment)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
@@ -47,7 +47,7 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Payment/{id}
         [HttpGet]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetPaymentById(int id)
         {
             Payment? existingPayment = await _paymentService.GetById(id);
@@ -59,7 +59,7 @@ namespace BankingPaymentsApp_API.Controllers
         // PUT: api/Payment/{id}
         [HttpPut]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdatePayment(int id,PaymentDTO payment)
         {
             if(!ModelState.IsValid)
@@ -80,7 +80,7 @@ namespace BankingPaymentsApp_API.Controllers
         // DELETE: api/Payment/{id}
         [HttpDelete]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeletePayment(int id)
         {
             Payment? existingPayment = await _paymentService.GetById(id);
@@ -94,7 +94,7 @@ namespace BankingPaymentsApp_API.Controllers
         // PUT: api/Payment/approve/{id}
         [HttpPut]
         [Route("approve/{id}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> ApprovePayment(int id, [FromBody] Payment payment)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
@@ -102,6 +102,14 @@ namespace BankingPaymentsApp_API.Controllers
             Payment? approvedPayment = await _paymentService.ApprovePayment(payment);
             if (approvedPayment == null) return BadRequest("something went wrong");
             return  Ok(approvedPayment);
+        }
+
+        [HttpPut]
+        [Route("reject/{id}")]
+        public async Task<IActionResult> RejectPayment(int id, [FromBody] RejectDTO rejectDTO)
+        {
+            await _paymentService.RejectPayment(id, rejectDTO.reason);
+            return Ok("Payment Rejected Sucessfully");
         }
         
 
