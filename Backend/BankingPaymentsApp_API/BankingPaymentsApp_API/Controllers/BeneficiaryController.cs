@@ -32,8 +32,8 @@ namespace BankingPaymentsApp_API.Controllers
         }
 
         // POST: api/Beneficiary
-        [HttpPost]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [HttpPost()]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateBeneficiary(BeneficiaryDTO beneficiary)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

@@ -4,6 +4,7 @@ using BankingPaymentsApp_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    partial class BankingPaymentsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250921121911_second")]
+    partial class second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -646,7 +649,7 @@ namespace BankingPaymentsApp_API.Migrations
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Beneficiary", b =>
                 {
                     b.HasOne("BankingPaymentsApp_API.Models.ClientUser", null)
-                        .WithMany("Beneficiaries")
+                        .WithMany("BeneficiaryIds")
                         .HasForeignKey("ClientUserUserId");
                 });
 
@@ -818,7 +821,7 @@ namespace BankingPaymentsApp_API.Migrations
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.ClientUser", b =>
                 {
-                    b.Navigation("Beneficiaries");
+                    b.Navigation("BeneficiaryIds");
 
                     b.Navigation("Documents");
 

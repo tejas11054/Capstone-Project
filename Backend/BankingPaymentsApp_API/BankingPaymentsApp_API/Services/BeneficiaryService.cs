@@ -6,10 +6,12 @@ namespace BankingPaymentsApp_API.Services
     public class BeneficiaryService : IBeneficiaryService
     {
         private readonly IBeneficiaryRepository _beneficiaryRepository;
+        private readonly IClientUserRepository _clientUserRepository;
 
-        public BeneficiaryService(IBeneficiaryRepository beneficiaryRepository)
+        public BeneficiaryService(IBeneficiaryRepository beneficiaryRepository, IClientUserRepository clientUserRepository)
         {
             _beneficiaryRepository = beneficiaryRepository;
+            _clientUserRepository = clientUserRepository;
         }
 
         public async Task<IEnumerable<Beneficiary>> GetAll()
@@ -19,7 +21,14 @@ namespace BankingPaymentsApp_API.Services
 
         public async Task<Beneficiary> Add(Beneficiary beneficiary)
         {
-            return await _beneficiaryRepository.Add(beneficiary);
+            ClientUser? client = await _clientUserRepository.GetById(beneficiary.ClientId);
+
+            if (client == null) throw new NullReferenceException("No client User of id:" + beneficiary.ClientId);
+
+            Beneficiary addedBeneficiary = await _beneficiaryRepository.Add(beneficiary);
+            client.Beneficiaries?.Add(addedBeneficiary);
+            await _clientUserRepository.Update(client);
+            return addedBeneficiary;
         }
 
         public async Task<Beneficiary?> GetById(int id)
