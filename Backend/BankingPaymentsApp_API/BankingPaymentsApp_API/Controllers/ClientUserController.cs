@@ -12,10 +12,10 @@ namespace BankingPaymentsApp_API.Controllers
     public class ClientUserController : ControllerBase
     {
         private readonly IClientUserService _service;
-        private readonly ILogger _logger;
+        private readonly ILogger<ClientUserController> _logger;
         private readonly IMapper _mapper;
 
-        public ClientUserController(IClientUserService service, IMapper mapper, ILogger logger)
+        public ClientUserController(IClientUserService service, IMapper mapper, ILogger<ClientUserController> logger)
         {
             _service = service;
             _mapper = mapper;

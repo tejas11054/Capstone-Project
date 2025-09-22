@@ -28,7 +28,7 @@ namespace BankingPaymentsApp_API.Controllers
                 if (response.IsSuccess)
                 {
                     _logger.LogInformation("Login Sucessfull");
-                    return Ok(response.Token);
+                    return Ok(response);
                 }
                 _logger.LogInformation("Login unSucessfull");
                 return Unauthorized();

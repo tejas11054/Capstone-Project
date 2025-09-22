@@ -104,7 +104,7 @@ namespace BankingPaymentsApp_API
                 .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day, shared: true)
                 .CreateLogger();
 
-            //builder.Host.UseSerilog(); // here we changed the default logger to serilog
+            builder.Host.UseSerilog(); // here we changed the default logger to serilog
 
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
@@ -160,6 +160,15 @@ namespace BankingPaymentsApp_API
                 });
             });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    builder => builder
+                        .WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
+
 
             var app = builder.Build();
 
@@ -175,6 +184,8 @@ namespace BankingPaymentsApp_API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowFrontend");
 
             app.UseAuthorization();
 

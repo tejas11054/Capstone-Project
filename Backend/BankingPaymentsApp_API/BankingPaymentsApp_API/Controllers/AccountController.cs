@@ -13,9 +13,9 @@ namespace BankingPaymentsApp_API.Controllers
     {
         private readonly IAccountService _service;
         private readonly IMapper _mapper;
-        private readonly ILogger _logger;
+        private readonly ILogger<AccountController> _logger;
 
-        public AccountController(IAccountService service, IMapper mapper, ILogger logger)
+        public AccountController(IAccountService service, IMapper mapper, ILogger<AccountController> logger)
         {
             _service = service;
             _mapper = mapper;

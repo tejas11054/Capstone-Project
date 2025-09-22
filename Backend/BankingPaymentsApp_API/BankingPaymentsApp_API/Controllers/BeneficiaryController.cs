@@ -13,9 +13,9 @@ namespace BankingPaymentsApp_API.Controllers
     public class BeneficiaryController : ControllerBase
     {
         private readonly IBeneficiaryService _beneficiaryService;
-        private readonly ILogger _logger;
+        private readonly ILogger<BeneficiaryController> _logger;
         private readonly IMapper _mapper;
-        public BeneficiaryController(IBeneficiaryService beneficiaryService, IMapper mapper, ILogger logger)
+        public BeneficiaryController(IBeneficiaryService beneficiaryService, IMapper mapper, ILogger<BeneficiaryController> logger)
         {
             _beneficiaryService = beneficiaryService;
             _mapper = mapper;

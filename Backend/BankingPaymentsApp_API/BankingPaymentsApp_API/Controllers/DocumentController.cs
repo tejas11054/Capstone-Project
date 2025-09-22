@@ -16,10 +16,10 @@ namespace BankingPaymentsApp_API.Controllers
         private readonly ICloudinaryService _cloudinaryService;
         private readonly IAccountService _accountService;
         private readonly IClientUserService _clientUserService;
-        private readonly ILogger _logger;
+        private readonly ILogger<DocumentController> _logger;
         private readonly IMapper _mapper;
 
-        public DocumentController(IDocumentService documentService, IMapper mapper, ICloudinaryService cloudinaryService, IAccountService accountService, IClientUserService clientUserService, ILogger logger)
+        public DocumentController(IDocumentService documentService, IMapper mapper, ICloudinaryService cloudinaryService, IAccountService accountService, IClientUserService clientUserService, ILogger<DocumentController> logger)
         {
             _documentService = documentService;
             _mapper = mapper;
