@@ -50,7 +50,7 @@ export class AuthService {
   getUserRole(): string | null {
     const role = localStorage.getItem("role");
     if(role){
-      return JSON.parse(role);
+      return role;
     }
     return null;
   }
