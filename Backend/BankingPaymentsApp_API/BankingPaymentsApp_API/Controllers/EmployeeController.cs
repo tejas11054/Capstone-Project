@@ -21,9 +21,9 @@ namespace BankingPaymentsApp_API.Controllers
     {
         private readonly IEmployeeService _employeeService;
         private readonly IClientUserService _clientUserService;
-        private readonly ILogger _logger;
+        private readonly ILogger<EmployeeController> _logger;
         private readonly IMapper _mapper;
-        public EmployeeController(IEmployeeService employeeService, IMapper mapper, IClientUserService clientUserService, ILogger logger)
+        public EmployeeController(IEmployeeService employeeService, IMapper mapper, IClientUserService clientUserService, ILogger<EmployeeController> logger)
         {
             _employeeService = employeeService;
             _mapper = mapper;
