@@ -1,14 +1,13 @@
 import { UserRole } from "./UserRole";
 
 export interface User {
-  userId: number;
-  userFullName: string;
-  userName: string;
-  password: string;
-  userRoleId: number;
-  role?: UserRole | null;
-  userEmail: string;
-  userPhone: string;
-  userJoiningDate: string; 
+  UserId: number;
+  UserFullName: string;
+  UserName: string;
+  Password: string;
+  UserRoleId: number;
+  Role?: UserRole;
+  UserEmail: string;
+  UserPhone: string;
+  UserJoiningDate: string; 
 }
-
