@@ -1,20 +1,64 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Login } from '../Models/LoginDTO';
 import { Observable } from 'rxjs';
-import { LoginResponse } from '../Models/LoginResponseDTO';
+import { LoginDTO } from '../DTO/LoginDTO';
+import { LoginResponseDTO } from '../DTO/LoginResponseDTO';
+import { User } from '../Models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  loginURL:string = "https://localhost:7030/api";
-  constructor(private http:HttpClient) { }
+  loginURL: string = "https://localhost:7030/api";
+  constructor(private http: HttpClient) { }
 
-  loginUser(user:Login):Observable<LoginResponse>{
-    return this.http.post<LoginResponse>(this.loginURL + "/Auth/Login" , user);
+  loginUser(user: LoginDTO): Observable<LoginResponseDTO> {
+    return this.http.post<LoginResponseDTO>(this.loginURL + "/Auth/Login", user);
   }
 
-  
+  saveToken(response: LoginResponseDTO): void {
+    try {
+
+      if (!response) {
+        throw new Error("Empty or invalid token");
+      }
+
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("user", JSON.stringify(response.user));
+
+      const payloadBase64 = response.token.split('.')[1];
+
+      // JWT uses base64url, so replace chars before decoding
+      const base64 = payloadBase64.replace(/-/g, '+').replace(/_/g, '/');
+      const decodedPayload = JSON.parse(atob(base64));
+
+      localStorage.setItem("role", decodedPayload["Role"]);
+    } catch (err) {
+      console.error("Invalid token format", err);
+    }
+  }
+
+  getLoggedInUser(): User | null {
+    const user = localStorage.getItem("user");
+    if (user) {
+      return JSON.parse(user);
+    }
+    return null;
+  }
+
+  getUserRole(): string | null {
+    const role = localStorage.getItem("role");
+    if(role){
+      return JSON.parse(role);
+    }
+    return null;
+  }
+
+  isLoggedIn():boolean{
+    const token = localStorage.getItem("token");
+    if(token) return true;
+    return false;
+  }
+
 }
