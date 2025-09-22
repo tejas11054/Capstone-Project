@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { LoginResponse } from '../../Models/LoginResponseDTO';
+import { LoginResponseDTO } from '../../DTO/LoginResponseDTO';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
+  standalone: true, 
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  loginResponse!: LoginResponse;
+  loginResponse!: LoginResponseDTO;
   constructor(private fb: FormBuilder, private router: Router, private authSvc: AuthService) { }
 
   ngOnInit(): void {
@@ -26,9 +27,9 @@ export class LoginComponent implements OnInit {
     this.authSvc.loginUser(loginForm.value).subscribe(
       data => {
         console.log(typeof (data));
-        console.log(data.isSuccess);
+        console.log(data.IsSuccess);
         console.log(typeof (data));
-        console.log(data.token + "this the data we want")
+        console.log(data.Token + "this the data we want")
 
         // this.authSvc.saveToken(data);
       },

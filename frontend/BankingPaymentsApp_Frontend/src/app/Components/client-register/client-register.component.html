@@ -1,0 +1,48 @@
+<h2>Client Registration</h2>
+
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+
+  <label>Full Name:</label>
+  <input formControlName="UserFullName" type="text">
+  <div *ngIf="registerForm.get('UserFullName')?.invalid && registerForm.get('UserFullName')?.touched">
+    Full Name is required.
+  </div>
+
+  <label>Username:</label>
+  <input formControlName="UserName" type="text">
+  <div *ngIf="registerForm.get('UserName')?.invalid && registerForm.get('UserName')?.touched">
+    Username is required.
+  </div>
+
+  <label>Email:</label>
+  <input formControlName="UserEmail" type="email">
+  <div *ngIf="registerForm.get('UserEmail')?.invalid && registerForm.get('UserEmail')?.touched">
+    Valid Email is required.
+  </div>
+
+  <label>Phone:</label>
+  <input formControlName="UserPhone" type="text">
+  <div *ngIf="registerForm.get('UserPhone')?.invalid && registerForm.get('UserPhone')?.touched">
+    Phone is required.
+  </div>
+
+  <label>Password:</label>
+  <input formControlName="Password" type="password">
+  <div *ngIf="registerForm.get('Password')?.invalid && registerForm.get('Password')?.touched">
+    Password is required (min 6 chars).
+  </div>
+
+  <label>Confirm Password:</label>
+  <input formControlName="ConfirmPassword" type="password">
+  <div *ngIf="registerForm.errors?.notMatching && registerForm.get('ConfirmPassword')?.touched">
+    Passwords do not match.
+  </div>
+
+  <label>Date of Birth:</label>
+  <input formControlName="DateOfBirth" type="date">
+
+  <label>Address:</label>
+  <textarea formControlName="Address"></textarea>
+
+  <button type="submit" [disabled]="registerForm.invalid">Register</button>
+</form>
