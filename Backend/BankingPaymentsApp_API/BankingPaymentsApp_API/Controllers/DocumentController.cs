@@ -93,7 +93,7 @@ namespace BankingPaymentsApp_API.Controllers
         // upload documents
         // POST: api/Document/upload/{id}
         [HttpPost("upload")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UploadFile([FromForm] DocumentDTO dto, IFormFile file)
         {
             _logger.LogInformation("UploadDocument started!");

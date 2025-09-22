@@ -1,0 +1,27 @@
+<h2>Upload Documents</h2>
+
+<form [formGroup]="uploadForm" (ngSubmit)="upload()">
+
+  <label>Document Name:</label>
+  <input formControlName="DocumentName" type="text">
+  <div *ngIf="f['DocumentName'].touched && f['DocumentName'].invalid">
+    Document Name is required.
+  </div>
+
+  <label>Proof Type:</label>
+  <select formControlName="ProofTypeId">
+    <option value="" disabled>Select Proof Type</option>
+    <option *ngFor="let p of proofTypes" [value]="p.TypeId">{{p.Type}}</option>
+  </select>
+  <div *ngIf="f['ProofTypeId'].touched && f['ProofTypeId'].invalid">
+    Proof Type is required.
+  </div>
+
+  <label>Select File:</label>
+  <input type="file" (change)="onFileSelected($event)">
+  <div *ngIf="!f['File'].value">
+    File is required.
+  </div>
+
+  <button type="submit" [disabled]="uploadForm.invalid">Upload</button>
+</form>

@@ -4,37 +4,38 @@
 
   <label>Full Name:</label>
   <input formControlName="UserFullName" type="text">
-  <div *ngIf="registerForm.get('UserFullName')?.invalid && registerForm.get('UserFullName')?.touched">
+  <div *ngIf="f['UserFullName'].touched && f['UserFullName'].invalid">
     Full Name is required.
   </div>
 
   <label>Username:</label>
   <input formControlName="UserName" type="text">
-  <div *ngIf="registerForm.get('UserName')?.invalid && registerForm.get('UserName')?.touched">
+  <div *ngIf="f['UserName'].touched && f['UserName'].invalid">
     Username is required.
   </div>
 
   <label>Email:</label>
   <input formControlName="UserEmail" type="email">
-  <div *ngIf="registerForm.get('UserEmail')?.invalid && registerForm.get('UserEmail')?.touched">
+  <div *ngIf="f['UserEmail'].touched && f['UserEmail'].invalid">
     Valid Email is required.
   </div>
 
   <label>Phone:</label>
   <input formControlName="UserPhone" type="text">
-  <div *ngIf="registerForm.get('UserPhone')?.invalid && registerForm.get('UserPhone')?.touched">
-    Phone is required.
+  <div *ngIf="f['UserPhone'].touched && f['UserPhone'].invalid">
+    Phone is required and must be 10 digits.
   </div>
+
 
   <label>Password:</label>
   <input formControlName="Password" type="password">
-  <div *ngIf="registerForm.get('Password')?.invalid && registerForm.get('Password')?.touched">
-    Password is required (min 6 chars).
+  <div *ngIf="f['Password'].touched && f['Password'].invalid">
+    Password must be at least 8 characters long, include uppercase, lowercase, number, and special character.
   </div>
 
   <label>Confirm Password:</label>
   <input formControlName="ConfirmPassword" type="password">
-  <div *ngIf="registerForm.errors?.notMatching && registerForm.get('ConfirmPassword')?.touched">
+  <div *ngIf="registerForm.errors?.['notMatching'] && f['ConfirmPassword'].touched">
     Passwords do not match.
   </div>
 

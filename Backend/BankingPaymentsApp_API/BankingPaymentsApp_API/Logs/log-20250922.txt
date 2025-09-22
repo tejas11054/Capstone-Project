@@ -73,3 +73,570 @@ VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
 2025-09-22 21:29:38.823 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 3706.7698ms
 2025-09-22 21:29:38.826 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
 2025-09-22 21:29:38.835 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 3773.6965ms
+2025-09-22 21:42:24.013 +05:30 [INF] User profile is available. Using 'C:\Users\tejas.ramane\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-22 21:42:24.366 +05:30 [INF] Now listening on: https://localhost:7030
+2025-09-22 21:42:24.368 +05:30 [INF] Now listening on: http://localhost:5086
+2025-09-22 21:42:24.457 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-22 21:42:24.459 +05:30 [INF] Hosting environment: Development
+2025-09-22 21:42:24.461 +05:30 [INF] Content root path: D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API
+2025-09-22 21:42:25.139 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/index.html - null null
+2025-09-22 21:42:25.454 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/index.html - 200 null text/html;charset=utf-8 322.0124ms
+2025-09-22 21:42:25.471 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-22 21:42:25.480 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - 200 16529 application/javascript; charset=utf-8 9.3374ms
+2025-09-22 21:42:25.510 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_vs/browserLink - null null
+2025-09-22 21:42:25.571 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_vs/browserLink - 200 null text/javascript; charset=UTF-8 60.8642ms
+2025-09-22 21:42:25.601 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - null null
+2025-09-22 21:42:25.660 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 59.5733ms
+2025-09-22 21:42:59.560 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 236
+2025-09-22 21:42:59.579 +05:30 [INF] CORS policy execution failed.
+2025-09-22 21:42:59.582 +05:30 [INF] Request origin https://localhost:7030 does not have permission to access the resource.
+2025-09-22 21:42:59.591 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 21:42:59.628 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 21:42:59.939 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-09-22 21:43:00.054 +05:30 [INF] CreateClientUser started!
+2025-09-22 21:43:01.029 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-22 21:43:01.408 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'SalaryDisbursement'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 21:43:01.412 +05:30 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'SalaryDisbursementDetails'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 21:43:02.805 +05:30 [INF] Executed DbCommand (108ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 21:43:02.880 +05:30 [INF] Creation Sucessfull!
+2025-09-22 21:43:02.889 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 21:43:02.908 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 3269.6305ms
+2025-09-22 21:43:02.912 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 21:43:02.924 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 3363.7437ms
+2025-09-22 21:47:33.073 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/Register - null null
+2025-09-22 21:47:33.086 +05:30 [INF] CORS policy execution successful.
+2025-09-22 21:47:33.089 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/Register - 204 null null 16.6629ms
+2025-09-22 21:47:33.091 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser/Register - application/json 220
+2025-09-22 21:47:33.100 +05:30 [INF] CORS policy execution successful.
+2025-09-22 21:47:33.101 +05:30 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2025-09-22 21:47:33.103 +05:30 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2025-09-22 21:47:33.106 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser/Register - 405 0 null 15.5684ms
+2025-09-22 21:55:30.301 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/index.html - null null
+2025-09-22 21:55:30.333 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/index.html - 200 null text/html;charset=utf-8 34.4615ms
+2025-09-22 21:55:30.334 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-22 21:55:30.334 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_vs/browserLink - null null
+2025-09-22 21:55:30.344 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - 200 16529 application/javascript; charset=utf-8 10.5521ms
+2025-09-22 21:55:30.372 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_vs/browserLink - 200 null text/javascript; charset=UTF-8 39.0157ms
+2025-09-22 21:55:30.480 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - null null
+2025-09-22 21:55:30.521 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 40.9834ms
+2025-09-22 21:56:26.699 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser - null null
+2025-09-22 21:56:26.710 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-22 21:56:26.718 +05:30 [INF] Route matched with {action = "GetAllClientUsers", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllClientUsers() on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 21:56:26.725 +05:30 [INF] GetAllCLientUsers started!
+2025-09-22 21:56:27.327 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds], [d].[DocumentId], [d].[ClientId], [d].[DocumentName], [d].[DocumentURL], [d].[ProofTypeId], [d].[PublicId]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+LEFT JOIN [Documents] AS [d] ON [u].[UserId] = [d].[ClientId]
+WHERE [u].[Discriminator] = N'ClientUser'
+ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
+2025-09-22 21:56:27.423 +05:30 [INF] 3 client users were displayed!
+2025-09-22 21:56:27.426 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[BankingPaymentsApp_API.Models.ClientUser, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[BankingPaymentsApp_API.DTOs.ClientUserResponseDTO, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-22 21:56:27.431 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API) in 710.0276ms
+2025-09-22 21:56:27.435 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-22 21:56:27.437 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 737.9718ms
+2025-09-22 21:58:56.928 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/index.html - null null
+2025-09-22 21:58:56.951 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/index.html - 200 null text/html;charset=utf-8 23.6777ms
+2025-09-22 21:58:56.959 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_vs/browserLink - null null
+2025-09-22 21:58:56.959 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-22 21:58:56.978 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - 200 16529 application/javascript; charset=utf-8 20.2183ms
+2025-09-22 21:58:56.995 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_vs/browserLink - 200 null text/javascript; charset=UTF-8 37.1284ms
+2025-09-22 21:58:57.094 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - null null
+2025-09-22 21:58:57.119 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 25.7043ms
+2025-09-22 22:10:50.178 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:10:50.187 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:10:50.188 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 9.9944ms
+2025-09-22 22:10:50.190 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 224
+2025-09-22 22:10:50.200 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:10:50.201 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:10:50.202 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:10:50.216 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-09-22 22:10:50.231 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 26.8381ms
+2025-09-22 22:10:50.234 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:10:50.235 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 400 null application/problem+json; charset=utf-8 45.0967ms
+2025-09-22 22:17:57.759 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:17:57.767 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:17:57.768 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 9.424ms
+2025-09-22 22:17:57.770 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 224
+2025-09-22 22:17:57.775 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:17:57.776 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:17:57.777 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:17:57.784 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-09-22 22:17:57.785 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 3.3644ms
+2025-09-22 22:17:57.787 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:17:57.788 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 400 null application/problem+json; charset=utf-8 18.6493ms
+2025-09-22 22:21:06.346 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:21:06.354 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:21:06.355 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 9.7283ms
+2025-09-22 22:21:06.357 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 238
+2025-09-22 22:21:06.362 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:21:06.363 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:21:06.365 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:21:06.369 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-09-22 22:21:06.370 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 3.0976ms
+2025-09-22 22:21:06.372 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:21:06.373 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 400 null application/problem+json; charset=utf-8 16.465ms
+2025-09-22 22:22:42.591 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:22:42.599 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:22:42.600 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 9.8399ms
+2025-09-22 22:22:42.602 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 218
+2025-09-22 22:22:42.607 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:22:42.608 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:22:42.609 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:22:42.613 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-09-22 22:22:42.614 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 2.6193ms
+2025-09-22 22:22:42.616 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:22:42.617 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 400 null application/problem+json; charset=utf-8 15.7302ms
+2025-09-22 22:25:15.895 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:25:15.902 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:25:15.903 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 8.4223ms
+2025-09-22 22:25:15.905 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 218
+2025-09-22 22:25:15.910 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:25:15.911 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:25:15.913 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:25:15.916 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-09-22 22:25:15.918 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 3.4286ms
+2025-09-22 22:25:15.925 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:25:15.926 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 400 null application/problem+json; charset=utf-8 21.4689ms
+2025-09-22 22:27:02.445 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:27:02.454 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:27:02.455 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 10.4599ms
+2025-09-22 22:27:02.457 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 220
+2025-09-22 22:27:02.470 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:27:02.471 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:27:02.473 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:27:02.476 +05:30 [INF] CreateClientUser started!
+2025-09-22 22:27:02.558 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 22:27:02.561 +05:30 [INF] Creation Sucessfull!
+2025-09-22 22:27:02.563 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 22:27:02.565 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 89.9372ms
+2025-09-22 22:27:02.567 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:27:02.568 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 111.1302ms
+2025-09-22 22:28:43.072 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:28:43.080 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:28:43.081 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 9.3491ms
+2025-09-22 22:28:43.084 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 220
+2025-09-22 22:28:43.088 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:28:43.089 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:28:43.090 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:28:43.093 +05:30 [INF] CreateClientUser started!
+2025-09-22 22:28:43.159 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 22:28:43.162 +05:30 [INF] Creation Sucessfull!
+2025-09-22 22:28:43.163 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 22:28:43.165 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 72.7727ms
+2025-09-22 22:28:43.167 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:28:43.168 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 84.9189ms
+2025-09-22 22:32:42.646 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:32:42.655 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:32:42.657 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 10.8568ms
+2025-09-22 22:32:42.658 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 220
+2025-09-22 22:32:42.664 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:32:42.666 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:32:42.668 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:32:42.671 +05:30 [INF] CreateClientUser started!
+2025-09-22 22:32:42.745 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 22:32:42.748 +05:30 [INF] Creation Sucessfull!
+2025-09-22 22:32:42.749 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 22:32:42.751 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 80.5812ms
+2025-09-22 22:32:42.753 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:32:42.754 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 96.4119ms
+2025-09-22 22:36:17.823 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:36:17.830 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:36:17.831 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 8.3614ms
+2025-09-22 22:36:17.833 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 220
+2025-09-22 22:36:17.837 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:36:17.839 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:36:17.840 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:36:17.843 +05:30 [INF] CreateClientUser started!
+2025-09-22 22:36:17.904 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 22:36:17.907 +05:30 [INF] Creation Sucessfull!
+2025-09-22 22:36:17.908 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 22:36:17.910 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 67.7989ms
+2025-09-22 22:36:17.912 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:36:17.914 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 81.1533ms
+2025-09-22 22:40:02.405 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:40:02.412 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:40:02.414 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 9.7364ms
+2025-09-22 22:40:02.416 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 220
+2025-09-22 22:40:02.423 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:40:02.424 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:40:02.426 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:40:02.429 +05:30 [INF] CreateClientUser started!
+2025-09-22 22:40:02.486 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 22:40:02.490 +05:30 [INF] Creation Sucessfull!
+2025-09-22 22:40:02.491 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 22:40:02.493 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 64.29ms
+2025-09-22 22:40:02.494 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:40:02.496 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 80.2874ms
+2025-09-22 22:41:38.982 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 22:41:38.990 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:41:38.991 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 9.3403ms
+2025-09-22 22:41:38.993 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 229
+2025-09-22 22:41:39.002 +05:30 [INF] CORS policy execution successful.
+2025-09-22 22:41:39.003 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:41:39.005 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:41:39.008 +05:30 [INF] CreateClientUser started!
+2025-09-22 22:41:39.067 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 22:41:39.070 +05:30 [INF] Creation Sucessfull!
+2025-09-22 22:41:39.072 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 22:41:39.074 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 66.5314ms
+2025-09-22 22:41:39.075 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 22:41:39.077 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 84.2791ms
+2025-09-22 22:44:19.826 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/index.html - null null
+2025-09-22 22:44:19.844 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/index.html - 200 null text/html;charset=utf-8 18.0813ms
+2025-09-22 22:44:19.853 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-22 22:44:19.853 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_vs/browserLink - null null
+2025-09-22 22:44:19.863 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - 200 16529 application/javascript; charset=utf-8 10.9597ms
+2025-09-22 22:44:19.881 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27.1235ms
+2025-09-22 22:44:19.979 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - null null
+2025-09-22 22:44:19.995 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 15.9017ms
+2025-09-22 22:44:56.703 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/User/4 - null null
+2025-09-22 22:44:56.720 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (ADMIN|BANK_USER)
+2025-09-22 22:44:56.725 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2025-09-22 22:44:56.727 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/User/4 - 401 0 null 24.3242ms
+2025-09-22 22:45:43.841 +05:30 [INF] User profile is available. Using 'C:\Users\tejas.ramane\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-22 22:45:44.113 +05:30 [INF] Now listening on: https://localhost:7030
+2025-09-22 22:45:44.115 +05:30 [INF] Now listening on: http://localhost:5086
+2025-09-22 22:45:44.189 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-22 22:45:44.191 +05:30 [INF] Hosting environment: Development
+2025-09-22 22:45:44.192 +05:30 [INF] Content root path: D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API
+2025-09-22 22:45:44.375 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/index.html - null null
+2025-09-22 22:45:44.636 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/index.html - 200 null text/html;charset=utf-8 267.1901ms
+2025-09-22 22:45:44.640 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-22 22:45:44.648 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - 200 16529 application/javascript; charset=utf-8 8.0077ms
+2025-09-22 22:45:44.686 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_vs/browserLink - null null
+2025-09-22 22:45:44.720 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_vs/browserLink - 200 null text/javascript; charset=UTF-8 34.57ms
+2025-09-22 22:45:44.817 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - null null
+2025-09-22 22:45:44.846 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 29.9222ms
+2025-09-22 22:45:57.492 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/User/4 - null null
+2025-09-22 22:45:57.506 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.UserController.GetUserById (BankingPaymentsApp_API)'
+2025-09-22 22:45:57.544 +05:30 [INF] Route matched with {action = "GetUserById", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(Int32) on controller BankingPaymentsApp_API.Controllers.UserController (BankingPaymentsApp_API).
+2025-09-22 22:45:57.882 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-09-22 22:45:58.551 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-22 22:45:58.928 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'SalaryDisbursement'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 22:45:58.932 +05:30 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'SalaryDisbursementDetails'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 22:46:00.034 +05:30 [INF] Executed DbCommand (79ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[Branch], [u].[ClientIds], [u].[RefferalCode], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+WHERE [u].[UserId] = @__id_0
+2025-09-22 22:46:00.220 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.UserResponseDTO'.
+2025-09-22 22:46:00.241 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.UserController.GetUserById (BankingPaymentsApp_API) in 2688.9931ms
+2025-09-22 22:46:00.244 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.UserController.GetUserById (BankingPaymentsApp_API)'
+2025-09-22 22:46:00.255 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/User/4 - 200 null application/json; charset=utf-8 2763.5203ms
+2025-09-22 22:46:41.937 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/Account/3 - null null
+2025-09-22 22:46:41.951 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.AccountController.GetAccountById (BankingPaymentsApp_API)'
+2025-09-22 22:46:41.958 +05:30 [INF] Route matched with {action = "GetAccountById", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAccountById(Int32) on controller BankingPaymentsApp_API.Controllers.AccountController (BankingPaymentsApp_API).
+2025-09-22 22:46:41.967 +05:30 [INF] GetAccountById started
+2025-09-22 22:46:42.068 +05:30 [INF] Executed DbCommand (23ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[AccountId], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds], [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [a0].[StatusId], [a0].[Status], [a1].[TypeId], [a1].[Type]
+FROM [Accounts] AS [a]
+LEFT JOIN (
+    SELECT [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified]
+    FROM [Users] AS [u]
+    WHERE [u].[Discriminator] = N'ClientUser'
+) AS [t] ON [a].[ClientId] = [t].[UserId]
+INNER JOIN [AccountStatuses] AS [a0] ON [a].[AccountStatusId] = [a0].[StatusId]
+INNER JOIN [AccountTypes] AS [a1] ON [a].[AccountTypeId] = [a1].[TypeId]
+WHERE [a].[AccountId] = @__id_0
+2025-09-22 22:46:42.074 +05:30 [WRN] No Account of Id 3 Found
+2025-09-22 22:46:42.075 +05:30 [INF] Executing NotFoundObjectResult, writing value of type 'System.String'.
+2025-09-22 22:46:42.079 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.AccountController.GetAccountById (BankingPaymentsApp_API) in 116.2989ms
+2025-09-22 22:46:42.082 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.AccountController.GetAccountById (BankingPaymentsApp_API)'
+2025-09-22 22:46:42.084 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/Account/3 - 404 null text/plain; charset=utf-8 147.156ms
+2025-09-22 22:47:52.615 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser/3 - null null
+2025-09-22 22:47:52.632 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-22 22:47:52.638 +05:30 [INF] Route matched with {action = "GetClientUserById", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetClientUserById(Int32) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 22:47:52.647 +05:30 [INF] GetClientUserById started!
+2025-09-22 22:47:52.781 +05:30 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-09-22 22:47:52.827 +05:30 [ERR] Failed executing DbCommand (29ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-22 22:47:52.866 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'BankingPaymentsApp_API.Data.BankingPaymentsDBContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:81ed785c-5d62-4d56-a7c7-eb4d89b891a9
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:81ed785c-5d62-4d56-a7c7-eb4d89b891a9
+Error Number:207,State:1,Class:16
+2025-09-22 22:47:53.218 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API) in 576.5982ms
+2025-09-22 22:47:53.221 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-22 22:47:53.225 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at BankingPaymentsApp_API.Repositories.ClientUserRepository.GetById(Int32 id) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Repositories\ClientUserRepository.cs:line 29
+   at BankingPaymentsApp_API.Services.ClientUserService.GetById(Int32 id) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Services\ClientUserService.cs:line 39
+   at BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById(Int32 id) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Controllers\ClientUserController.cs:line 49
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+ClientConnectionId:81ed785c-5d62-4d56-a7c7-eb4d89b891a9
+Error Number:207,State:1,Class:16
+2025-09-22 22:47:53.265 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser/3 - 500 null text/plain; charset=utf-8 649.3518ms
+2025-09-22 22:48:08.030 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/index.html - null null
+2025-09-22 22:48:08.050 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/index.html - 200 null text/html;charset=utf-8 20.8943ms
+2025-09-22 22:48:08.058 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_vs/browserLink - null null
+2025-09-22 22:48:08.058 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-22 22:48:08.071 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - 200 16529 application/javascript; charset=utf-8 13.5498ms
+2025-09-22 22:48:08.094 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_vs/browserLink - 200 null text/javascript; charset=UTF-8 35.9253ms
+2025-09-22 22:48:08.122 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - null null
+2025-09-22 22:48:08.162 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 40.4071ms
+2025-09-22 23:06:03.461 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 23:06:03.475 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:06:03.480 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 19.9607ms
+2025-09-22 23:06:03.483 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 220
+2025-09-22 23:06:03.490 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:06:03.492 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:06:03.499 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 23:06:03.557 +05:30 [INF] CreateClientUser started!
+2025-09-22 23:06:03.889 +05:30 [INF] Executed DbCommand (52ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 23:06:03.925 +05:30 [INF] Creation Sucessfull!
+2025-09-22 23:06:03.928 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 23:06:03.935 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 432.8748ms
+2025-09-22 23:06:03.938 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:06:03.940 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 456.472ms
+2025-09-22 23:13:42.651 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 23:13:42.666 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:13:42.668 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 17.5396ms
+2025-09-22 23:13:42.672 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 220
+2025-09-22 23:13:42.679 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:13:42.681 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:13:42.683 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 23:13:42.695 +05:30 [INF] CreateClientUser started!
+2025-09-22 23:13:42.856 +05:30 [INF] Executed DbCommand (52ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 23:13:42.861 +05:30 [INF] Creation Sucessfull!
+2025-09-22 23:13:42.863 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 23:13:42.866 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 179.5314ms
+2025-09-22 23:13:42.869 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:13:42.870 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 199.1451ms
+2025-09-22 23:15:48.112 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 23:15:48.118 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:15:48.120 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 8.5731ms
+2025-09-22 23:15:48.124 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 229
+2025-09-22 23:15:48.139 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:15:48.140 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:15:48.144 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 23:15:48.148 +05:30 [INF] CreateClientUser started!
+2025-09-22 23:15:48.313 +05:30 [INF] Executed DbCommand (53ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 23:15:48.318 +05:30 [INF] Creation Sucessfull!
+2025-09-22 23:15:48.319 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 23:15:48.321 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 174.2511ms
+2025-09-22 23:15:48.324 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:15:48.326 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 201.7296ms
+2025-09-22 23:19:38.379 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 23:19:38.389 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:19:38.390 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 11.1638ms
+2025-09-22 23:19:38.393 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 226
+2025-09-22 23:19:38.401 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:19:38.402 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:19:38.404 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 23:19:38.408 +05:30 [INF] CreateClientUser started!
+2025-09-22 23:19:38.597 +05:30 [INF] Executed DbCommand (52ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 23:19:38.602 +05:30 [INF] Creation Sucessfull!
+2025-09-22 23:19:38.603 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 23:19:38.606 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 198.7249ms
+2025-09-22 23:19:38.608 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:19:38.609 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 216.3827ms
+2025-09-22 23:21:48.524 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 23:21:48.537 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:21:48.539 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 15.6346ms
+2025-09-22 23:21:48.542 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 225
+2025-09-22 23:21:48.551 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:21:48.553 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:21:48.555 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 23:21:48.561 +05:30 [INF] CreateClientUser started!
+2025-09-22 23:21:48.702 +05:30 [INF] Executed DbCommand (52ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 23:21:48.708 +05:30 [INF] Creation Sucessfull!
+2025-09-22 23:21:48.710 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 23:21:48.712 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 152.7138ms
+2025-09-22 23:21:48.716 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:21:48.718 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 176.5633ms
+2025-09-22 23:24:11.310 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 23:24:11.324 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:24:11.325 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 15.0331ms
+2025-09-22 23:24:11.328 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 220
+2025-09-22 23:24:11.336 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:24:11.338 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:24:11.340 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 23:24:11.344 +05:30 [INF] CreateClientUser started!
+2025-09-22 23:24:11.508 +05:30 [INF] Executed DbCommand (52ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 23:24:11.513 +05:30 [INF] Creation Sucessfull!
+2025-09-22 23:24:11.514 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 23:24:11.517 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 174.0706ms
+2025-09-22 23:24:11.519 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:24:11.523 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 195.644ms
+2025-09-22 23:25:52.023 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 23:25:52.028 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:25:52.030 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 7.428ms
+2025-09-22 23:25:52.038 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 221
+2025-09-22 23:25:52.048 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:25:52.050 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:25:52.051 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 23:25:52.055 +05:30 [INF] CreateClientUser started!
+2025-09-22 23:25:52.195 +05:30 [INF] Executed DbCommand (53ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 23:25:52.200 +05:30 [INF] Creation Sucessfull!
+2025-09-22 23:25:52.202 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 23:25:52.204 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 150.0587ms
+2025-09-22 23:25:52.207 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:25:52.209 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 173.2441ms
+2025-09-22 23:28:49.673 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-22 23:28:49.685 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:28:49.687 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 15.0534ms
+2025-09-22 23:28:49.690 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 226
+2025-09-22 23:28:49.698 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:28:49.700 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:28:49.702 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-22 23:28:49.706 +05:30 [INF] CreateClientUser started!
+2025-09-22 23:28:49.848 +05:30 [INF] Executed DbCommand (53ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-22 23:28:49.853 +05:30 [INF] Creation Sucessfull!
+2025-09-22 23:28:49.855 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-22 23:28:49.858 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 152.5952ms
+2025-09-22 23:28:49.860 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-22 23:28:49.862 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 172.5706ms
+2025-09-22 23:29:42.119 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/Document/upload - multipart/form-data; boundary=----WebKitFormBoundaryjOkbcZgUBNCS4Y2I 26916
+2025-09-22 23:29:42.132 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:29:42.143 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (CLIENT_USER|BANK_USER)
+2025-09-22 23:29:42.151 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2025-09-22 23:29:42.153 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/Document/upload - 401 0 null 34.4645ms
