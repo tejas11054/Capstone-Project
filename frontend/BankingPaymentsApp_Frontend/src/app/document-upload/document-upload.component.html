@@ -1,27 +1,33 @@
 <h2>Upload Documents</h2>
 
-<form [formGroup]="uploadForm" (ngSubmit)="upload()">
+<form [formGroup]="uploadForm" (ngSubmit)="uploadAllDocuments()">
 
-  <label>Document Name:</label>
-  <input formControlName="DocumentName" type="text">
-  <div *ngIf="f['DocumentName'].touched && f['DocumentName'].invalid">
-    Document Name is required.
+  <div *ngFor="let doc of documentFields">
+    <h3>{{doc}}</h3>
+    <div [formGroupName]="doc">
+      <label>Document Name:</label>
+      <input formControlName="DocumentName" type="text">
+      <div *ngIf="getFormGroup(doc).get('DocumentName')?.touched && getFormGroup(doc).get('DocumentName')?.invalid">
+        Document Name is required.
+      </div>
+
+      <label>Proof Type:</label>
+      <select formControlName="ProofTypeId">
+        <option value="" disabled>Select Proof Type</option>
+        <option *ngFor="let p of proofTypes" [value]="p.TypeId">{{p.Type}}</option>
+      </select>
+      <div *ngIf="getFormGroup(doc).get('ProofTypeId')?.touched && getFormGroup(doc).get('ProofTypeId')?.invalid">
+        Proof Type is required.
+      </div>
+
+      <label>Select File:</label>
+      <input type="file" (change)="onFileSelected($event, doc)">
+      <div *ngIf="!getFormGroup(doc).get('File')?.value">
+        File is required.
+      </div>
+    </div>
+    <hr>
   </div>
 
-  <label>Proof Type:</label>
-  <select formControlName="ProofTypeId">
-    <option value="" disabled>Select Proof Type</option>
-    <option *ngFor="let p of proofTypes" [value]="p.TypeId">{{p.Type}}</option>
-  </select>
-  <div *ngIf="f['ProofTypeId'].touched && f['ProofTypeId'].invalid">
-    Proof Type is required.
-  </div>
-
-  <label>Select File:</label>
-  <input type="file" (change)="onFileSelected($event)">
-  <div *ngIf="!f['File'].value">
-    File is required.
-  </div>
-
-  <button type="submit" [disabled]="uploadForm.invalid">Upload</button>
+  <button type="submit">Upload All Documents</button>
 </form>

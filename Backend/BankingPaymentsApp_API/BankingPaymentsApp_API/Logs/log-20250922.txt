@@ -640,3 +640,621 @@ VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
 RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (CLIENT_USER|BANK_USER)
 2025-09-22 23:29:42.151 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
 2025-09-22 23:29:42.153 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/Document/upload - 401 0 null 34.4645ms
+2025-09-22 23:30:32.784 +05:30 [INF] User profile is available. Using 'C:\Users\tejas.ramane\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-22 23:30:33.078 +05:30 [INF] Now listening on: https://localhost:7030
+2025-09-22 23:30:33.080 +05:30 [INF] Now listening on: http://localhost:5086
+2025-09-22 23:30:33.167 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-22 23:30:33.170 +05:30 [INF] Hosting environment: Development
+2025-09-22 23:30:33.172 +05:30 [INF] Content root path: D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API
+2025-09-22 23:30:33.902 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/index.html - null null
+2025-09-22 23:30:34.316 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/index.html - 200 null text/html;charset=utf-8 423.3655ms
+2025-09-22 23:30:34.322 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-22 23:30:34.336 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - 200 16529 application/javascript; charset=utf-8 14.1186ms
+2025-09-22 23:30:34.371 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_vs/browserLink - null null
+2025-09-22 23:30:34.428 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_vs/browserLink - 200 null text/javascript; charset=UTF-8 57.4114ms
+2025-09-22 23:30:34.495 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - null null
+2025-09-22 23:30:34.554 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 59.5035ms
+2025-09-22 23:31:07.271 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/Document/upload - multipart/form-data; boundary=----WebKitFormBoundaryyhkRtjc2cCvX6L4o 26915
+2025-09-22 23:31:07.286 +05:30 [INF] CORS policy execution successful.
+2025-09-22 23:31:07.293 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-22 23:31:07.333 +05:30 [INF] Route matched with {action = "UploadFile", controller = "Document"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(BankingPaymentsApp_API.DTOs.DocumentDTO, Microsoft.AspNetCore.Http.IFormFile) on controller BankingPaymentsApp_API.Controllers.DocumentController (BankingPaymentsApp_API).
+2025-09-22 23:31:07.634 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-09-22 23:31:07.711 +05:30 [INF] UploadDocument started!
+2025-09-22 23:31:08.314 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-22 23:31:08.632 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'SalaryDisbursement'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 23:31:08.635 +05:30 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'SalaryDisbursementDetails'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 23:31:09.182 +05:30 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-09-22 23:31:09.655 +05:30 [ERR] Failed executing DbCommand (68ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-22 23:31:09.706 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'BankingPaymentsApp_API.Data.BankingPaymentsDBContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:0602741b-4a7a-4c16-9582-f127425c6987
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:0602741b-4a7a-4c16-9582-f127425c6987
+Error Number:207,State:1,Class:16
+2025-09-22 23:31:10.033 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API) in 2689.5785ms
+2025-09-22 23:31:10.037 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-22 23:31:10.041 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at BankingPaymentsApp_API.Repositories.ClientUserRepository.GetById(Int32 id) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Repositories\ClientUserRepository.cs:line 29
+   at BankingPaymentsApp_API.Services.ClientUserService.GetById(Int32 id) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Services\ClientUserService.cs:line 39
+   at BankingPaymentsApp_API.Controllers.DocumentController.UploadFile(DocumentDTO dto, IFormFile file) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Controllers\DocumentController.cs:line 105
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+ClientConnectionId:0602741b-4a7a-4c16-9582-f127425c6987
+Error Number:207,State:1,Class:16
+2025-09-22 23:31:10.082 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/Document/upload - 500 null text/plain; charset=utf-8 2811.101ms
+2025-09-22 23:32:17.574 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/Document/upload - multipart/form-data; boundary=----WebKitFormBoundaryENC1TinHi7Dop0jr 27119
+2025-09-22 23:32:17.588 +05:30 [INF] CORS policy execution failed.
+2025-09-22 23:32:17.590 +05:30 [INF] Request origin https://localhost:7030 does not have permission to access the resource.
+2025-09-22 23:32:17.593 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-22 23:32:17.595 +05:30 [INF] Route matched with {action = "UploadFile", controller = "Document"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(BankingPaymentsApp_API.DTOs.DocumentDTO, Microsoft.AspNetCore.Http.IFormFile) on controller BankingPaymentsApp_API.Controllers.DocumentController (BankingPaymentsApp_API).
+2025-09-22 23:32:17.605 +05:30 [INF] UploadDocument started!
+2025-09-22 23:32:17.653 +05:30 [ERR] Failed executing DbCommand (17ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-22 23:32:17.659 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'BankingPaymentsApp_API.Data.BankingPaymentsDBContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:0602741b-4a7a-4c16-9582-f127425c6987
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:0602741b-4a7a-4c16-9582-f127425c6987
+Error Number:207,State:1,Class:16
+2025-09-22 23:32:17.910 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API) in 311.6837ms
+2025-09-22 23:32:17.913 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-22 23:32:17.916 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at BankingPaymentsApp_API.Repositories.ClientUserRepository.GetById(Int32 id) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Repositories\ClientUserRepository.cs:line 29
+   at BankingPaymentsApp_API.Services.ClientUserService.GetById(Int32 id) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Services\ClientUserService.cs:line 39
+   at BankingPaymentsApp_API.Controllers.DocumentController.UploadFile(DocumentDTO dto, IFormFile file) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Controllers\DocumentController.cs:line 105
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+ClientConnectionId:0602741b-4a7a-4c16-9582-f127425c6987
+Error Number:207,State:1,Class:16
+2025-09-22 23:32:17.956 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/Document/upload - 500 null text/plain; charset=utf-8 382.2124ms
+2025-09-22 23:38:43.369 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/index.html - null null
+2025-09-22 23:38:43.417 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/index.html - 200 null text/html;charset=utf-8 49.3551ms
+2025-09-22 23:38:43.424 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_vs/browserLink - null null
+2025-09-22 23:38:43.424 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-22 23:38:43.457 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - 200 16529 application/javascript; charset=utf-8 31.8677ms
+2025-09-22 23:38:43.486 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_vs/browserLink - 200 null text/javascript; charset=UTF-8 61.3426ms
+2025-09-22 23:38:43.540 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - null null
+2025-09-22 23:38:43.602 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 62.4876ms
+2025-09-22 23:39:26.975 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/Document/upload - multipart/form-data; boundary=----WebKitFormBoundary7dXpKiZVBWYlKGrD 928077
+2025-09-22 23:39:26.984 +05:30 [INF] CORS policy execution failed.
+2025-09-22 23:39:26.986 +05:30 [INF] Request origin https://localhost:7030 does not have permission to access the resource.
+2025-09-22 23:39:26.988 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-22 23:39:26.990 +05:30 [INF] Route matched with {action = "UploadFile", controller = "Document"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(BankingPaymentsApp_API.DTOs.DocumentDTO, Microsoft.AspNetCore.Http.IFormFile) on controller BankingPaymentsApp_API.Controllers.DocumentController (BankingPaymentsApp_API).
+2025-09-22 23:39:27.086 +05:30 [INF] UploadDocument started!
+2025-09-22 23:39:27.176 +05:30 [ERR] Failed executing DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-22 23:39:27.182 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'BankingPaymentsApp_API.Data.BankingPaymentsDBContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:e7e85b1a-7113-4ec4-a24f-75437abdab35
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:e7e85b1a-7113-4ec4-a24f-75437abdab35
+Error Number:207,State:1,Class:16
+2025-09-22 23:39:27.403 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API) in 410.668ms
+2025-09-22 23:39:27.407 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-22 23:39:27.410 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'ClientUserUserId'.
+Invalid column name 'SalaryDisbursementId'.
+Invalid column name 'ClientUserUserId'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at BankingPaymentsApp_API.Repositories.ClientUserRepository.GetById(Int32 id) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Repositories\ClientUserRepository.cs:line 29
+   at BankingPaymentsApp_API.Services.ClientUserService.GetById(Int32 id) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Services\ClientUserService.cs:line 39
+   at BankingPaymentsApp_API.Controllers.DocumentController.UploadFile(DocumentDTO dto, IFormFile file) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Controllers\DocumentController.cs:line 105
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+ClientConnectionId:e7e85b1a-7113-4ec4-a24f-75437abdab35
+Error Number:207,State:1,Class:16
+2025-09-22 23:39:27.440 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/Document/upload - 500 null text/plain; charset=utf-8 465.1027ms
+2025-09-22 23:43:45.215 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-22 23:43:45.404 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'SalaryDisbursement'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 23:43:45.404 +05:30 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'SalaryDisbursementDetails'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 23:43:45.541 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-22 23:43:45.587 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'SalaryDisbursement'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 23:43:45.587 +05:30 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'SalaryDisbursementDetails'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 23:43:59.092 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-22 23:43:59.292 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'SalaryDisbursement'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 23:43:59.292 +05:30 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'SalaryDisbursementDetails'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 23:43:59.631 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-22 23:43:59.670 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'SalaryDisbursement'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 23:43:59.670 +05:30 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'SalaryDisbursementDetails'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-22 23:44:00.078 +05:30 [INF] Executed DbCommand (363ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [BankingPaymentsProject11];
+2025-09-22 23:44:00.196 +05:30 [INF] Executed DbCommand (114ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [BankingPaymentsProject11] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-09-22 23:44:00.213 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-22 23:44:00.284 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2025-09-22 23:44:00.285 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-22 23:44:00.301 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-09-22 23:44:00.306 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-09-22 23:44:00.319 +05:30 [INF] Applying migration '20250922181346_initial'.
+2025-09-22 23:44:00.458 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AccountStatuses] (
+    [StatusId] int NOT NULL IDENTITY,
+    [Status] int NOT NULL,
+    CONSTRAINT [PK_AccountStatuses] PRIMARY KEY ([StatusId])
+);
+2025-09-22 23:44:00.460 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AccountTypes] (
+    [TypeId] int NOT NULL IDENTITY,
+    [Type] int NOT NULL,
+    CONSTRAINT [PK_AccountTypes] PRIMARY KEY ([TypeId])
+);
+2025-09-22 23:44:00.462 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PaymentStatuses] (
+    [StatusId] int NOT NULL IDENTITY,
+    [Status] int NOT NULL,
+    CONSTRAINT [PK_PaymentStatuses] PRIMARY KEY ([StatusId])
+);
+2025-09-22 23:44:00.463 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ProofTypes] (
+    [TypeId] int NOT NULL IDENTITY,
+    [Type] int NOT NULL,
+    CONSTRAINT [PK_ProofTypes] PRIMARY KEY ([TypeId])
+);
+2025-09-22 23:44:00.464 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Roles] (
+    [RoleId] int NOT NULL IDENTITY,
+    [Role] int NOT NULL,
+    CONSTRAINT [PK_Roles] PRIMARY KEY ([RoleId])
+);
+2025-09-22 23:44:00.466 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [TransactionTypes] (
+    [TypeId] int NOT NULL IDENTITY,
+    [Type] int NOT NULL,
+    CONSTRAINT [PK_TransactionTypes] PRIMARY KEY ([TypeId])
+);
+2025-09-22 23:44:00.468 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Accounts] (
+    [AccountId] int NOT NULL IDENTITY,
+    [AccountNumber] nvarchar(max) NOT NULL,
+    [ClientId] int NULL,
+    [Balance] float NOT NULL,
+    [AccountTypeId] int NOT NULL,
+    [AccountStatusId] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [TransactionIds] nvarchar(max) NULL,
+    CONSTRAINT [PK_Accounts] PRIMARY KEY ([AccountId]),
+    CONSTRAINT [FK_Accounts_AccountStatuses_AccountStatusId] FOREIGN KEY ([AccountStatusId]) REFERENCES [AccountStatuses] ([StatusId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Accounts_AccountTypes_AccountTypeId] FOREIGN KEY ([AccountTypeId]) REFERENCES [AccountTypes] ([TypeId]) ON DELETE CASCADE
+);
+2025-09-22 23:44:00.470 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Payments] (
+    [PaymentId] int NOT NULL IDENTITY,
+    [PayerAccountId] int NOT NULL,
+    [PayeeAccountNumber] nvarchar(max) NOT NULL,
+    [Amount] float NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [PaymentStatusId] int NOT NULL,
+    [ActionAt] datetime2 NOT NULL,
+    CONSTRAINT [PK_Payments] PRIMARY KEY ([PaymentId]),
+    CONSTRAINT [FK_Payments_Accounts_PayerAccountId] FOREIGN KEY ([PayerAccountId]) REFERENCES [Accounts] ([AccountId]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_Payments_PaymentStatuses_PaymentStatusId] FOREIGN KEY ([PaymentStatusId]) REFERENCES [PaymentStatuses] ([StatusId]) ON DELETE CASCADE
+);
+2025-09-22 23:44:00.473 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Users] (
+    [UserId] int NOT NULL IDENTITY,
+    [UserFullName] nvarchar(max) NOT NULL,
+    [UserName] nvarchar(max) NOT NULL,
+    [Password] nvarchar(max) NOT NULL,
+    [UserRoleId] int NOT NULL,
+    [UserEmail] nvarchar(max) NOT NULL,
+    [UserPhone] nvarchar(max) NOT NULL,
+    [UserJoiningDate] datetime2 NOT NULL,
+    [Discriminator] nvarchar(13) NOT NULL,
+    [RefferalCode] nvarchar(max) NULL,
+    [Branch] nvarchar(max) NULL,
+    [ClientIds] nvarchar(max) NULL,
+    [AccountId] int NULL,
+    [DateOfBirth] datetime2 NULL,
+    [Address] nvarchar(max) NULL,
+    [KycVierified] bit NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY ([UserId]),
+    CONSTRAINT [FK_Users_Accounts_AccountId] FOREIGN KEY ([AccountId]) REFERENCES [Accounts] ([AccountId]),
+    CONSTRAINT [FK_Users_Roles_UserRoleId] FOREIGN KEY ([UserRoleId]) REFERENCES [Roles] ([RoleId]) ON DELETE CASCADE
+);
+2025-09-22 23:44:00.475 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Beneficiaries] (
+    [BeneficiaryId] int NOT NULL IDENTITY,
+    [ClientId] int NOT NULL,
+    [BeneficiaryName] nvarchar(max) NOT NULL,
+    [AccountNumber] nvarchar(max) NOT NULL,
+    [BankName] nvarchar(max) NOT NULL,
+    [IFSC] nvarchar(max) NOT NULL,
+    [ClientUserUserId] int NULL,
+    CONSTRAINT [PK_Beneficiaries] PRIMARY KEY ([BeneficiaryId]),
+    CONSTRAINT [FK_Beneficiaries_Users_ClientUserUserId] FOREIGN KEY ([ClientUserUserId]) REFERENCES [Users] ([UserId])
+);
+2025-09-22 23:44:00.890 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Documents] (
+    [DocumentId] int NOT NULL IDENTITY,
+    [DocumentURL] nvarchar(max) NOT NULL,
+    [DocumentName] nvarchar(max) NOT NULL,
+    [ProofTypeId] int NOT NULL,
+    [PublicId] nvarchar(max) NOT NULL,
+    [ClientId] int NOT NULL,
+    CONSTRAINT [PK_Documents] PRIMARY KEY ([DocumentId]),
+    CONSTRAINT [FK_Documents_ProofTypes_ProofTypeId] FOREIGN KEY ([ProofTypeId]) REFERENCES [ProofTypes] ([TypeId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Documents_Users_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [Users] ([UserId]) ON DELETE CASCADE
+);
+2025-09-22 23:44:00.891 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [SalaryDisbursements] (
+    [SalaryDisbursementId] int NOT NULL IDENTITY,
+    [ClientId] int NOT NULL,
+    [TotalAmount] decimal(18,2) NOT NULL,
+    [DisbursementDate] datetime2 NOT NULL,
+    [DisbursementStatusId] int NOT NULL,
+    [AllEmployees] bit NOT NULL,
+    CONSTRAINT [PK_SalaryDisbursements] PRIMARY KEY ([SalaryDisbursementId]),
+    CONSTRAINT [FK_SalaryDisbursements_PaymentStatuses_DisbursementStatusId] FOREIGN KEY ([DisbursementStatusId]) REFERENCES [PaymentStatuses] ([StatusId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_SalaryDisbursements_Users_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [Users] ([UserId]) ON DELETE NO ACTION
+);
+2025-09-22 23:44:00.893 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Employees] (
+    [EmployeeId] int NOT NULL IDENTITY,
+    [ClientId] int NOT NULL,
+    [EmployeeName] nvarchar(max) NOT NULL,
+    [AccountNumber] nvarchar(max) NOT NULL,
+    [BankName] nvarchar(max) NOT NULL,
+    [IFSC] nvarchar(max) NOT NULL,
+    [Salary] int NOT NULL,
+    [SalaryDisbursementId] int NULL,
+    CONSTRAINT [PK_Employees] PRIMARY KEY ([EmployeeId]),
+    CONSTRAINT [FK_Employees_SalaryDisbursements_SalaryDisbursementId] FOREIGN KEY ([SalaryDisbursementId]) REFERENCES [SalaryDisbursements] ([SalaryDisbursementId]),
+    CONSTRAINT [FK_Employees_Users_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [Users] ([UserId]) ON DELETE CASCADE
+);
+2025-09-22 23:44:00.895 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Transactions] (
+    [TransactionId] int NOT NULL IDENTITY,
+    [AccountId] int NOT NULL,
+    [PaymentId] int NULL,
+    [SalaryDisbursementId] int NULL,
+    [TransactionTypeId] int NOT NULL,
+    [Amount] float NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    CONSTRAINT [PK_Transactions] PRIMARY KEY ([TransactionId]),
+    CONSTRAINT [FK_Transactions_Accounts_AccountId] FOREIGN KEY ([AccountId]) REFERENCES [Accounts] ([AccountId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Transactions_Payments_PaymentId] FOREIGN KEY ([PaymentId]) REFERENCES [Payments] ([PaymentId]),
+    CONSTRAINT [FK_Transactions_SalaryDisbursements_SalaryDisbursementId] FOREIGN KEY ([SalaryDisbursementId]) REFERENCES [SalaryDisbursements] ([SalaryDisbursementId]),
+    CONSTRAINT [FK_Transactions_TransactionTypes_TransactionTypeId] FOREIGN KEY ([TransactionTypeId]) REFERENCES [TransactionTypes] ([TypeId]) ON DELETE CASCADE
+);
+2025-09-22 23:44:00.897 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [SalaryDisbursementDetails] (
+    [DetailId] int NOT NULL IDENTITY,
+    [SalaryDisbursementId] int NOT NULL,
+    [EmployeeId] int NOT NULL,
+    [Amount] decimal(18,2) NOT NULL,
+    [TransactionId] int NULL,
+    CONSTRAINT [PK_SalaryDisbursementDetails] PRIMARY KEY ([DetailId]),
+    CONSTRAINT [FK_SalaryDisbursementDetails_Employees_EmployeeId] FOREIGN KEY ([EmployeeId]) REFERENCES [Employees] ([EmployeeId]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_SalaryDisbursementDetails_SalaryDisbursements_SalaryDisbursementId] FOREIGN KEY ([SalaryDisbursementId]) REFERENCES [SalaryDisbursements] ([SalaryDisbursementId]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_SalaryDisbursementDetails_Transactions_TransactionId] FOREIGN KEY ([TransactionId]) REFERENCES [Transactions] ([TransactionId]) ON DELETE NO ACTION
+);
+2025-09-22 23:44:04.054 +05:30 [INF] Executed DbCommand (75ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'StatusId', N'Status') AND [object_id] = OBJECT_ID(N'[AccountStatuses]'))
+    SET IDENTITY_INSERT [AccountStatuses] ON;
+INSERT INTO [AccountStatuses] ([StatusId], [Status])
+VALUES (1, 0),
+(2, 1),
+(3, 2);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'StatusId', N'Status') AND [object_id] = OBJECT_ID(N'[AccountStatuses]'))
+    SET IDENTITY_INSERT [AccountStatuses] OFF;
+2025-09-22 23:44:04.064 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'TypeId', N'Type') AND [object_id] = OBJECT_ID(N'[AccountTypes]'))
+    SET IDENTITY_INSERT [AccountTypes] ON;
+INSERT INTO [AccountTypes] ([TypeId], [Type])
+VALUES (1, 0),
+(2, 1),
+(3, 2);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'TypeId', N'Type') AND [object_id] = OBJECT_ID(N'[AccountTypes]'))
+    SET IDENTITY_INSERT [AccountTypes] OFF;
+2025-09-22 23:44:04.074 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'StatusId', N'Status') AND [object_id] = OBJECT_ID(N'[PaymentStatuses]'))
+    SET IDENTITY_INSERT [PaymentStatuses] ON;
+INSERT INTO [PaymentStatuses] ([StatusId], [Status])
+VALUES (1, 0),
+(2, 1),
+(3, 2);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'StatusId', N'Status') AND [object_id] = OBJECT_ID(N'[PaymentStatuses]'))
+    SET IDENTITY_INSERT [PaymentStatuses] OFF;
+2025-09-22 23:44:04.085 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'TypeId', N'Type') AND [object_id] = OBJECT_ID(N'[ProofTypes]'))
+    SET IDENTITY_INSERT [ProofTypes] ON;
+INSERT INTO [ProofTypes] ([TypeId], [Type])
+VALUES (1, 0),
+(2, 1),
+(3, 2),
+(4, 3),
+(5, 4),
+(6, 5);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'TypeId', N'Type') AND [object_id] = OBJECT_ID(N'[ProofTypes]'))
+    SET IDENTITY_INSERT [ProofTypes] OFF;
+2025-09-22 23:44:04.096 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'RoleId', N'Role') AND [object_id] = OBJECT_ID(N'[Roles]'))
+    SET IDENTITY_INSERT [Roles] ON;
+INSERT INTO [Roles] ([RoleId], [Role])
+VALUES (1, 0),
+(2, 1),
+(3, 2);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'RoleId', N'Role') AND [object_id] = OBJECT_ID(N'[Roles]'))
+    SET IDENTITY_INSERT [Roles] OFF;
+2025-09-22 23:44:04.109 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'TypeId', N'Type') AND [object_id] = OBJECT_ID(N'[TransactionTypes]'))
+    SET IDENTITY_INSERT [TransactionTypes] ON;
+INSERT INTO [TransactionTypes] ([TypeId], [Type])
+VALUES (1, 0),
+(2, 1);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'TypeId', N'Type') AND [object_id] = OBJECT_ID(N'[TransactionTypes]'))
+    SET IDENTITY_INSERT [TransactionTypes] OFF;
+2025-09-22 23:44:04.158 +05:30 [INF] Executed DbCommand (49ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Accounts_AccountStatusId] ON [Accounts] ([AccountStatusId]);
+2025-09-22 23:44:06.509 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Accounts_AccountTypeId] ON [Accounts] ([AccountTypeId]);
+2025-09-22 23:44:06.559 +05:30 [INF] Executed DbCommand (49ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Accounts_ClientId] ON [Accounts] ([ClientId]) WHERE [ClientId] IS NOT NULL;
+2025-09-22 23:44:06.560 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Beneficiaries_ClientUserUserId] ON [Beneficiaries] ([ClientUserUserId]);
+2025-09-22 23:44:06.561 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Documents_ClientId] ON [Documents] ([ClientId]);
+2025-09-22 23:44:06.562 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Documents_ProofTypeId] ON [Documents] ([ProofTypeId]);
+2025-09-22 23:44:06.562 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Employees_ClientId] ON [Employees] ([ClientId]);
+2025-09-22 23:44:06.563 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Employees_SalaryDisbursementId] ON [Employees] ([SalaryDisbursementId]);
+2025-09-22 23:44:06.564 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Payments_PayerAccountId] ON [Payments] ([PayerAccountId]);
+2025-09-22 23:44:06.565 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Payments_PaymentStatusId] ON [Payments] ([PaymentStatusId]);
+2025-09-22 23:44:06.565 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_SalaryDisbursementDetails_EmployeeId] ON [SalaryDisbursementDetails] ([EmployeeId]);
+2025-09-22 23:44:06.566 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_SalaryDisbursementDetails_SalaryDisbursementId] ON [SalaryDisbursementDetails] ([SalaryDisbursementId]);
+2025-09-22 23:44:06.567 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_SalaryDisbursementDetails_TransactionId] ON [SalaryDisbursementDetails] ([TransactionId]) WHERE [TransactionId] IS NOT NULL;
+2025-09-22 23:44:06.568 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_SalaryDisbursements_ClientId] ON [SalaryDisbursements] ([ClientId]);
+2025-09-22 23:44:06.568 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_SalaryDisbursements_DisbursementStatusId] ON [SalaryDisbursements] ([DisbursementStatusId]);
+2025-09-22 23:44:06.569 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Transactions_AccountId] ON [Transactions] ([AccountId]);
+2025-09-22 23:44:06.570 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Transactions_PaymentId] ON [Transactions] ([PaymentId]);
+2025-09-22 23:44:06.571 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Transactions_SalaryDisbursementId] ON [Transactions] ([SalaryDisbursementId]);
+2025-09-22 23:44:06.572 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Transactions_TransactionTypeId] ON [Transactions] ([TransactionTypeId]);
+2025-09-22 23:44:06.573 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Users_AccountId] ON [Users] ([AccountId]);
+2025-09-22 23:44:06.574 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Users_UserRoleId] ON [Users] ([UserRoleId]);
+2025-09-22 23:44:06.579 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Accounts] ADD CONSTRAINT [FK_Accounts_Users_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [Users] ([UserId]);
+2025-09-22 23:44:06.580 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250922181346_initial', N'8.0.20');

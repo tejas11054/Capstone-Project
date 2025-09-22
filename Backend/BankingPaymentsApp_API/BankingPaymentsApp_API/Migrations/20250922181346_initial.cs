@@ -40,23 +40,6 @@ namespace BankingPaymentsApp_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Beneficiaries",
-                columns: table => new
-                {
-                    BeneficiaryId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    BeneficiaryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BankName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IFSC = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Beneficiaries", x => x.BeneficiaryId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PaymentStatuses",
                 columns: table => new
                 {
@@ -187,7 +170,6 @@ namespace BankingPaymentsApp_API.Migrations
                     Branch = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClientIds = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccountId = table.Column<int>(type: "int", nullable: true),
-                    BeneficiaryIds = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     KycVierified = table.Column<bool>(type: "bit", nullable: true)
@@ -206,6 +188,29 @@ namespace BankingPaymentsApp_API.Migrations
                         principalTable: "Roles",
                         principalColumn: "RoleId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Beneficiaries",
+                columns: table => new
+                {
+                    BeneficiaryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    BeneficiaryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BankName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IFSC = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ClientUserUserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Beneficiaries", x => x.BeneficiaryId);
+                    table.ForeignKey(
+                        name: "FK_Beneficiaries_Users_ClientUserUserId",
+                        column: x => x.ClientUserUserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -448,6 +453,11 @@ namespace BankingPaymentsApp_API.Migrations
                 column: "ClientId",
                 unique: true,
                 filter: "[ClientId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Beneficiaries_ClientUserUserId",
+                table: "Beneficiaries",
+                column: "ClientUserUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Documents_ClientId",
