@@ -1,0 +1,5 @@
+2025-09-23 00:01:33.440 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/Document/client/2 - null null
+2025-09-23 00:01:33.485 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (CLIENT_USER|BANK_USER)
+2025-09-23 00:01:33.491 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2025-09-23 00:01:33.494 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/Document/client/2 - 401 0 null 54.7834ms
