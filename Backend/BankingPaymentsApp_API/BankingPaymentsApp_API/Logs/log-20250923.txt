@@ -2449,3 +2449,461 @@ ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
 2025-09-23 15:00:45.577 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API) in 15.4146ms
 2025-09-23 15:00:45.580 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
 2025-09-23 15:00:45.582 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 34.9011ms
+2025-09-23 15:14:06.704 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/ClientUser - null null
+2025-09-23 15:14:06.722 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:14:06.723 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/ClientUser - 204 null null 20.647ms
+2025-09-23 15:14:06.758 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser/ClientUser - null null
+2025-09-23 15:14:06.763 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:14:06.764 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-23 15:14:06.765 +05:30 [INF] Route matched with {action = "GetClientUserById", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetClientUserById(Int32) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:14:06.771 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-09-23 15:14:06.773 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API) in 5.308ms
+2025-09-23 15:14:06.775 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-23 15:14:06.778 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser/ClientUser - 400 null application/problem+json; charset=utf-8 19.9673ms
+2025-09-23 15:14:56.235 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:14:56.239 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:14:56.241 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 5.8908ms
+2025-09-23 15:14:56.250 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/ClientUser - application/json 230
+2025-09-23 15:14:56.256 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:14:56.257 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-23 15:14:56.262 +05:30 [INF] Route matched with {action = "CreateClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateClientUser(BankingPaymentsApp_API.DTOs.RegisterClientUserDTO) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:14:56.274 +05:30 [INF] CreateClientUser started!
+2025-09-23 15:14:56.451 +05:30 [INF] Executed DbCommand (54ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 13), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountId], [Address], [DateOfBirth], [Discriminator], [KycVierified], [Password], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-09-23 15:14:56.457 +05:30 [INF] Creation Sucessfull!
+2025-09-23 15:14:56.458 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.ClientUserResponseDTO'.
+2025-09-23 15:14:56.461 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API) in 194.6372ms
+2025-09-23 15:14:56.464 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.CreateClientUser (BankingPaymentsApp_API)'
+2025-09-23 15:14:56.465 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 216.3122ms
+2025-09-23 15:15:42.553 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/Document/upload - null null
+2025-09-23 15:15:42.557 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/Document/upload - null null
+2025-09-23 15:15:42.556 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/Document/upload - null null
+2025-09-23 15:15:42.569 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:15:42.564 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/Document/upload - null null
+2025-09-23 15:15:42.579 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:15:42.582 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:15:42.583 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/Document/upload - 204 null null 31.0495ms
+2025-09-23 15:15:42.604 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/Document/upload - 204 null null 47.2648ms
+2025-09-23 15:15:42.612 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/Document/upload - 204 null null 58.6997ms
+2025-09-23 15:15:42.602 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:15:42.617 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/Document/upload - multipart/form-data; boundary=----WebKitFormBoundaryGUG4TcW9HfIf4kMs 38974
+2025-09-23 15:15:42.597 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/Document/upload - multipart/form-data; boundary=----WebKitFormBoundaryUEhYtaxxDbAuVh7b 927872
+2025-09-23 15:15:42.640 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/Document/upload - multipart/form-data; boundary=----WebKitFormBoundaryedbkao3vBRFtjDAD 927872
+2025-09-23 15:15:42.635 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/Document/upload - 204 null null 72.7102ms
+2025-09-23 15:15:42.640 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:15:42.613 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/Document/upload - multipart/form-data; boundary=----WebKitFormBoundarysXPAyoP2B2RTgWxQ 26914
+2025-09-23 15:15:42.644 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:15:42.648 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:15:42.653 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-23 15:15:42.657 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:15:42.658 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-23 15:15:42.659 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-23 15:15:42.662 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-23 15:15:42.667 +05:30 [INF] Route matched with {action = "UploadFile", controller = "Document"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(BankingPaymentsApp_API.DTOs.DocumentDTO, Microsoft.AspNetCore.Http.IFormFile) on controller BankingPaymentsApp_API.Controllers.DocumentController (BankingPaymentsApp_API).
+2025-09-23 15:15:42.667 +05:30 [INF] Route matched with {action = "UploadFile", controller = "Document"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(BankingPaymentsApp_API.DTOs.DocumentDTO, Microsoft.AspNetCore.Http.IFormFile) on controller BankingPaymentsApp_API.Controllers.DocumentController (BankingPaymentsApp_API).
+2025-09-23 15:15:42.668 +05:30 [INF] Route matched with {action = "UploadFile", controller = "Document"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(BankingPaymentsApp_API.DTOs.DocumentDTO, Microsoft.AspNetCore.Http.IFormFile) on controller BankingPaymentsApp_API.Controllers.DocumentController (BankingPaymentsApp_API).
+2025-09-23 15:15:42.670 +05:30 [INF] Route matched with {action = "UploadFile", controller = "Document"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(BankingPaymentsApp_API.DTOs.DocumentDTO, Microsoft.AspNetCore.Http.IFormFile) on controller BankingPaymentsApp_API.Controllers.DocumentController (BankingPaymentsApp_API).
+2025-09-23 15:15:42.720 +05:30 [INF] UploadDocument started!
+2025-09-23 15:15:42.720 +05:30 [INF] UploadDocument started!
+2025-09-23 15:15:42.740 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:42.753 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:42.769 +05:30 [INF] UploadDocument started!
+2025-09-23 15:15:42.774 +05:30 [INF] UploadDocument started!
+2025-09-23 15:15:42.783 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:42.787 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:45.565 +05:30 [INF] Executed DbCommand (50ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = Int32), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Documents] ([ClientId], [DocumentName], [DocumentURL], [ProofTypeId], [PublicId])
+OUTPUT INSERTED.[DocumentId]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-09-23 15:15:45.565 +05:30 [INF] Executed DbCommand (50ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = Int32), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Documents] ([ClientId], [DocumentName], [DocumentURL], [ProofTypeId], [PublicId])
+OUTPUT INSERTED.[DocumentId]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-09-23 15:15:45.573 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:45.573 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:45.579 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:45.582 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:45.587 +05:30 [INF] Documnet was uploaded!
+2025-09-23 15:15:45.587 +05:30 [INF] Documnet was uploaded!
+2025-09-23 15:15:45.590 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`5[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-09-23 15:15:45.590 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`5[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-09-23 15:15:45.597 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API) in 2927.5813ms
+2025-09-23 15:15:45.597 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API) in 2920.1749ms
+2025-09-23 15:15:45.599 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-23 15:15:45.601 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-23 15:15:45.603 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/Document/upload - 200 null application/json; charset=utf-8 2986.9842ms
+2025-09-23 15:15:45.607 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/Document/upload - 200 null application/json; charset=utf-8 2994.3642ms
+2025-09-23 15:15:47.517 +05:30 [INF] Executed DbCommand (48ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = Int32), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Documents] ([ClientId], [DocumentName], [DocumentURL], [ProofTypeId], [PublicId])
+OUTPUT INSERTED.[DocumentId]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-09-23 15:15:47.523 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:47.532 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:47.536 +05:30 [INF] Documnet was uploaded!
+2025-09-23 15:15:47.537 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`5[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-09-23 15:15:47.540 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API) in 4865.4328ms
+2025-09-23 15:15:47.543 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-23 15:15:47.547 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/Document/upload - 200 null application/json; charset=utf-8 4907.6122ms
+2025-09-23 15:15:47.718 +05:30 [INF] Executed DbCommand (48ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = Int32), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Documents] ([ClientId], [DocumentName], [DocumentURL], [ProofTypeId], [PublicId])
+OUTPUT INSERTED.[DocumentId]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-09-23 15:15:47.723 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:47.728 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:15:47.732 +05:30 [INF] Documnet was uploaded!
+2025-09-23 15:15:47.733 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`5[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-09-23 15:15:47.735 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API) in 5062.7039ms
+2025-09-23 15:15:47.737 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.UploadFile (BankingPaymentsApp_API)'
+2025-09-23 15:15:47.739 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/Document/upload - 200 null application/json; charset=utf-8 5143.6987ms
+2025-09-23 15:15:54.569 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/ClientUser - null null
+2025-09-23 15:15:54.582 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:15:54.587 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/ClientUser - 204 null null 18.1421ms
+2025-09-23 15:15:54.621 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser/ClientUser - null null
+2025-09-23 15:15:54.628 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:15:54.629 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-23 15:15:54.631 +05:30 [INF] Route matched with {action = "GetClientUserById", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetClientUserById(Int32) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:15:54.636 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-09-23 15:15:54.639 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API) in 5.2733ms
+2025-09-23 15:15:54.643 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-23 15:15:54.645 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser/ClientUser - 400 null application/problem+json; charset=utf-8 25.7736ms
+2025-09-23 15:17:18.891 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:17:18.897 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:17:18.899 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 8.6095ms
+2025-09-23 15:17:18.926 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:17:18.930 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:17:18.932 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:17:18.934 +05:30 [INF] Route matched with {action = "GetAllClientUsers", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllClientUsers() on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:17:18.938 +05:30 [INF] GetAllCLientUsers started!
+2025-09-23 15:17:18.954 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds], [d].[DocumentId], [d].[ClientId], [d].[DocumentName], [d].[DocumentURL], [d].[ProofTypeId], [d].[PublicId]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+LEFT JOIN [Documents] AS [d] ON [u].[UserId] = [d].[ClientId]
+WHERE [u].[Discriminator] = N'ClientUser'
+ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
+2025-09-23 15:17:18.961 +05:30 [INF] 5 client users were displayed!
+2025-09-23 15:17:18.962 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[BankingPaymentsApp_API.Models.ClientUser, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[BankingPaymentsApp_API.DTOs.ClientUserResponseDTO, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-23 15:17:18.967 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API) in 28.9354ms
+2025-09-23 15:17:18.969 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:17:18.971 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 45.9088ms
+2025-09-23 15:17:27.266 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/Document/client/7 - null null
+2025-09-23 15:17:27.270 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:17:27.272 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/Document/client/7 - 204 null null 5.5827ms
+2025-09-23 15:17:27.274 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/Document/client/7 - null null
+2025-09-23 15:17:27.282 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:17:27.284 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.GetDocumentsByClientId (BankingPaymentsApp_API)'
+2025-09-23 15:17:27.289 +05:30 [INF] Route matched with {action = "GetDocumentsByClientId", controller = "Document"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[BankingPaymentsApp_API.DTOs.DocumentDTO]]] GetDocumentsByClientId(Int32) on controller BankingPaymentsApp_API.Controllers.DocumentController (BankingPaymentsApp_API).
+2025-09-23 15:17:27.297 +05:30 [INF] GetDocumentsByClientId started!
+2025-09-23 15:17:27.318 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__clientId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[DocumentId], [d].[ClientId], [d].[DocumentName], [d].[DocumentURL], [d].[ProofTypeId], [d].[PublicId], [p].[TypeId], [p].[Type]
+FROM [Documents] AS [d]
+INNER JOIN [ProofTypes] AS [p] ON [d].[ProofTypeId] = [p].[TypeId]
+WHERE [d].[ClientId] = @__clientId_0
+2025-09-23 15:17:27.337 +05:30 [INF] 4 was displayed
+2025-09-23 15:17:27.340 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BankingPaymentsApp_API.DTOs.DocumentDTO, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-23 15:17:27.344 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.DocumentController.GetDocumentsByClientId (BankingPaymentsApp_API) in 51.2717ms
+2025-09-23 15:17:27.347 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.DocumentController.GetDocumentsByClientId (BankingPaymentsApp_API)'
+2025-09-23 15:17:27.349 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/Document/client/7 - 200 null application/json; charset=utf-8 75.3957ms
+2025-09-23 15:17:32.090 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/7 - null null
+2025-09-23 15:17:32.094 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:17:32.095 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/7 - 204 null null 5.356ms
+2025-09-23 15:17:32.098 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser/7 - null null
+2025-09-23 15:17:32.106 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:17:32.107 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-23 15:17:32.109 +05:30 [INF] Route matched with {action = "GetClientUserById", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetClientUserById(Int32) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:17:32.112 +05:30 [INF] GetClientUserById started!
+2025-09-23 15:17:32.126 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:17:32.130 +05:30 [INF] Client user was Dispalyed
+2025-09-23 15:17:32.132 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.Models.ClientUser'.
+2025-09-23 15:17:32.134 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API) in 22.0891ms
+2025-09-23 15:17:32.137 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-23 15:17:32.138 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser/7 - 200 null application/json; charset=utf-8 40.1108ms
+2025-09-23 15:17:32.146 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/approve/7 - null null
+2025-09-23 15:17:32.149 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:17:32.151 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/approve/7 - 204 null null 5.2733ms
+2025-09-23 15:17:32.153 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7030/api/ClientUser/approve/7 - application/json 451
+2025-09-23 15:17:32.160 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:17:32.162 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.ApproveClientUser (BankingPaymentsApp_API)'
+2025-09-23 15:17:32.163 +05:30 [INF] Route matched with {action = "ApproveClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ApproveClientUser(Int32, BankingPaymentsApp_API.Models.ClientUser) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:17:32.167 +05:30 [INF] ApproveClientUser started!
+2025-09-23 15:17:32.173 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__accountNumber_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Accounts] AS [a]
+        WHERE [a].[AccountNumber] = @__accountNumber_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-23 15:17:32.228 +05:30 [INF] Executed DbCommand (51ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Double), @p4='?' (DbType = Int32), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Accounts] ([AccountNumber], [AccountStatusId], [AccountTypeId], [Balance], [ClientId], [CreatedAt], [TransactionIds])
+OUTPUT INSERTED.[AccountId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-09-23 15:17:32.235 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:17:32.244 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [AccountId] = @p0, [KycVierified] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-09-23 15:17:32.251 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified]
+FROM [Users] AS [u]
+WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+2025-09-23 15:17:33.797 +05:30 [INF] Client Was Approved!
+2025-09-23 15:17:33.799 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.Models.ClientUser'.
+2025-09-23 15:17:33.802 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.ApproveClientUser (BankingPaymentsApp_API) in 1635.8522ms
+2025-09-23 15:17:33.805 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.ApproveClientUser (BankingPaymentsApp_API)'
+2025-09-23 15:17:33.807 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7030/api/ClientUser/approve/7 - 200 null application/json; charset=utf-8 1654.4163ms
+2025-09-23 15:17:35.549 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:17:35.554 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:17:35.556 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 8.2524ms
+2025-09-23 15:17:35.565 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:17:35.574 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:17:35.576 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:17:35.578 +05:30 [INF] Route matched with {action = "GetAllClientUsers", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllClientUsers() on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:17:35.580 +05:30 [INF] GetAllCLientUsers started!
+2025-09-23 15:17:35.589 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds], [d].[DocumentId], [d].[ClientId], [d].[DocumentName], [d].[DocumentURL], [d].[ProofTypeId], [d].[PublicId]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+LEFT JOIN [Documents] AS [d] ON [u].[UserId] = [d].[ClientId]
+WHERE [u].[Discriminator] = N'ClientUser'
+ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
+2025-09-23 15:17:35.594 +05:30 [INF] 5 client users were displayed!
+2025-09-23 15:17:35.595 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[BankingPaymentsApp_API.Models.ClientUser, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[BankingPaymentsApp_API.DTOs.ClientUserResponseDTO, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-23 15:17:35.598 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API) in 17.3051ms
+2025-09-23 15:17:35.600 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:17:35.602 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 36.6234ms
+2025-09-23 15:18:57.038 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:18:57.050 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:18:57.051 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 13.9109ms
+2025-09-23 15:18:57.147 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:18:57.152 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:18:57.154 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:18:57.156 +05:30 [INF] Route matched with {action = "GetAllClientUsers", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllClientUsers() on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:18:57.159 +05:30 [INF] GetAllCLientUsers started!
+2025-09-23 15:18:57.168 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds], [d].[DocumentId], [d].[ClientId], [d].[DocumentName], [d].[DocumentURL], [d].[ProofTypeId], [d].[PublicId]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+LEFT JOIN [Documents] AS [d] ON [u].[UserId] = [d].[ClientId]
+WHERE [u].[Discriminator] = N'ClientUser'
+ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
+2025-09-23 15:18:57.174 +05:30 [INF] 5 client users were displayed!
+2025-09-23 15:18:57.175 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[BankingPaymentsApp_API.Models.ClientUser, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[BankingPaymentsApp_API.DTOs.ClientUserResponseDTO, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-23 15:18:57.178 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API) in 18.9484ms
+2025-09-23 15:18:57.180 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:18:57.182 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 35.0824ms
+2025-09-23 15:19:19.577 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:19:19.582 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:19:19.585 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 8.16ms
+2025-09-23 15:19:19.615 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:19:19.622 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:19:19.624 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:19:19.626 +05:30 [INF] Route matched with {action = "GetAllClientUsers", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllClientUsers() on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:19:19.630 +05:30 [INF] GetAllCLientUsers started!
+2025-09-23 15:19:19.638 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds], [d].[DocumentId], [d].[ClientId], [d].[DocumentName], [d].[DocumentURL], [d].[ProofTypeId], [d].[PublicId]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+LEFT JOIN [Documents] AS [d] ON [u].[UserId] = [d].[ClientId]
+WHERE [u].[Discriminator] = N'ClientUser'
+ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
+2025-09-23 15:19:19.645 +05:30 [INF] 5 client users were displayed!
+2025-09-23 15:19:19.646 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[BankingPaymentsApp_API.Models.ClientUser, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[BankingPaymentsApp_API.DTOs.ClientUserResponseDTO, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-23 15:19:19.648 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API) in 18.5774ms
+2025-09-23 15:19:19.652 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:19:19.654 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 39.5533ms
+2025-09-23 15:19:45.296 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:19:45.301 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:19:45.302 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 6.5491ms
+2025-09-23 15:19:45.368 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:19:45.374 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:19:45.375 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:19:45.377 +05:30 [INF] Route matched with {action = "GetAllClientUsers", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllClientUsers() on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:19:45.380 +05:30 [INF] GetAllCLientUsers started!
+2025-09-23 15:19:45.387 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds], [d].[DocumentId], [d].[ClientId], [d].[DocumentName], [d].[DocumentURL], [d].[ProofTypeId], [d].[PublicId]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+LEFT JOIN [Documents] AS [d] ON [u].[UserId] = [d].[ClientId]
+WHERE [u].[Discriminator] = N'ClientUser'
+ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
+2025-09-23 15:19:45.393 +05:30 [INF] 5 client users were displayed!
+2025-09-23 15:19:45.394 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[BankingPaymentsApp_API.Models.ClientUser, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[BankingPaymentsApp_API.DTOs.ClientUserResponseDTO, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-23 15:19:45.396 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API) in 17.1459ms
+2025-09-23 15:19:45.399 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:19:45.400 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 32.5792ms
