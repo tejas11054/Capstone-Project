@@ -1,0 +1,81 @@
+<div class="register-container">
+  <h2>Bank User Registration</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+    <!-- Full Name -->
+    <div>
+      <label>Full Name</label>
+      <input type="text" formControlName="UserFullName" />
+      <div *ngIf="f['UserFullName'].touched && f['UserFullName'].invalid" class="error">
+        Full name is required.
+      </div>
+    </div>
+
+    <!-- Username -->
+    <div>
+      <label>Username</label>
+      <input type="text" formControlName="UserName" />
+      <div *ngIf="f['UserName'].touched && f['UserName'].invalid" class="error">
+        Username is required.
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label>Email</label>
+      <input type="email" formControlName="UserEmail" />
+      <div *ngIf="f['UserEmail'].touched && f['UserEmail'].invalid" class="error">
+        Enter a valid email.
+      </div>
+    </div>
+
+    <!-- Phone -->
+    <div>
+      <label>Phone</label>
+      <input type="text" formControlName="UserPhone" />
+      <div *ngIf="f['UserPhone'].touched && f['UserPhone'].invalid" class="error">
+        Phone number must be 10 digits.
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div>
+      <label>Password</label>
+      <input type="password" formControlName="Password" />
+      <div *ngIf="f['Password'].touched && f['Password'].invalid" class="error">
+        Password must be at least 8 characters, include uppercase, lowercase, number & special character.
+      </div>
+    </div>
+
+    <!-- Confirm Password -->
+    <div>
+      <label>Confirm Password</label>
+      <input type="password" formControlName="ConfirmPassword" />
+      <div *ngIf="registerForm.errors?.['notMatching'] && f['ConfirmPassword'].touched" class="error">
+        Passwords do not match.
+      </div>
+    </div>
+
+    <!-- Branch -->
+    <div>
+      <label>Branch</label>
+      <input type="text" formControlName="Branch" />
+      <div *ngIf="f['Branch'].touched && f['Branch'].invalid" class="error">
+        Branch is required.
+      </div>
+    </div>
+
+    <!-- Referral Code -->
+    <div>
+      <label>Referral Code</label>
+      <input type="text" formControlName="RefferalCode" />
+      <div *ngIf="f['RefferalCode'].touched && f['RefferalCode'].invalid" class="error">
+        Referral Code is required.
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</div>
