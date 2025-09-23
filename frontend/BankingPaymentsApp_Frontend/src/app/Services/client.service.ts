@@ -14,8 +14,10 @@ export class ClientRegisterService {
   constructor(private http: HttpClient) { }
 
   registerClient(user: RegisterClientUserDTO): Observable<any> {
-    return this.http.post<any>(this.baseUrl, user);
-  }
+  return this.http.post<any>(`${this.baseUrl}/ClientUser`, user);
+}
+
+
 
   getClients(): Observable<ClientUser[]> {
     return this.http.get<ClientUser[]>(`${this.baseUrl}/ClientUser`);
