@@ -16,7 +16,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public async Task SendEmailToClientAsync(int id,string subject,string body)
         {
-            var client = _dbContext.ClientUsers.FirstOrDefault(c=>c.UserId.Equals(id));
+            var client = _dbContext.Users.FirstOrDefault(c=>c.UserId.Equals(id));
             if (client == null)
                 throw new Exception($"Author with id {id} not found!");
 

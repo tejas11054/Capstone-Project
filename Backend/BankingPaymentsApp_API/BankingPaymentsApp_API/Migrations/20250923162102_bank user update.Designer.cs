@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    [Migration("20250922181346_initial")]
-    partial class initial
+    [Migration("20250923162102_bank user update")]
+    partial class bankuserupdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -588,13 +588,12 @@ namespace BankingPaymentsApp_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClientIds")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("RefferalCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.HasDiscriminator().HasValue("BankUser");
                 });
@@ -610,6 +609,9 @@ namespace BankingPaymentsApp_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("BankUserId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
@@ -617,6 +619,8 @@ namespace BankingPaymentsApp_API.Migrations
                         .HasColumnType("bit");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("BankUserId");
 
                     b.HasDiscriminator().HasValue("ClientUser");
                 });
@@ -799,7 +803,14 @@ namespace BankingPaymentsApp_API.Migrations
                         .WithMany()
                         .HasForeignKey("AccountId");
 
+                    b.HasOne("BankingPaymentsApp_API.Models.BankUser", "BankUser")
+                        .WithMany("Clients")
+                        .HasForeignKey("BankUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("Account");
+
+                    b.Navigation("BankUser");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
@@ -817,6 +828,11 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Navigation("DisbursementDetails");
 
                     b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.BankUser", b =>
+                {
+                    b.Navigation("Clients");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.ClientUser", b =>

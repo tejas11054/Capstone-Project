@@ -168,11 +168,11 @@ namespace BankingPaymentsApp_API.Migrations
                     Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     RefferalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Branch = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClientIds = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccountId = table.Column<int>(type: "int", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    KycVierified = table.Column<bool>(type: "bit", nullable: true)
+                    KycVierified = table.Column<bool>(type: "bit", nullable: true),
+                    BankUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -188,6 +188,12 @@ namespace BankingPaymentsApp_API.Migrations
                         principalTable: "Roles",
                         principalColumn: "RoleId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Users_Users_BankUserId",
+                        column: x => x.BankUserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -540,6 +546,11 @@ namespace BankingPaymentsApp_API.Migrations
                 name: "IX_Users_AccountId",
                 table: "Users",
                 column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_BankUserId",
+                table: "Users",
+                column: "BankUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserRoleId",

@@ -121,6 +121,12 @@ namespace BankingPaymentsApp_API.Data
                 .HasOne(s => s.SalaryDisbursement)
                 .WithMany(d => d.DisbursementDetails)
                 .HasForeignKey(s => s.SalaryDisbursementId);
+
+            modelBuilder.Entity<ClientUser>()
+                .HasOne(c => c.BankUser)
+                .WithMany(b => b.Clients)
+                .HasForeignKey(c => c.BankUserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

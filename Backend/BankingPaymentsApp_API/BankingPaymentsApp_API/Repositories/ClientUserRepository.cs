@@ -14,7 +14,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public async Task<IEnumerable<ClientUser>> GetAll()
         {
-            return await _dbContext.ClientUsers.Include(u => u.Role).Include(u => u.Account).Include(u => u.Documents).ToListAsync();
+            return await _dbContext.ClientUsers.Include(u => u.Role).Include(u => u.Account).Include(u => u.Documents).Include(u => u.Documents).Include(u => u.Employees).Include(u => u.Beneficiaries).Include(u => u.BankUser).ToListAsync();
         }
 
         public async Task<ClientUser> Add(ClientUser user)
@@ -26,7 +26,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public async Task<ClientUser?> GetById(int id)
         {
-            return await _dbContext.ClientUsers.Include(u => u.Role).Include(u => u.Account).Include(u=>u.Employees).Include(u=>u.Beneficiaries).FirstOrDefaultAsync(d => d.UserId.Equals(id));
+            return await _dbContext.ClientUsers.Include(u => u.Role).Include(u => u.Account).Include(u => u.Documents).Include(u=>u.Employees).Include(u=>u.Beneficiaries).Include(u=>u.BankUser).FirstOrDefaultAsync(d => d.UserId.Equals(id));
         }
 
         public async Task<ClientUser?> Update(ClientUser user)
@@ -46,6 +46,7 @@ namespace BankingPaymentsApp_API.Repositories
             existingClientUser.DateOfBirth = user.DateOfBirth;
             existingClientUser.KycVierified = user.KycVierified;
             existingClientUser.AccountId = user.AccountId;
+            existingClientUser.BankUserId = user.BankUserId;
 
             await _dbContext.SaveChangesAsync();
             return existingClientUser;

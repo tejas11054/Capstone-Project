@@ -14,19 +14,19 @@ namespace BankingPaymentsApp_API.Repositories
 
         public async Task<IEnumerable<BankUser>> GetAll()
         {
-            return await _dbContext.BankUsers.ToListAsync();
+            return await _dbContext.BankUsers.Include(u => u.Role).Include(u => u.Clients).ToListAsync();
         }
 
         public async Task<BankUser> Add(BankUser user)
         {
-            await _dbContext.Users.AddAsync(user);
+            await _dbContext.BankUsers.AddAsync(user);
             await _dbContext.SaveChangesAsync();
             return user;
         }
 
         public async Task<BankUser?> GetById(int id)
         {
-            return await _dbContext.BankUsers.Include(u => u.Role).FirstOrDefaultAsync(u => u.UserId.Equals(id));
+            return await _dbContext.BankUsers.Include(u => u.Role).Include(u=>u.Clients).FirstOrDefaultAsync(u => u.UserId.Equals(id));
         }
         public async Task<BankUser?> Update(BankUser user)
         {
@@ -54,7 +54,7 @@ namespace BankingPaymentsApp_API.Repositories
 
             if (existingUser == null) return;
 
-            _dbContext.Users.Remove(existingUser);
+            _dbContext.BankUsers.Remove(existingUser);
             await _dbContext.SaveChangesAsync();
         }
     }
