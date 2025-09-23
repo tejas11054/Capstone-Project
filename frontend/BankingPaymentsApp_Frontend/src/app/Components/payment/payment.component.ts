@@ -3,10 +3,13 @@ import { PaymentService } from '../../Services/payment.service';
 import { Payment } from '../../Models/Payment';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../Services/auth.service';
+import { ClientRegisterService } from '../../Services/client-register.service';
+import { Beneficiary } from '../../Models/Beneficiary';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-payment',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
@@ -17,25 +20,32 @@ export class PaymentComponent implements OnInit {
   createPayment!: FormGroup;
   paymentCreated: boolean = false;
 
-  accounts = [
-    { accountNumber: "BPA20250921HGF5E3", name: "youbraj" },
-    { accountNumber: "BPA20250921HGF172", name: "Rohan" },
-    { accountNumber: "BPA20250921HGFK89", name: "Sujal" },
-  ]
+  beneficiaries!: Beneficiary[];
 
-  constructor(private fb: FormBuilder, private paymentSvc: PaymentService, private auth: AuthService) { }
+  constructor(private fb: FormBuilder, private paymentSvc: PaymentService, private auth: AuthService, private clientSvc: ClientRegisterService) { }
 
   ngOnInit(): void {
+
     this.createPayment = this.fb.group({
       payerAccountId: 0,
       payeeAccountNumber: "",
       amount: 0
     })
-
     const user = this.auth.getLoggedInUser();
     console.log(user);
+
+    this.beneficiaries = [];
     if (user) {
       this.createPayment.patchValue({ payerAccountId: user.userId });
+
+      this.clientSvc.getClientUserById(user?.userId).subscribe((data) => {
+        if (data && data.beneficiaries)
+          this.beneficiaries = data.beneficiaries;
+        console.log(data)
+      },
+        (error) => {
+          console.log(error);
+        })
     }
   }
 

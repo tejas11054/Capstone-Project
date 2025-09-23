@@ -18,5 +18,6 @@ export const routes: Routes = [
     { path: 'BankUser', component: BankUserComponent },
     { path: "BankRegister", component:BankRegisterComponent},
     { path: 'Admin', component:AdminComponent},
+    {path:"payment",component:PaymentComponent},
     {path:"**",component:PageNotFoundComponent},
 ];

@@ -1,31 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD
-import { Observable } from 'rxjs';
-import { RegisterBankUserDTO } from '../DTO/RegisterBankUserDTO';
-=======
 import { Observable, switchMap } from 'rxjs';
 import { RegisterBankUserDTO } from '../DTO/RegisterBankUserDTO';
 import { BankUser } from '../Models/BankUser';
->>>>>>> 4fadae7d565a50daace83d2352701161a1b02f94
 
 @Injectable({
   providedIn: 'root'
 })
 export class BankRegisterService {
-<<<<<<< HEAD
-  private apiUrl = 'https://localhost:7030/api/BankUser';
-
-  constructor(private http: HttpClient) {}
-
-  registerBankUser(user: RegisterBankUserDTO): Observable<any> {
-    return this.http.post<any>(this.apiUrl, user);
-=======
   private baseUrl = 'https://localhost:7030/api/BankUser';
 
   constructor(private http: HttpClient) { }
   
-    registerBankUser(user: BankRegisterService): Observable<any> {
+    registerBankUser(user: RegisterBankUserDTO): Observable<any> {
       return this.http.post<any>(this.baseUrl, user);
     }
   
@@ -48,6 +35,5 @@ export class BankRegisterService {
   
    rejectBank(bankId: number, reason: string): Observable<string> {
     return this.http.put(`${this.baseUrl}/BankUser/reject/${bankId}`, { reason }, { responseType: 'text' });
->>>>>>> 4fadae7d565a50daace83d2352701161a1b02f94
   }
 }
