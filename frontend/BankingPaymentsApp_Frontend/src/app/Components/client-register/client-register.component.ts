@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ClientRegisterService } from '../../Services/client-register.service';
+import { ClientRegisterService } from '../../Services/client.service';
 import { RegisterClientUserDTO } from '../../DTO/RegisterClientUserDTO';
 import { Router } from '@angular/router';
 

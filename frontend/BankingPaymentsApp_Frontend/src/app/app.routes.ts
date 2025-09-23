@@ -7,12 +7,16 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { roleGuard } from './Guards/role.guard';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { PaymentComponent } from './Components/payment/payment.component';
+import { BankRegisterComponent } from './Components/bank-register/bank-register.component';
+import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
-    {path:"",component:LoginComponent},
-    {path:"dashboard",component:DashboardComponent,canActivate:[roleGuard],data:{role:"CLIENT_USER"}},
+    { path:"Login",component:LoginComponent},
+    { path:"dashboard",component:DashboardComponent,canActivate:[roleGuard],data:{role:"CLIENT_USER"}},
     { path:"ClientRegister", component : ClientRegisterComponent },
     { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
     { path: 'BankUser', component: BankUserComponent },
+    { path: "BankRegister", component:BankRegisterComponent},
+    { path: 'Admin', component:AdminComponent},
     {path:"**",component:PageNotFoundComponent},
 ];

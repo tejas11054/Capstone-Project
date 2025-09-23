@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { BankUserService } from '../../Services/bank-user.service';
 import { ClientUser } from '../../Models/ClientUser';
 import { Document } from '../../Models/Document';
+import { ClientRegisterService } from '../../Services/client.service';
 
 @Component({
   selector: 'app-bank-user',
@@ -18,7 +18,7 @@ export class BankUserComponent implements OnInit {
   selectedClientDocs: Document[] = [];
   showDocuments: boolean = false;
 
-  constructor(private bankService: BankUserService) { }
+  constructor(private bankService: ClientRegisterService) {}
 
   ngOnInit() {
     this.fetchClients();
