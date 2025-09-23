@@ -5,6 +5,7 @@ obj/
 *.suo
 *.dbmdl
 *.log
+Backend/BankingPaymentsApp_API/BankingPaymentsApp_API/Logs/*.txt
 
 # Visual Studio / IDE
 .vs/
