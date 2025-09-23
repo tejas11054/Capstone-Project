@@ -30,8 +30,10 @@ namespace BankingPaymentsApp_API.Controllers
             _logger.LogInformation("GetAllAccounts Started");
             var accounts = await _service.GetAll();
             if (!accounts.Any())
+            {
                 _logger.LogWarning("No Accounts Found");
-            return NotFound("No accounts found!");
+                return NotFound("No accounts found!");
+            }
 
             var response = accounts.Select(a => _mapper.Map<AccountResponseDTO>(a));
             _logger.LogInformation($"GetAllAccounts succeeded. Returned {accounts.Count()} accounts");
@@ -46,8 +48,10 @@ namespace BankingPaymentsApp_API.Controllers
             _logger.LogInformation("GetAccountById started");
             var account = await _service.GetById(id);
             if (account == null)
+            {
                 _logger.LogWarning($"No Account of Id {id} Found");
-            return NotFound($"No account found with id: {id}");
+                return NotFound($"No account found with id: {id}");
+            }
 
             var response = _mapper.Map<AccountResponseDTO>(account);
             _logger.LogInformation($"GetAccountByID succeeded.");
@@ -88,8 +92,10 @@ namespace BankingPaymentsApp_API.Controllers
 
             var existingAccount = await _service.GetById(id);
             if (existingAccount == null)
+            {
                 _logger.LogInformation($"No such account exists! with id: {id}");
                 return NotFound("No such account exists!");
+            }
 
             if (existingAccount.AccountId != dto.AccountId)
                 return BadRequest("Account Id mismatch!");
