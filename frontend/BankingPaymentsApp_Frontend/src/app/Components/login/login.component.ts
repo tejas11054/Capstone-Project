@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { LoginResponseDTO } from '../../DTO/LoginResponseDTO';
 import { Router } from '@angular/router';
+import { LoginResponseDTO } from '../../DTO/LoginResponseDTO';
 
 @Component({
   selector: 'app-login',
@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit {
   Login(loginForm: any) {
     this.authSvc.loginUser(loginForm.value).subscribe(
       data => {
-        console.log(typeof (data));
-        console.log(data.IsSuccess);
-        console.log(typeof (data));
-        console.log(data.Token + "this the data we want")
+        // console.log(typeof (data));
+        // console.log(data.isSuccess);
+        // console.log(typeof (data));
+        // console.log(data.token + "this the data we want")
 
-        // this.authSvc.saveToken(data);
+        this.authSvc.saveToken(data);
       },
 
       error => {
