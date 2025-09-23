@@ -17,11 +17,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let client of clients">
-      <td>{{ client.UserId }}</td>
-      <td>{{ client.UserFullName }}</td>
-      <td>{{ client.UserName }}</td>
-      <td>{{ client.UserEmail }}</td>
-      <td>{{ client.UserPhone }}</td>
+      <td>{{ client.userId }}</td>
+      <td>{{ client.userFullName }}</td>
+      <td>{{ client.userName }}</td>
+      <td>{{ client.userEmail }}</td>
+      <td>{{ client.userPhone }}</td>
       <td>{{ client.DateOfBirth | date:'yyyy-MM-dd' }}</td>
       <td>{{ client.Address }}</td>
       <td>{{ client.KycVierified }}</td>
