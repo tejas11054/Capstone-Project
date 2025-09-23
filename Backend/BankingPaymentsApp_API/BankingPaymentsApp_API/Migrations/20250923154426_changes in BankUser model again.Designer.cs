@@ -4,6 +4,7 @@ using BankingPaymentsApp_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    partial class BankingPaymentsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250923154426_changes in BankUser model again")]
+    partial class changesinBankUsermodelagain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -588,12 +591,16 @@ namespace BankingPaymentsApp_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RefferalCode")
+                    b.Property<string>("ClientIds")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("isActive")
+                    b.Property<bool>("KycVierified")
                         .HasColumnType("bit");
+
+                    b.Property<string>("RefferalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasIndex("AccountId");
 
@@ -620,9 +627,6 @@ namespace BankingPaymentsApp_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("BankUserId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
@@ -630,8 +634,6 @@ namespace BankingPaymentsApp_API.Migrations
                         .HasColumnType("bit");
 
                     b.HasIndex("AccountId");
-
-                    b.HasIndex("BankUserId");
 
                     b.HasDiscriminator().HasValue("ClientUser");
                 });
@@ -823,14 +825,7 @@ namespace BankingPaymentsApp_API.Migrations
                         .WithMany()
                         .HasForeignKey("AccountId");
 
-                    b.HasOne("BankingPaymentsApp_API.Models.BankUser", "BankUser")
-                        .WithMany("Clients")
-                        .HasForeignKey("BankUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("Account");
-
-                    b.Navigation("BankUser");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>
@@ -848,11 +843,6 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Navigation("DisbursementDetails");
 
                     b.Navigation("Employees");
-                });
-
-            modelBuilder.Entity("BankingPaymentsApp_API.Models.BankUser", b =>
-                {
-                    b.Navigation("Clients");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.ClientUser", b =>

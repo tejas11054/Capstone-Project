@@ -1,7 +1,8 @@
 import { User } from "./User";
 
 export interface BankUser extends User {
-  RefferalCode: string;
-  Branch: string;
-  ClientIds: Array<number>;
+  refferalCode: string;
+  branch: string;
+  kycVierified: boolean;
+  clientIds: number[];
 }

@@ -24,7 +24,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/BankUser
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> GetAllBankUsers()
         {
             _logger.LogInformation("GetAllBankUsers started!");

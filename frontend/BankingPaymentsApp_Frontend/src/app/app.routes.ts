@@ -8,7 +8,7 @@ import { roleGuard } from './Guards/role.guard';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { BankRegisterComponent } from './Components/bank-register/bank-register.component';
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './Components/admin/admin.component';
 
 export const routes: Routes = [
     { path:"Login",component:LoginComponent},
