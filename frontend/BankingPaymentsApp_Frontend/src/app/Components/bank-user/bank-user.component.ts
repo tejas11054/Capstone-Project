@@ -28,12 +28,12 @@ export class BankUserComponent implements OnInit {
     this.bankService.getClients().subscribe({
       next: (res: any[]) => {
         this.clients = res.map((c: any) => ({
-          UserId: c.userId ?? c.id, 
-          UserFullName: c.userFullName,
-          UserName: c.userName,
-          Password: '', // required by ClientUser
-          UserEmail: c.userEmail,
-          UserPhone: c.userPhone,
+          userId: c.userId ?? c.id, 
+          userFullName: c.userFullName,
+          userName: c.userName,
+          password: '', // required by ClientUser
+          userEmail: c.userEmail,
+          userPhone: c.userPhone,
           DateOfBirth: c.dateOfBirth,
           Address: c.address,
           KycVierified: c.kycVierified,
@@ -47,7 +47,7 @@ export class BankUserComponent implements OnInit {
   }
 
   viewDocuments(client: ClientUser) {
-    if (!client.UserId) {
+    if (!client.userId) {
       alert('Client ID missing!');
       return;
     }
@@ -56,7 +56,7 @@ export class BankUserComponent implements OnInit {
     this.selectedClientDocs = [];
     this.showDocuments = false;
 
-    this.bankService.getClientDocuments(client.UserId).subscribe({
+    this.bankService.getClientDocuments(client.userId).subscribe({
       next: (docs: any[]) => {
         this.selectedClientDocs = (docs ?? []).map(d => ({
           DocumentId: d.documentId ?? 0,
@@ -82,7 +82,7 @@ export class BankUserComponent implements OnInit {
   }
 
 approveClient(client: ClientUser) {
-  this.bankService.approveClient(client.UserId!).subscribe({
+  this.bankService.approveClient(client.userId!).subscribe({
     next: () => {
       alert('Client approved successfully!');
       this.fetchClients();
@@ -99,7 +99,7 @@ approveClient(client: ClientUser) {
 
 
 rejectClient(client: ClientUser, reason: string) {
-  this.bankService.rejectClient(client.UserId!, reason).subscribe({
+  this.bankService.rejectClient(client.userId!, reason).subscribe({
     next: (res) => {
       alert(res); // shows message from backend
       this.fetchClients();
