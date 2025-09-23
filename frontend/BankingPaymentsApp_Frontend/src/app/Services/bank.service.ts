@@ -17,7 +17,7 @@ export class BankRegisterService {
     }
   
     getBanks(): Observable<BankUser[]> {
-      return this.http.get<BankUser[]>(`${this.baseUrl}/BankUser`);
+      return this.http.get<BankUser[]>(`${this.baseUrl}`);
     }
   
     getBankById(bankId: number): Observable<BankUser> {

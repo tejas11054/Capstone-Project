@@ -1,0 +1,37 @@
+<h2>Bank Users</h2>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>Full Name</th>
+      <th>User Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Role ID</th>
+      <th>Joining Date</th>
+      <th>Branch</th>
+      <th>Referral Code</th>
+      <th>KYC Verified</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bank of banks">
+      <td>{{ bank.userId }}</td>
+      <td>{{ bank.userFullName }}</td>
+      <td>{{ bank.userName }}</td>
+      <td>{{ bank.userEmail }}</td>
+      <td>{{ bank.userPhone }}</td>
+      <td>{{ bank.userRoleId }}</td>
+      <td>{{ bank.userJoiningDate | date:'mediumDate' }}</td>
+      <td>{{ bank.branch }}</td>
+      <td>{{ bank.refferalCode }}</td>
+      <td>{{ bank.kycVierified ? 'Yes' : 'No' }}</td>
+      <td>
+        <button (click)="approveBank(bank)">Approve</button>
+        <button (click)="rejectBank(bank, 'Invalid Documents')">Reject</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
