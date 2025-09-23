@@ -25,27 +25,27 @@ export class BankUserComponent implements OnInit {
   }
 
   fetchClients() {
-  this.bankService.getClients().subscribe({
-    next: (res: any[]) => {
-      this.clients = res.map((c: any) => ({
-  userId: c.userId ?? c.id,
-  userFullName: c.userFullName,
-  userName: c.userName,
-  password: '',
-  userEmail: c.userEmail,
-  userPhone: c.userPhone,
-  userRoleId: c.userRoleId,
-  userJoiningDate: c.userJoiningDate,
-  DateOfBirth: c.dateOfBirth,
-  Address: c.address,
-  KycVierified: c.kycVierified,
-  documents: []
-}));
+    this.bankService.getClients().subscribe({
+      next: (res: any[]) => {
+        this.clients = res.map((c: any) => ({
+          userId: c.userId ?? c.id,
+          userFullName: c.userFullName,
+          userName: c.userName,
+          password: '',
+          userEmail: c.userEmail,
+          userPhone: c.userPhone,
+          userRoleId: c.userRoleId,
+          userJoiningDate: c.userJoiningDate,
+          DateOfBirth: c.dateOfBirth,
+          Address: c.address,
+          KycVierified: c.kycVierified,
+          documents: []
+        }));
 
-    },
-    error: err => console.error('Error fetching clients:', err)
-  });
-}
+      },
+      error: err => console.error('Error fetching clients:', err)
+    });
+  }
 
 
   viewDocuments(client: ClientUser) {
@@ -83,34 +83,34 @@ export class BankUserComponent implements OnInit {
     });
   }
 
-approveClient(client: ClientUser) {
-  this.bankService.approveClient(client.userId!).subscribe({
-    next: () => {
-      alert('Client approved successfully!');
-      this.fetchClients();
-      this.selectedClientDocs = [];
-      this.showDocuments = false;
-    },
-    error: (err) => {
-      console.error('Error approving client:', err);
-      alert('Failed to approve client. Check console.');
-    }
-  });
-}
+  approveClient(client: ClientUser) {
+    this.bankService.approveClient(client.userId!).subscribe({
+      next: () => {
+        alert('Client approved successfully!');
+        this.fetchClients();
+        this.selectedClientDocs = [];
+        this.showDocuments = false;
+      },
+      error: (err) => {
+        console.error('Error approving client:', err);
+        alert('Failed to approve client. Check console.');
+      }
+    });
+  }
 
 
 
-rejectClient(client: ClientUser, reason: string) {
-  this.bankService.rejectClient(client.userId!, reason).subscribe({
-    next: (res) => {
-      alert(res); // shows message from backend
-      this.fetchClients();
-      this.selectedClientDocs = [];
-      this.showDocuments = false;
-    },
-    error: (err) => console.error('Error rejecting client:', err)
-  });
-}
+  rejectClient(client: ClientUser, reason: string) {
+    this.bankService.rejectClient(client.userId!, reason).subscribe({
+      next: (res) => {
+        alert(res); // shows message from backend
+        this.fetchClients();
+        this.selectedClientDocs = [];
+        this.showDocuments = false;
+      },
+      error: (err) => console.error('Error rejecting client:', err)
+    });
+  }
 
 
 

@@ -1,13 +1,25 @@
 <div class="container">
-    <form [formGroup]="loginForm" (submit)="Login(loginForm)">
-        <div class="form-group">
-            <label class="form-label">UserName: </label>
-            <input class="form-control" name="userName" id="userName" formControlName="userName">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Password: </label>
-            <input class="form-control" name="password" id="password" formControlName="password">
-        </div>
-        <button class="btn btn-success" type="submit">Login</button>
-    </form>
+  <form [formGroup]="loginForm" (ngSubmit)="Login(loginForm)">
+    <div class="form-group">
+      <label class="form-label">UserName: </label>
+      <input class="form-control" id="userName" formControlName="userName">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Password: </label>
+      <input class="form-control" type="password" id="password" formControlName="password">
+    </div>
+
+    <!-- Invisible reCAPTCHA -->
+    <ngx-invisible-recaptcha
+      #captchaElem
+      [siteKey]="siteKey"
+      (reset)="handleReset()"
+      (ready)="handleReady()"
+      (load)="handleLoad()"
+      (success)="handleSuccess($event)">
+    </ngx-invisible-recaptcha>
+
+    <button class="btn btn-success" type="submit">Login</button>
+  </form>
 </div>

@@ -1,15 +1,18 @@
 ﻿using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
+using Microsoft.AspNetCore.Identity;
 
 namespace BankingPaymentsApp_API.Services
 {
     public class BankUserService : IBankUserService
     {
         private readonly IBankUserRepository _bankUserRepository;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
-        public BankUserService(IBankUserRepository bankUserRepository)
+        public BankUserService(IBankUserRepository bankUserRepository, IPasswordHasher<User> passwordHasher)
         {
             _bankUserRepository = bankUserRepository;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task<IEnumerable<BankUser>> GetAll()
@@ -19,6 +22,7 @@ namespace BankingPaymentsApp_API.Services
 
         public async Task<BankUser> Add(BankUser bankUser)
         {
+            bankUser.Password = _passwordHasher.HashPassword(bankUser, bankUser.Password);
             return await _bankUserRepository.Add(bankUser);
         }
 
