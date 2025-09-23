@@ -1,8 +1,8 @@
 export interface Beneficiary {
-  BeneficiaryId: number;
-  ClientId: number;
-  BeneficiaryName: string;
-  AccountNumber: string;
-  BankName: string;
-  IFSC: string;
+  beneficiaryId: number;
+  clientId: number;
+  beneficiaryName: string;
+  accountNumber: string;
+  bankName: string;
+  ifsc: string;
 }

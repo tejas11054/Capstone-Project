@@ -8,7 +8,7 @@ import { ClientRegisterService } from '../../Services/client.service';
 @Component({
   selector: 'app-bank-user',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   templateUrl: './bank-user.component.html',
   styleUrls: ['./bank-user.component.css']
 })
@@ -36,9 +36,9 @@ export class BankUserComponent implements OnInit {
           userPhone: c.userPhone,
           userRoleId: c.userRoleId,
           userJoiningDate: c.userJoiningDate,
-          DateOfBirth: c.dateOfBirth,
-          Address: c.address,
-          KycVierified: c.kycVierified,
+          dateOfBirth: c.dateOfBirth,
+          address: c.address,
+          kycVierified: c.kycVierified,
           documents: []
         }));
 

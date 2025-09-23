@@ -13,8 +13,8 @@ export class BankRegisterService {
   constructor(private http: HttpClient) { }
   
     registerBankUser(user: RegisterBankUserDTO): Observable<any> {
-  return this.http.post<any>(this.baseUrl, user);
-}
+      return this.http.post<any>(this.baseUrl, user);
+    }
   
     getBanks(): Observable<BankUser[]> {
       return this.http.get<BankUser[]>(`${this.baseUrl}/BankUser`);

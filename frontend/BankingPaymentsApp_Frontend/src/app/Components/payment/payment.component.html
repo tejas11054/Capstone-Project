@@ -12,11 +12,11 @@
 
         <div class="form-group">
             <label class="form-label">Pay To:</label>
-            <select class="form-select" name="payeeAccount" id="account" formControlName="payeeAccountNumber">
+            <select class="form-select" formControlName="payeeAccountNumber">
                 <option value="" disabled selected hidden>Select a Beneficiary</option>
-                @for(account of accounts;track account){
-                <option value="{{account.accountNumber}}">{{account.name}}</option>
-                }
+                <option *ngFor="let beneficiary of beneficiaries" [value]="beneficiary.accountNumber">
+                    {{beneficiary.beneficiaryName}}
+                </option>
             </select>
         </div>
         <button class="btn btn-success">Make Payment</button>

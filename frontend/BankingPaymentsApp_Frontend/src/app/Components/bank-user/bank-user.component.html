@@ -22,9 +22,9 @@
       <td>{{ client.userName }}</td>
       <td>{{ client.userEmail }}</td>
       <td>{{ client.userPhone }}</td>
-      <td>{{ client.DateOfBirth | date:'yyyy-MM-dd' }}</td>
-      <td>{{ client.Address }}</td>
-      <td>{{ client.KycVierified }}</td>
+      <td>{{ client.dateOfBirth | date:'yyyy-MM-dd' }}</td>
+      <td>{{ client.address }}</td>
+      <td>{{ client.kycVierified }}</td>
       <td>
         <button (click)="viewDocuments(client)">View Documents</button>
       </td>
