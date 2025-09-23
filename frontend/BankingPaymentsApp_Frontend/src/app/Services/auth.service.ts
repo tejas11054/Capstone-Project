@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { LoginDTO } from '../DTO/LoginDTO';
 import { LoginResponseDTO } from '../DTO/LoginResponseDTO';
 import { User } from '../Models/User';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  loginURL: string = "https://localhost:7030/api";
+  loginURL: string = environment.backendURL;
   constructor(private http: HttpClient) { }
 
   loginUser(user: LoginDTO): Observable<LoginResponseDTO> {
@@ -59,6 +60,10 @@ export class AuthService {
     const token = localStorage.getItem("token");
     if(token) return true;
     return false;
+  }
+
+  getToken():string | null{
+    return localStorage.getItem("token");
   }
 
 }

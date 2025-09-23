@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Making a Payment</h1>
+    <form [formGroup]="createPayment" (submit)="makePayment()">
+        <!-- <div class="form-group">
+            <label class="form-label">Payee Account Number</label>
+            <input class="form-control" formControlName="payeeAccountNumber">
+        </div> -->
+        <div class="form-group">
+            <label class="form-label">Amount</label>
+            <input class="form-control" formControlName="amount">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Pay To:</label>
+            <select class="form-select" name="payeeAccount" id="account" formControlName="payeeAccountNumber">
+                <option value="" disabled selected hidden>Select a Beneficiary</option>
+                @for(account of accounts;track account){
+                <option value="{{account.accountNumber}}">{{account.name}}</option>
+                }
+            </select>
+        </div>
+        <button class="btn btn-success">Make Payment</button>
+    </form>
+</div>

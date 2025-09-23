@@ -1,5 +1,5 @@
 export interface PaymentDTO {
-  PayerAccountId: number;
-  PayeeAccountNumber: string;
-  Amount: number;
+  payerAccountId: number;
+  payeeAccountNumber: string;
+  amount: number;
 }
