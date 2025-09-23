@@ -10,5 +10,6 @@ namespace BankingPaymentsApp_API.DTOs
         [Required(ErrorMessage = "Password is Required!")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public string RecaptchaToken { get; set; } = string.Empty;
     }
 }

@@ -68,8 +68,13 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ISalaryDisbursementService, SalaryDisbursementService>();
             builder.Services.AddScoped<ISalaryDisbursementDetailsService, SalaryDisbursementDetailsService>();
-            builder.Services.AddScoped<IPasswordHasher<User>,PasswordHasher<User>>();
+            builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             builder.Services.AddScoped<IEmailService, EmailService>();
+
+            builder.Services.Configure<RecaptchaSettings>(
+                builder.Configuration.GetSection("RecaptchaSettings")
+            );
+            builder.Services.AddHttpClient();
 
             //Adding AutoMapper
             builder.Services.AddAutoMapper(options =>
@@ -92,7 +97,7 @@ namespace BankingPaymentsApp_API
                 options.CreateMap<BeneficiaryDTO, Beneficiary>();
                 options.CreateMap<EmployeeDTO, Employee>();
                 options.CreateMap<CreateSalaryDisbursmentDTO, SalaryDisbursement>();
-                options.CreateMap<SalaryDisbursement,SalaryResponseDTO>();
+                options.CreateMap<SalaryDisbursement, SalaryResponseDTO>();
             });
 
             //Logger Configuration
