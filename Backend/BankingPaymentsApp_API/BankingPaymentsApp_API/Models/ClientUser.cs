@@ -16,6 +16,9 @@ namespace BankingPaymentsApp_API.Models
         [Required(ErrorMessage = "Address is Required!")]
         public string Address { get; set; } = null!;
         public bool KycVierified { get; set; } = false;
+        [ForeignKey("BankUser")]
+        public int? BankUserId {  get; set; }
+        public virtual BankUser? BankUser { get; set; }
         public virtual ICollection<Document>? Documents { get; set; } = new List<Document>();
     }
 }

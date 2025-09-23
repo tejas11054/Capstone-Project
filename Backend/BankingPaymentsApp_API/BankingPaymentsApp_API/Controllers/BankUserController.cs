@@ -39,7 +39,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/BankUser/{id}
         [HttpGet("{id}")]
-       // [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetBankUserById(int id)
         {
             _logger.LogInformation("GetBankUserById started!");
@@ -50,7 +50,7 @@ namespace BankingPaymentsApp_API.Controllers
 
             var response = _mapper.Map<BankUserResponseDTO>(bankUser);
             _logger.LogInformation($"Bank user id: {id} Displayed");
-            return Ok(response);
+            return Ok(bankUser);
         }
 
         // POST: api/BankUser
@@ -122,19 +122,30 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok("Bank User deleted successfully!");
         }
 
-        // PUT: api/BankUser/approve/{id}
         [HttpPut("approve/{id}")]
-        //[Authorize(Roles = $"{nameof(Role.SUPER_ADMIN}")]
-        public async Task<IActionResult> ApproveBankUser(int id, [FromBody] BankUser bank)
+        //[Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
+        public async Task<IActionResult> ApproveBankUser(int id, [FromBody] BankUser bankUser)
         {
-            _logger.LogInformation("ApproveClientUser started!");
+            _logger.LogInformation("ApproveBankUser started!");
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
             //ClientUser client = _mapper.Map<ClientUser>(clientdto);
-            BankUser approvedBankUser = await _service.ApproveClient(bank);
-            _logger.LogInformation("Client Was Approved!");
+            BankUser approvedBankUser = await _service.ApproveBankUser(id);
+            _logger.LogInformation("BankUser Was Approved!");
 
             return Ok(approvedBankUser);
+        }
+
+        [HttpPut("reject/{id}")]
+        public async Task<IActionResult> RejectBankUser(int id, [FromBody] RejectDTO rejectDTO)
+        {
+            _logger.LogInformation("RejectBanktUser started!");
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            BankUser bankUser = await _service.RejectBankUser(id, rejectDTO);
+            _logger.LogInformation("Client user was Rejected!");
+
+            return Ok("Reject Email Sent to " + bankUser.UserName);
         }
     }
 }

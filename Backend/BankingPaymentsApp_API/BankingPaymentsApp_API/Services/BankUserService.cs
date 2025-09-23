@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+﻿using BankingPaymentsApp_API.DTOs;
+=======
 ﻿using AutoMapper;
 using BankingPaymentsApp_API.DTOs;
+>>>>>>> 6d71289b4290da462abe0d642a7f16e56072f696
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -10,11 +14,18 @@ namespace BankingPaymentsApp_API.Services
     {
         private readonly IBankUserRepository _bankUserRepository;
         private readonly IPasswordHasher<User> _passwordHasher;
+<<<<<<< HEAD
+        private readonly IEmailService _emailService;
+
+
+        public BankUserService(IBankUserRepository bankUserRepository, IPasswordHasher<User> passwordHasher, IEmailService emailService)
+=======
         private readonly IAccountService _accountService;
         private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
 
         public BankUserService(IBankUserRepository bankUserRepository, IAccountService accountService, IMapper mapper, IPasswordHasher<User> passwordHasher, IEmailService emailService)
+>>>>>>> 6d71289b4290da462abe0d642a7f16e56072f696
         {
             _bankUserRepository = bankUserRepository;
             _accountService = accountService;
@@ -49,39 +60,39 @@ namespace BankingPaymentsApp_API.Services
             await _bankUserRepository.DeleteById(id);
         }
 
-        public async Task<BankUser> ApproveClient(BankUser bankUser)
+        public async Task<BankUser?> GetRandomBankUser()
         {
-            bankUser.KycVierified = true;
-            RegisterAccountDTO registerAccount = new RegisterAccountDTO
-            {
-                AccountNumber = await _accountService.GenerateAccountNumber(),
-                AccountStatusId = 1,
-                AccountTypeId = 1,
-                ClientId = bankUser.UserId,
-                Balance = 0,
-            };
+            var bankUsers = await _bankUserRepository.GetAll();
+            if (bankUsers == null || bankUsers.Count() == 0) return null;
+            var random = new Random();
+            int index = random.Next(bankUsers.Count());
+            return bankUsers.ElementAt(index);
+        }
 
-            Account newAccount = _mapper.Map<Account>(registerAccount);
-            Account addedAccount = await _accountService.Add(newAccount);
+        public async Task<BankUser> ApproveBankUser(int id)
+        {
+            BankUser? bankUser = await _bankUserRepository.GetById(id);
 
-            bankUser.AccountId = newAccount.AccountId;
+            if (bankUser == null) throw new NullReferenceException("No BankUser of id: "+id);
 
-            BankUser? updatedUser = await _bankUserRepository.Update(bankUser);
+            bankUser.isActive = true;
+            //string subject = "You are Now Active";
+            //string body = "You are Now active you can now proceed with work!";
+            //await _emailService.SendEmailToClientAsync(id,subject,body);
+            return await _bankUserRepository.Update(bankUser);
+        }
 
-            if (updatedUser == null) throw new KeyNotFoundException($"Bank user with userId: {bankUser.UserId} was Not Found");
+        public async Task<BankUser> RejectBankUser(int id,RejectDTO reject)
+        {
+            BankUser? bankUser = await _bankUserRepository.GetById(id);
 
-            string subject = "Your application is Verified!";
-            string body =
-                $"""
-                Congratulations your application is sucessfully Verfied!
-                You are now a KYC VERIFIED USER
-                Your ACCOUNT CREDENTIALS ARE:
-                Account Number : {addedAccount.AccountNumber}
-                IFSC Code : BPS12345
-                """;
-            await _emailService.SendEmailToClientAsync(bankUser.UserId, subject, body);
+            if (bankUser == null) throw new NullReferenceException("No BankUser of id: "+id);
 
-            return updatedUser;
+            bankUser.isActive = false;
+            string subject = "Your application has reverted back";
+            await _emailService.SendEmailToClientAsync(id,subject,reject.reason);
+            return await _bankUserRepository.Update(bankUser);
+        
         }
     }
 }

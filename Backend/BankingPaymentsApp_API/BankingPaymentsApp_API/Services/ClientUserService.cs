@@ -9,18 +9,20 @@ namespace BankingPaymentsApp_API.Services
     public class ClientUserService : IClientUserService
     {
         private readonly IClientUserRepository _clientUserRepository;
+        private readonly IBankUserService _bankUserService;
         private readonly IAccountService _accountService;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
 
-        public ClientUserService(IClientUserRepository clientUserRepository, IAccountService accountService, IMapper mapper,IPasswordHasher<User> passwordHasher, IEmailService emailService)
+        public ClientUserService(IClientUserRepository clientUserRepository, IAccountService accountService, IMapper mapper,IPasswordHasher<User> passwordHasher, IEmailService emailService, IBankUserService bankUserService)
         {
             _clientUserRepository = clientUserRepository;
             _accountService = accountService;
             _mapper = mapper;
             _passwordHasher = passwordHasher;
             _emailService = emailService;
+            _bankUserService = bankUserService;
         }
 
         public async Task<IEnumerable<ClientUser>> GetAll()
@@ -30,6 +32,9 @@ namespace BankingPaymentsApp_API.Services
 
         public async Task<ClientUser> Add(ClientUser user)
         {
+            BankUser? bankUser = await _bankUserService.GetRandomBankUser();
+            if (bankUser == null) user.BankUserId = null;
+            else user.BankUserId = bankUser.UserId;
             user.Password = _passwordHasher.HashPassword(user, user.Password);
             return await _clientUserRepository.Add(user);
         }
