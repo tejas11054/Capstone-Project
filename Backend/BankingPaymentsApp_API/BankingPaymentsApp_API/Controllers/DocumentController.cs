@@ -147,7 +147,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Document/client/{clientId}
         [HttpGet("client/{clientId}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+       // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<IEnumerable<DocumentDTO>>> GetDocumentsByClientId(int clientId)
         {
             _logger.LogInformation("GetDocumentsByClientId started!");

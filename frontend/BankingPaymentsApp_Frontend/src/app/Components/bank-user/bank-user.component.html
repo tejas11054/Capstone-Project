@@ -1,0 +1,62 @@
+<h2>Client Users</h2>
+
+<table border="1" cellpadding="5">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Full Name</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Date of Birth</th>
+      <th>Address</th>
+      <th>KYC Verified</th>
+      <th>Documents</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients">
+      <td>{{ client.UserId }}</td>
+      <td>{{ client.UserFullName }}</td>
+      <td>{{ client.UserName }}</td>
+      <td>{{ client.UserEmail }}</td>
+      <td>{{ client.UserPhone }}</td>
+      <td>{{ client.DateOfBirth | date:'yyyy-MM-dd' }}</td>
+      <td>{{ client.Address }}</td>
+      <td>{{ client.KycVierified }}</td>
+      <td>
+        <button (click)="viewDocuments(client)">View Documents</button>
+      </td>
+      <td>
+        <button (click)="approveClient(client)">Approve</button>
+    <button (click)="rejectClient(client, 'Reason')">Reject</button>
+
+
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="showDocuments">
+  <h3>Documents of Selected Client</h3>
+  <table border="1" cellpadding="5">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Proof Type</th>
+        <th>Preview</th>
+        <th>Public ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doc of selectedClientDocs">
+        <td>{{ doc.DocumentName }}</td>
+        <td>{{ doc.ProofType?.Type || doc.ProofTypeId }}</td>
+        <td><a [href]="doc.DocumentURL" target="_blank">View</a></td>
+        <td>{{ doc.PublicId }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

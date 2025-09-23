@@ -11,5 +11,5 @@ export interface ClientUser extends User {
   DateOfBirth: string; 
   Address: string;
   KycVierified: boolean;
-  Documents?: Array<Document>;
+  Documents?: Document [];
 }

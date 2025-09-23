@@ -6,6 +6,7 @@ import { LoginResponseDTO } from '../../DTO/LoginResponseDTO';
 
 @Component({
   selector: 'app-login',
+  standalone: true, 
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

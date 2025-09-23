@@ -62,7 +62,7 @@ namespace BankingPaymentsApp_API.Controllers
         //GET: api/User/{id}
         [HttpGet]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetUserById(int id)
         {
             User? existingUser = await _service.GetById(id);

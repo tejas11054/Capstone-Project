@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    [Migration("20250921090854_initial")]
+    [Migration("20250922181346_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -157,11 +157,16 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ClientUserUserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("IFSC")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BeneficiaryId");
+
+                    b.HasIndex("ClientUserUserId");
 
                     b.ToTable("Beneficiaries");
                 });
@@ -605,9 +610,6 @@ namespace BankingPaymentsApp_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("BeneficiaryIds")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
@@ -642,6 +644,13 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Navigation("AccountType");
 
                     b.Navigation("ClientUser");
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Beneficiary", b =>
+                {
+                    b.HasOne("BankingPaymentsApp_API.Models.ClientUser", null)
+                        .WithMany("Beneficiaries")
+                        .HasForeignKey("ClientUserUserId");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Document", b =>
@@ -812,6 +821,8 @@ namespace BankingPaymentsApp_API.Migrations
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.ClientUser", b =>
                 {
+                    b.Navigation("Beneficiaries");
+
                     b.Navigation("Documents");
 
                     b.Navigation("Employees");
