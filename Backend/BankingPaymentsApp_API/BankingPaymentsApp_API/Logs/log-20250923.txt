@@ -2093,3 +2093,359 @@ ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
 RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (ADMIN)
 2025-09-23 14:48:23.969 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
 2025-09-23 14:48:23.972 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/BankUser - 401 0 null 45.3058ms
+2025-09-23 14:49:01.467 +05:30 [INF] User profile is available. Using 'C:\Users\tejas.ramane\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-23 14:49:01.775 +05:30 [INF] Now listening on: https://localhost:7030
+2025-09-23 14:49:01.777 +05:30 [INF] Now listening on: http://localhost:5086
+2025-09-23 14:49:01.877 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-23 14:49:01.879 +05:30 [INF] Hosting environment: Development
+2025-09-23 14:49:01.881 +05:30 [INF] Content root path: D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API
+2025-09-23 14:49:02.447 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/index.html - null null
+2025-09-23 14:49:02.761 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/index.html - 200 null text/html;charset=utf-8 320.181ms
+2025-09-23 14:49:02.772 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-23 14:49:02.783 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_framework/aspnetcore-browser-refresh.js - 200 16529 application/javascript; charset=utf-8 10.81ms
+2025-09-23 14:49:02.807 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/_vs/browserLink - null null
+2025-09-23 14:49:02.843 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/_vs/browserLink - 200 null text/javascript; charset=UTF-8 36.1475ms
+2025-09-23 14:49:02.875 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - null null
+2025-09-23 14:49:02.910 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 35.2687ms
+2025-09-23 14:50:23.201 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/BankUser - null null
+2025-09-23 14:50:23.219 +05:30 [INF] CORS policy execution successful.
+2025-09-23 14:50:23.225 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/BankUser - 204 null null 25.0255ms
+2025-09-23 14:50:23.228 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/BankUser - application/json 204
+2025-09-23 14:50:23.239 +05:30 [INF] CORS policy execution successful.
+2025-09-23 14:50:23.245 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.BankUserController.CreateBankUser (BankingPaymentsApp_API)'
+2025-09-23 14:50:23.280 +05:30 [INF] Route matched with {action = "CreateBankUser", controller = "BankUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBankUser(BankingPaymentsApp_API.DTOs.RegisterBankUserDTO) on controller BankingPaymentsApp_API.Controllers.BankUserController (BankingPaymentsApp_API).
+2025-09-23 14:50:23.579 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-09-23 14:50:23.657 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-09-23 14:50:23.691 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.BankUserController.CreateBankUser (BankingPaymentsApp_API) in 402.8959ms
+2025-09-23 14:50:23.695 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.BankUserController.CreateBankUser (BankingPaymentsApp_API)'
+2025-09-23 14:50:23.700 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/BankUser - 400 null application/problem+json; charset=utf-8 471.4084ms
+2025-09-23 14:52:03.518 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/BankUser - application/json 232
+2025-09-23 14:52:03.546 +05:30 [INF] CORS policy execution failed.
+2025-09-23 14:52:03.550 +05:30 [INF] Request origin https://localhost:7030 does not have permission to access the resource.
+2025-09-23 14:52:03.553 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.BankUserController.CreateBankUser (BankingPaymentsApp_API)'
+2025-09-23 14:52:03.555 +05:30 [INF] Route matched with {action = "CreateBankUser", controller = "BankUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBankUser(BankingPaymentsApp_API.DTOs.RegisterBankUserDTO) on controller BankingPaymentsApp_API.Controllers.BankUserController (BankingPaymentsApp_API).
+2025-09-23 14:52:03.571 +05:30 [INF] CreateBankUser started!
+2025-09-23 14:52:04.188 +05:30 [WRN] Navigations 'Account.ClientUser' and 'ClientUser.Account' were separated into two relationships since the [ForeignKey] attribute was specified on properties 'ClientId' and 'AccountId' on both sides.
+2025-09-23 14:52:04.518 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'SalaryDisbursement'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-23 14:52:04.521 +05:30 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'SalaryDisbursementDetails'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-23 14:52:05.399 +05:30 [INF] Executed DbCommand (107ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 13), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = DateTime2), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Branch], [ClientIds], [Discriminator], [Password], [RefferalCode], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-09-23 14:52:05.465 +05:30 [INF] bank user Created!
+2025-09-23 14:52:05.470 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.BankUserResponseDTO'.
+2025-09-23 14:52:05.479 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.BankUserController.CreateBankUser (BankingPaymentsApp_API) in 1920.6928ms
+2025-09-23 14:52:05.481 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.BankUserController.CreateBankUser (BankingPaymentsApp_API)'
+2025-09-23 14:52:05.489 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/BankUser - 200 null application/json; charset=utf-8 1971.9169ms
+2025-09-23 14:56:59.075 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/BankUser - null null
+2025-09-23 14:56:59.087 +05:30 [INF] CORS policy execution successful.
+2025-09-23 14:56:59.088 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/BankUser - 204 null null 13.5046ms
+2025-09-23 14:56:59.091 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7030/api/BankUser - application/json 201
+2025-09-23 14:56:59.097 +05:30 [INF] CORS policy execution successful.
+2025-09-23 14:56:59.099 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.BankUserController.CreateBankUser (BankingPaymentsApp_API)'
+2025-09-23 14:56:59.100 +05:30 [INF] Route matched with {action = "CreateBankUser", controller = "BankUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBankUser(BankingPaymentsApp_API.DTOs.RegisterBankUserDTO) on controller BankingPaymentsApp_API.Controllers.BankUserController (BankingPaymentsApp_API).
+2025-09-23 14:56:59.108 +05:30 [INF] CreateBankUser started!
+2025-09-23 14:56:59.224 +05:30 [INF] Executed DbCommand (53ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 13), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = DateTime2), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Branch], [ClientIds], [Discriminator], [Password], [RefferalCode], [UserEmail], [UserFullName], [UserJoiningDate], [UserName], [UserPhone], [UserRoleId])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-09-23 14:56:59.229 +05:30 [INF] bank user Created!
+2025-09-23 14:56:59.230 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.DTOs.BankUserResponseDTO'.
+2025-09-23 14:56:59.233 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.BankUserController.CreateBankUser (BankingPaymentsApp_API) in 129.3047ms
+2025-09-23 14:56:59.235 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.BankUserController.CreateBankUser (BankingPaymentsApp_API)'
+2025-09-23 14:56:59.236 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7030/api/BankUser - 200 null application/json; charset=utf-8 145.7128ms
+2025-09-23 15:00:11.504 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:00:11.524 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:11.526 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 23.2602ms
+2025-09-23 15:00:11.556 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:00:11.562 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:11.564 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:00:11.571 +05:30 [INF] Route matched with {action = "GetAllClientUsers", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllClientUsers() on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:00:11.579 +05:30 [INF] GetAllCLientUsers started!
+2025-09-23 15:00:12.051 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds], [d].[DocumentId], [d].[ClientId], [d].[DocumentName], [d].[DocumentURL], [d].[ProofTypeId], [d].[PublicId]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+LEFT JOIN [Documents] AS [d] ON [u].[UserId] = [d].[ClientId]
+WHERE [u].[Discriminator] = N'ClientUser'
+ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
+2025-09-23 15:00:12.155 +05:30 [INF] 4 client users were displayed!
+2025-09-23 15:00:12.157 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[BankingPaymentsApp_API.Models.ClientUser, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[BankingPaymentsApp_API.DTOs.ClientUserResponseDTO, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-23 15:00:12.166 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API) in 590.9864ms
+2025-09-23 15:00:12.170 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:00:12.171 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 615.4633ms
+2025-09-23 15:00:16.004 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/1 - null null
+2025-09-23 15:00:16.008 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:16.011 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/1 - 204 null null 7.4335ms
+2025-09-23 15:00:16.014 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser/1 - null null
+2025-09-23 15:00:16.027 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:16.029 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-23 15:00:16.039 +05:30 [INF] Route matched with {action = "GetClientUserById", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetClientUserById(Int32) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:00:16.046 +05:30 [INF] GetClientUserById started!
+2025-09-23 15:00:16.087 +05:30 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-09-23 15:00:16.116 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:00:16.122 +05:30 [INF] Client user was Dispalyed
+2025-09-23 15:00:16.124 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.Models.ClientUser'.
+2025-09-23 15:00:16.164 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API) in 121.1791ms
+2025-09-23 15:00:16.166 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-23 15:00:16.168 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser/1 - 200 null application/json; charset=utf-8 153.8712ms
+2025-09-23 15:00:16.176 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/approve/1 - null null
+2025-09-23 15:00:16.187 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:16.188 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/approve/1 - 204 null null 12.5617ms
+2025-09-23 15:00:16.191 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7030/api/ClientUser/approve/1 - application/json 669
+2025-09-23 15:00:16.198 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:16.199 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.ApproveClientUser (BankingPaymentsApp_API)'
+2025-09-23 15:00:16.205 +05:30 [INF] Route matched with {action = "ApproveClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ApproveClientUser(Int32, BankingPaymentsApp_API.Models.ClientUser) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:00:16.257 +05:30 [INF] ApproveClientUser started!
+2025-09-23 15:00:16.290 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__accountNumber_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Accounts] AS [a]
+        WHERE [a].[AccountNumber] = @__accountNumber_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-23 15:00:16.376 +05:30 [INF] Executed DbCommand (63ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Double), @p4='?' (DbType = Int32), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Accounts] ([AccountNumber], [AccountStatusId], [AccountTypeId], [Balance], [ClientId], [CreatedAt], [TransactionIds])
+OUTPUT INSERTED.[AccountId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-09-23 15:00:16.466 +05:30 [ERR] An exception occurred in the database while saving changes for context type 'BankingPaymentsApp_API.Data.BankingPaymentsDBContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Accounts' with unique index 'IX_Accounts_ClientId'. The duplicate key value is (1).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:66b355be-a76b-42dd-b6be-5805bc0782d6
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Accounts' with unique index 'IX_Accounts_ClientId'. The duplicate key value is (1).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:66b355be-a76b-42dd-b6be-5805bc0782d6
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-09-23 15:00:16.947 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.ApproveClientUser (BankingPaymentsApp_API) in 738.9966ms
+2025-09-23 15:00:16.950 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.ApproveClientUser (BankingPaymentsApp_API)'
+2025-09-23 15:00:16.953 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Accounts' with unique index 'IX_Accounts_ClientId'. The duplicate key value is (1).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:66b355be-a76b-42dd-b6be-5805bc0782d6
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at BankingPaymentsApp_API.Repositories.AccountRepository.Add(Account account) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Repositories\AccountRepository.cs:line 23
+   at BankingPaymentsApp_API.Services.AccountService.Add(Account account) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Services\AccountService.cs:line 22
+   at BankingPaymentsApp_API.Services.ClientUserService.ApproveClient(ClientUser clientUser) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Services\ClientUserService.cs:line 65
+   at BankingPaymentsApp_API.Controllers.ClientUserController.ApproveClientUser(Int32 id, ClientUser client) in D:\Swabhav\Capstone-Project\Payment\Code\Backend\BankingPaymentsApp_API\BankingPaymentsApp_API\Controllers\ClientUserController.cs:line 139
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-23 15:00:16.987 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7030/api/ClientUser/approve/1 - 500 null text/plain; charset=utf-8 796.541ms
+2025-09-23 15:00:27.221 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:00:27.242 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:27.244 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 23.9529ms
+2025-09-23 15:00:27.255 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:00:27.261 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:27.263 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:00:27.265 +05:30 [INF] Route matched with {action = "GetAllClientUsers", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllClientUsers() on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:00:27.270 +05:30 [INF] GetAllCLientUsers started!
+2025-09-23 15:00:27.282 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds], [d].[DocumentId], [d].[ClientId], [d].[DocumentName], [d].[DocumentURL], [d].[ProofTypeId], [d].[PublicId]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+LEFT JOIN [Documents] AS [d] ON [u].[UserId] = [d].[ClientId]
+WHERE [u].[Discriminator] = N'ClientUser'
+ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
+2025-09-23 15:00:27.293 +05:30 [INF] 4 client users were displayed!
+2025-09-23 15:00:27.296 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[BankingPaymentsApp_API.Models.ClientUser, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[BankingPaymentsApp_API.DTOs.ClientUserResponseDTO, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-23 15:00:27.298 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API) in 29.1025ms
+2025-09-23 15:00:27.301 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:00:27.303 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 48.0023ms
+2025-09-23 15:00:41.611 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/3 - null null
+2025-09-23 15:00:41.615 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:41.616 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/3 - 204 null null 5.525ms
+2025-09-23 15:00:41.620 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser/3 - null null
+2025-09-23 15:00:41.630 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:41.632 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-23 15:00:41.650 +05:30 [INF] Route matched with {action = "GetClientUserById", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetClientUserById(Int32) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:00:41.654 +05:30 [INF] GetClientUserById started!
+2025-09-23 15:00:41.662 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:00:41.666 +05:30 [INF] Client user was Dispalyed
+2025-09-23 15:00:41.667 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.Models.ClientUser'.
+2025-09-23 15:00:41.669 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API) in 15.885ms
+2025-09-23 15:00:41.672 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetClientUserById (BankingPaymentsApp_API)'
+2025-09-23 15:00:41.674 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser/3 - 200 null application/json; charset=utf-8 54.7898ms
+2025-09-23 15:00:41.680 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/approve/3 - null null
+2025-09-23 15:00:41.684 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:41.685 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser/approve/3 - 204 null null 5.5928ms
+2025-09-23 15:00:41.687 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7030/api/ClientUser/approve/3 - application/json 451
+2025-09-23 15:00:41.694 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:41.695 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.ApproveClientUser (BankingPaymentsApp_API)'
+2025-09-23 15:00:41.696 +05:30 [INF] Route matched with {action = "ApproveClientUser", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ApproveClientUser(Int32, BankingPaymentsApp_API.Models.ClientUser) on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:00:41.700 +05:30 [INF] ApproveClientUser started!
+2025-09-23 15:00:41.704 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__accountNumber_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Accounts] AS [a]
+        WHERE [a].[AccountNumber] = @__accountNumber_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-23 15:00:41.750 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Double), @p4='?' (DbType = Int32), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Accounts] ([AccountNumber], [AccountStatusId], [AccountTypeId], [Balance], [ClientId], [CreatedAt], [TransactionIds])
+OUTPUT INSERTED.[AccountId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-09-23 15:00:41.761 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[UserId], [t].[Discriminator], [t].[Password], [t].[UserEmail], [t].[UserFullName], [t].[UserJoiningDate], [t].[UserName], [t].[UserPhone], [t].[UserRoleId], [t].[AccountId], [t].[Address], [t].[DateOfBirth], [t].[KycVierified], [t].[RoleId], [t].[Role], [t].[AccountId0], [t].[AccountNumber], [t].[AccountStatusId], [t].[AccountTypeId], [t].[Balance], [t].[ClientId], [t].[CreatedAt], [t].[TransactionIds], [e].[EmployeeId], [e].[AccountNumber], [e].[BankName], [e].[ClientId], [e].[EmployeeName], [e].[IFSC], [e].[Salary], [e].[SalaryDisbursementId], [b].[BeneficiaryId], [b].[AccountNumber], [b].[BankName], [b].[BeneficiaryName], [b].[ClientId], [b].[ClientUserUserId], [b].[IFSC]
+FROM (
+    SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId] AS [AccountId0], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds]
+    FROM [Users] AS [u]
+    INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+    LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+    WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+) AS [t]
+LEFT JOIN [Employees] AS [e] ON [t].[UserId] = [e].[ClientId]
+LEFT JOIN [Beneficiaries] AS [b] ON [t].[UserId] = [b].[ClientUserUserId]
+ORDER BY [t].[UserId], [t].[RoleId], [t].[AccountId0], [e].[EmployeeId]
+2025-09-23 15:00:41.793 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [AccountId] = @p0, [KycVierified] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-09-23 15:00:41.830 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified]
+FROM [Users] AS [u]
+WHERE [u].[Discriminator] = N'ClientUser' AND [u].[UserId] = @__id_0
+2025-09-23 15:00:43.573 +05:30 [INF] Client Was Approved!
+2025-09-23 15:00:43.576 +05:30 [INF] Executing OkObjectResult, writing value of type 'BankingPaymentsApp_API.Models.ClientUser'.
+2025-09-23 15:00:43.579 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.ApproveClientUser (BankingPaymentsApp_API) in 1879.7844ms
+2025-09-23 15:00:43.583 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.ApproveClientUser (BankingPaymentsApp_API)'
+2025-09-23 15:00:43.589 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7030/api/ClientUser/approve/3 - 200 null application/json; charset=utf-8 1901.6575ms
+2025-09-23 15:00:45.536 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:00:45.542 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:45.543 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7030/api/ClientUser - 204 null null 6.7169ms
+2025-09-23 15:00:45.547 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7030/api/ClientUser - null null
+2025-09-23 15:00:45.555 +05:30 [INF] CORS policy execution successful.
+2025-09-23 15:00:45.557 +05:30 [INF] Executing endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:00:45.559 +05:30 [INF] Route matched with {action = "GetAllClientUsers", controller = "ClientUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllClientUsers() on controller BankingPaymentsApp_API.Controllers.ClientUserController (BankingPaymentsApp_API).
+2025-09-23 15:00:45.562 +05:30 [INF] GetAllCLientUsers started!
+2025-09-23 15:00:45.567 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Discriminator], [u].[Password], [u].[UserEmail], [u].[UserFullName], [u].[UserJoiningDate], [u].[UserName], [u].[UserPhone], [u].[UserRoleId], [u].[AccountId], [u].[Address], [u].[DateOfBirth], [u].[KycVierified], [r].[RoleId], [r].[Role], [a].[AccountId], [a].[AccountNumber], [a].[AccountStatusId], [a].[AccountTypeId], [a].[Balance], [a].[ClientId], [a].[CreatedAt], [a].[TransactionIds], [d].[DocumentId], [d].[ClientId], [d].[DocumentName], [d].[DocumentURL], [d].[ProofTypeId], [d].[PublicId]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[UserRoleId] = [r].[RoleId]
+LEFT JOIN [Accounts] AS [a] ON [u].[AccountId] = [a].[AccountId]
+LEFT JOIN [Documents] AS [d] ON [u].[UserId] = [d].[ClientId]
+WHERE [u].[Discriminator] = N'ClientUser'
+ORDER BY [u].[UserId], [r].[RoleId], [a].[AccountId]
+2025-09-23 15:00:45.573 +05:30 [INF] 4 client users were displayed!
+2025-09-23 15:00:45.575 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[BankingPaymentsApp_API.Models.ClientUser, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[BankingPaymentsApp_API.DTOs.ClientUserResponseDTO, BankingPaymentsApp_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-23 15:00:45.577 +05:30 [INF] Executed action BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API) in 15.4146ms
+2025-09-23 15:00:45.580 +05:30 [INF] Executed endpoint 'BankingPaymentsApp_API.Controllers.ClientUserController.GetAllClientUsers (BankingPaymentsApp_API)'
+2025-09-23 15:00:45.582 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7030/api/ClientUser - 200 null application/json; charset=utf-8 34.9011ms
