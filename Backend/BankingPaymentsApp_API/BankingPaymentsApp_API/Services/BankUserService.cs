@@ -1,9 +1,6 @@
-<<<<<<< HEAD
+
 ﻿using BankingPaymentsApp_API.DTOs;
-=======
 ﻿using AutoMapper;
-using BankingPaymentsApp_API.DTOs;
->>>>>>> 6d71289b4290da462abe0d642a7f16e56072f696
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -14,22 +11,13 @@ namespace BankingPaymentsApp_API.Services
     {
         private readonly IBankUserRepository _bankUserRepository;
         private readonly IPasswordHasher<User> _passwordHasher;
-<<<<<<< HEAD
-        private readonly IEmailService _emailService;
-
-
-        public BankUserService(IBankUserRepository bankUserRepository, IPasswordHasher<User> passwordHasher, IEmailService emailService)
-=======
-        private readonly IAccountService _accountService;
         private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
 
-        public BankUserService(IBankUserRepository bankUserRepository, IAccountService accountService, IMapper mapper, IPasswordHasher<User> passwordHasher, IEmailService emailService)
->>>>>>> 6d71289b4290da462abe0d642a7f16e56072f696
+
+        public BankUserService(IBankUserRepository bankUserRepository, IPasswordHasher<User> passwordHasher, IEmailService emailService)
         {
             _bankUserRepository = bankUserRepository;
-            _accountService = accountService;
-            _mapper = mapper;
             _passwordHasher = passwordHasher;
             _emailService = emailService;
         }
@@ -92,7 +80,6 @@ namespace BankingPaymentsApp_API.Services
             string subject = "Your application has reverted back";
             await _emailService.SendEmailToClientAsync(id,subject,reject.reason);
             return await _bankUserRepository.Update(bankUser);
-        
         }
     }
 }
