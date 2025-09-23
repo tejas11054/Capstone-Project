@@ -39,7 +39,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/BankUser/{id}
         [HttpGet("{id}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
+       // [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetBankUserById(int id)
         {
             _logger.LogInformation("GetBankUserById started!");
@@ -120,6 +120,21 @@ namespace BankingPaymentsApp_API.Controllers
             _logger.LogInformation("Bnak user was deleted Sucessfully!");
 
             return Ok("Bank User deleted successfully!");
+        }
+
+        // PUT: api/BankUser/approve/{id}
+        [HttpPut("approve/{id}")]
+        //[Authorize(Roles = $"{nameof(Role.SUPER_ADMIN}")]
+        public async Task<IActionResult> ApproveBankUser(int id, [FromBody] BankUser bank)
+        {
+            _logger.LogInformation("ApproveClientUser started!");
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            //ClientUser client = _mapper.Map<ClientUser>(clientdto);
+            BankUser approvedBankUser = await _service.ApproveClient(bank);
+            _logger.LogInformation("Client Was Approved!");
+
+            return Ok(approvedBankUser);
         }
     }
 }

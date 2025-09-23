@@ -1,4 +1,5 @@
 ﻿using BankingPaymentsApp_API.Models;
+using System.Threading.Tasks;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -9,5 +10,6 @@ namespace BankingPaymentsApp_API.Services
         Task<BankUser?> GetById(int id);
         Task<BankUser?> Update(BankUser bankUser);
         Task DeleteById(int id);
+        Task<BankUser> ApproveClient(BankUser bankUser);
     }
 }
