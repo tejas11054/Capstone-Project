@@ -581,9 +581,6 @@ namespace BankingPaymentsApp_API.Migrations
                 {
                     b.HasBaseType("BankingPaymentsApp_API.Models.User");
 
-                    b.Property<int?>("AccountId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Branch")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -594,17 +591,6 @@ namespace BankingPaymentsApp_API.Migrations
 
                     b.Property<bool>("isActive")
                         .HasColumnType("bit");
-
-                    b.HasIndex("AccountId");
-
-                    b.ToTable("Users", t =>
-                        {
-                            t.Property("AccountId")
-                                .HasColumnName("BankUser_AccountId");
-
-                            t.Property("KycVierified")
-                                .HasColumnName("BankUser_KycVierified");
-                        });
 
                     b.HasDiscriminator().HasValue("BankUser");
                 });
@@ -806,15 +792,6 @@ namespace BankingPaymentsApp_API.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("BankingPaymentsApp_API.Models.BankUser", b =>
-                {
-                    b.HasOne("BankingPaymentsApp_API.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId");
-
-                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.ClientUser", b =>

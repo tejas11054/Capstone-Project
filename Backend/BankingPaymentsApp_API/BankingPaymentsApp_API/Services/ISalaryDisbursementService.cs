@@ -10,5 +10,6 @@ namespace BankingPaymentsApp_API.Services
         Task<SalaryDisbursement?> Update(SalaryDisbursement disbursement);
         Task DeleteById(int id);
         public Task<SalaryDisbursement> ApproveSalaryDisbursement(int disbursementId);
+        public Task<SalaryDisbursement> RejectSalaryDisbursement(int Id, string reason);
     }
 }

@@ -14,7 +14,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public async Task<IEnumerable<Payment>> GetAll()
         {
-            return await _dbContext.Payments.Include(p => p.PayerAccount).Include(p => p.PaymentStatus).ToListAsync();
+            return await _dbContext.Payments.Include(p => p.PayerAccount).ThenInclude(a=>a.ClientUser).Include(p => p.PaymentStatus).ToListAsync();
         }
 
         public async Task<Payment> Add(Payment payment)
