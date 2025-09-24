@@ -4,15 +4,15 @@ import { SalaryDisbursement } from "./SalaryDisbursement";
 import { TransactionType } from "./TransactionType";
 
 export interface Transaction {
-  TransactionId: number;
-  AccountId: number;
-  Account?: Account;
-  PaymentId?: number;
-  Payment?: Payment;
-  SalaryDisbursementId?: number;
-  SalaryDisbursement?: SalaryDisbursement;
-  TransactionTypeId: number;
-  TransactionType?: TransactionType;
-  Amount: number;
-  CreatedAt: string; 
+  transactionId: number;
+  accountId: number;
+  account?: Account;
+  paymentId?: number;
+  payment?: Payment;
+  salaryDisbursementId?: number;
+  salaryDisbursement?: SalaryDisbursement;
+  transactionTypeId: number;
+  transactionType?: TransactionType;
+  amount: number;
+  createdAt: string; 
 }

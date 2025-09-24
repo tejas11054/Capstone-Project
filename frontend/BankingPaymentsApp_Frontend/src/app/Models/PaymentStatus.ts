@@ -5,6 +5,6 @@ export enum PayStatus {
 }
 
 export interface PaymentStatus {
-  StatusId: number;
-  Status: PayStatus;
+  statusId: number;
+  status: PayStatus;
 }

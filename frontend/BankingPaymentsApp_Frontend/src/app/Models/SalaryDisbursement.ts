@@ -4,14 +4,14 @@ import { PaymentStatus } from "./PaymentStatus";
 import { SalaryDisbursementDetails } from "./SalaryDisbursementDetails";
 
 export interface SalaryDisbursement {
-  SalaryDisbursementId: number;
-  ClientId: number;
-  ClientUser?: ClientUser;
-  TotalAmount: number; 
-  DisbursementDate: string; 
-  DisbursementStatusId: number;
-  DisbursementStatus?: PaymentStatus;
-  AllEmployees: boolean;
-  Employees?: Array<Employee>;
-  DisbursementDetails?: Array<SalaryDisbursementDetails>;
+  salaryDisbursementId: number;
+  clientId: number;
+  clientUser?: ClientUser;
+  totalAmount: number; 
+  disbursementDate: string; 
+  disbursementStatusId: number;
+  disbursementStatus?: PaymentStatus;
+  allEmployees: boolean;
+  employees?: Array<Employee>;
+  disbursementDetails?: Array<SalaryDisbursementDetails>;
 }

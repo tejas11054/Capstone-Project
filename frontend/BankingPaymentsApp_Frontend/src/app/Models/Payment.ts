@@ -3,14 +3,14 @@ import { PaymentStatus } from "./PaymentStatus";
 import { Transaction } from "./Transaction";
 
 export interface Payment {
-  PaymentId: number;
-  PayerAccountId: number;
-  PayerAccount?: Account;
-  PayeeAccountNumber: string;
-  Amount: number;
-  CreatedAt: string; 
-  PaymentStatusId: number;
-  PaymentStatus?: PaymentStatus;
-  ActionAt: string; 
-  Transactions?: Array<Transaction>;
+  paymentId: number;
+  payerAccountId: number;
+  payerAccount?: Account;
+  payeeAccountNumber: string;
+  amount: number;
+  createdAt: string; 
+  paymentStatusId: number;
+  paymentStatus?: PaymentStatus;
+  actionAt: string; 
+  transactions?: Array<Transaction>;
 }

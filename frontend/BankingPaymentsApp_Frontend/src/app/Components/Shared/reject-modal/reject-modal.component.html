@@ -1,0 +1,22 @@
+<div #modalRef class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ Parentid }}</h5>
+                <button type="button" class="btn-close" (click)="close()"></button>
+            </div>
+            <form [formGroup]="rejectForm" (submit)="reject()">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Reason to Reject</label>
+                        <input type="text" class="form-control" formControlName="reason"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" (click)="close()">Close</button>
+                    <button class="btn btn-primary" type="submit">Reject</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

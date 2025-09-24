@@ -22,10 +22,11 @@ export class PaymentService {
   }
 
   approvePayment(payment:Payment):Observable<Payment>{
-    return this.http.put<Payment>(this.paymentURL + `approve/${payment.PaymentId}`,payment);
+    console.log(this.paymentURL + `approve/${payment.paymentId}`);
+    return this.http.put<Payment>(this.paymentURL + `/approve/${payment.paymentId}`,payment);
   }
 
   rejectPayment(rejectResponse:RejectDTO):Observable<void>{
-    return this.http.put<void>(this.paymentURL+`reject/${rejectResponse.Id}`,rejectResponse);
+    return this.http.put<void>(this.paymentURL+`/reject/${rejectResponse.id}`,rejectResponse);
   }
 }

@@ -4,6 +4,6 @@ export enum TxnType {
 }
 
 export interface TransactionType {
-  TypeId: number;
-  Type: TxnType;
+  typeId: number;
+  type: TxnType;
 }

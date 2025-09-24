@@ -3,15 +3,15 @@ import { AccountType } from "./AccountType";
 import { ClientUser } from "./ClientUser";
 
 export interface Account {
-  AccountId: number;
-  AccountNumber: string;
-  ClientId?: number;
-  ClientUser?: ClientUser;
-  Balance: number;
-  AccountTypeId: number;
-  AccountType?: AccountType;
-  AccountStatusId: number;
-  AccountStatus?: AccountStatus;
-  CreatedAt: string; 
-  TransactionIds?: Array<number>;
+  accountId: number;
+  accountNumber: string;
+  clientId?: number;
+  clientUser?: ClientUser;
+  balance: number;
+  accountTypeId: number;
+  accountType?: AccountType;
+  accountStatusId: number;
+  accountStatus?: AccountStatus;
+  createdAt: string; 
+  transactionIds?: Array<number>;
 }

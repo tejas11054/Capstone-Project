@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './Components/page-not-found/page-not-foun
 import { PaymentComponent } from './Components/payment/payment.component';
 import { BankRegisterComponent } from './Components/bank-register/bank-register.component';
 import { AdminComponent } from './Components/admin/admin.component';
+import { ListPaymentComponent } from './Components/list-payment/list-payment.component';
 
 export const routes: Routes = [
     { path:"Login",component:LoginComponent},
@@ -19,5 +20,6 @@ export const routes: Routes = [
     { path: "BankRegister", component:BankRegisterComponent},
     { path: 'Admin', component:AdminComponent},
     {path:"payment",component:PaymentComponent},
+    {path:"pendingPayment",component:ListPaymentComponent},
     {path:"**",component:PageNotFoundComponent},
 ];

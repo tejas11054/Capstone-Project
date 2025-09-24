@@ -5,6 +5,6 @@ export enum AccStatus {
 }
 
 export interface AccountStatus {
-  StatusId: number;
-  Status: AccStatus;
+  statusId: number;
+  status: AccStatus;
 }

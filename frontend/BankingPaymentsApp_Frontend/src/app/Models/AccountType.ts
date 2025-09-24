@@ -5,6 +5,6 @@ export enum AccType {
 }
 
 export interface AccountType {
-  TypeId: number;
-  Type: AccType;
+  typeId: number;
+  type: AccType;
 }

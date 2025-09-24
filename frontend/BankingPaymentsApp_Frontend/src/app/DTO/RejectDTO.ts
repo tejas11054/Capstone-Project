@@ -1,4 +1,4 @@
 export interface RejectDTO {
-  Id: number;
+  id: number;
   reason: string;
 }

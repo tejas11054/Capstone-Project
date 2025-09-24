@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <h1 class="mb-3">ALL PENDING PAYMENTS</h1>
+  <hr>
+
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Payer Name</th>
+        <th>Payer Account Number</th>
+        <th>Amount</th>
+        <th>Payee Account Number</th>
+        <th>Created At</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+        <td>{{ payment.paymentId }}</td>
+        <td>{{ payment.payerAccount?.clientUser?.userName }}</td>
+        <td>{{ payment.payerAccount?.accountNumber }}</td>
+        <td>{{ payment.amount | currency }}</td>
+        <td>{{ payment.payeeAccountNumber }}</td>
+        <td>{{ payment.createdAt | date:'short' }}</td>
+        <td>{{ payment.paymentStatus?.statusId | paymentStatus }}</td>
+        <td>
+          <button class="btn btn-success btn-sm me-1" (click)="approvePayment(payment)">Approve</button>
+          <button class="btn btn-danger btn-sm" (click)="openFormModal(payment)">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-reject-modal #rejectModal [Parentid]="selectedPayment?.id" (formSubmit)="handleFormSubmit($event)"></app-reject-modal>
+

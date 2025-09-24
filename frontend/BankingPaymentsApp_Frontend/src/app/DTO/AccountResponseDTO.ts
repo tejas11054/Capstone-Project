@@ -1,9 +1,9 @@
 export interface AccountResponseDTO {
-  AccountId: number;
-  AccountNumber: string;
-  ClientId: number;
-  Balance: number;
-  AccountTypeId: number;
-  AccountStatusId: number;
-  CreatedAt: string; 
+  accountId: number;
+  accountNumber: string;
+  clientId: number;
+  balance: number;
+  accountTypeId: number;
+  accountStatusId: number;
+  createdAt: string; 
 }
