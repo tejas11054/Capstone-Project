@@ -14,5 +14,7 @@ export class SalaryDisbursementService {
     return this.http.get(this.salaryDisbursement);
   }
 
-  approveSalaryDisbursement()
+  approveSalaryDisbursement(){
+    
+  }
 }
