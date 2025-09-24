@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './Components/login/login.component';
 import { ClientRegisterComponent } from './Components/client-register/client-register.component';
-import { DocumentUploadComponent } from './document-upload/document-upload.component';
+import { DocumentUploadComponent } from './Components/document-upload/document-upload.component';
 import { BankUserComponent } from './Components/bank-user/bank-user.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { roleGuard } from './Guards/role.guard';

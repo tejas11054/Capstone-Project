@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DocumentUploadService } from '../Services/document-upload.service';
-import { DocumentDTO } from '../DTO/DocumentDTO';
-import { ProofType, DocProofType } from '../Models/ProofType';
+import { DocumentUploadService } from '../../Services/document-upload.service';
+import { DocumentDTO } from '../../DTO/DocumentDTO';
+import { ProofType, DocProofType } from '../../Models/ProofType';
 
 @Component({
   selector: 'app-document-upload',
