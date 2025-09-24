@@ -1,0 +1,49 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { EmployeeService } from '../../Services/employee.service';
+
+@Component({
+  selector: 'app-employee-upload',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './employee-upload.component.html',
+  styleUrls: ['./employee-upload.component.css']
+})
+export class EmployeeUploadComponent {
+  selectedFile: File | null = null;
+  message: string = '';
+  uploading: boolean = false;
+
+  constructor(private employeeService: EmployeeService) {}
+
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+    }
+  }
+
+  uploadFile() {
+  if (!this.selectedFile) {
+    alert('Please select a CSV file first.');
+    return;
+  }
+
+  this.uploading = true;
+  this.employeeService.uploadEmployees(this.selectedFile).subscribe({
+    next: (res: string) => {
+      this.message = res;
+      alert(res); // 
+      this.uploading = false;
+      this.selectedFile = null; 
+    },
+    error: (err: any) => {
+      console.error('Upload error:', err);
+      this.message = 'Failed to upload employees.';
+      alert('Failed to upload employees. Please check console.');
+      this.uploading = false;
+    }
+  });
+}
+
+}

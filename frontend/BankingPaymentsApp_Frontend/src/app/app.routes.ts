@@ -10,16 +10,21 @@ import { PaymentComponent } from './Components/payment/payment.component';
 import { BankRegisterComponent } from './Components/bank-register/bank-register.component';
 import { AdminComponent } from './Components/admin/admin.component';
 import { ListPaymentComponent } from './Components/list-payment/list-payment.component';
+import { ClientUserComponent } from './Components/client-user/client-user.component';
+import { EmployeeUploadComponent } from './Components/employee-upload/employee-upload.component';
 
 export const routes: Routes = [
-    { path:"Login",component:LoginComponent},
-    { path:"dashboard",component:DashboardComponent,canActivate:[roleGuard],data:{role:"CLIENT_USER"}},
-    { path:"ClientRegister", component : ClientRegisterComponent },
+    { path: '', component: LoginComponent },
+    { path: "Login", component: LoginComponent },
+    { path: "dashboard", component: DashboardComponent, canActivate: [roleGuard], data: { role: "CLIENT_USER" } },
+    { path: "ClientRegister", component: ClientRegisterComponent },
+    { path: "ClientUser", component: ClientUserComponent },
     { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
     { path: 'BankUser', component: BankUserComponent },
-    { path: "BankRegister", component:BankRegisterComponent},
-    { path: 'Admin', component:AdminComponent},
-    {path:"payment",component:PaymentComponent},
-    {path:"pendingPayment",component:ListPaymentComponent},
-    {path:"**",component:PageNotFoundComponent},
+    { path: "BankRegister", component: BankRegisterComponent },
+    { path: 'Admin', component: AdminComponent },
+    { path: "pendingPayment", component: ListPaymentComponent },
+    { path: "payment", component: PaymentComponent },
+    { path: "EmployeeUpload", component: EmployeeUploadComponent },
+    { path: "**", component: PageNotFoundComponent },
 ];

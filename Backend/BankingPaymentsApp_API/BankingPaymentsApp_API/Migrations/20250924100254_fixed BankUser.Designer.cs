@@ -12,8 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
+<<<<<<<< HEAD:Backend/BankingPaymentsApp_API/BankingPaymentsApp_API/Migrations/20250924100254_fixed BankUser.Designer.cs
     [Migration("20250924100254_fixed BankUser")]
     partial class fixedBankUser
+========
+    [Migration("20250923170746_changes in model")]
+    partial class changesinmodel
+>>>>>>>> 09f07286fd58509e36d83ca6bdea2ddca0c9ef52:Backend/BankingPaymentsApp_API/BankingPaymentsApp_API/Migrations/20250923170746_changes in model.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

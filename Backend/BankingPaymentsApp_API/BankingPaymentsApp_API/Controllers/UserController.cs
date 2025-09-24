@@ -33,7 +33,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         //POST: api/User
         [HttpPost]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateUser([FromBody] RegisterUserDTO regUser)
         {
             if (!ModelState.IsValid)

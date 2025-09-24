@@ -9,41 +9,67 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-login',
   standalone: true, 
-  imports: [ReactiveFormsModule,NgxCaptchaModule],
+  imports: [ReactiveFormsModule, NgxCaptchaModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loginResponse!: LoginResponseDTO;
 
-  siteKey:string = environment.recaptcha.siteKey;
+  siteKey: string = environment.recaptcha.siteKey;
 
   @ViewChild('captchaElem') captchaElem!: InvisibleReCaptchaComponent;
-  constructor(private fb: FormBuilder, private router: Router, private authSvc: AuthService,private reCaptchaV3Service: ReCaptchaV3Service) { }
+
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    private authSvc: AuthService,
+    private reCaptchaV3Service: ReCaptchaV3Service
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      userName: [""],
-      password: [""]
-    })
+      userName: ["", Validators.required],
+      password: ["", Validators.required]
+    });
   }
 
   handleSuccess(token: string) {
     console.log("Captcha success:", token);
+
     // Send login + token to backend
     this.authSvc.loginUser({
       ...this.loginForm.value,
       recaptchaToken: token
-    }).subscribe(
-      data => {
+    }).subscribe({
+      next: data => {
         this.authSvc.saveToken(data);
-        this.router.navigate(["/dashboard"]);
+
+        // Get role from saved token
+        const role = this.authSvc.getUserRole();
+
+        // Role-based navigation
+        switch (role) {
+          case "ADMIN":
+            this.router.navigate(['/Admin']);
+            break;
+          case "BANK_USER":
+            this.router.navigate(['/BankUser']);
+            break;
+          case "CLIENT_USER":
+            this.router.navigate(['/ClientUser']);
+            break;
+          default:
+            alert("Unknown role! Cannot navigate.");
+            break;
+        }
       },
-      error => {
-        console.log(error);
+      error: err => {
+        console.error("Login failed:", err);
+        alert("Login failed. Check credentials or try again.");
       }
-    );
+    });
   }
 
   handleReset() {
@@ -59,9 +85,11 @@ export class LoginComponent implements OnInit {
   }
 
   Login(loginForm: FormGroup) {
-    if (loginForm.valid) {
+    if (this.loginForm.valid) {
       // trigger invisible captcha check before login
       this.captchaElem.execute();
+    } else {
+      alert("Please enter username and password");
     }
   }
 }
