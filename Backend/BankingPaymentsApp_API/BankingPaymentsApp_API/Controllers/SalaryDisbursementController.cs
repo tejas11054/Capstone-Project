@@ -14,12 +14,14 @@ namespace BankingPaymentsApp_API.Controllers
     public class SalaryDisbursementController : ControllerBase
     {
         private readonly ISalaryDisbursementService _service;
+        private readonly IEmployeeService _employeeService;
         private readonly IMapper _mapper;
 
-        public SalaryDisbursementController(ISalaryDisbursementService service,IMapper mapper)
+        public SalaryDisbursementController(ISalaryDisbursementService service, IMapper mapper, IEmployeeService employeeService)
         {
             _service = service;
             _mapper = mapper;
+            _employeeService = employeeService;
         }
 
         // GET: api/SalaryDisbursement
@@ -54,12 +56,26 @@ namespace BankingPaymentsApp_API.Controllers
                 return BadRequest(ModelState);
 
             SalaryDisbursement disbursement = _mapper.Map<SalaryDisbursement>(disbursementDto);
-            var addedDisbursement = await _service.Add(disbursement);
+
+            if (!disbursementDto.AllEmployees && disbursementDto.EmployeeIds?.Count > 0)
+            {
+                var employees = await _employeeService.GetEmployeesByIDs(disbursementDto.EmployeeIds);
+
+                disbursement.Employees.Clear();
+                foreach (var emp in employees)
+                {
+                    disbursement.Employees.Add(emp); 
+                }
+            }
+
+            var addedDisbursement = await _service.Add(disbursement,disbursementDto.EmployeeIds);
+
             if (addedDisbursement == null)
                 return BadRequest("Unable to add Salary Disbursement!");
 
             return Ok(addedDisbursement);
         }
+
 
         // PUT: api/SalaryDisbursement/{id}
         [HttpPut("{id}")]
@@ -70,7 +86,7 @@ namespace BankingPaymentsApp_API.Controllers
             if (id != disbursement.SalaryDisbursementId)
                 return BadRequest("Disbursement Id does not match!");
 
-            SalaryDisbursement? existing  = await _service.GetById(id);
+            SalaryDisbursement? existing = await _service.GetById(id);
             existing.ClientId = disbursement.ClientId;
             existing.TotalAmount = disbursement.TotalAmount;
 
@@ -103,7 +119,7 @@ namespace BankingPaymentsApp_API.Controllers
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> RejectSalaryDisbursement(int id, [FromBody] RejectDTO reject)
         {
-            SalaryDisbursement approvedDisbursement = await _service.RejectSalaryDisbursement(id,reject.reason);
+            SalaryDisbursement approvedDisbursement = await _service.RejectSalaryDisbursement(id, reject.reason);
             SalaryResponseDTO salaryResponse = _mapper.Map<SalaryResponseDTO>(approvedDisbursement);
             return Ok(salaryResponse);
         }

@@ -8,7 +8,7 @@ namespace BankingPaymentsApp_API.DTOs
     {
         public int ClientId { get; set; }
         public bool AllEmployees { get; set; } = true;
-        public virtual ICollection<Employee>? Employees { get; set; } = new List<Employee>();   
+        public virtual ICollection<int>? EmployeeIds { get; set; } = new List<int>();   
 
     }
 }

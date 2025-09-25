@@ -22,7 +22,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Transaction
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllTransaction()
         {
             var transactions = await _transactionService.GetAll();

@@ -41,7 +41,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Document/{id}
         [HttpGet("{id}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<DocumentDTO>> GetById(int id)
         {
             var doc = await _documentService.GetById(id);
@@ -80,7 +80,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // DELETE: api/Document/{id}
         [HttpDelete("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult> Delete(int id)
         {
             var existingDoc = await _documentService.GetById(id);

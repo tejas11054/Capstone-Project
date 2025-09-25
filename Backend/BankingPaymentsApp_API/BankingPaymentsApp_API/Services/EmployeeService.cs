@@ -91,6 +91,21 @@ namespace BankingPaymentsApp_API.Services
             return employeeDtos;
         }
 
+        public async Task<ICollection<Employee>> GetEmployeesByIDs(ICollection<int> ids)
+        {
+            List<Employee> employees = new List<Employee>();
+            foreach(int id in ids)
+            {
+                Employee? employee = await _employeeRepository.GetById(id);
+                if(employee != null)
+                {
+                    employees.Add(employee);
+                }
+            }
+
+            return employees;
+        }
+
 
     }
 }

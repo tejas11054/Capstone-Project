@@ -6,7 +6,7 @@ namespace BankingPaymentsApp_API.Services
     {
         Task<IEnumerable<SalaryDisbursement>> GetAll();
         Task<SalaryDisbursement?> GetById(int id);
-        Task<SalaryDisbursement> Add(SalaryDisbursement disbursement);
+        Task<SalaryDisbursement> Add(SalaryDisbursement disbursement, ICollection<int> ids);
         Task<SalaryDisbursement?> Update(SalaryDisbursement disbursement);
         Task DeleteById(int id);
         public Task<SalaryDisbursement> ApproveSalaryDisbursement(int disbursementId);

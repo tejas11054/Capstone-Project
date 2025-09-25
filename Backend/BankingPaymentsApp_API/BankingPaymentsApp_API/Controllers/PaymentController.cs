@@ -20,6 +20,7 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Payment
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)}")]
         public async Task<IActionResult> GetAllPayments()
         {
             var payments =await _paymentService.GetAll();

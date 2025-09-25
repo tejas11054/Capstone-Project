@@ -13,6 +13,7 @@ namespace BankingPaymentsApp_API.Services
         public Task<IEnumerable<Employee>> BulkInsert(List<Employee> employees);
         public Task<IEnumerable<Employee>> GetEmployeesByClientId(int clientId);
         public Task<IEnumerable<EmployeeDTO>?> UploadEmployees(IFormFile file);
+        public Task<ICollection<Employee>> GetEmployeesByIDs(ICollection<int> ids);
 
-        }
+    }
 }

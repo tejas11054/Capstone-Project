@@ -13,10 +13,9 @@ namespace BankingPaymentsApp_API.Services
         private readonly IEmployeeService _employeeService;
         private readonly IEmailService _emailService;
         private readonly BankingPaymentsDBContext _dbContext;
-        private readonly ILogger<SalaryDisbursementService> _logger;
 
 
-        public SalaryDisbursementService(ISalaryDisbursementRepository salaryDisbursementRepository, IAccountService accountService, BankingPaymentsDBContext dBContext, ITransactionRepository transactionRepository, ISalaryDisbursementDetailsRepository detailsRepository,IEmployeeService employeeService, ILogger<SalaryDisbursementService> logger, IEmailService emailService)
+        public SalaryDisbursementService(ISalaryDisbursementRepository salaryDisbursementRepository, IAccountService accountService, BankingPaymentsDBContext dBContext, ITransactionRepository transactionRepository, ISalaryDisbursementDetailsRepository detailsRepository, IEmployeeService employeeService, IEmailService emailService)
         {
             _salaryDisbursementRepository = salaryDisbursementRepository;
             _accountService = accountService;
@@ -24,7 +23,6 @@ namespace BankingPaymentsApp_API.Services
             _transactionRepository = transactionRepository;
             _salaryDisbursementDetailsRepository = detailsRepository;
             _employeeService = employeeService;
-            _logger = logger;
             _emailService = emailService;
         }
 
@@ -36,7 +34,7 @@ namespace BankingPaymentsApp_API.Services
         {
             return await _salaryDisbursementRepository.GetById(id);
         }
-        public async Task<SalaryDisbursement> Add(SalaryDisbursement disbursement)
+        public async Task<SalaryDisbursement> Add(SalaryDisbursement disbursement, ICollection<int> ids)
         {
             decimal tAmount = 0;
             if (disbursement.AllEmployees)
@@ -52,11 +50,15 @@ namespace BankingPaymentsApp_API.Services
             }
             else
             {
-                foreach (Employee emp in disbursement.Employees)
+                var employees = await _employeeService.GetEmployeesByIDs(ids);
+                if (employees.Any())
                 {
-                    tAmount += emp.Salary;
+                    foreach (Employee emp in employees)
+                    {
+                        tAmount += emp.Salary;
+                    }
+                    disbursement.TotalAmount = tAmount;
                 }
-                disbursement.TotalAmount = tAmount;
             }
 
             return await _salaryDisbursementRepository.Add(disbursement);
