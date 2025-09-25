@@ -22,6 +22,7 @@ import { BeneficiariesComponent } from './Components/beneficiary/beneficiary.com
 import { BeneficiaryRegisterComponent } from './Components/beneficiary-register/beneficiary-register.component';
 import { EmployeesComponent } from './Components/employee-list/employee-list.component';
 import { ClientTransactionComponent } from './Components/client-transaction/client-transaction.component';
+import { ClientPaymentComponent } from './Components/client-payment/client-payment.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
@@ -36,6 +37,7 @@ export const routes: Routes = [
     { path: 'ClientUser/:userId/beneficiaries', component: BeneficiariesComponent },
     { path: 'ClientEmployees/:userId', component: EmployeesComponent },
     { path: 'ClientUser/:userId/transactions', component: ClientTransactionComponent },
+    { path: 'ClientUser/:userId/payments', component: ClientPaymentComponent },
     { path: 'BankUser', component: BankUserComponent },
     { path: "BankRegister", component: BankRegisterComponent },
     { path: 'Admin', component: AdminComponent },
