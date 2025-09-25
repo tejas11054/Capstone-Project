@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClientRegisterService } from '../../Services/client.service';
-import { DocumentUploadService } from '../../Services/document-upload.service';
+import { DocumentUploadService } from '../../Services/document.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
