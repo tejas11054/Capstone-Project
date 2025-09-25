@@ -24,12 +24,12 @@
         <td>{{ bank.kycVierified ? 'Yes' : 'No' }}</td>
         <td>
           <button
-            (click)="approveBank(bank)"
+            (click)="approveBankUser(bank)"
             [disabled]="processing[bank.userId || 0]">
             {{ processing[bank.userId || 0] ? 'Processing...' : 'Approve' }}
           </button>
 
-          <button (click)="rejectBank(bank, 'Not eligible')">Reject</button>
+          <button (click)="rejectBankUser(bank, 'Not eligible')">Reject</button>
         </td>
       </tr>
     </tbody>

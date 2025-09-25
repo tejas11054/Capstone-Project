@@ -13,7 +13,7 @@ export class BankRegisterService {
   constructor(private http: HttpClient) { }
 
   // Get all bank users
-  getBanks(): Observable<BankUser[]> {
+  getAllBankUsers(): Observable<BankUser[]> {
     return this.http.get<BankUser[]>(this.baseUrl);
   }
 
@@ -22,12 +22,12 @@ export class BankRegisterService {
     return this.http.get<BankUser>(`${this.baseUrl}/${userId}`);
   }
 
-   approveBank(userId: number, dto: any) {
+   approveBankUser(userId: number, dto: any) {
   return this.http.put(`${this.baseUrl}/approve/${userId}`, dto);
 }
 
   // Reject a bank user
-  rejectBank(bankId: number, reason: string): Observable<string> {
+  rejectBankUser(bankId: number, reason: string): Observable<string> {
     return this.http.put(`${this.baseUrl}/reject/${bankId}`, { reason }, { responseType: 'text' });
   }
 

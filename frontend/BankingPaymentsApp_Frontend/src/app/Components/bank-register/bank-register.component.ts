@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BankRegisterService } from '../../Services/bank.service';
+import { BankRegisterService } from '../../Services/bankUser.service';
 import { RegisterBankUserDTO } from '../../DTO/RegisterBankUserDTO';
 import { Router } from '@angular/router';
 
