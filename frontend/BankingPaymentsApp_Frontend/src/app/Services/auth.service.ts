@@ -27,6 +27,7 @@ export class AuthService {
 
       localStorage.setItem("token", response.token);
       localStorage.setItem("user", JSON.stringify(response.user));
+      localStorage.setItem("userId", JSON.stringify(response.user.userId));
 
       const payloadBase64 = response.token.split('.')[1];
 
@@ -64,6 +65,11 @@ export class AuthService {
 
   getToken():string | null{
     return localStorage.getItem("token");
+  }
+
+  getUserId(): number | null {
+    const id = localStorage.getItem("userId");
+    return id ? parseInt(id, 10) : null;
   }
 
 }

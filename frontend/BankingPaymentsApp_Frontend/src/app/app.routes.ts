@@ -15,14 +15,20 @@ import { EmployeeUploadComponent } from './Components/employee-upload/employee-u
 import { ListAllEmployeesComponent } from './Components/list-all-employees/list-all-employees.component';
 import { SalaryDisbursementComponent } from './Components/salary-disbursement/salary-disbursement.component';
 import { ListSalaryDisbursementComponent } from './Components/list-salary-disbursement/list-salary-disbursement.component';
+import { ClientProfileComponent } from './Components/client-profile/client-profile.component';
+import { ClientDocumentsComponent } from './Components/client-document/client-document.component';
+import { ClientAccountComponent } from './Components/client-account/client-account.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: "Login", component: LoginComponent },
     { path: "dashboard", component: DashboardComponent, canActivate: [roleGuard], data: { role: "CLIENT_USER" } },
     { path: "ClientRegister", component: ClientRegisterComponent },
-    { path: "ClientUser", component: ClientUserComponent },
+    { path: 'ClientUser/:id', component: ClientUserComponent },
+    { path: 'ClientUser/:id/profile', component: ClientProfileComponent },
+    { path: 'ClientDocuments/:userId', component: ClientDocumentsComponent },
     { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
+    { path: 'ClientAccount/:id', component: ClientAccountComponent },
     { path: 'BankUser', component: BankUserComponent },
     { path: "BankRegister", component: BankRegisterComponent },
     { path: 'Admin', component: AdminComponent },

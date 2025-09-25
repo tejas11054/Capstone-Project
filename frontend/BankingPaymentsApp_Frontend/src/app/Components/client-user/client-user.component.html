@@ -1,1 +1,19 @@
-<p>client-user works!</p>
+<div class="dashboard-container">
+  <h2>Welcome to Client Dashboard</h2>
+
+  <div class="dashboard-actions">
+
+    <button [routerLink]="['/ClientUser', userId, 'profile']">
+     My Profile
+    </button>
+
+    <button [routerLink]="['/ClientAccount', userId]">
+        My Account
+    </button>
+
+    <button [routerLink]="['/ClientDocuments', userId]">
+     My Documents
+    </button>
+
+  </div>
+</div>

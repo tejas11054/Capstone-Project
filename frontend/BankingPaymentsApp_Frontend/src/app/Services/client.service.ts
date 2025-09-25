@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
 import { RegisterClientUserDTO } from '../DTO/RegisterClientUserDTO';
 import { ClientUser } from '../Models/ClientUser';
+import { User } from '../Models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,6 @@ export class ClientRegisterService {
 }
 
 
-
   getClients(): Observable<ClientUser[]> {
     return this.http.get<ClientUser[]>(`${this.baseUrl}/ClientUser`);
   }
@@ -27,6 +27,11 @@ export class ClientRegisterService {
     return this.http.get<ClientUser>(`${this.baseUrl}/ClientUser/${clientId}`);
   }
 
+ updateClientUser(id: number, user: ClientUser): Observable<ClientUser> {
+  return this.http.put<ClientUser>(`${this.baseUrl}/ClientUser/${id}`, user);
+}
+
+  
  approveClient(clientId: number): Observable<any> {
   return this.http.get<ClientUser>(`${this.baseUrl}/ClientUser/${clientId}`)
     .pipe(

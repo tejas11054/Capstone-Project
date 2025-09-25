@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BankRegisterService } from '../../Services/bank.service';
 import { BankUser } from '../../Models/BankUser';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -13,6 +14,7 @@ import { BankUser } from '../../Models/BankUser';
 export class AdminComponent implements OnInit {
 
   banks: BankUser[] = [];
+  processing: Record<number, boolean> = {}; 
 
   constructor(private bankService: BankRegisterService) {}
 
@@ -43,24 +45,38 @@ export class AdminComponent implements OnInit {
   }
 
 
- // src/app/Components/admin/admin.component.ts
-approveBank(bank: BankUser) {
-  if (!bank.userId) {
-    alert('Missing user id.');
-    return;
-  }
+ approveBank(bank: BankUser) {
+  const id = bank.userId;
+  if (!id) return;
 
-  if (!confirm(`Approve ${bank.userFullName || bank.userName || 'this user'}?`)) return;
+  if (!confirm(`Approve ${bank.userFullName || bank.userName}?`)) return;
 
-  this.bankService.approveBank(bank.userId).subscribe({
-    next: () => {
-      alert('Bank user approved successfully!');
-      this.fetchBanks();
+  this.bankService.getBankUser(id).subscribe({
+    next: (fullBankUser) => {
+      // Build only the fields backend expects
+      const approveDto = {
+        userId: fullBankUser.userId,
+        userName: fullBankUser.userName,
+        password: fullBankUser.password, // if required
+        userRoleId: fullBankUser.userRoleId,
+        userEmail: fullBankUser.userEmail,
+        userPhone: fullBankUser.userPhone,
+        branch: fullBankUser.branch,
+        kycVierified: true // mark approved
+      };
+
+      this.bankService.approveBank(id, approveDto).subscribe({
+        next: () => {
+          alert('Bank user approved successfully!');
+          this.fetchBanks();
+        },
+        error: (err) => {
+          console.error('Approval failed:', err);
+          alert('Approval failed. See console.');
+        }
+      });
     },
-    error: (err) => {
-      console.error('Error approving bank user:', err);
-      alert('Failed to approve bank user. Check console.');
-    }
+    error: (err) => console.error('Error fetching user before approval:', err)
   });
 }
 

@@ -1,0 +1,42 @@
+<div *ngIf="loading" class="loading">
+  Loading documents...
+</div>
+
+<div *ngIf="!loading">
+  <h2>My Documents</h2>
+
+  <button type="button" (click)="goBack()" class="back-button">
+    ← Back
+  </button>
+
+  <div *ngIf="documents.length === 0">
+    No documents found.
+  </div>
+
+  <div *ngIf="documents.length > 0" class="documents-list">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Document Name</th>
+          <th>Proof Type ID</th>
+          <th>View</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doc of documents; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ doc.documentName }}</td>
+          <td>{{ doc.proofTypeId }}</td>
+          <td>
+            <a [href]="doc.documentURL" target="_blank"><button>View</button></a>
+          </td>
+          <td>
+            <a [href]="doc.documentURL" target="_blank"><button>Delete</button></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

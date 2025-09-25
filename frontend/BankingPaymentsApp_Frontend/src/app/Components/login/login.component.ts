@@ -46,8 +46,9 @@ export class LoginComponent implements OnInit {
       next: data => {
         this.authSvc.saveToken(data);
 
-        // Get role from saved token
+        // Get role and userId from saved token
         const role = this.authSvc.getUserRole();
+        const userId = this.authSvc.getUserId();
 
         // Role-based navigation
         switch (role) {
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/BankUser']);
             break;
           case "CLIENT_USER":
-            this.router.navigate(['/ClientUser']);
+            this.router.navigate(['/ClientUser', userId]); 
             break;
           default:
             alert("Unknown role! Cannot navigate.");
