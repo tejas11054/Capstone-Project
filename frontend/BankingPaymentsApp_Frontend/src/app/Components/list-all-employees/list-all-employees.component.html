@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <h1 class="mb-3">ALL EMPLOYEES</h1>
+  <hr>
+
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>
+          <input type="checkbox" [(ngModel)]="selectAll" (change)="selectAllEmployees($event)" />
+        </th>
+        <th>ID</th>
+        <th>Employee Name</th>
+        <th>Account Number</th>
+        <th>Bank Name</th>
+        <th>IFSC</th>
+        <th>Salary</th>
+        <th>Client User</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>
+          <input
+            type="checkbox"
+            [checked]="isSelected(employee)"
+            (change)="onEmployeeSelect(employee,$event)"
+          />
+        </td>
+        <td>{{ employee.employeeId }}</td>
+        <td>{{ employee.employeeName }}</td>
+        <td>{{ employee.accountNumber }}</td>
+        <td>{{ employee.bankName }}</td>
+        <td>{{ employee.ifsc }}</td>
+        <td>{{ employee.salary | currency }}</td>
+        <td>{{ employee.clientUser?.userName }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-1" (click)="viewEmployee(employee)">View</button>
+          <button class="btn btn-warning btn-sm me-1" (click)="editEmployee(employee)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee.employeeId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,1 +1,7 @@
-<p>salary-disbursement works!</p>
+
+<div class="container">
+    <form [formGroup]="salaryDisbursementForm" (submit)="CreateSalaryDisbursement()">
+        <button class="btn btn-success">Disburse Salary</button>
+    </form>
+</div>
+<app-list-all-employees (event)="handleEvent($event)"></app-list-all-employees>

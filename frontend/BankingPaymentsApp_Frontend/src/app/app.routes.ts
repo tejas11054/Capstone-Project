@@ -12,6 +12,9 @@ import { AdminComponent } from './Components/admin/admin.component';
 import { ListPaymentComponent } from './Components/list-payment/list-payment.component';
 import { ClientUserComponent } from './Components/client-user/client-user.component';
 import { EmployeeUploadComponent } from './Components/employee-upload/employee-upload.component';
+import { ListAllEmployeesComponent } from './Components/list-all-employees/list-all-employees.component';
+import { SalaryDisbursementComponent } from './Components/salary-disbursement/salary-disbursement.component';
+import { ListSalaryDisbursementComponent } from './Components/list-salary-disbursement/list-salary-disbursement.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
@@ -26,5 +29,8 @@ export const routes: Routes = [
     { path: "pendingPayment", component: ListPaymentComponent },
     { path: "payment", component: PaymentComponent },
     { path: "EmployeeUpload", component: EmployeeUploadComponent },
+    { path: "employees", component: ListAllEmployeesComponent },
+    { path: "salary", component: SalaryDisbursementComponent },
+    { path: "disbursement", component: ListSalaryDisbursementComponent },
     { path: "**", component: PageNotFoundComponent },
 ];

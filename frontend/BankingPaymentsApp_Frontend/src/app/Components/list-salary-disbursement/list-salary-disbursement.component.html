@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h1 class="mb-3">ALL SALARY DISBURSEMENTS</h1>
+  <hr>
+
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Client Name</th>
+        <th>Total Amount</th>
+        <th>Disbursement Date</th>
+        <th>Status</th>
+        <th>All Employees</th>
+        <th>Employees</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let disbursement of salaryDisbursement">
+        <td>{{ disbursement.salaryDisbursementId }}</td>
+        <td>{{ disbursement.clientUser?.userName }}</td>
+        <td>{{ disbursement.totalAmount | currency }}</td>
+        <td>{{ disbursement.disbursementDate | date:'short' }}</td>
+        <td>{{ disbursement.disbursementStatusId | paymentStatus }}</td>
+        <td>
+          <span *ngIf="disbursement.allEmployees; else partial">All</span>
+          <ng-template #partial>Selected</ng-template>
+        </td>
+        <td>
+          <ul *ngIf="disbursement.employees?.length; else noEmp">
+            <li *ngFor="let emp of disbursement.employees">
+              {{ emp.employeeName }}
+            </li>
+          </ul>
+          <ng-template #noEmp>—</ng-template>
+        </td>
+        <td>
+          <button class="btn btn-success btn-sm me-1" (click)="approveDisbursement(disbursement.salaryDisbursementId)">Approve</button>
+          <button class="btn btn-danger btn-sm" (click)="openFormModal(disbursement)">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Reject Modal -->
+<app-reject-modal 
+  #rejectModal 
+  [Parentid]="selectedDisbursement?.id" 
+  (formSubmit)="handleFormSubmit($event)">
+</app-reject-modal>
