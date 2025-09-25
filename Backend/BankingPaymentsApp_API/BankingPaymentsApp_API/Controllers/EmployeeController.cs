@@ -33,7 +33,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Employee
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllEmployees()
         {
             var employees = await _employeeService.GetAll();
@@ -44,7 +44,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Employee
         [HttpPost]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateEmployee(EmployeeDTO employee)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -56,7 +56,7 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Employee/{id}
         [HttpGet]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetEmployeeById(int id)
         {
             Employee? existingEmployee = await _employeeService.GetById(id);
@@ -68,7 +68,7 @@ namespace BankingPaymentsApp_API.Controllers
         // PUT: api/Employee/{id}
         [HttpPut]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateEmployee(int id, EmployeeDTO employee)
         {
             if (!ModelState.IsValid)
@@ -87,7 +87,7 @@ namespace BankingPaymentsApp_API.Controllers
         // DELETE: api/Employee/{id}
         [HttpDelete]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
             Employee? existingEmployee = await _employeeService.GetById(id);

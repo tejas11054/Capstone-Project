@@ -7,7 +7,7 @@ namespace BankingPaymentsApp_API.DTOs
         [JsonProperty("success")] 
         public bool Success { get; set; }
         [JsonProperty("score")] 
-        public double Score { get; set; } // v3 only
+        public double Score { get; set; }
         [JsonProperty("action")] 
         public string Action { get; set; }
         [JsonProperty("challenge_ts")] 
