@@ -44,7 +44,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Employee
         [HttpPost]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+       // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateEmployee(EmployeeDTO employee)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -56,7 +56,7 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Employee/{id}
         [HttpGet]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetEmployeeById(int id)
         {
             Employee? existingEmployee = await _employeeService.GetById(id);
@@ -68,7 +68,7 @@ namespace BankingPaymentsApp_API.Controllers
         // PUT: api/Employee/{id}
         [HttpPut]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateEmployee(int id, EmployeeDTO employee)
         {
             if (!ModelState.IsValid)
@@ -87,7 +87,7 @@ namespace BankingPaymentsApp_API.Controllers
         // DELETE: api/Employee/{id}
         [HttpDelete]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
             Employee? existingEmployee = await _employeeService.GetById(id);
@@ -163,5 +163,45 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok($"{employeeEntities.Count} employees inserted successfully.");
         }
 
+
+        // POST: api/Employee/update-employee/{clientId}
+        [HttpPost("update-employee/{clientId}")]
+        public async Task<IActionResult> UploadUpdateEmployeesByClient(int clientId, IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded!");
+
+            var employeeDtos = await _employeeService.UploadEmployees(file);
+
+            if (employeeDtos == null || employeeDtos.Count() == 0)
+                return BadRequest("No employees found in CSV.");
+
+            // Get existing employees of the client
+            var existingEmployees = (await _employeeService.GetEmployeesByClientId(clientId)).ToList();
+
+            var updatedCount = 0;
+
+            foreach (var dto in employeeDtos)
+            {
+                // Match by account number or employee name (or another unique field)
+                var emp = existingEmployees.FirstOrDefault(e => e.AccountNumber == dto.AccountNumber);
+                if (emp != null)
+                {
+                    emp.EmployeeName = dto.EmployeeName;
+                    emp.IFSC = dto.IFSC;
+                    emp.BankName = dto.BankName;
+
+                    await _employeeService.Update(emp);
+                    updatedCount++;
+                }
+            }
+
+            return Ok($"{updatedCount} employees updated successfully for client {clientId}.");
+        }
+
+
+
     }
+
+
 }

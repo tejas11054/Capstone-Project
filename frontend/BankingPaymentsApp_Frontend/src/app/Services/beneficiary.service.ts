@@ -15,4 +15,14 @@ export class BeneficiaryService {
   createBeneficiary(beneficiary: BeneficiaryDTO):Observable<Beneficiary>{
     return this.http.post<Beneficiary>(this.BeneficiaryURL,beneficiary);
   }
+
+   updateBeneficiary(id: number, beneficiary: any): Observable<any> {
+    return this.http.put(`${this.BeneficiaryURL}/${id}`, beneficiary);
+  }
+
+  deleteBeneficiary(id: number): Observable<any> {
+    return this.http.delete(`${this.BeneficiaryURL}/${id}`);
+  }
+
+
 }

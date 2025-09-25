@@ -63,34 +63,26 @@ namespace BankingPaymentsApp_API.Controllers
         }
 
         // PUT: api/Document/update/{id}
-        // Update existing document by uploading a new file
         [HttpPut("update/{id}")]
        // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateDocument(int id, [FromForm] DocumentDTO dto, IFormFile file)
         {
-            // Step 1: Fetch existing document
             var existingDoc = await _documentService.GetById(id);
             if (existingDoc == null)
                 return NotFound($"Document with ID {id} not found");
 
-            // Step 2: Validate uploaded file
             if (file == null || file.Length == 0)
                 return BadRequest("No file selected to update");
 
-
-            // Step 4: Upload new file to Cloudinary
             var uploadResult = await _cloudinaryService.UploadFileAsync(file);
 
-            // Step 5: Update document details
             existingDoc.DocumentName = dto.DocumentName ?? file.FileName;
             existingDoc.DocumentURL = uploadResult.FileUrl;
             existingDoc.PublicId = uploadResult.PublicId;
             existingDoc.ProofTypeId = dto.ProofTypeId != 0 ? dto.ProofTypeId : existingDoc.ProofTypeId;
 
-            // Step 6: Save changes in DB
             var updatedDoc = await _documentService.Update(existingDoc);
 
-            // Step 7: Return updated document info
             var updatedDto = new DocumentDTO
             {
                 DocumentId = updatedDoc.DocumentId,

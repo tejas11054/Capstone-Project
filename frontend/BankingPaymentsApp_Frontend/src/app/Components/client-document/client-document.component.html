@@ -14,32 +14,50 @@
   </div>
 
   <div *ngIf="documents.length > 0" class="documents-list">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Document Name</th>
-          <th>Proof Type ID</th>
-          <th>View</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let doc of documents; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ doc.documentName }}</td>
-          <td>{{ doc.proofTypeId }}</td>
-          <td>
-            <a [href]="doc.documentURL" target="_blank">
-              <button>View</button>
-            </a>
-          </td>
-          <td>
-  <button (click)="deleteDocument(doc.documentId)">Delete</button>
-</td>
+    <<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Document Name</th>
+      <th>Proof Type ID</th>
+      <th>View</th>
+      <th>Delete</th>
+      <th>Update</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let doc of documents; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ doc.documentName }}</td>
+      <td>{{ doc.proofTypeId }}</td>
+      <td>
+        <a [href]="doc.documentURL" target="_blank">
+          <button>View</button>
+        </a>
+      </td>
+      <td>
+        <button (click)="deleteDocument(doc.documentId)">Delete</button>
+      </td>
+      <td>
+        <input type="file" (change)="onFileSelected(doc, $event)" />
 
-        </tr>
-      </tbody>
-    </table>
+        <!-- Preview + Update Button -->
+        <div *ngIf="previewFiles[doc.documentId]" class="preview-section">
+          <div *ngIf="previewFiles[doc.documentId].file.type.startsWith('image/')">
+            <img [src]="previewFiles[doc.documentId].url" alt="Preview" width="80" height="80" />
+          </div>
+
+          <div *ngIf="!previewFiles[doc.documentId].file.type.startsWith('image/')">
+            <p>{{ previewFiles[doc.documentId].file.name }}</p>
+          </div>
+
+          <button (click)="confirmUpdate(doc)">Update</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
   </div>
 </div>

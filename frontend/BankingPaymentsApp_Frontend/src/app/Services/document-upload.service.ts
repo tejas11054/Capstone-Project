@@ -23,9 +23,22 @@ export class DocumentUploadService {
   }
 
   deleteDocument(documentId: number): Observable<any> {
-  // Assuming your backend DELETE endpoint is: /api/Document/{id}
   return this.http.delete(`${this.apiUrl.replace('/upload', '')}/${documentId}`);
 }
+
+updateDocument(documentId: number, dto: DocumentDTO, file: File): Observable<any> {
+  const formData = new FormData();
+  formData.append('DocumentName', dto.DocumentName);
+  formData.append('ProofTypeId', dto.ProofTypeId.toString());
+  formData.append('ClientId', dto.ClientId.toString());
+  if (file) {
+    formData.append('file', file);
+  }
+
+  // ✅ match backend route: api/Document/update/{id}
+  return this.http.put(`${this.apiUrl.replace('/upload', '')}/update/${documentId}`, formData);
+}
+
 
   
 }
