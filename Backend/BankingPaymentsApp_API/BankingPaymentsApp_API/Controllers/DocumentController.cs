@@ -31,12 +31,11 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Document
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<IEnumerable<DocumentDTO>>> GetAll()
         {
             var docs = await _documentService.GetAll();
-            var docDtos = _mapper.Map<IEnumerable<DocumentDTO>>(docs);
-            return Ok(docDtos);
+            return Ok(docs);
         }
 
         // GET: api/Document/{id}
@@ -47,8 +46,8 @@ namespace BankingPaymentsApp_API.Controllers
             var doc = await _documentService.GetById(id);
             if (doc == null) return NotFound($"Document with ID {id} not found");
 
-            var docDto = _mapper.Map<DocumentDTO>(doc);
-            return Ok(docDto);
+            //var docDto = _mapper.Map<DocumentDTO>(doc);
+            return Ok(doc);
         }
 
         // POST: api/Document
@@ -63,20 +62,48 @@ namespace BankingPaymentsApp_API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = created.DocumentId }, createdDto);
         }
 
-        // PUT: api/Document/{id}
-        [HttpPut("{id}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        public async Task<ActionResult<DocumentDTO>> Update(int id, DocumentDTO dto)
+        // PUT: api/Document/update/{id}
+        // Update existing document by uploading a new file
+        [HttpPut("update/{id}")]
+       // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        public async Task<IActionResult> UpdateDocument(int id, [FromForm] DocumentDTO dto, IFormFile file)
         {
+            // Step 1: Fetch existing document
             var existingDoc = await _documentService.GetById(id);
-            if (existingDoc == null) return NotFound($"Document with ID {id} not found");
+            if (existingDoc == null)
+                return NotFound($"Document with ID {id} not found");
 
-            _mapper.Map(dto, existingDoc); // Map new values into existing entity
-            var updated = await _documentService.Update(existingDoc);
+            // Step 2: Validate uploaded file
+            if (file == null || file.Length == 0)
+                return BadRequest("No file selected to update");
 
-            var updatedDto = _mapper.Map<DocumentDTO>(updated);
+
+            // Step 4: Upload new file to Cloudinary
+            var uploadResult = await _cloudinaryService.UploadFileAsync(file);
+
+            // Step 5: Update document details
+            existingDoc.DocumentName = dto.DocumentName ?? file.FileName;
+            existingDoc.DocumentURL = uploadResult.FileUrl;
+            existingDoc.PublicId = uploadResult.PublicId;
+            existingDoc.ProofTypeId = dto.ProofTypeId != 0 ? dto.ProofTypeId : existingDoc.ProofTypeId;
+
+            // Step 6: Save changes in DB
+            var updatedDoc = await _documentService.Update(existingDoc);
+
+            // Step 7: Return updated document info
+            var updatedDto = new DocumentDTO
+            {
+                DocumentId = updatedDoc.DocumentId,
+                ClientId = updatedDoc.ClientId,
+                DocumentName = updatedDoc.DocumentName,
+                DocumentURL = updatedDoc.DocumentURL,
+                ProofTypeId = updatedDoc.ProofTypeId,
+                PublicId = updatedDoc.PublicId
+            };
+
             return Ok(updatedDto);
         }
+
 
         // DELETE: api/Document/{id}
         [HttpDelete("{id}")]
@@ -163,6 +190,7 @@ namespace BankingPaymentsApp_API.Controllers
                 DocumentName = d.DocumentName,
                 DocumentURL = d.DocumentURL,
                 ProofTypeId = d.ProofTypeId,
+                DocumentId = d.DocumentId,
                 ClientId = d.ClientId,
                 PublicId = d.PublicId
             }).ToList();

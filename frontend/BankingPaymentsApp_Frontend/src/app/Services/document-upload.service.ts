@@ -21,4 +21,11 @@ export class DocumentUploadService {
 
     return this.http.post(`${this.apiUrl}`, formData);
   }
+
+  deleteDocument(documentId: number): Observable<any> {
+  // Assuming your backend DELETE endpoint is: /api/Document/{id}
+  return this.http.delete(`${this.apiUrl.replace('/upload', '')}/${documentId}`);
+}
+
+  
 }

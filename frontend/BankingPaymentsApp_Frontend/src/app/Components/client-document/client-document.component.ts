@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClientRegisterService } from '../../Services/client.service';
+import { DocumentUploadService } from '../../Services/document-upload.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -19,18 +20,26 @@ export class ClientDocumentsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private clientSvc: ClientRegisterService,
+    private documentSvc: DocumentUploadService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-  // Use '+' to cast string to number immediately
-  this.userId = +this.route.snapshot.paramMap.get('userId')!;
+    this.userId = +this.route.snapshot.paramMap.get('userId')!;
+    console.log('Client User ID:', this.userId);
 
-  console.log('Client User ID:', this.userId);
+    if (this.userId) {
+      this.loadDocuments();
+    } else {
+      console.error('User ID is invalid!');
+      this.loading = false;
+    }
+  }
 
-  if (this.userId) {
+  loadDocuments(): void {
     this.clientSvc.getClientDocuments(this.userId).subscribe({
       next: (docs) => {
+        console.log('Fetched documents from API:', docs); 
         this.documents = docs;
         this.loading = false;
       },
@@ -39,14 +48,35 @@ export class ClientDocumentsComponent implements OnInit {
         this.loading = false;
       }
     });
-  } else {
-    console.error('User ID is invalid!');
-    this.loading = false;
+  }
+
+  deleteDocument(documentId: number): void {
+  if (!documentId) {
+    console.error('Document ID is missing.');
+    alert('Document ID is missing. Cannot delete.');
+    return;
+  }
+
+  if (confirm('Are you sure you want to delete this document?')) {
+    this.documentSvc.deleteDocument(documentId).subscribe({
+      next: () => {
+        alert('Document deleted successfully.');
+        this.documents = this.documents.filter(doc => doc.documentId !== documentId);
+      },
+      error: (err) => {
+        console.error('Error deleting document:', err);
+        alert('Failed to delete document. Check console for details.');
+      }
+    });
   }
 }
 
-goBack(): void {
-  this.router.navigate(["/ClientUser/" + this.userId]);  // navigates to previous page
-}
 
+
+
+
+
+  goBack(): void {
+    this.router.navigate(["/ClientUser/" + this.userId]); 
+  }
 }

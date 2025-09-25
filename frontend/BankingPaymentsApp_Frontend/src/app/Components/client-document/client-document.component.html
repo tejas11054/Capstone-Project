@@ -30,11 +30,14 @@
           <td>{{ doc.documentName }}</td>
           <td>{{ doc.proofTypeId }}</td>
           <td>
-            <a [href]="doc.documentURL" target="_blank"><button>View</button></a>
+            <a [href]="doc.documentURL" target="_blank">
+              <button>View</button>
+            </a>
           </td>
           <td>
-            <a [href]="doc.documentURL" target="_blank"><button>Delete</button></a>
-          </td>
+  <button (click)="deleteDocument(doc.documentId)">Delete</button>
+</td>
+
         </tr>
       </tbody>
     </table>
