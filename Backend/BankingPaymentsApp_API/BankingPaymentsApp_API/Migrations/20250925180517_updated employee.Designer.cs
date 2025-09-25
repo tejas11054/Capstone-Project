@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    [Migration("20250924105639_initial")]
-    partial class initial
+    [Migration("20250925180517_updated employee")]
+    partial class updatedemployee
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,9 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
+                    b.Property<int>("BankId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
@@ -60,6 +63,8 @@ namespace BankingPaymentsApp_API.Migrations
                     b.HasIndex("AccountStatusId");
 
                     b.HasIndex("AccountTypeId");
+
+                    b.HasIndex("BankId");
 
                     b.HasIndex("ClientId")
                         .IsUnique()
@@ -132,6 +137,33 @@ namespace BankingPaymentsApp_API.Migrations
                             TypeId = 3,
                             Type = 2
                         });
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Bank", b =>
+                {
+                    b.Property<int>("BankId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BankId"));
+
+                    b.Property<string>("BankName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IFSC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("BankId");
+
+                    b.ToTable("Banks");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Beneficiary", b =>
@@ -232,6 +264,9 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<string>("IFSC")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Salary")
                         .HasColumnType("int");
@@ -505,6 +540,9 @@ namespace BankingPaymentsApp_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
+                    b.Property<int>("BankId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasMaxLength(13)
@@ -537,6 +575,8 @@ namespace BankingPaymentsApp_API.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("BankId");
 
                     b.HasIndex("UserRoleId");
 
@@ -639,6 +679,12 @@ namespace BankingPaymentsApp_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BankingPaymentsApp_API.Models.Bank", "Bank")
+                        .WithMany("Accounts")
+                        .HasForeignKey("BankId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BankingPaymentsApp_API.Models.ClientUser", "ClientUser")
                         .WithOne()
                         .HasForeignKey("BankingPaymentsApp_API.Models.Account", "ClientId");
@@ -646,6 +692,8 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Navigation("AccountStatus");
 
                     b.Navigation("AccountType");
+
+                    b.Navigation("Bank");
 
                     b.Navigation("ClientUser");
                 });
@@ -788,11 +836,19 @@ namespace BankingPaymentsApp_API.Migrations
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.User", b =>
                 {
+                    b.HasOne("BankingPaymentsApp_API.Models.Bank", "Bank")
+                        .WithMany("Users")
+                        .HasForeignKey("BankId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BankingPaymentsApp_API.Models.UserRole", "Role")
                         .WithMany()
                         .HasForeignKey("UserRoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Bank");
 
                     b.Navigation("Role");
                 });
@@ -811,6 +867,13 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Navigation("Account");
 
                     b.Navigation("BankUser");
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Bank", b =>
+                {
+                    b.Navigation("Accounts");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.Employee", b =>

@@ -6,6 +6,7 @@ namespace BankingPaymentsApp_API.DTOs
 {
     public class RegisterUserDTO
     {
+        public int BankId { get; set; }
         public string UserFullName { get; set; }
         public string UserName { get; set; }    
         public string Password { get; set; }

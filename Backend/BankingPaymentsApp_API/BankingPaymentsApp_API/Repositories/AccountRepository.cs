@@ -26,7 +26,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public async Task<Account?> GetById(int id)
         {
-            return await _dbContext.Accounts.Include(a => a.ClientUser).Include(a => a.AccountStatus).Include(a => a.AccountType).FirstOrDefaultAsync(u => u.AccountId.Equals(id));
+            return await _dbContext.Accounts.Include(a => a.ClientUser).Include(a => a.AccountStatus).Include(a => a.AccountType).Include(a => a.Bank).FirstOrDefaultAsync(u => u.AccountId.Equals(id));
         }
 
         public async Task<Account?> Update(Account account)

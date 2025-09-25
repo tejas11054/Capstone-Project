@@ -40,6 +40,22 @@ namespace BankingPaymentsApp_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Bank",
+                columns: table => new
+                {
+                    BankId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BankName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IFSC = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bank", x => x.BankId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PaymentStatuses",
                 columns: table => new
                 {
@@ -99,6 +115,7 @@ namespace BankingPaymentsApp_API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: true),
+                    BankId = table.Column<int>(type: "int", nullable: false),
                     Balance = table.Column<double>(type: "float", nullable: false),
                     AccountTypeId = table.Column<int>(type: "int", nullable: false),
                     AccountStatusId = table.Column<int>(type: "int", nullable: false),
@@ -119,6 +136,12 @@ namespace BankingPaymentsApp_API.Migrations
                         column: x => x.AccountTypeId,
                         principalTable: "AccountTypes",
                         principalColumn: "TypeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Accounts_Bank_BankId",
+                        column: x => x.BankId,
+                        principalTable: "Bank",
+                        principalColumn: "BankId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -164,6 +187,7 @@ namespace BankingPaymentsApp_API.Migrations
                     UserRoleId = table.Column<int>(type: "int", nullable: false),
                     UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BankId = table.Column<int>(type: "int", nullable: false),
                     UserJoiningDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     RefferalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -183,6 +207,12 @@ namespace BankingPaymentsApp_API.Migrations
                         column: x => x.AccountId,
                         principalTable: "Accounts",
                         principalColumn: "AccountId");
+                    table.ForeignKey(
+                        name: "FK_Users_Bank_BankId",
+                        column: x => x.BankId,
+                        principalTable: "Bank",
+                        principalColumn: "BankId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Users_Roles_UserRoleId",
                         column: x => x.UserRoleId,
@@ -455,6 +485,11 @@ namespace BankingPaymentsApp_API.Migrations
                 column: "AccountTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Accounts_BankId",
+                table: "Accounts",
+                column: "BankId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Accounts_ClientId",
                 table: "Accounts",
                 column: "ClientId",
@@ -549,6 +584,11 @@ namespace BankingPaymentsApp_API.Migrations
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Users_BankId",
+                table: "Users",
+                column: "BankId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_BankUserId",
                 table: "Users",
                 column: "BankUserId");
@@ -576,6 +616,14 @@ namespace BankingPaymentsApp_API.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Accounts_AccountTypes_AccountTypeId",
                 table: "Accounts");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Accounts_Bank_BankId",
+                table: "Accounts");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Users_Bank_BankId",
+                table: "Users");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Accounts_Users_ClientId",
@@ -616,6 +664,9 @@ namespace BankingPaymentsApp_API.Migrations
 
             migrationBuilder.DropTable(
                 name: "AccountTypes");
+
+            migrationBuilder.DropTable(
+                name: "Bank");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -15,6 +15,8 @@ namespace BankingPaymentsApp_API.Models
         [Required(ErrorMessage = "Account Number is Required!")]
         public string AccountNumber {  get; set; }
         [Required(ErrorMessage = "Bank Name is Required!")]
+        public bool IsActive { get; set; } = true;
+        [Required(ErrorMessage = "Bank Name is Required!")]
         public string BankName {  get; set; }
         [Required(ErrorMessage = "IFSC Code is Required!")]
         public string IFSC {  get; set; }

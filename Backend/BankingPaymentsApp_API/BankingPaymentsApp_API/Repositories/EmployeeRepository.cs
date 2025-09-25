@@ -50,7 +50,7 @@ namespace BankingPaymentsApp_API.Repositories
         {
             Employee? exisitngEmployee = await GetById(id);
             if (exisitngEmployee == null) return;
-            _dbContext.Employees.Remove(exisitngEmployee);
+            exisitngEmployee.IsActive = false;
             await _dbContext.SaveChangesAsync();
         }
 

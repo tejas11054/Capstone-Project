@@ -15,6 +15,8 @@ namespace BankingPaymentsApp_API.DTOs
         [Required]
         public int UserRoleId { get; set; } = 3;
         [Required]
+        public int BankId { get; set; }
+        [Required]
         public string Password { get; set; }
         [Required]
         public string ConfirmPassword { get; set; }
@@ -23,6 +25,5 @@ namespace BankingPaymentsApp_API.DTOs
         public DateTime DateOfBirth { get; set; }
         [Required]
         public string Address { get; set; }
-        public int? AccountId { get; set; }
     }
 }
