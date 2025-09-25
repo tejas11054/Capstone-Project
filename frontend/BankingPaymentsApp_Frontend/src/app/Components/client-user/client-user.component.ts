@@ -1,20 +1,52 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ClientRegisterService } from '../../Services/client.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-client-user',
-  imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './client-user.component.html',
   styleUrls: ['./client-user.component.css']
 })
 export class ClientUserComponent implements OnInit {
   userId!: number;
+  user: any = null;
+  loading = true;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private clientSvc: ClientRegisterService
+  ) {}
 
   ngOnInit(): void {
-    this.userId = Number(this.route.snapshot.paramMap.get('id'));
-    console.log("Client User ID:", this.userId);
+    // Get userId from route or localStorage
+    const idFromRoute = this.route.snapshot.paramMap.get('id');
+    const idFromStorage = localStorage.getItem('userId');
+
+    this.userId = idFromRoute ? +idFromRoute : idFromStorage ? +idFromStorage : 0;
+
+    if (this.userId) {
+      this.loadClientData();
+    } else {
+      console.error('Client User ID is invalid!');
+      this.loading = false;
+    }
+  }
+
+  loadClientData(): void {
+    this.clientSvc.getClientById(this.userId).subscribe({
+      next: (data: any) => {
+        this.user = data;
+        this.loading = false;
+        console.log('Client User Data:', this.user);
+      },
+      error: (err) => {
+        console.error('Error fetching client data:', err);
+        this.loading = false;
+      }
+    });
   }
 }

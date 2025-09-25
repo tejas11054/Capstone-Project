@@ -2,8 +2,10 @@
   Loading user profile...
 </div>
 
-<div *ngIf="!loading && profileForm" class="profile-container">
-  <h2>Edit Profile</h2>
+<div *ngIf="!loading && profileForm" class="profile-section">
+  <div class="section-header">
+    <h2>Edit Profile</h2>
+  </div>
 
   <!-- Back Button -->
   <button type="button" (click)="goBack()" class="back-button">
@@ -12,57 +14,50 @@
 
   <form [formGroup]="profileForm" (ngSubmit)="saveChanges()" class="profile-form">
     
-    <!-- Full Name -->
     <div class="form-group">
+      <input type="text" formControlName="userFullName" placeholder=" " />
       <label>Full Name</label>
-      <input type="text" formControlName="userFullName" />
       <div class="error" *ngIf="profileForm.get('userFullName')?.touched && profileForm.get('userFullName')?.invalid">
         Full name is required.
       </div>
     </div>
 
-    <!-- Username -->
     <div class="form-group">
+      <input type="text" formControlName="userName" placeholder=" " />
       <label>Username</label>
-      <input type="text" formControlName="userName" />
       <div class="error" *ngIf="profileForm.get('userName')?.touched && profileForm.get('userName')?.invalid">
         Username is required.
       </div>
     </div>
 
-    <!-- Email -->
     <div class="form-group">
+      <input type="email" formControlName="userEmail" placeholder=" " />
       <label>Email</label>
-      <input type="email" formControlName="userEmail" />
       <div class="error" *ngIf="profileForm.get('userEmail')?.touched && profileForm.get('userEmail')?.invalid">
         Please enter a valid email.
       </div>
     </div>
 
-    <!-- Phone -->
     <div class="form-group">
+      <input type="text" formControlName="userPhone" placeholder=" " />
       <label>Phone</label>
-      <input type="text" formControlName="userPhone" />
       <div class="error" *ngIf="profileForm.get('userPhone')?.touched && profileForm.get('userPhone')?.invalid">
         Phone number is required.
       </div>
     </div>
 
-    <!-- Date of Birth -->
     <div class="form-group">
+      <input type="date" formControlName="dateOfBirth" placeholder=" " />
       <label>Date of Birth</label>
-      <input type="date" formControlName="dateOfBirth" />
     </div>
 
-    <!-- Address -->
     <div class="form-group">
+      <input type="text" formControlName="address" placeholder=" " />
       <label>Address</label>
-      <input type="text" formControlName="address" />
     </div>
 
-    <!-- Buttons -->
     <div class="form-actions">
-      <button type="submit" [disabled]="profileForm.invalid">Save Changes</button>
+      <button type="submit" [disabled]="profileForm.invalid" class="submit-btn">Save Changes</button>
     </div>
   </form>
 </div>
