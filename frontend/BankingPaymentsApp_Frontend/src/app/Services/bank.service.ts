@@ -17,15 +17,14 @@ export class BankRegisterService {
     return this.http.get<BankUser[]>(this.baseUrl);
   }
 
-  approveBank(userId: number) {
-  // API currently ignores body, so send empty object
-  return this.http.put(`${this.baseUrl}/approve/${userId}`, {});
+  // Get one bank user by id
+  getBankUser(userId: number): Observable<BankUser> {
+    return this.http.get<BankUser>(`${this.baseUrl}/${userId}`);
+  }
+
+   approveBank(userId: number, dto: any) {
+  return this.http.put(`${this.baseUrl}/approve/${userId}`, dto);
 }
-
-
-
-
-
 
   // Reject a bank user
   rejectBank(bankId: number, reason: string): Observable<string> {
