@@ -45,7 +45,7 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Transaction/{id}
         [HttpGet]
         [Route("{id}")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetTransactionById(int id)
         {
             Transaction? existingTransaction = await _transactionService.GetById(id);
