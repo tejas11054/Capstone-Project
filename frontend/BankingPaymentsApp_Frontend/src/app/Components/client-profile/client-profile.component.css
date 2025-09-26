@@ -1,0 +1,161 @@
+html, body {
+  height:fit-content;
+  margin: 0;
+  padding: 0;
+  background-color: #12101b;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: #fff;
+}
+
+.loading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #12101b;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  color: #7a5af8 !important;
+}
+
+.loading p {
+  color: #ccc;
+  font-size: 1.1rem;
+}
+
+.profile-card {
+  width: 90%;
+  max-width: 850px;
+  border: 1px solid #3c3a4a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  background-color: #1f1c2f;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  transform: scale(1);
+}
+
+.card-header {
+  background-color: #12101b;
+  color: #fff;
+  padding: 1.5rem;
+  border-bottom: 1px solid #3c3a4a;
+  text-align: center;
+}
+
+.card-header h2 {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.5px;
+  font-size: 2rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #ccc;
+  opacity: 0.9;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #ccc;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.form-control {
+  border: 1px solid #3c3a4a;
+  border-radius: 12px;
+  padding: 1rem;
+  background: #12101b;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.4s;
+}
+
+.form-control:focus {
+  border-color: #7a5af8;
+  box-shadow: 0 0 20px rgba(122, 90, 248, 0.5);
+  outline: none;
+  background: #1f1c2f;
+}
+
+input[type="date"] {
+  color: #fff;
+  padding-right: .8rem; /* space for icon */
+  font-size: 1rem;
+  position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* make icon white */
+  cursor: pointer;
+  width: 1.5rem; /* make icon bigger */
+  height: 1.5rem;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+.submit-btn, .back-button {
+  background: linear-gradient(135deg, #7a5af8, #6a49e6);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  transition: all 0.4s;
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.3);
+  cursor: pointer;
+}
+
+.submit-btn:hover, .back-button:hover {
+  background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(122, 90, 248, 0.6);
+}
+
+.submit-btn:disabled, .back-button:disabled {
+  background: #3c3a4a;
+  color: #999;
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.buttons-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.submit-btn{
+    margin-left: 20px;
+}
+
+.back-button{
+    margin-right: 20px;
+}

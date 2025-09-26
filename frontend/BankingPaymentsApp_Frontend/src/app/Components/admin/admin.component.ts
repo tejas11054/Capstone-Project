@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BankRegisterService } from '../../Services/bank.service';
+import { BankRegisterService } from '../../Services/bankUser.service';
 import { BankUser } from '../../Models/BankUser';
 import { switchMap } from 'rxjs';
 
@@ -19,11 +19,11 @@ export class AdminComponent implements OnInit {
   constructor(private bankService: BankRegisterService) {}
 
   ngOnInit(): void {
-    this.fetchBanks();
+    this.fetchBankUsers();
   }
 
-  fetchBanks() {
-    this.bankService.getBanks().subscribe({
+  fetchBankUsers() {
+    this.bankService.getAllBankUsers().subscribe({
       next: (res: any[]) => {
         this.banks = res.map((b: any): BankUser => ({
           userId: b.userId ?? b.id,
@@ -47,7 +47,7 @@ export class AdminComponent implements OnInit {
   }
 
 
- approveBank(bank: BankUser) {
+ approveBankUser(bank: BankUser) {
   const id = bank.userId;
   if (!id) return;
 
@@ -67,10 +67,10 @@ export class AdminComponent implements OnInit {
         kycVierified: true // mark approved
       };
 
-      this.bankService.approveBank(id, approveDto).subscribe({
+      this.bankService.approveBankUser(id, approveDto).subscribe({
         next: () => {
           alert('Bank user approved successfully!');
-          this.fetchBanks();
+          this.fetchBankUsers();
         },
         error: (err) => {
           console.error('Approval failed:', err);
@@ -83,20 +83,11 @@ export class AdminComponent implements OnInit {
 }
 
 
-
-
-
-
-
-
-
-
-
-  rejectBank(bank: BankUser, reason: string) {
-    this.bankService.rejectBank(bank.userId, reason).subscribe({
+  rejectBankUser(bank: BankUser, reason: string) {
+    this.bankService.rejectBankUser(bank.userId, reason).subscribe({
       next: (res) => {
         alert(res); // backend response
-        this.fetchBanks();
+        this.fetchBankUsers();
       },
       error: (err) => {
         console.error('Error rejecting bank user:', err);

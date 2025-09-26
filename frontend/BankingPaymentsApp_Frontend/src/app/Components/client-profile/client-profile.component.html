@@ -1,68 +1,63 @@
-<div *ngIf="loading" class="loading">
-  Loading user profile...
+<div *ngIf="loading" class="loading text-center py-5">
+  <div class="spinner-border text-primary" role="status"></div>
+  <p class="mt-3">Loading user profile...</p>
 </div>
 
-<div *ngIf="!loading && profileForm" class="profile-container">
-  <h2>Edit Profile</h2>
-
-  <!-- Back Button -->
-  <button type="button" (click)="goBack()" class="back-button">
-    ← Back
-  </button>
-
-  <form [formGroup]="profileForm" (ngSubmit)="saveChanges()" class="profile-form">
-    
-    <!-- Full Name -->
-    <div class="form-group">
-      <label>Full Name</label>
-      <input type="text" formControlName="userFullName" />
-      <div class="error" *ngIf="profileForm.get('userFullName')?.touched && profileForm.get('userFullName')?.invalid">
-        Full name is required.
-      </div>
+<div *ngIf="!loading && profileForm" class="container py-5">
+  <div class="profile-card shadow-lg mx-auto">
+    <!-- Header -->
+    <div class="card-header text-center">
+      <h2>Edit Profile</h2>
     </div>
 
-    <!-- Username -->
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" formControlName="userName" />
-      <div class="error" *ngIf="profileForm.get('userName')?.touched && profileForm.get('userName')?.invalid">
-        Username is required.
-      </div>
-    </div>
+    <!-- Form -->
+    <div class="card-body">
+      <form [formGroup]="profileForm" (ngSubmit)="saveChanges()" class="row g-4">
 
-    <!-- Email -->
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" formControlName="userEmail" />
-      <div class="error" *ngIf="profileForm.get('userEmail')?.touched && profileForm.get('userEmail')?.invalid">
-        Please enter a valid email.
-      </div>
-    </div>
+        <div class="col-md-6">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" formControlName="userFullName" />
+        </div>
 
-    <!-- Phone -->
-    <div class="form-group">
-      <label>Phone</label>
-      <input type="text" formControlName="userPhone" />
-      <div class="error" *ngIf="profileForm.get('userPhone')?.touched && profileForm.get('userPhone')?.invalid">
-        Phone number is required.
-      </div>
-    </div>
+        <div class="col-md-6">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control" formControlName="userName" />
+        </div>
 
-    <!-- Date of Birth -->
-    <div class="form-group">
-      <label>Date of Birth</label>
-      <input type="date" formControlName="dateOfBirth" />
-    </div>
+        <div class="col-md-6">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="userEmail" />
+        </div>
 
-    <!-- Address -->
-    <div class="form-group">
-      <label>Address</label>
-      <input type="text" formControlName="address" />
-    </div>
+        <div class="col-md-6">
+          <label class="form-label">Phone</label>
+          <input type="text" class="form-control" formControlName="userPhone" />
+        </div>
 
-    <!-- Buttons -->
-    <div class="form-actions">
-      <button type="submit" [disabled]="profileForm.invalid">Save Changes</button>
+        <div class="col-md-6">
+          <label class="form-label">Date of Birth</label>
+          <input type="date" class="form-control" formControlName="dateOfBirth" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Address</label>
+          <input type="text" class="form-control" formControlName="address" />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Account Number</label>
+          <input type="text" class="form-control" formControlName="accountNumber" readonly />
+        </div>
+
+        <div class="col-12 text-center mt-4">
+          <button type="button" (click)="goBack()" class="btn back-button">
+            Back
+          </button>
+          <button type="submit" [disabled]="profileForm.invalid" class="btn submit-btn">
+            Save
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>

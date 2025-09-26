@@ -1,0 +1,87 @@
+<button type="button" (click)="goBack()" class="back-button">
+    ← Back
+  </button>
+
+<div class="csv-upload">
+  <input type="file" (change)="onCSVSelected($event)" accept=".csv" />
+  <button (click)="uploadCSV()" [disabled]="!csvFile">Add CSV</button>
+</div>
+
+<hr />
+
+<div class="csv-upload">
+  <input type="file" (change)="onUpdateCSVFileSelect($event)" accept=".csv" />
+  <button (click)="uploadUpdateCSVByClient()" [disabled]="!updateCSVFile">Update Employees via CSV</button>
+</div>
+
+<div *ngIf="loading" class="loading">
+  Loading employees...
+</div>
+
+<div *ngIf="!loading">
+  <h2>Employees</h2>
+
+  <div *ngIf="employees.length === 0">
+    No employees found.
+  </div>
+
+  <div *ngIf="employees.length > 0" class="employees-list">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Account Number</th>
+          <th>Bank Name</th>
+          <th>IFSC</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of employees; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ e.employeeName }}</td>
+          <td>{{ e.accountNumber }}</td>
+          <td>{{ e.bankName }}</td>
+          <td>{{ e.ifsc }}</td>
+          <td>{{ e.salary }}</td>
+          <td>
+            <button (click)="startEdit(e)">Update</button>
+            <button (click)="deleteEmployee(e.employeeId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Form -->
+  <div *ngIf="editingEmployee" class="edit-form">
+    <h3>Edit Employee</h3>
+    <form (ngSubmit)="saveEdit()">
+      <label>
+        Name:
+        <input [(ngModel)]="editingEmployee.employeeName" name="employeeName" required />
+      </label>
+      <label>
+        Account Number:
+        <input [(ngModel)]="editingEmployee.accountNumber" name="accountNumber" required />
+      </label>
+      <label>
+        Bank Name:
+        <input [(ngModel)]="editingEmployee.bankName" name="bankName" required />
+      </label>
+      <label>
+        IFSC:
+        <input [(ngModel)]="editingEmployee.ifsc" name="ifsc" required />
+      </label>
+      <label>
+        Salary:
+        <input type="number" [(ngModel)]="editingEmployee.salary" name="salary" required />
+      </label>
+      <br />
+      <button type="submit">Save</button>
+      <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+  </div>
+</div>

@@ -25,9 +25,26 @@ export class EmployeeService {
     return this.http.get<Employee[]>(this.baseUrl);
   }
 
-  deleteEmployee(id:number):Observable<void>{
-    return this.http.delete<void>(`${this.baseUrl}+/${id}`);
+  updateEmployee(id: number, employee: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}`, employee);
   }
+
+  deleteEmployee(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  uploadCSV(file: File): Observable<any> {
+  const formData = new FormData();
+  formData.append('file', file);
+  return this.http.post(`${this.baseUrl}/upload`, formData, { responseType: 'text' });
+}
+
+uploadUpdateCSVByClient(file: File, clientId: number): Observable<any> {
+  const formData = new FormData();
+  formData.append('file', file);
+  return this.http.post(`${this.baseUrl}/update-employee/${clientId}`, formData, { responseType: 'text' });
+}
+
 
   
 }

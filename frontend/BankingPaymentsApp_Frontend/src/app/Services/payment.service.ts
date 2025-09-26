@@ -17,6 +17,10 @@ export class PaymentService {
     return this.http.get<Array<Payment>>(this.paymentURL);
   }
 
+  getPaymentById(paymentId: number): Observable<any> {
+    return this.http.get<any>(`${this.paymentURL}/${paymentId}`);
+  }
+
   createPayment(payment:PaymentDTO):Observable<Payment>{
     return this.http.post<Payment>(this.paymentURL,payment)
   }
@@ -29,4 +33,6 @@ export class PaymentService {
   rejectPayment(rejectResponse:RejectDTO):Observable<void>{
     return this.http.put<void>(this.paymentURL+`/reject/${rejectResponse.id}`,rejectResponse);
   }
+
+
 }

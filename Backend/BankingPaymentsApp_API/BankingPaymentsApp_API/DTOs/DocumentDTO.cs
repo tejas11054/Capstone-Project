@@ -6,6 +6,7 @@
         public string DocumentName { get; set; }
         public int ProofTypeId { get; set; }
         public int ClientId { get; set; }
+        public int DocumentId { get; set; }
         public string? PublicId { get; set; }
     }
 }
