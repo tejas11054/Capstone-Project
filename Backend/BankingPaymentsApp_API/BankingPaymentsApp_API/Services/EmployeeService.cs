@@ -16,9 +16,9 @@ namespace BankingPaymentsApp_API.Services
             _employeeRepository = employeeRepository;
         }
 
-        public async Task<IEnumerable<Employee>> GetAll()
+        public async Task<IEnumerable<Employee>> GetAll(string? employeeName, string? accountNumber, string? bankName, string? ifsc, int? salary)
         {
-            return await _employeeRepository.GetAll();
+            return await _employeeRepository.GetAll(employeeName, accountNumber, bankName, ifsc, salary);
         }
 
         public async Task<Employee> Add(Employee employee)
@@ -46,10 +46,15 @@ namespace BankingPaymentsApp_API.Services
             return await _employeeRepository.BulkInsert(employees);
         }
 
-        public async Task<IEnumerable<Employee>> GetEmployeesByClientId(int clientId)
+        public async Task<IEnumerable<Employee>> GetEmployeesByClientId(int clientId,
+    string? employeeName = null,
+    string? accountNumber = null,
+    string? bankName = null,
+    string? ifsc = null,
+    int? salary = null)
         {
-            var employees = await _employeeRepository.GetAll();
-            return employees.Where(x => x.ClientId == clientId);
+            var employees = await _employeeRepository.GetAll(employeeName, accountNumber, bankName, ifsc, salary);
+            return employees.Where(e => e.ClientId == clientId).ToList();
         }
 
         public async Task<IEnumerable<EmployeeDTO>?> UploadEmployees(IFormFile file)

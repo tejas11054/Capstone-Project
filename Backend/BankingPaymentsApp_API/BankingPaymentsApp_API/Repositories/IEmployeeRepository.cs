@@ -4,7 +4,7 @@ namespace BankingPaymentsApp_API.Repositories
 {
     public interface IEmployeeRepository
     {
-        public Task<IEnumerable<Employee>> GetAll();
+        public Task<IEnumerable<Employee>> GetAll(string? employeeName, string? accountNumber, string? bankName, string? ifsc, int? salary);
         public Task<Employee> Add(Employee employee);
         public Task<Employee?> GetById(int id);
         public Task<Employee?> Update(Employee employee);

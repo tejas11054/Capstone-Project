@@ -12,9 +12,26 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        public async Task<IEnumerable<Employee>> GetAll()
+        public async Task<IEnumerable<Employee>> GetAll(string? employeeName, string? accountNumber, string? bankName, string? ifsc, int? salary)
         {
-            return await _dbContext.Employees.Include(e => e.ClientUser).ToListAsync();
+            var query = _dbContext.Employees.Include(e => e.ClientUser).AsQueryable();
+
+            if (!string.IsNullOrEmpty(employeeName))
+                query = query.Where(e => e.EmployeeName.Contains(employeeName));
+
+            if (!string.IsNullOrEmpty(accountNumber))
+                query = query.Where(e => e.AccountNumber.Contains(accountNumber));
+
+            if (!string.IsNullOrEmpty(bankName))
+                query = query.Where(e => e.BankName.Contains(bankName));
+
+            if (!string.IsNullOrEmpty(ifsc))
+                query = query.Where(e => e.IFSC.Contains(ifsc));
+
+            if (salary.HasValue)
+                query = query.Where(e => e.Salary == salary.Value);
+
+            return await query.ToListAsync();
         }
 
         public async Task<Employee> Add(Employee employee)

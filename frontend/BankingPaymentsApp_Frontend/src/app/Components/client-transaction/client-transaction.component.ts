@@ -84,7 +84,6 @@ export class ClientTransactionComponent implements OnInit {
 }
 
 
-
   resetFilters(): void {
     this.filterTransactionId = undefined;
     this.filterTransactionType = '';

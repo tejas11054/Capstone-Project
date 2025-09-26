@@ -31,20 +31,26 @@ namespace BankingPaymentsApp_API.Controllers
             _logger = logger;
         }
 
-        // GET: api/Employee
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        public async Task<IActionResult> GetAllEmployees()
+        public async Task<IActionResult> GetAllEmployees(
+     [FromQuery] string? employeeName,
+     [FromQuery] string? accountNumber,
+     [FromQuery] string? bankName,
+     [FromQuery] string? ifsc,
+     [FromQuery] int? salary)
         {
-            var employees = await _employeeService.GetAll();
-            if (employees.Count() == 0)
-                return NotFound("No Employee to display");
+            var employees = await _employeeService.GetAll(employeeName, accountNumber, bankName, ifsc, salary);
+            if (!employees.Any())
+                return NotFound("No Employees to display");
+
             return Ok(employees);
         }
 
+
         // POST: api/Employee
         [HttpPost]
-       // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
 
         public async Task<IActionResult> CreateEmployee(EmployeeDTO employee)
         {

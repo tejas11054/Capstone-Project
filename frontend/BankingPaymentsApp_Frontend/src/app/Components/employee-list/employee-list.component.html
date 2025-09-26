@@ -1,18 +1,19 @@
 <button type="button" (click)="goBack()" class="back-button">
-    ← Back
-  </button>
+  ← Back
+</button>
 
+<!-- CSV Upload -->
 <div class="csv-upload">
   <input type="file" (change)="onCSVSelected($event)" accept=".csv" />
   <button (click)="uploadCSV()" [disabled]="!csvFile">Add CSV</button>
 </div>
 
-<hr />
-
 <div class="csv-upload">
   <input type="file" (change)="onUpdateCSVFileSelect($event)" accept=".csv" />
   <button (click)="uploadUpdateCSVByClient()" [disabled]="!updateCSVFile">Update Employees via CSV</button>
 </div>
+
+<hr />
 
 <div *ngIf="loading" class="loading">
   Loading employees...
@@ -25,7 +26,20 @@
     No employees found.
   </div>
 
-  <div *ngIf="employees.length > 0" class="employees-list">
+  <!-- Filters -->
+  <div *ngIf="employees.length > 0" class="filters">
+    <input type="text" placeholder="Name" [(ngModel)]="filterName" />
+    <input type="text" placeholder="Account Number" [(ngModel)]="filterAccountNumber" />
+    <input type="text" placeholder="Bank Name" [(ngModel)]="filterBankName" />
+    <input type="text" placeholder="IFSC" [(ngModel)]="filterIFSC" />
+    <input type="number" placeholder="Salary" [(ngModel)]="filterSalary" />
+
+    <button (click)="applyFilters()">Apply Filters</button>
+    <button (click)="resetFilters()">Reset Filters</button>
+  </div>
+
+  <!-- Employee Table -->
+  <div class="employees-list">
     <table>
       <thead>
         <tr>
