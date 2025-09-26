@@ -112,7 +112,19 @@ namespace BankingPaymentsApp_API.Controllers
             await _paymentService.RejectPayment(id, rejectDTO.reason);
             return Ok("Payment Rejected Sucessfully");
         }
-        
+
+        [HttpGet("getPaymentsByAccountId/{id}")]
+        public async Task<IActionResult> GetPaymentsByAccountId(int id)
+        {
+            var payments = await _paymentService.GetPaymentsByAccountId(id);
+
+            if (payments == null || !payments.Any())
+            {
+                return NotFound($"No payments found for AccountId: {id}");
+            }
+
+            return Ok(payments);
+        }
 
     }
 }

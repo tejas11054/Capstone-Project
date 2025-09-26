@@ -40,7 +40,7 @@ namespace BankingPaymentsApp_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bank",
+                name: "Banks",
                 columns: table => new
                 {
                     BankId = table.Column<int>(type: "int", nullable: false)
@@ -52,7 +52,7 @@ namespace BankingPaymentsApp_API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bank", x => x.BankId);
+                    table.PrimaryKey("PK_Banks", x => x.BankId);
                 });
 
             migrationBuilder.CreateTable(
@@ -138,9 +138,9 @@ namespace BankingPaymentsApp_API.Migrations
                         principalColumn: "TypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Accounts_Bank_BankId",
+                        name: "FK_Accounts_Banks_BankId",
                         column: x => x.BankId,
-                        principalTable: "Bank",
+                        principalTable: "Banks",
                         principalColumn: "BankId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -208,9 +208,9 @@ namespace BankingPaymentsApp_API.Migrations
                         principalTable: "Accounts",
                         principalColumn: "AccountId");
                     table.ForeignKey(
-                        name: "FK_Users_Bank_BankId",
+                        name: "FK_Users_Banks_BankId",
                         column: x => x.BankId,
-                        principalTable: "Bank",
+                        principalTable: "Banks",
                         principalColumn: "BankId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -317,6 +317,7 @@ namespace BankingPaymentsApp_API.Migrations
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     BankName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IFSC = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salary = table.Column<int>(type: "int", nullable: false),
@@ -618,11 +619,11 @@ namespace BankingPaymentsApp_API.Migrations
                 table: "Accounts");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Accounts_Bank_BankId",
+                name: "FK_Accounts_Banks_BankId",
                 table: "Accounts");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Users_Bank_BankId",
+                name: "FK_Users_Banks_BankId",
                 table: "Users");
 
             migrationBuilder.DropForeignKey(
@@ -666,7 +667,7 @@ namespace BankingPaymentsApp_API.Migrations
                 name: "AccountTypes");
 
             migrationBuilder.DropTable(
-                name: "Bank");
+                name: "Banks");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -93,4 +93,8 @@ export class LoginComponent implements OnInit {
       alert("Please enter username and password");
     }
   }
+
+  logout(){
+    this.authSvc.logout();
+  }
 }

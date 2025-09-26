@@ -3,6 +3,7 @@ using BankingPaymentsApp_API.Data;
 using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Runtime.InteropServices;
 
 namespace BankingPaymentsApp_API.Services
@@ -166,6 +167,13 @@ namespace BankingPaymentsApp_API.Services
 
             Payment? updatedPayment = await _paymentRepository.Update(payment);
             return updatedPayment;
+        }
+
+        public async Task<List<Payment>> GetPaymentsByAccountId(int accountId)
+        {
+            var allPayments = await _paymentRepository.GetAll();
+            var userPayments = allPayments.Where(p => p.PayerAccountId == accountId).ToList();
+            return userPayments;
         }
 
     }

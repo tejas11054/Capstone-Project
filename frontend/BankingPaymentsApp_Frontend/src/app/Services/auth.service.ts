@@ -72,4 +72,8 @@ export class AuthService {
     return id ? parseInt(id, 10) : null;
   }
 
+  logout(){
+    localStorage.clear();
+  }
+
 }
