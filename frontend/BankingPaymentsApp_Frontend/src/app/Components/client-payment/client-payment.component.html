@@ -1,59 +1,39 @@
-<div *ngIf="loading" class="loading">
-  Loading payments...
-</div>
-
 <div *ngIf="!loading">
-  <h2>Payments</h2>
+  <h2>Client Payment Info</h2>
 
-  <div *ngIf="payments.length === 0">
-    No payments found.
+  <div *ngIf="filteredPayments.length === 0">
+    No data found.
   </div>
 
-  <div *ngIf="payments.length > 0">
-    <!-- Filters -->
-    <div class="filters">
-      <label>
-        Amount:
-        <input type="number" [(ngModel)]="filterAmount" (input)="applyFilters()">
-      </label>
-      <label>
-        Payee Account:
-        <input type="text" [(ngModel)]="filterPayee" (input)="applyFilters()">
-      </label>
-      <label>
-        Date:
-        <input type="date" [(ngModel)]="filterDate" (change)="applyFilters()">
-      </label>
-      <button (click)="resetFilters()">Reset</button>
-    </div>
-
-    <!-- Table -->
+  <div *ngIf="filteredPayments.length > 0">
+    <!-- Client Details -->
     <table border="1" cellpadding="5" cellspacing="0">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Payer Account Number</th>
-          <th>Payee Account Number</th>
-          <th>Amount</th>
-          <th>Status</th>
-          <th>Created At</th>
-          <th>Action At</th>
+          <th>Account ID</th>
+          <th>Account Number</th>
+          <th>Balance</th>
+          <th>Bank</th>
+          <th>Branch</th>
+          <th>Client Name</th>
+          <th>Email</th>
+          <th>Phone</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let p of filteredPayments; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ p.payerAccountNumber }}</td>
-          <td>{{ p.payeeAccountNumber }}</td>
-          <td>{{ p.amount }}</td>
-          <td>{{ p.paymentStatus }}</td>
-          <td>{{ p.createdAt | date:'short' }}</td>
-          <td>{{ p.actionAt | date:'short' }}</td>
-        </tr>
-        <tr *ngIf="filteredPayments.length === 0">
-          <td colspan="7">No payments found for the selected filters.</td>
+        <tr *ngFor="let c of filteredPayments">
+          <td>{{ c.accountId }}</td>
+          <td>{{ c.accountNumber }}</td>
+          <td>{{ c.balance }}</td>
+          <td>{{ c.bankName }}</td>
+          <td>{{ c.branch }}</td>
+          <td>{{ c.userFullName }}</td>
+          <td>{{ c.userEmail }}</td>
+          <td>{{ c.userPhone }}</td>
         </tr>
       </tbody>
     </table>
+
+    
   </div>
 </div>

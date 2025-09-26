@@ -19,6 +19,7 @@ export class DocumentUploadComponent implements OnInit {
   proofTypes: ProofType[] = [];
   clientId!: number;
   documentFields = ['Document1', 'Document2', 'Document3', 'Document4'];
+  previewUrls: { [key: string]: string | ArrayBuffer | null } = {};
 
   constructor(
     private fb: FormBuilder,
@@ -64,12 +65,27 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   // Handle file selection
-  onFileSelected(event: any, docField: string) {
-    const file = event.target.files[0];
-    if (file) {
-      this.getFormGroup(docField).patchValue({ File: file });
-    }
+ onFileSelected(event: any, docField: string) {
+  const file = event.target.files[0];
+  if (file) {
+    this.getFormGroup(docField).patchValue({ File: file });
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewUrls[docField] = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
+}
+
+isImage(url: string | ArrayBuffer | null): boolean {
+  return typeof url === 'string' && url.startsWith('data:image');
+}
+
+isPdf(url: string | ArrayBuffer | null): boolean {
+  return typeof url === 'string' && url.startsWith('data:application/pdf');
+}
+
 
   // Upload all documents at once
   uploadAllDocuments() {
@@ -94,7 +110,7 @@ export class DocumentUploadComponent implements OnInit {
   Promise.all(uploadObservables.map(obs => obs.toPromise()))
     .then(() => {
       alert('All documents uploaded successfully!');
-      this.router.navigate(['/Login']); // <-- Navigate to login after success
+      this.router.navigate([`/ClientUser/${this.clientId}`]); 
     })
     .catch(err => {
       console.error(err);

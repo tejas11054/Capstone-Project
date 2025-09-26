@@ -5,12 +5,15 @@
   <div *ngFor="let doc of documentFields">
     <h3>{{doc}}</h3>
     <div [formGroupName]="doc">
+      
+      <!-- Document Name -->
       <label>Document Name:</label>
       <input formControlName="DocumentName" type="text">
       <div *ngIf="getFormGroup(doc).get('DocumentName')?.touched && getFormGroup(doc).get('DocumentName')?.invalid">
         Document Name is required.
       </div>
 
+      <!-- Proof Type -->
       <label>Proof Type:</label>
       <select formControlName="ProofTypeId">
         <option value="" disabled>Select Proof Type</option>
@@ -20,11 +23,27 @@
         Proof Type is required.
       </div>
 
+      <!-- File Upload -->
       <label>Select File:</label>
       <input type="file" (change)="onFileSelected($event, doc)">
       <div *ngIf="!getFormGroup(doc).get('File')?.value">
         File is required.
       </div>
+
+      <!-- Preview Section -->
+      <div *ngIf="previewUrls[doc]" class="preview-box">
+        <!-- Image -->
+        <img *ngIf="isImage(previewUrls[doc])" [src]="previewUrls[doc]" width="150" height="100">
+
+        <!-- PDF -->
+        <iframe *ngIf="isPdf(previewUrls[doc])" [src]="previewUrls[doc]" width="200" height="150"></iframe>
+
+        <!-- Other files -->
+        <p *ngIf="previewUrls[doc] && !isImage(previewUrls[doc]) && !isPdf(previewUrls[doc])">
+          {{ getFormGroup(doc).get('File')?.value?.name }}
+        </p>
+      </div>
+
     </div>
     <hr>
   </div>

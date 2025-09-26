@@ -32,9 +32,10 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Document
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        public async Task<ActionResult<IEnumerable<DocumentDTO>>> GetAll()
+        public async Task<ActionResult<IEnumerable<DocumentDTO>>> GetAll(
+            [FromQuery] string? DocumentName)
         {
-            var docs = await _documentService.GetAll();
+            var docs = await _documentService.GetAll(DocumentName);
             return Ok(docs);
         }
 

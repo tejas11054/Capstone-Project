@@ -21,6 +21,10 @@ export class PaymentService {
     return this.http.get<any>(`${this.paymentURL}/${paymentId}`);
   }
 
+  getPaymentByAccountId(accountId : number) : Observable<any>{
+    return this.http.get<any>(`${this.paymentURL}/${accountId}`);
+  }
+
   createPayment(payment:PaymentDTO):Observable<Payment>{
     return this.http.post<Payment>(this.paymentURL,payment)
   }

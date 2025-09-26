@@ -43,41 +43,41 @@ export class ClientPaymentComponent implements OnInit {
   }
 
   loadClientPayments(): void {
-    this.clientSvc.getClientById(this.userId).subscribe({
-      next: (clientData: any) => {
-        const paymentIds = clientData.account?.paymentIds || [];
-        if (paymentIds.length === 0) {
-          this.loading = false;
-          return;
+  this.clientSvc.getClientById(this.userId).subscribe({
+    next: (clientData: any) => {
+      console.log('Client Response:', clientData);
+
+      // Pick only the important fields
+      this.payments = [
+        {
+          accountId: clientData.account?.accountId,
+          accountNumber: clientData.account?.accountNumber,
+          balance: clientData.account?.balance,
+          bankName: clientData.account?.bank?.bankName,
+          userFullName: clientData.userFullName,
+          userEmail: clientData.userEmail,
+          userPhone: clientData.userPhone,
+          branch: clientData.bankUser?.branch,
+          employees: clientData.employees?.map((e: any) => ({
+            employeeId: e.employeeId,
+            employeeName: e.employeeName,
+            bankName: e.bankName,
+            accountNumber: e.accountNumber,
+            salary: e.salary,
+            isActive: e.isActive
+          })) || []
         }
+      ];
 
-        const requests = paymentIds.map((id: number) => this.paymentSvc.getPaymentById(id));
-
-        Promise.all(requests.map((r: { toPromise: () => any; }) => r.toPromise())).then(results => {
-          // Map only required fields
-          this.payments = results.map((p: any) => ({
-            paymentId: p.paymentId,
-            payerAccountNumber: p.payerAccount?.accountNumber,
-            payeeAccountNumber: p.payeeAccountNumber,
-            amount: p.amount,
-            paymentStatus: p.paymentStatus?.status || 'Pending',
-            createdAt: p.createdAt,
-            actionAt: p.actionAt
-          }));
-
-          this.filteredPayments = [...this.payments]; // initialize filtered list
-          this.loading = false;
-        }).catch(err => {
-          console.error('Error fetching payments:', err);
-          this.loading = false;
-        });
-      },
-      error: err => {
-        console.error('Error fetching client:', err);
-        this.loading = false;
-      }
-    });
-  }
+      this.filteredPayments = [...this.payments];
+      this.loading = false;
+    },
+    error: err => {
+      console.error('Error fetching client:', err);
+      this.loading = false;
+    }
+  });
+}
 
   applyFilters(): void {
     this.filteredPayments = this.payments.filter(p => {

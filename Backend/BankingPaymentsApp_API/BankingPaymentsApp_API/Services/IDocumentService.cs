@@ -4,7 +4,8 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IDocumentService
     {
-        public Task<IEnumerable<Document>> GetAll();
+        public Task<IEnumerable<Document>> GetAll(
+            string? documentName);
         public Task<Document> Add(Document document);
         public Task<Document?> GetById(int id);
         public Task<Document?> Update(Document document);

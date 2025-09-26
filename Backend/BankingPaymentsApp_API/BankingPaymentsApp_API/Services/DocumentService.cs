@@ -1,5 +1,7 @@
 ﻿using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -12,10 +14,17 @@ namespace BankingPaymentsApp_API.Services
             _documentRepository = documentRepository;
         }
 
-        public async Task<IEnumerable<Document>> GetAll()
+        public async Task<IEnumerable<Document>> GetAll(string? documentName)
         {
-            return await _documentRepository.GetAll();
+            var query = _documentRepository.GetAll(); 
+
+            if (!string.IsNullOrEmpty(documentName))
+                query = query.Where(d => d.DocumentName.Contains(documentName));
+
+            return await query.ToListAsync(); 
         }
+
+
 
         public async Task<Document> Add(Document document)
         {
@@ -41,5 +50,7 @@ namespace BankingPaymentsApp_API.Services
         {
             return await _documentRepository.GetDocumentByClientId(clientId);
         }
+
+
     }
 }
