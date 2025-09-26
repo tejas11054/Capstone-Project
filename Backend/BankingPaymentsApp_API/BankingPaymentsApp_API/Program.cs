@@ -52,6 +52,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<ISalaryDisbursementRepository, SalaryDisbursementRepository>();
             builder.Services.AddScoped<ISalaryDisbursementDetailsRepository, SalaryDisbursementDetailsRepository>();
             builder.Services.AddScoped<IEmailRepository, EmailRepository>();
+            builder.Services.AddScoped<IBankRepository, BankRepository>();
 
 
             //Adding Services
@@ -68,6 +69,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ISalaryDisbursementService, SalaryDisbursementService>();
             builder.Services.AddScoped<ISalaryDisbursementDetailsService, SalaryDisbursementDetailsService>();
+            builder.Services.AddScoped<IBankService, BankService>();
             builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             builder.Services.AddScoped<IEmailService, EmailService>();
 
@@ -98,6 +100,7 @@ namespace BankingPaymentsApp_API
                 options.CreateMap<EmployeeDTO, Employee>();
                 options.CreateMap<CreateSalaryDisbursmentDTO, SalaryDisbursement>();
                 options.CreateMap<SalaryDisbursement, SalaryResponseDTO>();
+                options.CreateMap<BankDTO, Bank>();
             });
 
             //Logger Configuration

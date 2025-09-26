@@ -11,6 +11,7 @@ namespace BankingPaymentsApp_API.Data
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountStatus> AccountStatuses { get; set; }
         public DbSet<AccountType> AccountTypes { get; set; }
+        public DbSet<Bank> Banks { get; set; }
         public DbSet<BankUser> BankUsers { get; set; }
         public DbSet<Beneficiary> Beneficiaries { get; set; }
         public DbSet<ClientUser> ClientUsers { get; set; }

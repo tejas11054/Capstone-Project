@@ -62,6 +62,7 @@ namespace BankingPaymentsApp_API.Services
                 AccountNumber = await _accountService.GenerateAccountNumber(),
                 AccountStatusId = 1,
                 AccountTypeId = 1,
+                BankId = clientUser.BankId,
                 ClientId = clientUser.UserId,
                 Balance = 0,
             };

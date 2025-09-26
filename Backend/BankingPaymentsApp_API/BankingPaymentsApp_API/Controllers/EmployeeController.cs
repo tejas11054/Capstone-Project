@@ -33,7 +33,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Employee
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllEmployees()
         {
             var employees = await _employeeService.GetAll();
@@ -44,7 +44,11 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Employee
         [HttpPost]
+<<<<<<< HEAD
        // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+=======
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+>>>>>>> f1f0e9b2591283b25cd85da04dc5e6d5cb50449f
         public async Task<IActionResult> CreateEmployee(EmployeeDTO employee)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

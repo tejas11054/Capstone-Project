@@ -13,7 +13,9 @@ namespace BankingPaymentsApp_API.DTOs
         [Required]
         public string UserPhone { get; set; }
         [Required]
-        public int UserRoleId { get; set; }
+        public int UserRoleId { get; set; } = 2;
+        [Required]
+        public int BankId {  get; set; }
         [Required]
         public string Password { get; set; }
         [Required]

@@ -13,6 +13,9 @@ namespace BankingPaymentsApp_API.Models
         [ForeignKey("ClientUser")]
         public int? ClientId {  get; set; }
         public virtual ClientUser? ClientUser { get; set; }
+        [ForeignKey("Bank")]
+        public int BankId {  get; set; }
+        public virtual Bank? Bank { get; set; }
         [Required(ErrorMessage = "Balance in Required!")]
         [DataType(DataType.Currency)]
         public double Balance { get; set; } = 0;
