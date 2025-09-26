@@ -30,8 +30,9 @@ export class EmployeeService {
   }
 
   deleteEmployee(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
-  }
+  return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+}
+
 
   uploadCSV(file: File): Observable<any> {
   const formData = new FormData();

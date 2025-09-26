@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h2>Salary Disbursement</h2>
+
+  <form [formGroup]="salaryDisbursementForm" (ngSubmit)="createSalaryDisbursement()">
+    <button type="submit" class="btn btn-success mb-3">Disburse Salary</button>
+  </form>
+
+  <!-- Employee Table -->
+  <div class="employees-list">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>
+            <input type="checkbox" [(ngModel)]="selectAll" (change)="selectAllEmployees($event)" />
+          </th>
+          <th>#</th>
+          <th>Name</th>
+          <th>Account Number</th>
+          <th>Bank Name</th>
+          <th>IFSC</th>
+          <th>Salary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of employees; index as i">
+          <td>
+            <input
+              type="checkbox"
+              [checked]="isSelected(e)"
+              (change)="onEmployeeSelect(e, $event)"
+            />
+          </td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ e.employeeName }}</td>
+          <td>{{ e.accountNumber }}</td>
+          <td>{{ e.bankName }}</td>
+          <td>{{ e.ifsc }}</td>
+          <td>{{ e.salary | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

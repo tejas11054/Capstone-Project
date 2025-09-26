@@ -1,13 +1,27 @@
-<div *ngIf="!loading">
-  <h2>Client Payment Info</h2>
+<div *ngIf="!loading" class="transactions-section documents-section">
+  <h2 class="section-title">Client Payment Info</h2>
 
-  <div *ngIf="filteredPayments.length === 0">
+  <div class="filter-section d-flex flex-wrap gap-3 justify-content-center mb-4">
+    <input type="number" class="form-control-dark" placeholder="Transaction ID"  />
+
+    <input type="date" class="form-control-dark"/>
+
+    <button class="btn btn-primary btn-filter" >
+      <i class="fas fa-filter"></i> Filter
+    </button>
+    <button class="btn btn-secondary btn-filter">
+      <i class="fas fa-redo"></i> Reset
+    </button>
+  </div>
+
+
+  <div *ngIf="filteredPayments.length === 0" class="no-data">
     No data found.
   </div>
 
-  <div *ngIf="filteredPayments.length > 0">
+  <div *ngIf="filteredPayments.length > 0" class="transactions-table-wrapper">
     <!-- Client Details -->
-    <table border="1" cellpadding="5" cellspacing="0">
+    <table class="doc-table">
       <thead>
         <tr>
           <th>Account ID</th>
@@ -24,7 +38,7 @@
         <tr *ngFor="let c of filteredPayments">
           <td>{{ c.accountId }}</td>
           <td>{{ c.accountNumber }}</td>
-          <td>{{ c.balance }}</td>
+          <td>{{ c.balance | currency:'INR' }}</td>
           <td>{{ c.bankName }}</td>
           <td>{{ c.branch }}</td>
           <td>{{ c.userFullName }}</td>
@@ -33,7 +47,5 @@
         </tr>
       </tbody>
     </table>
-
-    
   </div>
 </div>

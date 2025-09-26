@@ -44,15 +44,9 @@
           <input type="text" class="form-control" formControlName="address" />
         </div>
 
-        <div class="col-12">
-          <label class="form-label">Account Number</label>
-          <input type="text" class="form-control" formControlName="accountNumber" readonly />
-        </div>
 
         <div class="col-12 text-center mt-4">
-          <button type="button" (click)="goBack()" class="btn back-button">
-            Back
-          </button>
+
           <button type="submit" [disabled]="profileForm.invalid" class="btn submit-btn">
             Save
           </button>

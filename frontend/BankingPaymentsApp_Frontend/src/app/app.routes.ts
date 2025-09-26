@@ -23,22 +23,39 @@ import { BeneficiaryRegisterComponent } from './Components/beneficiary-register/
 import { EmployeesComponent } from './Components/employee-list/employee-list.component';
 import { ClientTransactionComponent } from './Components/client-transaction/client-transaction.component';
 import { ClientPaymentComponent } from './Components/client-payment/client-payment.component';
+import { ClientSalaryDisbursementComponent } from './Components/client-salary-disbursement/client-salary-disbursement.component';
 
 export const routes: Routes = [
+     {
+    path: 'ClientUser/:id',
+    component: ClientUserComponent, // dashboard parent
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: '' },
+      { path: 'home', pathMatch: 'full', redirectTo: '' },
+      { path: 'profile/:id', component: ClientProfileComponent },
+      { path: 'ClientAccount/:id', component: ClientAccountComponent },
+      { path: 'ClientDocuments/:userId', component: ClientDocumentsComponent },
+      { path: 'ClientUser/:userId/beneficiaries', component: BeneficiariesComponent },
+      { path: 'ClientUser/:userId/transactions', component: ClientTransactionComponent },
+      { path: 'ClientEmployees/:userId', component: EmployeesComponent },
+      { path: 'ClientPayments/:clientId', component: ClientPaymentComponent },
+    ]
+  },
     { path: '', component: LoginComponent },
     { path: "login", component: LoginComponent },
     { path: "dashboard", component: DashboardComponent, canActivate: [roleGuard], data: { role: "CLIENT_USER" } },
     { path: "ClientRegister", component: ClientRegisterComponent },
     { path: 'ClientUser/:id', component: ClientUserComponent },
-    { path: 'ClientUser/:id/profile', component: ClientProfileComponent },
-    { path: 'ClientDocuments/:userId', component: ClientDocumentsComponent },
+    
+    
     { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
-    { path: 'ClientAccount/:id', component: ClientAccountComponent },
-    { path: 'ClientUser/:userId/beneficiaries', component: BeneficiariesComponent },
-    { path: 'ClientEmployees/:userId', component: EmployeesComponent },
-    { path: 'ClientUser/:userId/transactions', component: ClientTransactionComponent },
-    { path: 'ClientPayments/:clientId', component: ClientPaymentComponent },
+    
+    
+    
+    
+    
     { path: "ClientUser/:clientId/payments", component: ClientAccountComponent},
+    { path: 'ClientSalaryDisbursement/:userId', component: ClientSalaryDisbursementComponent},
     { path: 'BankUser', component: BankUserComponent },
     { path: "BankRegister", component: BankRegisterComponent },
     { path: 'Admin', component: AdminComponent },

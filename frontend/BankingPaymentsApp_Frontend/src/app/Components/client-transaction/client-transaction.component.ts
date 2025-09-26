@@ -5,7 +5,7 @@ import { TransactionService } from '../../Services/transaction.service';
 import { FormsModule } from '@angular/forms'; // for ngModel
 
 @Component({
-  selector: 'app-transactions',
+  selector: 'app-client-transactions',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './client-transaction.component.html',

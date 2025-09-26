@@ -4,11 +4,12 @@ import { ClientRegisterService } from '../../Services/client.service';
 import { DocumentUploadService } from '../../Services/document.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-client-documents',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './client-document.component.html',
   styleUrls: ['./client-document.component.css']
 })
@@ -16,6 +17,9 @@ export class ClientDocumentsComponent implements OnInit {
   userId!: number;
   documents: any[] = [];
   loading = true;
+
+  filteredDocuments: any[] = [];
+filterDocumentName: string = '';
 
   // Store preview files for update
   previewFiles: { [docId: number]: { file: File, url: string } } = {};
@@ -40,18 +44,29 @@ export class ClientDocumentsComponent implements OnInit {
   }
 
   loadDocuments(): void {
-    this.clientSvc.getClientDocuments(this.userId).subscribe({
-      next: (docs) => {
-        console.log('Fetched documents from API:', docs); 
-        this.documents = docs;
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Error fetching documents:', err);
-        this.loading = false;
-      }
-    });
-  }
+  this.documentSvc.getDocumentsByClient(this.userId, this.filterDocumentName).subscribe({
+    next: (docs) => {
+      this.documents = docs;
+      this.filteredDocuments = [...docs];
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error('Error fetching documents:', err);
+      this.loading = false;
+    }
+  });
+}
+
+// Call this when user types or clicks filter
+applyFilter(): void {
+  this.loading = true;
+  this.loadDocuments(); // pass current filterDocumentName automatically
+}
+
+resetFilter(): void {
+  this.filterDocumentName = '';
+  this.applyFilter(); // reload all documents
+}
 
   deleteDocument(documentId: number): void {
     if (!documentId) {

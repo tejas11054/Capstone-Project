@@ -6,7 +6,7 @@ import { PaymentService } from '../../Services/payment.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-payments',
+  selector: 'app-client-payments',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: 'client-payment.component.html',

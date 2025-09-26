@@ -2,31 +2,39 @@
   <!-- Left Sidebar -->
   <div class="dashboard-sidebar">
     <div class="dashboard-actions d-flex flex-column mt-4">
-      <button [routerLink]="['/ClientUser', userId, 'profile']" class="btn-dashboard">
+      <button [routerLink]="['home']" class="btn-dashboard">
+        <i class="fas fa-home"></i> Home
+      </button>
+
+      <button [routerLink]="['profile', userId]" class="btn-dashboard">
         <i class="fas fa-user"></i> Profile
       </button>
-      <button [routerLink]="['/ClientAccount', userId]" class="btn-dashboard">
-        <i class="fas fa-university"></i> Account
-      </button>
-      <button [routerLink]="['/ClientDocuments', userId]" class="btn-dashboard">
+
+      <button [routerLink]="['ClientAccount', userId]" class="btn-dashboard">
+  <i class="fas fa-university"></i> Account
+</button>
+
+      <button [routerLink]="['ClientDocuments', userId]" class="btn-dashboard">
         <i class="fas fa-file-alt"></i> Documents
       </button>
-      <button [routerLink]="['/ClientUser', userId, 'beneficiaries']" class="btn-dashboard">
+      <button [routerLink]="['ClientUser', userId, 'beneficiaries']" class="btn-dashboard">
         <i class="fas fa-handshake"></i> Beneficiaries
       </button>
-      <button [routerLink]="['/ClientUser', userId, 'transactions']" class="btn-dashboard">
+      <button [routerLink]="['ClientUser', userId, 'transactions']" class="btn-dashboard">
         <i class="fas fa-credit-card"></i> Transactions
       </button>
-      <button [routerLink]="['/ClientEmployees', userId]" class="btn-dashboard">
+      <button [routerLink]="['ClientEmployees', userId]" class="btn-dashboard">
         <i class="fas fa-users"></i> Employees
       </button>
-<button [routerLink]="['/ClientPayments', userId]" class="btn-dashboard">
+<button [routerLink]="['ClientPayments', userId]" class="btn-dashboard">
   <i class="fas fa-money-bill-wave"></i> Payments
 </button>
 
-      <button [routerLink]="" class="btn-dashboard">
-        <i class="fas fa-receipt"></i> Salary Disbursement
-      </button>
+      <button [routerLink]="['/ClientSalaryDisbursement', userId]" class="btn-dashboard">
+  <i class="fas fa-receipt"></i> Salary Disbursement
+</button>
+
+
       <button [routerLink]="['/login']" class="btn-dashboard">
         <i class="fas fa-sign-out-alt"></i> Logout
       </button>
@@ -38,20 +46,21 @@
    <div class="account-info-simple d-flex justify-content-around align-items-center">
   <div class="info-block-simple text-center">
     <i class="fas fa-id-card"></i>
-    <p>{{ user?.account?.accountNumber || '-' }}</p>
-    <small>Account Number</small>
+    <div class="info-title">Account Number</div>
+    <div class="info-value">{{ user?.account?.accountNumber || '-' }}</div>
   </div>
   <div class="info-block-simple text-center">
     <i class="fas fa-wallet"></i>
-    <p>{{ user?.account?.balance != null ? (user.account.balance | currency:'INR') : '-' }}</p>
-    <small>Balance</small>
+    <div class="info-title">Balance</div>
+    <div class="info-value">{{ user?.account?.balance != null ? (user.account.balance | currency:'INR') : '-' }}</div>
   </div>
   <div class="info-block-simple text-center">
     <i class="fas fa-user-circle"></i>
-    <p>{{ user?.userFullName || '-' }}</p>
-    <small>User</small>
+    <div class="info-title">User</div>
+    <div class="info-value">{{ user?.userFullName || '-' }}</div>
   </div>
 </div>
+
 
     <!-- Dynamic Dashboard Content -->
     <div class="dashboard-content mt-4">

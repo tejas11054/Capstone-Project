@@ -1,64 +1,56 @@
-<div *ngIf="loading" class="loading">
-  Loading documents...
-</div>
+<div *ngIf="!loading" class="documents-section container-fluid py-3">
+  <h2 class="section-title text-center">My Documents</h2>
 
-<div *ngIf="!loading">
-  <h2>My Documents</h2>
+  <div class="filter-section d-flex flex-wrap justify-content-center align-items-center gap-2 mb-4">
+    <input type="text" [(ngModel)]="filterDocumentName" placeholder="Search by name" class="form-control form-control-dark w-auto" />
+    <button class="btn btn-primary btn-filter" (click)="applyFilter()">
+      <i class="fas fa-filter"></i> Filter
+    </button>
+    <button class="btn btn-secondary btn-filter" (click)="resetFilter()">
+      <i class="fas fa-redo"></i> Reset
+    </button>
+  </div>
 
-  <button type="button" (click)="goBack()" class="back-button">
-    ← Back
-  </button>
-
-  <button type="button" (click)="uploadDocument()">Upload Document</button>
-
-
-  <div *ngIf="documents.length === 0">
+  <div *ngIf="filteredDocuments.length === 0" class="alert alert-warning text-center">
     No documents found.
   </div>
 
-  <div *ngIf="documents.length > 0" class="documents-list">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Document Name</th>
-          <th>Proof Type ID</th>
-          <th>View</th>
-          <th>Delete</th>
-          <th>Update</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let doc of documents; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ doc.documentName }}</td>
-          <td>{{ doc.proofTypeId }}</td>
-          <td>
-            <a [href]="doc.documentURL" target="_blank">
-              <button>View</button>
-            </a>
-          </td>
-          <td>
-            <button (click)="deleteDocument(doc.documentId)">Delete</button>
-          </td>
-          <td>
-            <input type="file" (change)="onFileSelected(doc, $event)" />
+  <div *ngIf="filteredDocuments.length > 0" class="documents-list">
+    <div class="row g-3">
+      <div *ngFor="let doc of filteredDocuments; index as i" class="col-md-6 col-lg-4">
+        <div class="card doc-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-center">
+              <i class="fas fa-file-alt me-2"></i>{{ doc.documentName }}
+            </h5>
+            <p class="card-text text-center">Proof Type ID: <strong>{{ doc.proofTypeId }}</strong></p>
 
-            <!-- Preview + Update Button -->
-            <div *ngIf="previewFiles[doc.documentId]" class="preview-section">
-              <div *ngIf="previewFiles[doc.documentId].file.type.startsWith('image/')">
-                <img [src]="previewFiles[doc.documentId].url" alt="Preview" width="80" height="80" />
-              </div>
-
-              <div *ngIf="!previewFiles[doc.documentId].file.type.startsWith('image/')">
-                <p>{{ previewFiles[doc.documentId].file.name }}</p>
-              </div>
-
-              <button (click)="confirmUpdate(doc)">Update</button>
+            <div class="mt-auto d-flex justify-content-around flex-wrap gap-2">
+              <a [href]="doc.documentURL" target="_blank" class="btn btn-outline-info btn-sm w-100">
+                <i class="fas fa-eye"></i> View
+              </a>
+              <button class="btn btn-outline-danger btn-sm w-100" (click)="deleteDocument(doc.documentId)">
+                <i class="fas fa-trash-alt"></i> Delete
+              </button>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+            <div class="update-section mt-3">
+              <input type="file" class="form-control form-control-sm form-control-dark" (change)="onFileSelected(doc, $event)" />
+              <div *ngIf="previewFiles[doc.documentId]" class="preview-section mt-2 text-center">
+                <div *ngIf="previewFiles[doc.documentId].file.type.startsWith('image/')">
+                  <img [src]="previewFiles[doc.documentId].url" alt="Preview" class="img-thumbnail preview-img" />
+                </div>
+                <div *ngIf="!previewFiles[doc.documentId].file.type.startsWith('image/')">
+                  <p class="text-truncate">{{ previewFiles[doc.documentId].file.name }}</p>
+                </div>
+                <button class="btn btn-success btn-sm mt-2 w-100" (click)="confirmUpdate(doc)">
+                  <i class="fas fa-upload"></i> Update
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

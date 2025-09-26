@@ -35,8 +35,13 @@ updateDocument(documentId: number, dto: DocumentDTO, file: File): Observable<any
     formData.append('file', file);
   }
 
-  // ✅ match backend route: api/Document/update/{id}
   return this.http.put(`${this.apiUrl.replace('/upload', '')}/update/${documentId}`, formData);
+}
+
+getDocumentsByClient(clientId: number, documentName?: string): Observable<any[]> {
+  // Backend API URL
+  let url = `https://localhost:7030/api/Document?DocumentName=${documentName || ''}`;
+  return this.http.get<any[]>(url);
 }
 
 

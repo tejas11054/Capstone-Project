@@ -15,7 +15,7 @@ export class ClientUserComponent implements OnInit {
   userId!: number;
   user: any = null;
   loading = true;
-
+  currentComponent: string = 'profile'; 
   constructor(
     private route: ActivatedRoute,
     private clientSvc: ClientRegisterService

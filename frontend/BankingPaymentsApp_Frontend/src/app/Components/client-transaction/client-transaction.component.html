@@ -1,36 +1,47 @@
-<div class="filters">
-  <input type="number" placeholder="Transaction ID" [(ngModel)]="filterTransactionId" (input)="applyFilters()" />
+<div class="transactions-section documents-section">
+  <h2 class="section-title">Transactions</h2>
 
-  <select [(ngModel)]="filterTransactionType" (change)="applyFilters()">
-    <option value="">All Types</option>
-    <option value="Credit">Credit</option>
-    <option value="Debit">Debit</option>
-  </select>
+  <div class="filter-section d-flex flex-wrap gap-3 justify-content-center mb-4">
+    <input type="number" class="form-control-dark" placeholder="Transaction ID" [(ngModel)]="filterTransactionId" (input)="applyFilters()" />
+    
+    <select class="form-control-dark" [(ngModel)]="filterTransactionType" (change)="applyFilters()">
+      <option value="">All Types</option>
+      <option value="Credit">Credit</option>
+      <option value="Debit">Debit</option>
+    </select>
 
-  <input type="date" [(ngModel)]="filterDate" (change)="applyFilters()" />
+    <input type="date" class="form-control-dark" [(ngModel)]="filterDate" (change)="applyFilters()" />
 
-  <button type="button" (click)="resetFilters()">Reset Filters</button>
+    <button class="btn btn-primary btn-filter" (click)="applyFilters()">
+      <i class="fas fa-filter"></i> Filter
+    </button>
+    <button class="btn btn-secondary btn-filter" (click)="resetFilters()">
+      <i class="fas fa-redo"></i> Reset
+    </button>
+  </div>
+
+  <div *ngIf="transactions.length > 0" class="transactions-table-wrapper">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Transaction ID</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of transactions; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ t.transactionId }}</td>
+          <td>{{ t.type }}</td>
+          <td>{{ t.amount | currency:'INR' }}</td>
+          <td>{{ t.createdAt | date:'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="transactions.length === 0 && !loading">No transactions found for this client.</div>
 </div>
-
-<table *ngIf="transactions.length > 0" class="transactions-table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Transaction ID</th>
-      <th>Type</th>
-      <th>Amount</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let t of transactions; index as i">
-      <td>{{ i + 1 }}</td>
-      <td>{{ t.transactionId }}</td>
-      <td>{{ t.type }}</td>
-      <td>{{ t.amount | currency:'INR' }}</td>
-      <td>{{ t.createdAt | date:'short' }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<div *ngIf="transactions.length === 0 && !loading">No transactions found for this client.</div>
