@@ -11,15 +11,6 @@
 
   <button type="button" (click)="uploadDocument()">Upload Document</button>
 
-  <!-- 🔍 Search Bar -->
-  <div class="search-box">
-    <input
-      type="text"
-      placeholder="Search by Document Name..."
-      [(ngModel)]="searchText"
-      (input)="onSearch()"
-    />
-  </div>
 
   <div *ngIf="documents.length === 0">
     No documents found.

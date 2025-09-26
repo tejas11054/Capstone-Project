@@ -1,26 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { ClientRegisterService } from '../../Services/client.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionService } from '../../Services/transaction.service';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms'; // for ngModel
 
 @Component({
   selector: 'app-transactions',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: '/client-transaction.component.html',
-  styleUrls: ['/client-transaction.component.css']
+  imports: [CommonModule, FormsModule],
+  templateUrl: './client-transaction.component.html',
+  styleUrls: ['./client-transaction.component.css']
 })
 export class ClientTransactionComponent implements OnInit {
   userId!: number;
-  transactionIds: number[] = [];
-  transactions: any[] = [];
+  allTransactions: any[] = []; // original client transactions
+  transactions: any[] = []; // displayed transactions
   loading = true;
+
+  // Filter fields
+  filterTransactionId?: number;
+  filterTransactionType?: string; // 'Credit' or 'Debit'
+  filterDate?: string; // 'YYYY-MM-DD'
 
   constructor(
     private route: ActivatedRoute,
-    private clientSvc: ClientRegisterService,
     private transactionSvc: TransactionService,
     private router: Router
   ) {}
@@ -30,48 +33,66 @@ export class ClientTransactionComponent implements OnInit {
     this.userId = idFromRoute ? +idFromRoute : 0;
 
     if (this.userId) {
-      this.loadClientTransactions();
+      this.loadTransactions();
     } else {
       console.error('Invalid User ID');
     }
   }
 
-  loadClientTransactions(): void {
-  this.clientSvc.getClientById(this.userId).subscribe({
-    next: (clientData: any) => {
-      this.transactionIds = clientData.account.transactionIds || [];
-      if (this.transactionIds.length === 0) {
-        this.loading = false;
-        return;
-      }
+  loadTransactions(): void {
+    this.loading = true;
 
-      const requests = this.transactionIds.map(id =>
-        this.transactionSvc.getTransactionById(id)
-      );
-
-      Promise.all(requests.map(r => r.toPromise())).then(results => {
-        // Map only required fields
-        this.transactions = results.map((t: any) => ({
+    // Load all transactions for this client user
+    this.transactionSvc.getTransactions(this.userId).subscribe({
+      next: (data: any[]) => {
+        this.allTransactions = data.map(t => ({
           transactionId: t.transactionId,
           type: t.transactionType?.type === 1 ? 'Credit' : 'Debit',
           amount: t.amount,
           createdAt: t.createdAt
         }));
+        this.transactions = [...this.allTransactions]; // initialize display
         this.loading = false;
-      }).catch(err => {
+      },
+      error: (err: any) => {
         console.error('Error fetching transactions:', err);
         this.loading = false;
-      });
-    },
-    error: err => {
-      console.error('Error fetching client:', err);
-      this.loading = false;
-    }
-  });
-}
-
-goBack(): void {
-    this.router.navigate(["/ClientUser/" + this.userId]);  // navigates to previous page
+      }
+    });
   }
 
+ applyFilters(): void {
+  let filtered = [...this.allTransactions];
+
+  if (this.filterTransactionId) {
+    filtered = filtered.filter(t => t.transactionId === this.filterTransactionId);
+  }
+
+  if (this.filterTransactionType) {
+    const ft = this.filterTransactionType.toLowerCase();
+    filtered = filtered.filter(t => t.type?.toLowerCase() === ft);
+  }
+
+  if (this.filterDate) {
+    const filterDateObj = new Date(this.filterDate);
+    filtered = filtered.filter(
+      t => new Date(t.createdAt).toDateString() === filterDateObj.toDateString()
+    );
+  }
+
+  this.transactions = filtered;
+}
+
+
+
+  resetFilters(): void {
+    this.filterTransactionId = undefined;
+    this.filterTransactionType = '';
+    this.filterDate = '';
+    this.transactions = [...this.allTransactions];
+  }
+
+  goBack(): void {
+    this.router.navigate(['/ClientUser/' + this.userId]);
+  }
 }

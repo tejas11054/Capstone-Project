@@ -1,5 +1,6 @@
 ﻿using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -12,9 +13,22 @@ namespace BankingPaymentsApp_API.Services
             _transactionRepository = transactionRepository;
         }
 
-        public async Task<IEnumerable<Transaction>> GetAll()
+        public async Task<IEnumerable<Transaction>> GetAll(int? transactionId, int? transactionTypeId, DateTime? date)
         {
-            return await _transactionRepository.GetAll();
+            var query = _transactionRepository.GetAll();
+
+            if (transactionId.HasValue)
+                query = query.Where(t => t.TransactionId == transactionId.Value);
+
+            if (transactionTypeId.HasValue)
+                query = query.Where(t => t.TransactionTypeId == transactionTypeId.Value);
+
+            if (date.HasValue)
+            {
+                query = query.Where(t => t.CreatedAt.Date == date.Value.Date);
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<Transaction> Add(Transaction transaction)

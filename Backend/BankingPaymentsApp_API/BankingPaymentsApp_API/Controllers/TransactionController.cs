@@ -20,17 +20,19 @@ namespace BankingPaymentsApp_API.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/Transaction
         [HttpGet]
-        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        public async Task<IActionResult> GetAllTransaction()
+        public async Task<IActionResult> GetAll(
+        [FromQuery] int? transactionId,
+        [FromQuery] int? transactionTypeId,
+        [FromQuery] DateTime? date)  // single date filter
         {
-            var transactions = await _transactionService.GetAll();
-            if (transactions.Count() == 0)
-                return NotFound("No Transaction to display");
+            var transactions = await _transactionService.GetAll(transactionId, transactionTypeId, date);
+
+            if (!transactions.Any())
+                return NotFound("No transactions to display.");
+
             return Ok(transactions);
         }
-
         // POST: api/Transaction
         [HttpPost]
         [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]

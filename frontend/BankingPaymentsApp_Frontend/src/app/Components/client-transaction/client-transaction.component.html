@@ -1,34 +1,36 @@
-<button type="button" (click)="goBack()" class="back-button">
-    ← Back
-  </button>
+<div class="filters">
+  <input type="number" placeholder="Transaction ID" [(ngModel)]="filterTransactionId" (input)="applyFilters()" />
 
-<div *ngIf="loading" class="loading">Loading transactions...</div>
+  <select [(ngModel)]="filterTransactionType" (change)="applyFilters()">
+    <option value="">All Types</option>
+    <option value="Credit">Credit</option>
+    <option value="Debit">Debit</option>
+  </select>
 
-<div *ngIf="!loading">
-  <h2>Transactions</h2>
+  <input type="date" [(ngModel)]="filterDate" (change)="applyFilters()" />
 
-  <div *ngIf="transactions.length === 0">
-    No transactions found for this client.
-  </div>
-
-  <table *ngIf="transactions.length > 0" class="transactions-table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Transaction ID</th>
-        <th>Type</th>
-        <th>Amount</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let t of transactions; index as i">
-        <td>{{ i + 1 }}</td>
-        <td>{{ t.transactionId }}</td>
-        <td>{{ t.type }}</td>
-        <td>{{ t.amount | currency:'INR' }}</td>
-        <td>{{ t.createdAt | date:'short' }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <button type="button" (click)="resetFilters()">Reset Filters</button>
 </div>
+
+<table *ngIf="transactions.length > 0" class="transactions-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Transaction ID</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of transactions; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ t.transactionId }}</td>
+      <td>{{ t.type }}</td>
+      <td>{{ t.amount | currency:'INR' }}</td>
+      <td>{{ t.createdAt | date:'short' }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="transactions.length === 0 && !loading">No transactions found for this client.</div>

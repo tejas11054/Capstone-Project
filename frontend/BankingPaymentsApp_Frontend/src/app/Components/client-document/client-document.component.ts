@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ClientRegisterService } from '../../Services/client.service';
 import { DocumentUploadService } from '../../Services/document.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // <-- for [(ngModel)]
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-documents',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './client-document.component.html',
   styleUrls: ['./client-document.component.css']
 })
 export class ClientDocumentsComponent implements OnInit {
   userId!: number;
   documents: any[] = [];
-  originalDocuments: any[] = []; // keep copy of original order
   loading = true;
-  searchText: string = '';
 
   // Store preview files for update
   previewFiles: { [docId: number]: { file: File, url: string } } = {};
@@ -46,7 +44,6 @@ export class ClientDocumentsComponent implements OnInit {
       next: (docs) => {
         console.log('Fetched documents from API:', docs); 
         this.documents = docs;
-        this.originalDocuments = [...docs]; // keep copy
         this.loading = false;
       },
       error: (err) => {
@@ -54,24 +51,6 @@ export class ClientDocumentsComponent implements OnInit {
         this.loading = false;
       }
     });
-  }
-
-  // 🔍 Move searched documents to top
-  onSearch(): void {
-    if (!this.searchText.trim()) {
-      this.documents = [...this.originalDocuments]; // reset
-      return;
-    }
-
-    const term = this.searchText.toLowerCase();
-    const matches = this.originalDocuments.filter(doc =>
-      doc.documentName.toLowerCase().includes(term)
-    );
-    const nonMatches = this.originalDocuments.filter(doc =>
-      !doc.documentName.toLowerCase().includes(term)
-    );
-
-    this.documents = [...matches, ...nonMatches]; // show matches on top
   }
 
   deleteDocument(documentId: number): void {
@@ -86,7 +65,6 @@ export class ClientDocumentsComponent implements OnInit {
         next: () => {
           alert('Document deleted successfully.');
           this.documents = this.documents.filter(doc => doc.documentId !== documentId);
-          this.originalDocuments = this.originalDocuments.filter(doc => doc.documentId !== documentId);
         },
         error: (err) => {
           console.error('Error deleting document:', err);
@@ -96,6 +74,7 @@ export class ClientDocumentsComponent implements OnInit {
     }
   }
 
+  // When user selects a file
   onFileSelected(doc: any, event: any): void {
     const file: File = event.target.files[0];
     if (file) {
@@ -104,6 +83,7 @@ export class ClientDocumentsComponent implements OnInit {
     }
   }
 
+  // Confirm update
   confirmUpdate(doc: any): void {
     const preview = this.previewFiles[doc.documentId];
     if (!preview) {
@@ -120,7 +100,7 @@ export class ClientDocumentsComponent implements OnInit {
     this.documentSvc.updateDocument(doc.documentId, dto, preview.file).subscribe({
       next: () => {
         alert("Document updated successfully.");
-        delete this.previewFiles[doc.documentId];
+        delete this.previewFiles[doc.documentId]; // clear preview
         this.loadDocuments();
       },
       error: (err) => {
