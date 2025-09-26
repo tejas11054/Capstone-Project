@@ -1,11 +1,12 @@
 export interface RegisterBankUserDTO {
-  UserFullName: string;
-  UserName: string;
-  UserEmail: string;
-  UserPhone: string;
-  UserRoleId: number;
-  Password: string;
-  ConfirmPassword: string;
-  RefferalCode: string;
-  Branch: string;
+  userFullName: string;
+  userName: string;
+  userEmail: string;
+  userPhone: string;
+  userRoleId: number;
+  bankId:number;
+  password: string;
+  confirmPassword: string;
+  refferalCode: string;
+  branch: string;
 }

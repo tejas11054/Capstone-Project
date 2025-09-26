@@ -1,12 +1,13 @@
 export interface RegisterClientUserDTO {
-  UserFullName: string;
-  UserName: string;
-  UserEmail: string;
-  UserPhone: string;
-  UserRoleId: number;
-  Password: string;
-  ConfirmPassword: string;
-  DateOfBirth: string; 
-  Address: string;
-  AccountId?: number;  
+  userFullName: string;
+  userName: string;
+  userEmail: string;
+  userPhone: string;
+  userRoleId: number;
+  bankId:number;
+  password: string;
+  confirmPassword: string;
+  dateOfBirth: string; 
+  address: string;
+  accountId?: number;  
 }

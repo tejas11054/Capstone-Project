@@ -4,7 +4,8 @@ namespace BankingPaymentsApp_API.Repositories
 {
     public interface IAccountRepository 
     {
-        Task<IEnumerable<Account>> GetAll();
+        //Task<IEnumerable<Account>> GetAll();
+        public IQueryable<Account> GetAll();
         Task<Account> Add(Account account);
         Task<Account?> GetById(int id);
         Task<Account?> Update(Account account);

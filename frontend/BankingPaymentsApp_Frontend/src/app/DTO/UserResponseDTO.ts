@@ -1,9 +1,10 @@
 export interface UserResponseDTO {
-  UserId: number;
-  UserFullName: string;
-  UserName: string;
-  UserRoleId: number;
-  UserEmail: string;
-  UserPhone: string;
-  UserJoiningDate: string;
+  userId: number;
+  userFullName: string;
+  userName: string;
+  userRoleId: number;
+  bankId:number;
+  userEmail: string;
+  userPhone: string;
+  userJoiningDate: string;
 }

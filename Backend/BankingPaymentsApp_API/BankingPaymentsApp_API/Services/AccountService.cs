@@ -1,5 +1,6 @@
 ﻿using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -12,9 +13,50 @@ namespace BankingPaymentsApp_API.Services
             _accountRepository = accountRepository;
         }
 
-        public async Task<IEnumerable<Account>> GetAll()
+        //public async Task<IEnumerable<Account>> GetAll()
+        //{
+        //    return await _accountRepository.GetAll();
+        //}
+        public async Task<IEnumerable<Account>> GetAll(
+            string? accountNumber,
+            int? clientId,
+            int? bankId,
+            int? accountTypeId,
+            int? accountStatusId,
+            double? minBalance,
+            double? maxBalance,
+            DateTime? createdFrom,
+            DateTime? createdTo)
         {
-            return await _accountRepository.GetAll();
+            var query = _accountRepository.GetAll();
+            if (!string.IsNullOrEmpty(accountNumber))
+                query = query.Where(a => a.AccountNumber.Contains(accountNumber));
+
+            if (clientId.HasValue)
+                query = query.Where(a => a.ClientId == clientId.Value);
+
+            if (bankId.HasValue)
+                query = query.Where(a => a.BankId == bankId.Value);
+
+            if (accountTypeId.HasValue)
+                query = query.Where(a => a.AccountTypeId == accountTypeId.Value);
+
+            if (accountStatusId.HasValue)
+                query = query.Where(a => a.AccountStatusId == accountStatusId.Value);
+
+            if (minBalance.HasValue)
+                query = query.Where(a => a.Balance >= minBalance.Value);
+
+            if (maxBalance.HasValue)
+                query = query.Where(a => a.Balance <= maxBalance.Value);
+
+            if (createdFrom.HasValue)
+                query = query.Where(a => a.CreatedAt >= createdFrom.Value);
+
+            if (createdTo.HasValue)
+                query = query.Where(a => a.CreatedAt <= createdTo.Value);
+
+            return await query.ToListAsync();
         }
 
         public async Task<Account> Add(Account account)

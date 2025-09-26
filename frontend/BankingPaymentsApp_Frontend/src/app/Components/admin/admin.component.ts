@@ -37,7 +37,9 @@ export class AdminComponent implements OnInit {
           refferalCode: b.refferalCode ?? b.RefferalCode,
           branch: b.branch ?? b.Branch,
           kycVierified: b.kycVierified ?? b.KycVierified,
-          clientIds: b.clientIds ?? b.ClientIds ?? []
+          clientIds: b.clientIds ?? b.ClientIds ?? [],
+          bankId: b.bankId ?? 0,  // <-- add default or actual value
+          bank: b.bank ?? '' 
         }));
       },
       error: err => console.error('Error fetching bank users:', err)

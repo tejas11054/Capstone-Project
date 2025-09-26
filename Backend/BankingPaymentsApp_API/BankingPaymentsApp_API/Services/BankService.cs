@@ -13,9 +13,31 @@ namespace BankingPaymentsApp_API.Services
             _bankRepository = bankRepository;
         }
 
-        public async Task<IEnumerable<Bank>> GetAll()
+        public async Task<IEnumerable<Bank>> GetAll(
+            string? bankName,
+            string? ifsc,
+            bool? isActive,
+            DateTime? createdFrom,
+            DateTime? createdTo)
         {
-            return await _bankRepository.GetAll();
+            var query = _bankRepository.GetAll();
+
+            if (!string.IsNullOrEmpty(bankName))
+                query = query.Where(b => b.BankName.Contains(bankName));
+
+            if (!string.IsNullOrEmpty(ifsc))
+                query = query.Where(b => b.IFSC.Contains(ifsc));
+
+            if (isActive.HasValue)
+                query = query.Where(b => b.IsActive == isActive.Value);
+
+            if (createdFrom.HasValue)
+                query = query.Where(b => b.CreatedAt >= createdFrom.Value);
+
+            if (createdTo.HasValue)
+                query = query.Where(b => b.CreatedAt <= createdTo.Value);
+
+            return await query.ToListAsync();
         }
 
         public async Task<Bank?> GetById(int id)

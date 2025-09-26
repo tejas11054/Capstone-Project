@@ -25,5 +25,9 @@ export class EmployeeService {
     return this.http.get<Employee[]>(this.baseUrl);
   }
 
+  deleteEmployee(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}+/${id}`);
+  }
+
   
 }

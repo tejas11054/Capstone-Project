@@ -4,7 +4,11 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IBankService
     {
-        public Task<IEnumerable<Bank>> GetAll();
+        public Task<IEnumerable<Bank>> GetAll(string? bankName,
+            string? ifsc,
+            bool? isActive,
+            DateTime? createdFrom,
+            DateTime? createdTo);
 
         public Task<Bank?> GetById(int id);
 

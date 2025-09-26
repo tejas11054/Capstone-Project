@@ -18,7 +18,7 @@ export class BankUserComponent implements OnInit {
   selectedClientDocs: Document[] = [];
   showDocuments: boolean = false;
 
-  constructor(private bankService: ClientRegisterService) {}
+  constructor(private bankService: ClientRegisterService) { }
 
   ngOnInit() {
     this.fetchClients();
@@ -39,7 +39,9 @@ export class BankUserComponent implements OnInit {
           dateOfBirth: c.dateOfBirth,
           address: c.address,
           kycVierified: c.kycVierified,
-          documents: []
+          documents: [],
+          bankId: c.bankId ?? 0,  // <-- add default or actual value
+          bank: c.bank ?? ''
         }));
 
       },

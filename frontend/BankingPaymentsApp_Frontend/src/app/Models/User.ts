@@ -1,3 +1,4 @@
+import { Bank } from "./Bank";
 import { UserRole } from "./UserRole";
 
 export interface User {
@@ -6,6 +7,8 @@ export interface User {
   userName: string;
   password: string;
   userRoleId: number;
+  bankId:number;
+  bank:Bank;
   role?: UserRole;
   userEmail: string;
   userPhone: string;

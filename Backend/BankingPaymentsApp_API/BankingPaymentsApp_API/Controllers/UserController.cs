@@ -22,10 +22,18 @@ namespace BankingPaymentsApp_API.Controllers
 
         //GET: api/User
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
-        public async Task<IActionResult> GetAllUsers()
+        //[Authorize(Roles = $"{nameof(Role.ADMIN)}")]
+        public async Task<IActionResult> GetAllUsers(
+            [FromQuery] string? fullName,
+            [FromQuery] string? userName,
+            [FromQuery] string? email,
+            [FromQuery] string? phone,
+            [FromQuery] int? roleId,
+            [FromQuery] int? bankId,
+            [FromQuery] DateTime? joiningDateFrom,
+            [FromQuery] DateTime? joiningDateTo)
         {
-            var users = await _service.GetAll();
+            var users = await _service.GetAll(fullName,userName,email,phone,roleId,bankId,joiningDateFrom,joiningDateTo);
             if (users.Count() == 0)
                 return NotFound("No Users to Display!");
             return Ok(users);

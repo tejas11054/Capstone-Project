@@ -1,7 +1,8 @@
 export interface RegisterAccountDTO {
-  AccountNumber?: string;
-  ClientId: number;
-  Balance: number;
-  AccountTypeId: number;
-  AccountStatusId: number;
+  accountNumber?: string;
+  clientId: number;
+  bankId:number;
+  balance: number;
+  accountTypeId: number;
+  accountStatusId: number;
 }

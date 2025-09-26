@@ -23,10 +23,15 @@ namespace BankingPaymentsApp_API.Controllers
 
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)}")]
-        public async Task<IActionResult> GetAllBanks()
+        public async Task<IActionResult> GetAllBanks(
+            [FromQuery] string? bankName,
+            [FromQuery] string? ifsc,
+            [FromQuery] bool? isActive,
+            [FromQuery] DateTime? createdFrom,
+            [FromQuery] DateTime? createdTo)
         {
             _logger.LogInformation("GetAllBanks Started");
-            var banks = await _service.GetAll();
+            var banks = await _service.GetAll(bankName, ifsc, isActive, createdFrom, createdTo);
             if (!banks.Any())
             {
                 _logger.LogWarning("No Banks Found");

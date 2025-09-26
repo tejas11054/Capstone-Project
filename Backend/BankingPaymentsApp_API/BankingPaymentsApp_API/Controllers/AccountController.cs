@@ -25,10 +25,19 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Account
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)}")]
-        public async Task<IActionResult> GetAllAccounts()
+        public async Task<IActionResult> GetAllAccounts(
+            [FromQuery] string? accountNumber,
+            [FromQuery] int? clientId,
+            [FromQuery] int? bankId,
+            [FromQuery] int? accountTypeId,
+            [FromQuery] int? accountStatusId,
+            [FromQuery] double? minBalance,
+            [FromQuery] double? maxBalance,
+            [FromQuery] DateTime? createdFrom,
+            [FromQuery] DateTime? createdTo)
         {
             _logger.LogInformation("GetAllAccounts Started");
-            var accounts = await _service.GetAll();
+            var accounts = await _service.GetAll(accountNumber, clientId, bankId, accountTypeId, accountStatusId,minBalance, maxBalance, createdFrom, createdTo);
             if (!accounts.Any())
             {
                 _logger.LogWarning("No Accounts Found");

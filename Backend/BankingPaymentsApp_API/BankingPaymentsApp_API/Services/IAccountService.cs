@@ -4,7 +4,16 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IAccountService
     {
-        Task<IEnumerable<Account>> GetAll();
+        Task<IEnumerable<Account>> GetAll(
+            string? accountNumber,
+            int? clientId,
+            int? bankId,
+            int? accountTypeId,
+            int? accountStatusId,
+            double? minBalance,
+            double? maxBalance,
+            DateTime? createdFrom,
+            DateTime? createdTo);
         Task<Account> Add(Account account);
         Task<Account?> GetById(int id);
         Task<Account?> Update(Account account);

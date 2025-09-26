@@ -5,7 +5,8 @@ namespace BankingPaymentsApp_API.Repositories
 {
     public interface IBankRepository
     {
-        public Task<IEnumerable<Bank>> GetAll();
+        //public Task<IEnumerable<Bank>> GetAll();
+        public IQueryable<Bank> GetAll();
 
         public Task<Bank?> GetById(int id);
 

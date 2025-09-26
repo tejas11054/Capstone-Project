@@ -3,6 +3,7 @@ export interface ClientUserResponseDTO {
   userFullName: string;
   userName: string;
   userRoleId: number;
+  bankId:number;
   userEmail: string;
   userPhone: string;
   userJoiningDate: string;

@@ -7,6 +7,7 @@ export interface Employee {
   clientUser?: ClientUser;
   employeeName: string;
   accountNumber: string;
+  isActive:boolean;
   bankName: string;
   ifsc: string;
   salary: number;
