@@ -24,6 +24,7 @@ import { EmployeesComponent } from './Components/employee-list/employee-list.com
 import { ClientTransactionComponent } from './Components/client-transaction/client-transaction.component';
 import { ClientPaymentComponent } from './Components/client-payment/client-payment.component';
 import { ClientSalaryDisbursementComponent } from './Components/client-salary-disbursement/client-salary-disbursement.component';
+import { ClientHomeComponent } from './Components/client-home/client-home.component';
 
 export const routes: Routes = [
      {
@@ -31,7 +32,7 @@ export const routes: Routes = [
     component: ClientUserComponent, // dashboard parent
     children: [
       { path: '', pathMatch: 'full', redirectTo: '' },
-      { path: 'home', pathMatch: 'full', redirectTo: '' },
+      { path: 'home', pathMatch: 'full', component: ClientHomeComponent },
       { path: 'profile/:id', component: ClientProfileComponent },
       { path: 'ClientAccount/:id', component: ClientAccountComponent },
       { path: 'ClientDocuments/:userId', component: ClientDocumentsComponent },

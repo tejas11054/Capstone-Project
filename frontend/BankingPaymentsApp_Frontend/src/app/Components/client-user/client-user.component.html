@@ -2,69 +2,81 @@
   <!-- Left Sidebar -->
   <div class="dashboard-sidebar">
     <div class="dashboard-actions d-flex flex-column mt-4">
-      <button [routerLink]="['home']" class="btn-dashboard">
-        <i class="fas fa-home"></i> Home
-      </button>
+  <button [routerLink]="['home']" routerLinkActive="active-btn" class="btn-dashboard">
+    <i class="fas fa-home"></i> Home
+  </button>
 
-      <button [routerLink]="['profile', userId]" class="btn-dashboard">
-        <i class="fas fa-user"></i> Profile
-      </button>
+  <button [routerLink]="['profile', userId]" routerLinkActive="active-btn" class="btn-dashboard">
+    <i class="fas fa-user"></i> Profile
+  </button>
 
-      <button [routerLink]="['ClientAccount', userId]" class="btn-dashboard">
-  <i class="fas fa-university"></i> Account
-</button>
+  <button [routerLink]="['ClientAccount', userId]" routerLinkActive="active-btn" class="btn-dashboard">
+    <i class="fas fa-university"></i> Account
+  </button>
 
-      <button [routerLink]="['ClientDocuments', userId]" class="btn-dashboard">
-        <i class="fas fa-file-alt"></i> Documents
-      </button>
-      <button [routerLink]="['beneficiaries']" class="btn-dashboard">
-        <i class="fas fa-handshake"></i> Beneficiaries
-      </button>
-      <button [routerLink]="['ClientUser', userId, 'transactions']" class="btn-dashboard">
-        <i class="fas fa-credit-card"></i> Transactions
-      </button>
-      <button [routerLink]="['ClientEmployees', userId]" class="btn-dashboard">
-        <i class="fas fa-users"></i> Employees
-      </button>
-<button [routerLink]="['ClientPayments', userId]" class="btn-dashboard">
-  <i class="fas fa-money-bill-wave"></i> Payments
-</button>
+  <button [routerLink]="['ClientDocuments', userId]" routerLinkActive="active-btn" class="btn-dashboard">
+    <i class="fas fa-file-alt"></i> Documents
+  </button>
 
-      <button [routerLink]="['ClientSalaryDisbursement', userId]" class="btn-dashboard">
-  <i class="fas fa-receipt"></i> Salary Disbursement
-</button>
+  <button [routerLink]="['beneficiaries']" routerLinkActive="active-btn" class="btn-dashboard">
+    <i class="fas fa-handshake"></i> Beneficiaries
+  </button>
 
+  <button [routerLink]="['ClientUser', userId, 'transactions']" routerLinkActive="active-btn" class="btn-dashboard">
+    <i class="fas fa-credit-card"></i> Transactions
+  </button>
 
-      <button [routerLink]="['/login']" class="btn-dashboard">
-        <i class="fas fa-sign-out-alt"></i> Logout
-      </button>
-    </div>
+  <button [routerLink]="['ClientEmployees', userId]" routerLinkActive="active-btn" class="btn-dashboard">
+    <i class="fas fa-users"></i> Employees
+  </button>
+
+  <button [routerLink]="['ClientPayments', userId]" routerLinkActive="active-btn" class="btn-dashboard">
+    <i class="fas fa-money-bill-wave"></i> Payments
+  </button>
+
+  <button [routerLink]="['ClientSalaryDisbursement', userId]" routerLinkActive="active-btn" class="btn-dashboard">
+    <i class="fas fa-receipt"></i> Salary Disbursement
+  </button>
+
+  <button [routerLink]="['/login']" class="btn-dashboard">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
+</div>
+
   </div>
 
   <!-- Right Content Area -->
   <div class="dashboard-main">
-   <div class="account-info-simple d-flex justify-content-around align-items-center">
-  <div class="info-block-simple text-center">
-    <i class="fas fa-id-card"></i>
-    <div class="info-title">Account Number</div>
-    <div class="info-value">{{ user?.account?.accountNumber || '-' }}</div>
-  </div>
-  <div class="info-block-simple text-center">
-    <i class="fas fa-wallet"></i>
-    <div class="info-title">Balance</div>
-    <div class="info-value">{{ user?.account?.balance != null ? (user.account.balance | currency:'INR') : '-' }}</div>
-  </div>
-  <div class="info-block-simple text-center">
-    <i class="fas fa-user-circle"></i>
-    <div class="info-title">User</div>
-    <div class="info-value">{{ user?.userFullName || '-' }}</div>
-  </div>
-</div>
-
-
-    <!-- Dynamic Dashboard Content -->
-    <div class="dashboard-content mt-4">
-      <router-outlet></router-outlet>
+  <div class="account-info-simple d-flex justify-content-around align-items-center flex-wrap gap-3">
+    <div class="info-block-simple text-center">
+      <i class="fas fa-id-card"></i>
+      <div class="info-title">Account Number</div>
+      <div class="info-value">{{ user?.account?.accountNumber || '-' }}</div>
+    </div>
+    <div class="info-block-simple text-center">
+      <i class="fas fa-wallet"></i>
+      <div class="info-title">Balance</div>
+      <div class="info-value">{{ user?.account?.balance != null ? (user.account.balance | currency:'INR') : '-' }}</div>
+    </div>
+    <div class="info-block-simple text-center">
+      <i class="fas fa-user-circle"></i>
+      <div class="info-title">User</div>
+      <div class="info-value">{{ user?.userFullName || '-' }}</div>
+    </div>
+    <div class="info-block-simple text-center">
+      <i class="fas fa-users"></i>
+      <div class="info-title">Total Employees</div>
+      <div class="info-value">{{ user?.employees?.length || 0 }}</div>
+    </div>
+    <div class="info-block-simple text-center">
+      <i class="fas fa-handshake"></i>
+      <div class="info-title">Total Beneficiaries</div>
+      <div class="info-value">{{ user?.beneficiaries?.length || 0 }}</div>
     </div>
   </div>
+
+  <div class="dashboard-content mt-4">
+    <router-outlet></router-outlet>
+  </div>
 </div>
+

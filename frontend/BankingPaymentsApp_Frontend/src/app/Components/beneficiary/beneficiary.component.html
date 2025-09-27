@@ -16,13 +16,7 @@
   </app-beneficiary-register>
 </div>
 
-
-
-
   </div>
-
-
-
 
   <!-- Loading -->
   <div *ngIf="loading" class="text-center my-4">
@@ -37,6 +31,7 @@
     <div *ngIf="beneficiaries.length === 0" class="alert alert-secondary text-center">
       No beneficiaries found.
     </div>
+
 
     <!-- Beneficiaries Table -->
     <div *ngIf="beneficiaries.length > 0" class="employees-list">

@@ -164,6 +164,12 @@ html, body {
   color: #fff;
 }
 
+.doc-table tr:hover {
+  background: rgba(122, 90, 248, 0.1);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
 /* No data text */
 .transactions-section div.no-data {
   text-align: center;

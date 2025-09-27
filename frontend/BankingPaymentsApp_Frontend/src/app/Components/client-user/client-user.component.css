@@ -139,6 +139,16 @@ html, body {
   font-size: 1rem;
 }
 
+
+/* ---------------- Active Sidebar Button ---------------- */
+.btn-dashboard.active-btn {
+  background: #7a5af8; /* Highlight color */
+  color: #fff;
+  transform: translateX(5px) scale(1.03);
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.6);
+}
+
+
 /* ---------------- Animations ---------------- */
 @keyframes fadeIn {
   0% {opacity: 0; transform: translateY(20px);}
