@@ -1,70 +1,76 @@
-<div *ngIf="loading" class="loading">
-  Loading beneficiaries...
-</div>
+<div class="container my-4">
+  <h2 class="section-title">My Beneficiaries</h2>
 
-<div *ngIf="!loading">
-  <h2>Beneficiaries</h2>
-
-
-  <button type="button" (click)="goBack()" class="back-button">
-    ← Back
-  </button>
-
-  <div *ngIf="beneficiaries.length === 0">
-    No beneficiaries found.
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2">Loading beneficiaries...</p>
   </div>
 
-  <div *ngIf="beneficiaries.length > 0" class="beneficiaries-list">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Beneficiary Name</th>
-          <th>Account Number</th>
-          <th>Bank Name</th>
-          <th>IFSC</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let b of beneficiaries; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ b.beneficiaryName }}</td>
-          <td>{{ b.accountNumber }}</td>
-          <td>{{ b.bankName }}</td>
-          <td>{{ b.ifsc }}</td>
-          <td>
-            <button (click)="startEdit(b)">Update</button>
-            <button (click)="deleteBeneficiary(b.beneficiaryId)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- Beneficiaries Section -->
+  <div *ngIf="!loading">
+    <div *ngIf="beneficiaries.length === 0" class="alert alert-secondary text-center">
+      No beneficiaries found.
+    </div>
 
-  <!-- Edit Form -->
-  <div *ngIf="editingBeneficiary" class="edit-form">
-    <h3>Edit Beneficiary</h3>
-    <form (ngSubmit)="saveEdit()">
-      <label>
-        Name:
-        <input [(ngModel)]="editingBeneficiary.beneficiaryName" name="beneficiaryName" required />
-      </label>
-      <label>
-        Account Number:
-        <input [(ngModel)]="editingBeneficiary.accountNumber" name="accountNumber" required />
-      </label>
-      <label>
-        Bank Name:
-        <input [(ngModel)]="editingBeneficiary.bankName" name="bankName" required />
-      </label>
-      <label>
-        IFSC:
-        <input [(ngModel)]="editingBeneficiary.ifsc" name="ifsc" required />
-      </label>
-      <br />
-      <button type="submit">Save</button>
-      <button type="button" (click)="cancelEdit()">Cancel</button>
-    </form>
+    <!-- Beneficiaries Table -->
+    <div *ngIf="beneficiaries.length > 0" class="employees-list">
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Beneficiary Name</th>
+            <th>Account Number</th>
+            <th>Bank Name</th>
+            <th>IFSC</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let b of beneficiaries; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ b.beneficiaryName }}</td>
+            <td>{{ b.accountNumber }}</td>
+            <td>{{ b.bankName }}</td>
+            <td>{{ b.ifsc }}</td>
+            <td>
+              <button class="btn btn-sm btn-warning me-1" (click)="startEdit(b)">Update</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteBeneficiary(b.beneficiaryId)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Edit Form (Bootstrap Card, like Employees) -->
+    <div *ngIf="editingBeneficiary" class="card bg-dark text-white mt-4 mx-auto p-3" style="max-width: 650px;">
+      <div class="card-body">
+        <h4 class="card-title text-center text-primary mb-3">Edit Beneficiary</h4>
+        <form (ngSubmit)="saveEdit()">
+          <div class="mb-2">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="editingBeneficiary.beneficiaryName" name="beneficiaryName" required />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Account Number</label>
+            <input type="text" class="form-control" [(ngModel)]="editingBeneficiary.accountNumber" name="accountNumber" required />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Bank Name</label>
+            <input type="text" class="form-control" [(ngModel)]="editingBeneficiary.bankName" name="bankName" required />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">IFSC</label>
+            <input type="text" class="form-control" [(ngModel)]="editingBeneficiary.ifsc" name="ifsc" required />
+          </div>
+          <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary me-2">Save</button>
+            <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
