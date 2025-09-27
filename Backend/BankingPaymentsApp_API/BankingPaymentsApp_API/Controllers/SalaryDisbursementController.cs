@@ -27,9 +27,16 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/SalaryDisbursement
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        public async Task<IActionResult> GetAllDisbursements()
+        public async Task<IActionResult> GetAllDisbursements(
+            [FromQuery] int? clientId,
+            [FromQuery] decimal? minAmount,
+            [FromQuery] decimal? maxAmount,
+            [FromQuery] DateTime? disbursementFrom,
+            [FromQuery] DateTime? disbursementTo,
+            [FromQuery] int? disbursementStatusId,
+            [FromQuery] bool? allEmployees)
         {
-            var disbursements = await _service.GetAll();
+            var disbursements = await _service.GetAll(clientId, minAmount, maxAmount, disbursementFrom, disbursementTo, disbursementStatusId, allEmployees);
             if (disbursements.Count() == 0)
                 return NotFound("No Salary Disbursements found!");
             return Ok(disbursements);

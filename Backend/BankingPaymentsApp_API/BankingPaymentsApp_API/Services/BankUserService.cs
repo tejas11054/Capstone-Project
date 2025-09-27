@@ -4,6 +4,7 @@
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -22,9 +23,47 @@ namespace BankingPaymentsApp_API.Services
             _emailService = emailService;
         }
 
-        public async Task<IEnumerable<BankUser>> GetAll()
+        public async Task<IEnumerable<BankUser>> GetAll(
+            string? fullName,
+            string? userName,
+            string? email,
+            string? phone,
+            int? roleId,
+            int? bankId,
+            string? branch,
+            DateTime? joiningFrom,
+            DateTime? joiningTo)
         {
-            return await _bankUserRepository.GetAll();
+            var query = _bankUserRepository.GetAll();
+
+            if (!string.IsNullOrEmpty(fullName))
+                query = query.Where(u => u.UserFullName.Contains(fullName));
+
+            if (!string.IsNullOrEmpty(userName))
+                query = query.Where(u => u.UserName.Contains(userName));
+
+            if (!string.IsNullOrEmpty(email))
+                query = query.Where(u => u.UserEmail.Contains(email));
+
+            if (!string.IsNullOrEmpty(phone))
+                query = query.Where(u => u.UserPhone == phone);
+
+            if (roleId.HasValue)
+                query = query.Where(u => u.UserRoleId == roleId.Value);
+
+            if (bankId.HasValue)
+                query = query.Where(u => u.BankId == bankId.Value);
+
+            if (!string.IsNullOrEmpty(branch))
+                query = query.Where(u => u.Branch.Contains(branch));
+
+            if (joiningFrom.HasValue)
+                query = query.Where(u => u.UserJoiningDate >= joiningFrom.Value);
+
+            if (joiningTo.HasValue)
+                query = query.Where(u => u.UserJoiningDate <= joiningTo.Value);
+
+            return await query.ToListAsync();
         }
 
         public async Task<BankUser> Add(BankUser bankUser)
@@ -50,7 +89,7 @@ namespace BankingPaymentsApp_API.Services
 
         public async Task<BankUser?> GetRandomBankUser()
         {
-            var bankUsers = await _bankUserRepository.GetAll();
+            var bankUsers = _bankUserRepository.GetAll();
             if (bankUsers == null || bankUsers.Count() == 0) return null;
             var random = new Random();
             int index = random.Next(bankUsers.Count());

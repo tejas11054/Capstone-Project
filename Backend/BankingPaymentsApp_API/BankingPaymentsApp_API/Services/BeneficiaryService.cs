@@ -1,5 +1,6 @@
 ﻿using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -14,9 +15,31 @@ namespace BankingPaymentsApp_API.Services
             _clientUserRepository = clientUserRepository;
         }
 
-        public async Task<IEnumerable<Beneficiary>> GetAll()
+        public async Task<IEnumerable<Beneficiary>> GetAll(
+            int? clientId,
+            string? beneficiaryName,
+            string? accountNumber,
+            string? bankName,
+            string? ifsc)
         {
-            return await _beneficiaryRepository.GetAll();
+            var query = _beneficiaryRepository.GetAll();
+
+            if (clientId.HasValue)
+                query = query.Where(b => b.ClientId == clientId.Value);
+
+            if (!string.IsNullOrEmpty(beneficiaryName))
+                query = query.Where(b => b.BeneficiaryName.Contains(beneficiaryName));
+
+            if (!string.IsNullOrEmpty(accountNumber))
+                query = query.Where(b => b.AccountNumber.Contains(accountNumber));
+
+            if (!string.IsNullOrEmpty(bankName))
+                query = query.Where(b => b.BankName.Contains(bankName));
+
+            if (!string.IsNullOrEmpty(ifsc))
+                query = query.Where(b => b.IFSC.Contains(ifsc));
+
+            return await query.ToListAsync();
         }
 
         public async Task<Beneficiary> Add(Beneficiary beneficiary)

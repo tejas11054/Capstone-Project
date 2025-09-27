@@ -4,7 +4,13 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface ISalaryDisbursementService
     {
-        Task<IEnumerable<SalaryDisbursement>> GetAll();
+        Task<IEnumerable<SalaryDisbursement>> GetAll(int? clientId,
+            decimal? minAmount,
+            decimal? maxAmount,
+            DateTime? disbursementFrom,
+            DateTime? disbursementTo,
+            int? disbursementStatusId,
+            bool? allEmployees);
         Task<SalaryDisbursement?> GetById(int id);
         Task<SalaryDisbursement> Add(SalaryDisbursement disbursement, ICollection<int> ids);
         Task<SalaryDisbursement?> Update(SalaryDisbursement disbursement);

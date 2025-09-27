@@ -5,7 +5,17 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IEmployeeService
     {
-        public Task<IEnumerable<Employee>> GetAll(string? employeeName, string? accountNumber, string? bankName, string? ifsc, int? salary);
+
+      
+        public Task<IEnumerable<Employee>> GetAll(
+            int? clientId,
+            string? employeeName,
+            string? accountNumber,
+            string? bankName,
+            string? ifsc,
+            bool? isActive,
+            int? minSalary,
+            int? maxSalary);
         public Task<Employee> Add(Employee employee);
         public Task<Employee?> GetById(int id);
         public Task<Employee?> Update(Employee employee);

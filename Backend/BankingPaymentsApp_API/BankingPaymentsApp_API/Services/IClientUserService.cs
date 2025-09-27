@@ -4,7 +4,16 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IClientUserService
     {
-        public Task<IEnumerable<ClientUser>> GetAll();
+        public Task<IEnumerable<ClientUser>> GetAll(string? fullName,
+            string? userName,
+            string? email,
+            string? phone,
+            int? bankId,
+            DateTime? dobFrom,
+            DateTime? dobTo,
+            string? address,
+            bool? kycVerified,
+            int? bankUserId);
         public Task<ClientUser> Add(ClientUser user);
         public Task<ClientUser?> GetById(int id);
         public  Task<ClientUser?> Update(ClientUser user);

@@ -14,13 +14,23 @@ namespace BankingPaymentsApp_API.Repositories
         }
 
         // ✅ Get all SalaryDisbursements with related ClientUser + DisbursementDetails
-        public async Task<IEnumerable<SalaryDisbursement>> GetAll()
+        //public async Task<IEnumerable<SalaryDisbursement>> GetAll()
+        //{
+        //    return await _dbContext.SalaryDisbursements
+        //        .Include(s => s.ClientUser).ThenInclude(u=>u.Employees)
+        //        .Include(s => s.DisbursementDetails)
+        //        .Include(s=>s.Employees)
+        //        .ToListAsync();
+        //}
+
+        public IQueryable<SalaryDisbursement> GetAll()
         {
-            return await _dbContext.SalaryDisbursements
-                .Include(s => s.ClientUser).ThenInclude(u=>u.Employees)
-                .Include(s => s.DisbursementDetails)
-                .Include(s=>s.Employees)
-                .ToListAsync();
+            return _dbContext.SalaryDisbursements
+                             .Include(sd => sd.ClientUser).ThenInclude(u => u.Employees)
+                             .Include(sd => sd.DisbursementStatus)
+                             .Include(sd => sd.Employees)
+                             .Include(sd => sd.DisbursementDetails)
+                             .AsQueryable();
         }
 
         // ✅ Get SalaryDisbursement by Id

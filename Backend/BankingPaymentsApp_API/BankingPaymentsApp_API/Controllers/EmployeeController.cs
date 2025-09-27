@@ -34,16 +34,19 @@ namespace BankingPaymentsApp_API.Controllers
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllEmployees(
-     [FromQuery] string? employeeName,
-     [FromQuery] string? accountNumber,
-     [FromQuery] string? bankName,
-     [FromQuery] string? ifsc,
-     [FromQuery] int? salary)
+     
+            [FromQuery] int? clientId,
+            [FromQuery] string? employeeName,
+            [FromQuery] string? accountNumber,
+            [FromQuery] string? bankName,
+            [FromQuery] string? ifsc,
+            [FromQuery] bool? isActive,
+            [FromQuery] int? minSalary,
+            [FromQuery] int? maxSalary)
         {
-            var employees = await _employeeService.GetAll(employeeName, accountNumber, bankName, ifsc, salary);
-            if (!employees.Any())
-                return NotFound("No Employees to display");
-
+            var employees = await _employeeService.GetAll(clientId, employeeName, accountNumber, bankName, ifsc, isActive, minSalary, maxSalary);
+            if (employees.Count() == 0)
+                return NotFound("No Employee to display");
             return Ok(employees);
         }
 
@@ -51,6 +54,7 @@ namespace BankingPaymentsApp_API.Controllers
         // POST: api/Employee
         [HttpPost]
         // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+
 
         public async Task<IActionResult> CreateEmployee(EmployeeDTO employee)
         {

@@ -2,6 +2,7 @@
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using CsvHelper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System.ComponentModel.DataAnnotations;
 
@@ -15,10 +16,43 @@ namespace BankingPaymentsApp_API.Services
         {
             _employeeRepository = employeeRepository;
         }
-
-        public async Task<IEnumerable<Employee>> GetAll(string? employeeName, string? accountNumber, string? bankName, string? ifsc, int? salary)
+        public async Task<IEnumerable<Employee>> GetAll(
+            int? clientId,
+            string? employeeName,
+            string? accountNumber,
+            string? bankName,
+            string? ifsc,
+            bool? isActive,
+            int? minSalary,
+            int? maxSalary)
         {
-            return await _employeeRepository.GetAll(employeeName, accountNumber, bankName, ifsc, salary);
+            var query = _employeeRepository.GetAll();
+
+            if (clientId.HasValue)
+                query = query.Where(e => e.ClientId == clientId.Value);
+
+            if (!string.IsNullOrEmpty(employeeName))
+                query = query.Where(e => e.EmployeeName.Contains(employeeName));
+
+            if (!string.IsNullOrEmpty(accountNumber))
+                query = query.Where(e => e.AccountNumber.Contains(accountNumber));
+
+            if (!string.IsNullOrEmpty(bankName))
+                query = query.Where(e => e.BankName.Contains(bankName));
+
+            if (!string.IsNullOrEmpty(ifsc))
+                query = query.Where(e => e.IFSC.Contains(ifsc));
+
+            if (isActive.HasValue)
+                query = query.Where(e => e.IsActive == isActive.Value);
+
+            if (minSalary.HasValue)
+                query = query.Where(e => e.Salary >= minSalary.Value);
+
+            if (maxSalary.HasValue)
+                query = query.Where(e => e.Salary <= maxSalary.Value);
+
+            return await query.ToListAsync();
         }
 
         public async Task<Employee> Add(Employee employee)
@@ -53,8 +87,9 @@ namespace BankingPaymentsApp_API.Services
     string? ifsc = null,
     int? salary = null)
         {
-            var employees = await _employeeRepository.GetAll(employeeName, accountNumber, bankName, ifsc, salary);
-            return employees.Where(e => e.ClientId == clientId).ToList();
+
+            var employees = _employeeRepository.GetAll();
+            return employees.Where(x => x.ClientId == clientId);
         }
 
         public async Task<IEnumerable<EmployeeDTO>?> UploadEmployees(IFormFile file)

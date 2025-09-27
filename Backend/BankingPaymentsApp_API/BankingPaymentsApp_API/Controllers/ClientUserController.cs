@@ -25,11 +25,21 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/ClientUser
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
-        public async Task<IActionResult> GetAllClientUsers()
+        public async Task<IActionResult> GetAllClientUsers(
+            [FromQuery] string? fullName,
+            [FromQuery] string? userName,
+            [FromQuery] string? email,
+            [FromQuery] string? phone,
+            [FromQuery] int? bankId,
+            [FromQuery] DateTime? dobFrom,
+            [FromQuery] DateTime? dobTo,
+            [FromQuery] string? address,
+            [FromQuery] bool? kycVerified,
+            [FromQuery] int? bankUserId)
         {
             _logger.LogInformation("GetAllCLientUsers started!");
 
-            var clientUsers = await _service.GetAll();
+            var clientUsers = await _service.GetAll(fullName, userName, email, phone, bankId, dobFrom, dobTo, address, kycVerified, bankUserId);
             if (!clientUsers.Any())
                 return NotFound("No Client Users found!");
 
