@@ -1,36 +1,62 @@
 <div class="container mt-4">
-  <h1 class="mb-3">ALL PENDING PAYMENTS</h1>
-  <hr>
+  <h5 class="fw-bold mb-3">ALL PENDING PAYMENTS</h5>
 
-  <table class="table table-bordered table-striped table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>ID</th>
-        <th>Payer Name</th>
-        <th>Payer Account Number</th>
-        <th>Amount</th>
-        <th>Payee Account Number</th>
-        <th>Created At</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let payment of payments">
-        <td>{{ payment.paymentId }}</td>
-        <td>{{ payment.payerAccount?.clientUser?.userName }}</td>
-        <td>{{ payment.payerAccount?.accountNumber }}</td>
-        <td>{{ payment.amount | currency }}</td>
-        <td>{{ payment.payeeAccountNumber }}</td>
-        <td>{{ payment.createdAt | date:'short' }}</td>
-        <td>{{ payment.paymentStatus?.statusId | paymentStatus }}</td>
-        <td>
-          <button class="btn btn-success btn-sm me-1" (click)="approvePayment(payment)">Approve</button>
-          <button class="btn btn-danger btn-sm" (click)="openFormModal(payment)">Reject</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<app-reject-modal #rejectModal [Parentid]="selectedPayment?.id" (formSubmit)="handleFormSubmit($event)"></app-reject-modal>
+  <div class="mb-3 d-flex flex-wrap gap-2">
+    <div ngbDropdown class="d-inline-block">
+      <div class="mb-3 d-flex flex-wrap gap-2">
+        <!-- Date and Time Filter -->
+        <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
+        <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter>
+        <app-status-filter></app-status-filter>
+        <app-name-filter></app-name-filter>
+        <app-id-filter></app-id-filter>
+        <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
+      </div>
 
+      <div class="table-responsive shadow-sm rounded bg-white">
+        <table class="table table-hover align-middle small mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Payer Name</th>
+              <th>Payer Account Number</th>
+              <th>Amount</th>
+              <th>Payee Account Number</th>
+              <th>Created At</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let payment of payments">
+              <td class="text-truncate">{{ payment.paymentId }}</td>
+              <td class="text-truncate" style="max-width: 160px;">
+                {{ payment.payerAccount?.clientUser?.userName }}
+              </td>
+              <td class="text-truncate" style="max-width: 140px;">
+                {{ payment.payerAccount?.accountNumber }}
+              </td>
+              <td class="text-truncate">{{ payment.amount | currency }}</td>
+              <td class="text-truncate" style="max-width: 160px;">
+                {{ payment.payeeAccountNumber }}
+              </td>
+              <td class="text-truncate" style="max-width: 140px;">
+                {{ payment.createdAt | date:'dd-MMM, h:mm a' }}
+              </td>
+              <td>
+                <span class="badge rounded-pill bg-light text-dark border">
+                  {{ payment.paymentStatus?.statusId | paymentStatus }}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-sm btn-success me-1">Approve</button>
+                <button class="btn btn-sm btn-outline-danger">Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <app-reject-modal #rejectModal [Parentid]="selectedPayment?.id"
+      (formSubmit)="handleFormSubmit($event)"></app-reject-modal>

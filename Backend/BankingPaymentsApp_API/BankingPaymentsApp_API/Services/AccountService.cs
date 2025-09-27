@@ -102,7 +102,7 @@ namespace BankingPaymentsApp_API.Services
         }
         public async Task<Account?> AccountExistsWithAccountNumber(string accountNumber)
         {
-            var accounts = await _accountRepository.GetAll();
+            var accounts = _accountRepository.GetAll();
             //return true if any account has the given account Number 
             Account? account = accounts.FirstOrDefault(a=>a.AccountNumber.Equals(accountNumber));
             if (account == null) return null;

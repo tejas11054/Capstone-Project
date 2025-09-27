@@ -3,6 +3,7 @@ using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -25,9 +26,51 @@ namespace BankingPaymentsApp_API.Services
             _bankUserService = bankUserService;
         }
 
-        public async Task<IEnumerable<ClientUser>> GetAll()
+        public async Task<IEnumerable<ClientUser>> GetAll(
+            string? fullName,
+            string? userName,
+            string? email,
+            string? phone,
+            int? bankId,
+            DateTime? dobFrom,
+            DateTime? dobTo,
+            string? address,
+            bool? kycVerified,
+            int? bankUserId)
         {
-            return await _clientUserRepository.GetAll();
+            var query = _clientUserRepository.GetAll();
+
+            if (!string.IsNullOrEmpty(fullName))
+                query = query.Where(cu => cu.UserFullName.Contains(fullName));
+
+            if (!string.IsNullOrEmpty(userName))
+                query = query.Where(cu => cu.UserName.Contains(userName));
+
+            if (!string.IsNullOrEmpty(email))
+                query = query.Where(cu => cu.UserEmail.Contains(email));
+
+            if (!string.IsNullOrEmpty(phone))
+                query = query.Where(cu => cu.UserPhone == phone);
+
+            if (bankId.HasValue)
+                query = query.Where(cu => cu.BankId == bankId.Value);
+
+            if (dobFrom.HasValue)
+                query = query.Where(cu => cu.DateOfBirth >= dobFrom.Value);
+
+            if (dobTo.HasValue)
+                query = query.Where(cu => cu.DateOfBirth <= dobTo.Value);
+
+            if (!string.IsNullOrEmpty(address))
+                query = query.Where(cu => cu.Address.Contains(address));
+
+            if (kycVerified.HasValue)
+                query = query.Where(cu => cu.KycVierified == kycVerified.Value);
+
+            if (bankUserId.HasValue)
+                query = query.Where(cu => cu.BankUserId == bankUserId.Value);
+
+            return await query.ToListAsync();
         }
 
         public async Task<ClientUser> Add(ClientUser user)

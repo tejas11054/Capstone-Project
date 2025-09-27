@@ -20,12 +20,22 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Payment
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)}")]
-        public async Task<IActionResult> GetAllPayments()
+        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)}")]
+        public async Task<IActionResult> GetAllPayments(
+            [FromQuery] int? payerAccountId,
+            [FromQuery] string? payerName,
+            [FromQuery] string? payeeAccountNumber,
+            [FromQuery] double? minAmount,
+            [FromQuery] double? maxAmount,
+            [FromQuery] DateTime? createdFrom,
+            [FromQuery] DateTime? createdTo,
+            [FromQuery] int? paymentStatusId,
+            [FromQuery] DateTime? actionFrom,
+            [FromQuery] DateTime? actionTo)
         {
-            var payments =await _paymentService.GetAll();
-            if(payments.Count()==0)
-                return NotFound("No payments to display");
+            var payments =await _paymentService.GetAll(payerAccountId,payerName, payeeAccountNumber, minAmount, maxAmount,
+            createdFrom, createdTo, paymentStatusId, actionFrom, actionTo);
+     
             return Ok(payments);
         }
 

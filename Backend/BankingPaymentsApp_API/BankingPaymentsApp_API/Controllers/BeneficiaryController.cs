@@ -25,11 +25,16 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Beneficiary/
         [HttpGet]
         [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        public async Task<IActionResult> GetAllBeneficiarys()
+        public async Task<IActionResult> GetAllBeneficiarys(
+            [FromQuery] int? clientId,
+            [FromQuery] string? beneficiaryName,
+            [FromQuery] string? accountNumber,
+            [FromQuery] string? bankName,
+            [FromQuery] string? ifsc)
         {
             _logger.LogInformation("GetAllBeneficiarys started!");
 
-            var beneficiaries = await _beneficiaryService.GetAll();
+            var beneficiaries = await _beneficiaryService.GetAll(clientId, beneficiaryName, accountNumber, bankName, ifsc);
             if (beneficiaries.Count() == 0)
                 return NotFound("No Beneficiary to display");
             _logger.LogInformation($"{beneficiaries.Count()} displayed!");

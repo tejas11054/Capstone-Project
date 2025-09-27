@@ -34,9 +34,17 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Employee
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        public async Task<IActionResult> GetAllEmployees()
+        public async Task<IActionResult> GetAllEmployees(
+            [FromQuery] int? clientId,
+            [FromQuery] string? employeeName,
+            [FromQuery] string? accountNumber,
+            [FromQuery] string? bankName,
+            [FromQuery] string? ifsc,
+            [FromQuery] bool? isActive,
+            [FromQuery] int? minSalary,
+            [FromQuery] int? maxSalary)
         {
-            var employees = await _employeeService.GetAll();
+            var employees = await _employeeService.GetAll(clientId, employeeName, accountNumber, bankName, ifsc, isActive, minSalary, maxSalary);
             if (employees.Count() == 0)
                 return NotFound("No Employee to display");
             return Ok(employees);
@@ -44,11 +52,8 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Employee
         [HttpPost]
-<<<<<<< HEAD
        // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-=======
-        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
->>>>>>> f1f0e9b2591283b25cd85da04dc5e6d5cb50449f
+
         public async Task<IActionResult> CreateEmployee(EmployeeDTO employee)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

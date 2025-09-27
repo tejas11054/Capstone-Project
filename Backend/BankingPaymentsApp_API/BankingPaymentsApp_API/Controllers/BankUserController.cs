@@ -4,6 +4,7 @@ using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace BankingPaymentsApp_API.Controllers
 {
@@ -25,10 +26,19 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/BankUser
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)}")]
-        public async Task<IActionResult> GetAllBankUsers()
+        public async Task<IActionResult> GetAllBankUsers(
+            [FromQuery] string? fullName,
+            [FromQuery] string? userName,
+            [FromQuery] string? email,
+            [FromQuery] string? phone,
+            [FromQuery] int? roleId,
+            [FromQuery] int? bankId,
+            [FromQuery] string? branch,
+            [FromQuery] DateTime? joiningFrom,
+            [FromQuery] DateTime? joiningTo)
         {
             _logger.LogInformation("GetAllBankUsers started!");
-            var bankUsers = await _service.GetAll();
+            var bankUsers = await _service.GetAll(fullName, userName, email, phone, roleId, bankId, branch, joiningFrom, joiningTo);
             if (!bankUsers.Any())
                 return NotFound("No Bank Users found!");
 

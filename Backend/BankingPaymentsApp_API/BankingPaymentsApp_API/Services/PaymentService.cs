@@ -3,6 +3,7 @@ using BankingPaymentsApp_API.Data;
 using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
 
 namespace BankingPaymentsApp_API.Services
@@ -26,9 +27,51 @@ namespace BankingPaymentsApp_API.Services
             _emailService = emailService;
         }
 
-        public async Task<IEnumerable<Payment>> GetAll()
+        public async Task<IEnumerable<Payment>> GetAll(
+            int? payerAccountId,
+            string?payerName,
+            string? payeeAccountNumber,
+            double? minAmount,
+            double? maxAmount,
+            DateTime? createdFrom,
+            DateTime? createdTo,
+            int? paymentStatusId,
+            DateTime? actionFrom,
+            DateTime? actionTo)
         {
-            return await _paymentRepository.GetAll();
+            var query = _paymentRepository.GetAll();
+
+            if (payerAccountId.HasValue)
+                query = query.Where(p => p.PayerAccountId == payerAccountId.Value);
+
+            if (!string.IsNullOrEmpty(payerName))
+                query = query.Where(p => p.PayerAccount.ClientUser.UserName.Contains(payerName));
+
+            if (!string.IsNullOrEmpty(payeeAccountNumber))
+                query = query.Where(p => p.PayeeAccountNumber.Contains(payeeAccountNumber));
+
+            if (minAmount.HasValue)
+                query = query.Where(p => p.Amount >= minAmount.Value);
+
+            if (maxAmount.HasValue)
+                query = query.Where(p => p.Amount <= maxAmount.Value);
+
+            if (createdFrom.HasValue)
+                query = query.Where(p => p.CreatedAt.Date >= createdFrom.Value.Date);
+
+            if (createdTo.HasValue)
+                query = query.Where(p => p.CreatedAt.Date <= createdTo.Value.Date);
+
+            if (paymentStatusId.HasValue)
+                query = query.Where(p => p.PaymentStatusId == paymentStatusId.Value);
+
+            if (actionFrom.HasValue)
+                query = query.Where(p => p.ActionAt >= actionFrom.Value);
+
+            if (actionTo.HasValue)
+                query = query.Where(p => p.ActionAt <= actionTo.Value);
+
+            return await query.ToListAsync();
         }
 
         public async Task<Payment> Add(Payment payment)

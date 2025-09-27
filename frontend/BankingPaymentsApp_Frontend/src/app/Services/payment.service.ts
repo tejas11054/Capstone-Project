@@ -13,8 +13,8 @@ export class PaymentService {
   paymentURL:string = environment.backendURL + "/Payment";
   constructor(private http:HttpClient) { }
 
-  getAllPayments():Observable<Array<Payment>>{
-    return this.http.get<Array<Payment>>(this.paymentURL);
+  getAllPayments(queryParams: string):Observable<Array<Payment>>{
+    return this.http.get<Array<Payment>>(this.paymentURL+`?${queryParams}`);
   }
 
   getPaymentById(paymentId: number): Observable<any> {

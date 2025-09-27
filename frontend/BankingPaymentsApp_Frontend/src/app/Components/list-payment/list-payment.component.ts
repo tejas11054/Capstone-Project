@@ -5,10 +5,17 @@ import { CommonModule } from '@angular/common';
 import { PaymentStatusPipe } from '../../Pipes/payment-status.pipe';
 import { RejectDTO } from '../../DTO/RejectDTO';
 import { RejectModalComponent } from '../Shared/reject-modal/reject-modal.component';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { DateFilterComponent } from '../Filters/date-filter/date-filter.component';
+import { AmountFilterComponent } from '../Filters/amount-filter/amount-filter.component';
+import { AccountNumberFilterComponent } from '../Filters/account-number-filter/account-number-filter.component';
+import { IdFilterComponent } from '../Filters/id-filter/id-filter.component';
+import { NameFilterComponent } from '../Filters/name-filter/name-filter.component';
+import { StatusFilterComponent } from '../Filters/status-filter/status-filter.component';
 
 @Component({
   selector: 'app-list-payment',
-  imports: [CommonModule, PaymentStatusPipe, RejectModalComponent],
+  imports: [CommonModule, PaymentStatusPipe, RejectModalComponent, ReactiveFormsModule, DateFilterComponent, AmountFilterComponent, AccountNumberFilterComponent, IdFilterComponent, NameFilterComponent, StatusFilterComponent],
   templateUrl: './list-payment.component.html',
   styleUrls: ['./list-payment.component.css'],
   standalone: true
@@ -16,12 +23,19 @@ import { RejectModalComponent } from '../Shared/reject-modal/reject-modal.compon
 export class ListPaymentComponent implements OnInit {
 
   payments!: Payment[];
+  filters: any = {};
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
   selectedPayment: any = null;
-  constructor(private paymentSvc: PaymentService) { }
+
+  constructor(private paymentSvc: PaymentService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.paymentSvc.getAllPayments().subscribe((data) => {
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllPayments(params);
+  }
+
+  fetchAllPayments(params: string) {
+    this.paymentSvc.getAllPayments(params).subscribe((data) => {
       console.log(data);
       // const pendingPayments = data.filter(e => e.paymentStatusId == 3);
       // this.payments = pendingPayments;
@@ -49,13 +63,13 @@ export class ListPaymentComponent implements OnInit {
     this.formModal.open(payment.paymentId);
   }
 
-  handleFormSubmit(rejectForm:any) {
-      console.log("data in parent=> " + rejectForm)
-      this.rejectPayment(rejectForm);
+  handleFormSubmit(rejectForm: any) {
+    console.log("data in parent=> " + rejectForm)
+    this.rejectPayment(rejectForm);
   }
 
 
-  rejectPayment(reject:RejectDTO) {
+  rejectPayment(reject: RejectDTO) {
     this.paymentSvc.rejectPayment(reject).subscribe((data) => {
       console.log(data);
       alert("payment sucessfully Rejected");
@@ -63,5 +77,32 @@ export class ListPaymentComponent implements OnInit {
       (error) => {
         console.log(error);
       })
+  }
+
+  onDateFilter(dates: { dateFrom: string; dateTo: string }) {
+
+    this.filters.createdFrom = dates.dateFrom;
+    this.filters.createdTo = dates.dateTo;
+    console.log(this.filters);
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllPayments(params);
+  }
+
+  onAmountFilter(amount:{minAmount:string, maxAmount:string}){
+    this.filters.minAmount = amount.minAmount;
+    this.filters.maxAmount = amount.maxAmount;
+    console.log(this.filters);
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllPayments(params);
+  }
+
+  onAccountFilter(account:{accountNumber:string}){
+    this.filters.accountNumber = account.accountNumber;
+    console.log(this.filters);
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllPayments(params);
   }
 }

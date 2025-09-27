@@ -12,9 +12,17 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        public async Task<IEnumerable<Employee>> GetAll()
+        //public async Task<IEnumerable<Employee>> GetAll()
+        //{
+        //    return await _dbContext.Employees.Include(e => e.ClientUser).ToListAsync();
+        //}
+
+        public IQueryable<Employee> GetAll()
         {
-            return await _dbContext.Employees.Include(e => e.ClientUser).ToListAsync();
+            return _dbContext.Employees
+                             .Include(e => e.ClientUser)
+                             .Include(e => e.SalaryDisbursementDetails)
+                             .AsQueryable();
         }
 
         public async Task<Employee> Add(Employee employee)
