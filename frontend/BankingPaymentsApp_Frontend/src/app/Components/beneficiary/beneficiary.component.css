@@ -223,3 +223,17 @@ html, body {
   margin-top: 1rem;
   font-style: italic;
 }
+
+button{
+    width: 100px;
+    background: #7a5af8;
+}
+
+button:hover{
+    background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-1px);
+}
+
+.card-title{
+    color: #fff !important; 
+}

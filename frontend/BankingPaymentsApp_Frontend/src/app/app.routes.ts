@@ -35,10 +35,14 @@ export const routes: Routes = [
       { path: 'profile/:id', component: ClientProfileComponent },
       { path: 'ClientAccount/:id', component: ClientAccountComponent },
       { path: 'ClientDocuments/:userId', component: ClientDocumentsComponent },
-      { path: 'ClientUser/:userId/beneficiaries', component: BeneficiariesComponent },
+      { path: 'beneficiaries', component: BeneficiariesComponent, children: [
+        { path: 'add', component: BeneficiaryRegisterComponent }
+      ]},
+
       { path: 'ClientUser/:userId/transactions', component: ClientTransactionComponent },
       { path: 'ClientEmployees/:userId', component: EmployeesComponent },
       { path: 'ClientPayments/:clientId', component: ClientPaymentComponent },
+      { path: 'ClientSalaryDisbursement/:userId', component: ClientSalaryDisbursementComponent},
     ]
   },
     { path: '', component: LoginComponent },
@@ -55,7 +59,7 @@ export const routes: Routes = [
     
     
     { path: "ClientUser/:clientId/payments", component: ClientAccountComponent},
-    { path: 'ClientSalaryDisbursement/:userId', component: ClientSalaryDisbursementComponent},
+    
     { path: 'BankUser', component: BankUserComponent },
     { path: "BankRegister", component: BankRegisterComponent },
     { path: 'Admin', component: AdminComponent },
@@ -65,6 +69,5 @@ export const routes: Routes = [
     { path: "employees", component: ListAllEmployeesComponent },
     { path: "salary", component: SalaryDisbursementComponent },
     { path: "disbursement", component: ListSalaryDisbursementComponent },
-    { path: "BeneficiaryRegister", component: BeneficiaryRegisterComponent},
     { path: "**", component: PageNotFoundComponent },
 ];

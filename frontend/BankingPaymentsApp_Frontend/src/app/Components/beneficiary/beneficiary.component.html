@@ -1,6 +1,29 @@
 <div class="container my-4">
   <h2 class="section-title">My Beneficiaries</h2>
 
+  <div class="mb-3 text-center">
+<div class="mb-3 text-center">
+  <button class="btn btn-primary" (click)="showAddBeneficiary = true">
+    <i class="fas fa-user-plus"></i> Add
+  </button>
+</div>
+
+<!-- Add Beneficiary Form -->
+<div *ngIf="showAddBeneficiary">
+  <app-beneficiary-register
+    (beneficiaryAdded)="loadBeneficiaries()"
+    (cancelAdd)="showAddBeneficiary = false">
+  </app-beneficiary-register>
+</div>
+
+
+
+
+  </div>
+
+
+
+
   <!-- Loading -->
   <div *ngIf="loading" class="text-center my-4">
     <div class="spinner-border text-primary" role="status">

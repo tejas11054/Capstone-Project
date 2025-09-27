@@ -1,23 +1,27 @@
-<div class="container">
-    <h3>Add A Beneficiary</h3>
-    <hr>
-    <form [formGroup]="createBeneficiary" (submit)="addBeneficiary()">
-        <div class="form-group">
-            <label class="form-label">Beneficiary Name</label>
-            <input class="form-control" formControlName="beneficiaryName">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Account Number</label>
-            <input class="form-control" formControlName="accountNumber">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Bank Name</label>
-            <input class="form-control" formControlName="bankName">
-        </div>
-        <div class="form-group">
-            <label class="form-label">IFSC</label>
-            <input class="form-control" formControlName="ifsc">
-        </div>
-        <button class="btn btn-success">Add Beneficiary</button>
+<div class="card bg-dark text-white mt-4 mx-auto p-4" style="max-width: 650px;">
+  <div class="card-body">
+    <h4 class="card-title text-center text-primary mb-3">Add Beneficiary</h4>
+    <form [formGroup]="createBeneficiary" (ngSubmit)="addBeneficiary()">
+      <div class="mb-3">
+        <label class="form-label">Beneficiary Name</label>
+        <input type="text" class="form-control" formControlName="beneficiaryName" placeholder="Enter name">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Account Number</label>
+        <input type="text" class="form-control" formControlName="accountNumber" placeholder="Enter account number">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Bank Name</label>
+        <input type="text" class="form-control" formControlName="bankName" placeholder="Enter bank name">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">IFSC</label>
+        <input type="text" class="form-control" formControlName="ifsc" placeholder="Enter IFSC code">
+      </div>
+      <div class="text-center mt-3">
+        <button type="submit" class="btn  me-2">Add</button>
+        <button type="button" class="btn" (click)="cancel()">Cancel</button>
+      </div>
     </form>
+  </div>
 </div>

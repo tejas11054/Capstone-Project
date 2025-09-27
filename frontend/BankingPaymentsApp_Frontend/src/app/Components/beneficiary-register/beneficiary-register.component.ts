@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BeneficiaryService } from '../../Services/beneficiary.service';
 import { AuthService } from '../../Services/auth.service';
@@ -6,14 +6,18 @@ import { Beneficiary } from '../../Models/Beneficiary';
 
 @Component({
   selector: 'app-beneficiary-register',
+  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './beneficiary-register.component.html',
   styleUrl: './beneficiary-register.component.css'
 })
 export class BeneficiaryRegisterComponent implements OnInit {
 
+  @Input() userId!: number;
   createBeneficiary!: FormGroup;
   @Output() beneficiaryAdded = new EventEmitter<Beneficiary>();
+  @Output() cancelAdd = new EventEmitter<void>(); 
+  
   constructor(private fb: FormBuilder,private beneficiarySvc:BeneficiaryService,private auth:AuthService) { }
 
 
@@ -31,13 +35,21 @@ export class BeneficiaryRegisterComponent implements OnInit {
     this.createBeneficiary.patchValue({clientId: user?.userId});
 
   }
-  addBeneficiary() {
-    this.beneficiarySvc.createBeneficiary(this.createBeneficiary.value).subscribe((data)=>{
-      console.log(data);
-      this.beneficiaryAdded.emit(data);
-    },
-  (error)=>{
-    console.log(error);
-  })
+   addBeneficiary() {
+    this.beneficiarySvc.createBeneficiary(this.createBeneficiary.value).subscribe(
+      (data) => {
+        console.log(data);
+        this.beneficiaryAdded.emit(data);
+        this.cancelAdd.emit(); // close the form after successful addition
+      },
+      (error) => {
+        console.log(error);
+        alert('Failed to add beneficiary.');
+      }
+    );
+  }
+
+  cancel() {
+    this.cancelAdd.emit(); // notify parent to hide the form
   }
 }

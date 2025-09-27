@@ -17,7 +17,7 @@
       <button [routerLink]="['ClientDocuments', userId]" class="btn-dashboard">
         <i class="fas fa-file-alt"></i> Documents
       </button>
-      <button [routerLink]="['ClientUser', userId, 'beneficiaries']" class="btn-dashboard">
+      <button [routerLink]="['beneficiaries']" class="btn-dashboard">
         <i class="fas fa-handshake"></i> Beneficiaries
       </button>
       <button [routerLink]="['ClientUser', userId, 'transactions']" class="btn-dashboard">
@@ -30,7 +30,7 @@
   <i class="fas fa-money-bill-wave"></i> Payments
 </button>
 
-      <button [routerLink]="['/ClientSalaryDisbursement', userId]" class="btn-dashboard">
+      <button [routerLink]="['ClientSalaryDisbursement', userId]" class="btn-dashboard">
   <i class="fas fa-receipt"></i> Salary Disbursement
 </button>
 

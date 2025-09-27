@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ClientRegisterService } from '../../Services/client.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BeneficiaryService } from '../../Services/beneficiary.service';
+import { BeneficiaryRegisterComponent } from '../beneficiary-register/beneficiary-register.component';
 
 @Component({
   selector: 'app-beneficiaries',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink, BeneficiaryRegisterComponent],
   templateUrl: './beneficiary.component.html',
   styleUrls: ['./beneficiary.component.css']
 })
@@ -18,6 +19,7 @@ export class BeneficiariesComponent implements OnInit {
   userId!: number;
   beneficiaries: any[] = [];
   loading = true;
+  showAddBeneficiary: boolean = false; 
 
   editingBeneficiary: any = null; 
 
@@ -100,9 +102,11 @@ export class BeneficiariesComponent implements OnInit {
     });
   }
 
-    goBack(): void {
-    this.router.navigate(["/ClientUser/" + this.userId]);  // navigates to previous page
+ toggleAddBeneficiary(): void {
+    this.showAddBeneficiary = !this.showAddBeneficiary;
   }
+
+
 
 
 }
