@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ClientUser } from '../../Models/ClientUser';
 import { Document } from '../../Models/Document';
@@ -8,7 +9,7 @@ import { ClientRegisterService } from '../../Services/client.service';
 @Component({
   selector: 'app-bank-user',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './bank-user.component.html',
   styleUrls: ['./bank-user.component.css']
 })
@@ -16,7 +17,10 @@ export class BankUserComponent implements OnInit {
 
   clients: ClientUser[] = [];
   selectedClientDocs: Document[] = [];
+  selectedClient: ClientUser | null = null; // <-- Added
   showDocuments: boolean = false;
+  loading: boolean = true;
+  responseMessage: string | null = null;
 
   constructor(private bankService: ClientRegisterService) { }
 
@@ -25,6 +29,10 @@ export class BankUserComponent implements OnInit {
   }
 
   fetchClients() {
+    this.loading = true;
+    this.resetDocuments();
+    this.responseMessage = null;
+
     this.bankService.getClients().subscribe({
       next: (res: any[]) => {
         this.clients = res.map((c: any) => ({
@@ -40,15 +48,18 @@ export class BankUserComponent implements OnInit {
           address: c.address,
           kycVierified: c.kycVierified,
           documents: [],
-          bankId: c.bankId ?? 0,  // <-- add default or actual value
+          bankId: c.bankId ?? 0,
           bank: c.bank ?? ''
         }));
-
+        this.loading = false;
       },
-      error: err => console.error('Error fetching clients:', err)
+      error: err => {
+        console.error('Error fetching clients:', err);
+        this.loading = false;
+        this.responseMessage = 'Failed to fetch clients.';
+      }
     });
   }
-
 
   viewDocuments(client: ClientUser) {
     if (!client.userId) {
@@ -56,9 +67,9 @@ export class BankUserComponent implements OnInit {
       return;
     }
 
-    // Reset previous documents
-    this.selectedClientDocs = [];
-    this.showDocuments = false;
+    this.resetDocuments();
+    this.selectedClient = client; // <-- Set selected client
+    this.responseMessage = null;
 
     this.bankService.getClientDocuments(client.userId).subscribe({
       next: (docs: any[]) => {
@@ -75,45 +86,49 @@ export class BankUserComponent implements OnInit {
         this.showDocuments = this.selectedClientDocs.length > 0;
 
         if (this.selectedClientDocs.length === 0) {
-          alert('No documents uploaded for this client.');
+          this.responseMessage = 'No documents uploaded for this client.';
         }
       },
       error: (err) => {
         console.error('Error fetching documents:', err);
-        alert('Failed to fetch documents. Check console.');
+        this.responseMessage = 'Failed to fetch documents.';
       }
     });
   }
 
   approveClient(client: ClientUser) {
-    this.bankService.approveClient(client.userId!).subscribe({
+    if (!client.userId) return;
+
+    this.bankService.approveClient(client.userId).subscribe({
       next: () => {
-        alert('Client approved successfully!');
+        this.responseMessage = 'Client approved successfully!';
         this.fetchClients();
-        this.selectedClientDocs = [];
-        this.showDocuments = false;
       },
       error: (err) => {
         console.error('Error approving client:', err);
-        alert('Failed to approve client. Check console.');
+        this.responseMessage = 'Failed to approve client.';
       }
     });
   }
 
-
-
   rejectClient(client: ClientUser, reason: string) {
-    this.bankService.rejectClient(client.userId!, reason).subscribe({
+    if (!client.userId) return;
+
+    this.bankService.rejectClient(client.userId, reason).subscribe({
       next: (res) => {
-        alert(res); // shows message from backend
+        this.responseMessage = res;
         this.fetchClients();
-        this.selectedClientDocs = [];
-        this.showDocuments = false;
       },
-      error: (err) => console.error('Error rejecting client:', err)
+      error: (err) => {
+        console.error('Error rejecting client:', err);
+        this.responseMessage = 'Failed to reject client.';
+      }
     });
   }
 
-
-
+  private resetDocuments() {
+    this.selectedClientDocs = [];
+    this.showDocuments = false;
+    this.selectedClient = null; // <-- Reset selected client
+  }
 }

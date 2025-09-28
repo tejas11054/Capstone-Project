@@ -1,0 +1,148 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #12101b;
+  color: #fff;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.dashboard-sidebar {
+  width: 320px;
+  flex-shrink: 0; 
+  background: #1f1c2f;
+  padding: 2rem 1rem;
+  border-right: 1px solid #3c3a4a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.dashboard-actions {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.btn-dashboard {
+  width: 100%;
+  text-align: left;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+  border-radius: 12px;
+  background: #2a283b;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-dashboard i {
+  font-size: 1.6rem;
+}
+
+.btn-dashboard:hover {
+  background: linear-gradient(135deg, #7a5af8, #6a49e6);
+  transform: translateX(5px) scale(1.02);
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.6);
+}
+
+.dashboard-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.account-info-simple {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background: transparent;
+  padding: 0;
+  gap: 1rem;
+}
+
+.info-block-simple {
+  flex: 1;
+  background: linear-gradient(135deg, #2e2a46, #1f1c2f);
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.2);
+}
+
+.info-block-simple i {
+  font-size: 1.5rem;
+  color: #7a5af8;
+  margin-bottom: 0.3rem;
+  display: block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.info-title {
+  font-size: 0.75rem;
+  color: #bbb;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.info-block-simple:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(122, 90, 248, 0.4);
+}
+
+.info-block-simple:hover i {
+  transform: scale(1.2);
+  color: #9f7aff;
+}
+
+.dashboard-content {
+  background: linear-gradient(135deg, #2e2a46, #1f1c2f);
+  flex-grow: 1;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(122, 90, 248, 0.3);
+  animation: fadeIn 0.6s ease-in-out;
+  overflow-y: auto;
+}
+
+.dashboard-content h3 {
+  color: #7a5af8;
+  font-size: 1.8rem;
+}
+
+.dashboard-content p {
+  color: #ccc;
+  font-size: 1rem;
+}
+
+.btn-dashboard.active-btn {
+  background: #7a5af8;
+  color: #fff;
+  transform: translateX(5px) scale(1.03);
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.6);
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0; transform: translateY(20px);}
+  100% {opacity: 1; transform: translateY(0);}
+}

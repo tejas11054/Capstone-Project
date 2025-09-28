@@ -1,0 +1,67 @@
+<div class="dashboard-container">
+  <!-- Left Sidebar -->
+  <div class="dashboard-sidebar">
+    <div class="dashboard-actions d-flex flex-column mt-4">
+  <button [routerLink]="['AdminHome']" routerLinkActive="active-btn" class="btn-dashboard">
+    <i class="fas fa-home"></i> Home
+  </button>
+
+<button [routerLink]="['BankRegister']" routerLinkActive="active-btn" class="btn-dashboard">
+  <i class="fas fa-user-plus"></i> Add Bank
+</button>
+
+<button [routerLink]="['AdminViewBanks']" routerLinkActive="active-btn" class="btn-dashboard">
+  <i class="fas fa-university"></i> Banks
+</button>
+
+<button [routerLink]="['AdminBankUsers']" routerLinkActive="active-btn" class="btn-dashboard">
+  <i class="fas fa-users"></i> Bank Users
+</button>
+
+<button [routerLink]="['AdminLogs']" routerLinkActive="active-btn" class="btn-dashboard">
+  <i class="fas fa-file-invoice"></i> Logs
+</button>
+
+
+  <button [routerLink]="['/login']" class="btn-dashboard">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
+</div>
+
+  </div>
+
+  <!-- Right Content Area -->
+  <div class="dashboard-main">
+  <div class="account-info-simple d-flex justify-content-around align-items-center flex-wrap gap-3">
+    <div class="info-block-simple text-center">
+      <i class="fas fa-id-card"></i>
+      <div class="info-title">Account Number</div>
+      <!-- <div class="info-value">{{ user?.account?.accountNumber || '-' }}</div> -->
+    </div>
+    <div class="info-block-simple text-center">
+      <i class="fas fa-wallet"></i>
+      <div class="info-title">Balance</div>
+      <!-- <div class="info-value">{{ user?.account?.balance != null ? (user.account.balance | currency:'INR') : '-' }}</div> -->
+    </div>
+    <div class="info-block-simple text-center">
+      <i class="fas fa-user-circle"></i>
+      <div class="info-title">User</div>
+      <!-- <div class="info-value">{{ user?.userFullName || '-' }}</div> -->
+    </div>
+    <div class="info-block-simple text-center">
+      <i class="fas fa-users"></i>
+      <div class="info-title">Total Employees</div>
+      <!-- <div class="info-value">{{ user?.employees?.length || 0 }}</div> -->
+    </div>
+    <div class="info-block-simple text-center">
+      <i class="fas fa-handshake"></i>
+      <div class="info-title">Total Beneficiaries</div>
+      <!-- <div class="info-value">{{ user?.beneficiaries?.length || 0 }}</div> -->
+    </div>
+  </div>
+
+  <div class="dashboard-content mt-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

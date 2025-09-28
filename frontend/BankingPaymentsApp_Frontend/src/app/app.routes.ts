@@ -8,7 +8,7 @@ import { roleGuard } from './Guards/role.guard';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { BankRegisterComponent } from './Components/bank-register/bank-register.component';
-import { AdminComponent } from './Components/admin/admin.component';
+import { AdminComponent } from './Components/admin-bankuser/admin-bankuser.component';
 import { ListPaymentComponent } from './Components/list-payment/list-payment.component';
 import { ClientUserComponent } from './Components/client-user/client-user.component';
 import { EmployeeUploadComponent } from './Components/employee-upload/employee-upload.component';
@@ -25,6 +25,10 @@ import { ClientTransactionComponent } from './Components/client-transaction/clie
 import { ClientPaymentComponent } from './Components/client-payment/client-payment.component';
 import { ClientSalaryDisbursementComponent } from './Components/client-salary-disbursement/client-salary-disbursement.component';
 import { ClientHomeComponent } from './Components/client-home/client-home.component';
+import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
+import { AdminViewBankComponent } from './Components/admin-view-bank/admin-view-bank.component';
+import { AdminHomeComponent } from './Components/admin-home/admin-home.component';
+import { AdminLogsComponent } from './Components/admin-logs/admin-logs.component';
 
 export const routes: Routes = [
      {
@@ -46,6 +50,17 @@ export const routes: Routes = [
       { path: 'ClientSalaryDisbursement/:userId', component: ClientSalaryDisbursementComponent},
     ]
   },
+
+  { path: 'AdminDashboard', 
+    component: AdminDashboardComponent,
+    children: [
+      { path: "BankRegister", component: BankRegisterComponent },
+      { path: 'AdminBankUsers', component: AdminComponent },
+      { path: 'AdminViewBanks', component: AdminViewBankComponent},
+      { path: 'AdminHome', component: AdminHomeComponent},
+      { path: 'AdminLogs', component: AdminLogsComponent},
+    ]
+  },
     { path: '', component: LoginComponent },
     { path: "login", component: LoginComponent },
     { path: "dashboard", component: DashboardComponent, canActivate: [roleGuard], data: { role: "CLIENT_USER" } },
@@ -55,15 +70,11 @@ export const routes: Routes = [
     
     { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
     
-    
-    
-    
-    
     { path: "ClientUser/:clientId/payments", component: ClientAccountComponent},
     
     { path: 'BankUser', component: BankUserComponent },
-    { path: "BankRegister", component: BankRegisterComponent },
-    { path: 'Admin', component: AdminComponent },
+    
+    
     { path: "pendingPayment", component: ListPaymentComponent },
     { path: "payment", component: PaymentComponent },
     { path: "EmployeeUpload", component: EmployeeUploadComponent },

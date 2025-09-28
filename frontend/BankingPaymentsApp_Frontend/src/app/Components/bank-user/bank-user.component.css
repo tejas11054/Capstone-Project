@@ -1,18 +1,63 @@
-table {
+/* ---------------- Client Buttons ---------------- */
+.doc-table button {
+  background: #7a5af8;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin: 0 2px;
+}
+
+.doc-table button:hover {
+  background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-1px);
+}
+
+/* ---------------- Documents Table ---------------- */
+.doc-table {
   width: 100%;
   border-collapse: collapse;
+  background: #1f1c2f;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.2);
+  margin-bottom: 2rem;
 }
 
-th, td {
-  padding: 8px;
-  text-align: left;
+.doc-table th,
+.doc-table td {
+  padding: 1rem 1.2rem;
+  text-align: center;
+  color: #fff;
+  border-bottom: 1px solid #3c3a4a;
 }
 
-th {
-  background-color: #f2f2f2;
+.doc-table th {
+  background: #2a283b;
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
-button {
-  margin-right: 5px;
-  padding: 5px 10px;
+.doc-table tr:hover {
+  background: rgba(122, 90, 248, 0.1);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+.doc-table tbody tr:nth-child(even) {
+  background: #232030;
+}
+
+.doc-table tbody tr:nth-child(odd) {
+  background: #1f1c2f;
+}
+
+/* ---------------- No Data Text ---------------- */
+.no-data {
+  text-align: center;
+  color: #ccc;
+  margin-top: 1rem;
+  font-style: italic;
 }

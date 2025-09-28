@@ -1,0 +1,128 @@
+/* ---------------- Body & Container ---------------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #12101b;
+  color: #fff;
+  padding: 1rem;
+}
+
+/* ---------------- Section Title ---------------- */
+.section-title {
+  color: white;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* ---------------- Loading ---------------- */
+.text-center .spinner-border {
+  width: 3rem;
+  height: 3rem;
+  color: #7a5af8 !important;
+}
+
+.text-center p {
+  color: #ccc;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.card-header h2{
+    color: white;
+}
+
+/* ---------------- Banks Table ---------------- */
+.banks-list {
+  overflow-x: auto;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1f1c2f;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(122, 90, 248, 0.3);
+}
+
+.doc-table th,
+.doc-table td {
+  padding: 2rem 2.5rem;       /* Increased padding */
+  text-align: center;
+  color: #fff;
+  border-bottom: 1px solid #3c3a4a;
+  font-size: 1.2rem;          /* Increased font size */
+}
+
+.doc-table th {
+  background: #2a283b;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+.doc-table tr:hover {
+  background: rgba(122, 90, 248, 0.15);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+.doc-table tbody tr:nth-child(even) {
+  background: #232030;
+}
+
+.doc-table tbody tr:nth-child(odd) {
+  background: #1f1c2f;
+}
+
+/* ---------------- Buttons ---------------- */
+button {
+  background: #7a5af8;
+  color: #fff;
+  border: none;
+  width: 100px;
+  border-radius: 50px;
+  padding: 0.8rem 1.2rem;    /* Slightly bigger buttons */
+  font-size: 1.05rem;        /* Slightly larger font */
+  cursor: pointer;
+  margin: 0 3px;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-1px);
+}
+
+/* ---------------- Edit Form ---------------- */
+.edit-form {
+  background: #1f1c2f;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.edit-form h3 {
+  color: #7a5af8;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.edit-form input[type="text"] {
+  background-color: #1f1c2f;
+  color: #fff;
+  border: 1px solid #3c3a4a;
+  border-radius: 50px;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
