@@ -24,6 +24,11 @@ import { EmployeesComponent } from './Components/employee-list/employee-list.com
 import { ClientTransactionComponent } from './Components/client-transaction/client-transaction.component';
 import { ClientPaymentComponent } from './Components/client-payment/client-payment.component';
 import { ClientSalaryDisbursementComponent } from './Components/client-salary-disbursement/client-salary-disbursement.component';
+import { BeneficiaryComponent } from './Components/Youbraj/beneficiary/beneficiary.component';
+import { CreateBeneficiaryComponent } from './Components/Youbraj/create-beneficiary/create-beneficiary.component';
+import { EmployeeComponent } from './Components/Youbraj/employee/employee.component';
+import { DisbursementComponent } from './Components/Youbraj/disbursement/disbursement.component';
+import { DisbursementDetailsComponent } from './Components/Youbraj/disbursement-details/disbursement-details.component';
 
 export const routes: Routes = [
      {
@@ -46,6 +51,11 @@ export const routes: Routes = [
     { path: "dashboard", component: DashboardComponent, canActivate: [roleGuard], data: { role: "CLIENT_USER" } },
     { path: "ClientRegister", component: ClientRegisterComponent },
     { path: 'ClientUser/:id', component: ClientUserComponent },
+    {path:"beneficiary",component:BeneficiaryComponent},
+    {path:"beneficiary/create",component:CreateBeneficiaryComponent},
+    {path:"employee",component:ListAllEmployeesComponent},
+    {path:"disbursements",component:DisbursementComponent},
+    {path:"disbursements/:id",component:DisbursementDetailsComponent},
     
     
     { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
@@ -64,7 +74,7 @@ export const routes: Routes = [
     { path: "EmployeeUpload", component: EmployeeUploadComponent },
     { path: "employees", component: ListAllEmployeesComponent },
     { path: "salary", component: SalaryDisbursementComponent },
-    { path: "disbursement", component: ListSalaryDisbursementComponent },
+    { path: "disbursement", component: SalaryDisbursementComponent },
     { path: "BeneficiaryRegister", component: BeneficiaryRegisterComponent},
     { path: "**", component: PageNotFoundComponent },
 ];

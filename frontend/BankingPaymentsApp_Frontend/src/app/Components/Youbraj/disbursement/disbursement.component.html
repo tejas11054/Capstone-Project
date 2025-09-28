@@ -1,0 +1,101 @@
+<div class="mt-4 px-3 w-100">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Salary Disbursements</li>
+        </ol>
+    </nav>
+
+    <!-- Summary cards -->
+    <div class="d-flex gap-3 flex-wrap mb-3">
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 220px;">
+            <div class="text-muted small">Total Disbursements</div>
+            <div class="fw-bold fs-5">₹ {{ 1500000 | number }}</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 220px;">
+            <div class="text-muted small">Pending</div>
+            <div class="fw-bold fs-5 text-warning">{{ 5 }}</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 220px;">
+            <div class="text-muted small">Approved</div>
+            <div class="fw-bold fs-5 text-success">{{ 1 }}</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 220px;">
+            <div class="text-muted small">Declined</div>
+            <div class="fw-bold fs-5 text-danger">{{ 2 }}</div>
+        </div>
+    </div>
+
+    <!-- Header with action -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0">ALL SALARY DISBURSEMENTS</h5>
+        <button class="btn btn-create-payment" routerLink="/employee">
+            <i class="bi bi-plus-lg me-2"></i> Create Disbursement
+        </button>
+    </div>
+    <hr>
+
+    <div class="mb-3 d-flex flex-wrap gap-2">
+<div ngbDropdown class="d-inline-block">
+      <div class="mb-3 d-flex flex-wrap gap-2">
+        <!-- Date and Time Filter -->
+        <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
+        <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter>
+        <app-status-filter [statusOptions]="statusOptions" (statusFilter)="onStatusFilter($event)"></app-status-filter>
+        <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
+        <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
+        <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
+      </div>
+    </div>
+        <!-- Disbursements Table -->
+        <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">
+            <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Client Name</th>
+                        <th>Total Amount</th>
+                        <th>Disbursement Date</th>
+                        <th>Status</th>
+                        <th>All Employees</th>
+                        <th>Count</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let disb of disbursements">
+                        <td class="text-truncate">{{ disb.salaryDisbursementId }}</td>
+                        <td class="text-truncate" style="max-width: 160px;">
+                            {{ disb.clientUser?.userName }}
+                        </td>
+                        <td class="text-truncate">{{ disb.totalAmount | currency:'INR' }}</td>
+                        <td class="text-truncate" style="max-width: 140px;">
+                            {{ disb.disbursementDate | date:'dd-MMM, h:mm a' }}
+                        </td>
+                        <td>
+                            <span class="badge rounded-pill bg-light text-dark border">
+                                {{ disb.disbursementStatusId | paymentStatus}}
+                            </span>
+                        </td>
+                        <td>
+                            <span [ngClass]="disb.allEmployees ? 'text-success' : 'text-muted'">
+                                {{ disb.allEmployees ? 'Yes' : 'No' }}
+                            </span>
+                        </td>
+                        <td>{{ disb.employees?.length || disb.clientUser?.employees?.length }}</td>
+                        <td>
+                            <button *ngIf="disb.disbursementStatusId == 3" class="btn btn-sm btn-outline-success me-1"
+                                (click)="approveDisbursement(disb)">Approve</button>
+                            <button *ngIf="disb.disbursementStatusId == 3" class="btn btn-sm btn-outline-danger me-1"
+                                (click)="openFormModal(disb)">Reject</button>
+                            <button class="btn btn-sm btn-outline-primary"
+                                [routerLink]="['/disbursements', disb.salaryDisbursementId]">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<app-reject-modal #rejectModal [Parentid]="selectedDisbursement?.id"
+  (formSubmit)="handleFormSubmit($event)"></app-reject-modal>

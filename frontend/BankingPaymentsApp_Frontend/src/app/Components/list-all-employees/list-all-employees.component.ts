@@ -3,11 +3,21 @@ import { EmployeeService } from '../../Services/employee.service';
 import { AuthService } from '../../Services/auth.service';
 import { Employee } from '../../Models/Employee';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StatusFilterComponent } from '../Filters/status-filter/status-filter.component';
+import { NameFilterComponent } from '../Filters/name-filter/name-filter.component';
+import { IdFilterComponent } from '../Filters/id-filter/id-filter.component';
+import { AccountNumberFilterComponent } from '../Filters/account-number-filter/account-number-filter.component';
+import { AmountFilterComponent } from '../Filters/amount-filter/amount-filter.component';
+import { DateFilterComponent } from '../Filters/date-filter/date-filter.component';
+import { RejectModalComponent } from '../Shared/reject-modal/reject-modal.component';
+import { RouterLink } from '@angular/router';
+import { SalaryDisbursementService } from '../../Services/salary-disbursement.service';
+import { EmployeeUploadComponent } from '../Youbraj/employee-upload/employee-upload.component';
 
 @Component({
   selector: 'app-list-all-employees',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CommonModule, RouterLink, EmployeeUploadComponent, RejectModalComponent, ReactiveFormsModule, DateFilterComponent, AmountFilterComponent, AccountNumberFilterComponent, IdFilterComponent, NameFilterComponent, StatusFilterComponent],
   templateUrl: './list-all-employees.component.html',
   styleUrls: ['./list-all-employees.component.css'],
   standalone: true
@@ -18,16 +28,22 @@ export class ListAllEmployeesComponent implements OnInit {
   selectAll: boolean = false;
   selectedEmployees: Employee[] = [];
   selectedEmployeeIds: number[] = [];
+  filters: any = {};
 
-  @Output() event = new EventEmitter<{ allEmployees: boolean, employeeIds: number[] }>
-  constructor(private auth: AuthService, private employeeSvc: EmployeeService) { }
+  // @Output() event = new EventEmitter<{ allEmployees: boolean, employeeIds: number[] }>
+  constructor(private auth: AuthService, private employeeSvc: EmployeeService, private disbursementSvc: SalaryDisbursementService) { }
 
   ngOnInit(): void {
     const user = this.auth.getLoggedInUser();
 
-    this.employeeSvc.getAllEmployees().subscribe((data) => {
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllEmployees(params);
+  }
+
+  fetchAllEmployees(params: any) {
+    this.employeeSvc.getAllEmployees(params).subscribe((data) => {
       console.log(data);
-      this.employees = data.filter(e => e.clientId == user?.userId);
+      this.employees = data;
     },
       (error) => {
         console.log(error);
@@ -55,12 +71,12 @@ export class ListAllEmployeesComponent implements OnInit {
       allEmployees: this.selectAll = this.selectedEmployeeIds.length === this.employees.length,
       employeeIds: this.selectedEmployeeIds.sort()
     };
-    this.event.emit(payload);
+    // this.event.emit(payload);
   }
 
   selectAllEmployees(event: any) {
     if (event.target.checked) {
-      this.selectedEmployeeIds = this.employees.map(e => e.employeeId);
+      this.selectedEmployeeIds = this.employees.filter(e=>e.isActive).map(e => e.employeeId);
     } else {
       this.selectedEmployeeIds = [];
     }
@@ -70,11 +86,31 @@ export class ListAllEmployeesComponent implements OnInit {
       employeeIds: this.selectedEmployeeIds.sort()
     };
 
-    this.event.emit(payload);
+    // this.event.emit(payload);
+  }
+
+  createDisbursement() {
+    const payload = {
+      clientId: this.auth.getUserId() ?? 0,
+      allEmployees: this.selectedEmployeeIds.length === this.employees.length,
+      employeeIds: this.selectedEmployeeIds.sort()
+    };
+    this.disbursementSvc.createSalaryDisbursement(payload).subscribe((data) => {
+      console.log(data);
+    },
+      (error) => {
+        console.log(error);
+      })
   }
 
   deleteEmployee(id: number) {
-
+    this.employeeSvc.deleteEmployee(id).subscribe((data) => {
+      console.log(data);
+      alert("employee deleted sucessfully!");
+    },
+      (error) => {
+        console.log(error)
+      })
   }
 
   editEmployee(employee: Employee) {
@@ -83,5 +119,76 @@ export class ListAllEmployeesComponent implements OnInit {
 
   viewEmployee(employee: Employee) {
 
+  }
+
+  onDateFilter(dates: { dateFrom: string; dateTo: string }) {
+
+    this.filters.createdFrom = dates.dateFrom;
+    this.filters.createdTo = dates.dateTo;
+    console.log(this.filters);
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllEmployees(params);
+  }
+
+  onAmountFilter(amount: { minAmount: string | null, maxAmount: string | null }) {
+    // this.filters.minSalary = amount.minAmount;
+    // this.filters.maxSalary = amount.maxAmount;
+    if (amount.minAmount !== null) {
+      this.filters.minSalary = amount.minAmount;
+    } else {
+      delete this.filters.minSalary; // ✅ remove old value
+    }
+    if (amount.maxAmount !== null) {
+      this.filters.maxSalary = amount.maxAmount;
+    } else {
+      delete this.filters.maxSalary; // ✅ remove old value
+    }
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllEmployees(params);
+  }
+
+  onAccountFilter(account: { payeeAccountNumber: string | null }) {
+    // this.filters.accountNumber = account.payeeAccountNumber;
+    console.log(this.filters);
+
+    if (account.payeeAccountNumber !== null) {
+      this.filters.accountNumber = account.payeeAccountNumber;
+    } else {
+      delete this.filters.accountNumber; // ✅ remove old value
+    }
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllEmployees(params);
+  }
+
+  fetchById(value: { id: number }) {
+    if (value.id == 0) {
+      const params = new URLSearchParams(this.filters).toString();
+      this.fetchAllEmployees(params);
+    } else {
+      this.employeeSvc.getEmployeeById(value.id).subscribe((data) => {
+        console.log(data);
+        this.employees = [data];
+      },
+        (error) => {
+          alert("no employee of id: " + value.id);
+        })
+    }
+  }
+
+  onNameFilter(name: { payerName: string }) {
+    this.filters.employeeName = name.payerName;
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllEmployees(params);
+  }
+
+  onStatusFilter(status: { paymentStatusId: string }) {
+    this.filters.paymentStatusId = status.paymentStatusId;
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllEmployees(params);
   }
 }

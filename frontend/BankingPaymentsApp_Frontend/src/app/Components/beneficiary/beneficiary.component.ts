@@ -19,31 +19,33 @@ export class BeneficiariesComponent implements OnInit {
   beneficiaries: any[] = [];
   loading = true;
 
-  editingBeneficiary: any = null; 
+  filters:any = {};
+
+  editingBeneficiary: any = null;
 
   constructor(
     private route: ActivatedRoute,
     private clientSvc: ClientRegisterService,
     private http: HttpClient,
-    private beneficiarySvc : BeneficiaryService,
-    private router : Router
-  ) {}
+    private beneficiarySvc: BeneficiaryService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-  // Option 1: Get from route
-  const idFromRoute = this.route.snapshot.paramMap.get('userId');
+    // Option 1: Get from route
+    const idFromRoute = this.route.snapshot.paramMap.get('userId');
 
-  // Option 2: Get from localStorage/session (if stored during login)
-  const idFromStorage = localStorage.getItem('userId');
+    // Option 2: Get from localStorage/session (if stored during login)
+    const idFromStorage = localStorage.getItem('userId');
 
-  this.userId = idFromRoute ? +idFromRoute : idFromStorage ? +idFromStorage : 0;
+    this.userId = idFromRoute ? +idFromRoute : idFromStorage ? +idFromStorage : 0;
 
-  if (this.userId) {
-    this.loadBeneficiaries();
-  } else {
-    console.error('User ID is invalid!');
+    if (this.userId) {
+      this.loadBeneficiaries();
+    } else {
+      console.error('User ID is invalid!');
+    }
   }
-}
 
 
   loadBeneficiaries(): void {
@@ -66,6 +68,10 @@ export class BeneficiariesComponent implements OnInit {
 
   cancelEdit() {
     this.editingBeneficiary = null;
+  }
+
+  editBeneficiary(beneficiary:any){
+
   }
 
   saveEdit() {
@@ -100,9 +106,15 @@ export class BeneficiariesComponent implements OnInit {
     });
   }
 
-    goBack(): void {
+  goBack(): void {
     this.router.navigate(["/ClientUser/" + this.userId]);  // navigates to previous page
   }
 
+  onNameFilter(name:{payerName:string}){
+    this.filters.beneficiaryName = name.payerName;
+
+    const params = new URLSearchParams(this.filters).toString();
+      this.loadBeneficiaries();
+  }
 
 }

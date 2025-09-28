@@ -24,10 +24,10 @@ export class ListSalaryDisbursementComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.salaryDisbursementSvc.getAllSalaryDisbursement().subscribe((data) => {
-      console.log(data);
-      this.salaryDisbursement = data;
-    })
+    // this.salaryDisbursementSvc.getAllSalaryDisbursement().subscribe((data) => {
+    //   console.log(data);
+    //   this.salaryDisbursement = data;
+    // })
   }
 
   openFormModal(disbursement: SalaryDisbursement) {

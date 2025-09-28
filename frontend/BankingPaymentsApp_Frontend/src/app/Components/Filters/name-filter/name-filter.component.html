@@ -6,19 +6,11 @@
         <!-- Place your filter form/content here -->
         <form [formGroup]="filterForm" (ngSubmit)="applyFilters()">
             <div class="mb-3">
-                <label class="form-label small">Date From</label>
-                <input class="form-control form-control-sm" placeholder="yyyy-mm-dd" ngbDatepicker
-                    #fromDp="ngbDatepicker" formControlName="dateFrom" (click)="fromDp.toggle()" />
+                <label class="form-label small">Payee Name</label>
+                <input class="form-control form-control-sm" type="text" placeholder="John Doe" formControlName="payerName" />
             </div>
-
-            <div class="mb-3">
-                <label class="form-label small">Date To</label>
-                <input class="form-control form-control-sm" placeholder="yyyy-mm-dd" ngbDatepicker #toDp="ngbDatepicker"
-                    formControlName="dateTo" (click)="toDp.toggle()" />
-            </div>
-
             <div class="d-flex justify-content-end gap-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="filterForm.reset()">
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="reset()">
                     Reset
                 </button>
                 <button type="submit" class="btn btn-sm btn-primary">

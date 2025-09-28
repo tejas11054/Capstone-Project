@@ -12,10 +12,11 @@ import { AccountNumberFilterComponent } from '../Filters/account-number-filter/a
 import { IdFilterComponent } from '../Filters/id-filter/id-filter.component';
 import { NameFilterComponent } from '../Filters/name-filter/name-filter.component';
 import { StatusFilterComponent } from '../Filters/status-filter/status-filter.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list-payment',
-  imports: [CommonModule, PaymentStatusPipe, RejectModalComponent, ReactiveFormsModule, DateFilterComponent, AmountFilterComponent, AccountNumberFilterComponent, IdFilterComponent, NameFilterComponent, StatusFilterComponent],
+  imports: [CommonModule, RouterLink, PaymentStatusPipe, RejectModalComponent, ReactiveFormsModule, DateFilterComponent, AmountFilterComponent, AccountNumberFilterComponent, IdFilterComponent, NameFilterComponent, StatusFilterComponent],
   templateUrl: './list-payment.component.html',
   styleUrls: ['./list-payment.component.css'],
   standalone: true
@@ -26,6 +27,12 @@ export class ListPaymentComponent implements OnInit {
   filters: any = {};
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
   selectedPayment: any = null;
+
+  statusOptions = [
+    { id: 1, name: 'Approved' },
+    { id: 2, name: 'Declined' },
+    { id: 3, name: 'pending' }
+  ];
 
   constructor(private paymentSvc: PaymentService, private fb: FormBuilder) { }
 
@@ -89,18 +96,61 @@ export class ListPaymentComponent implements OnInit {
     this.fetchAllPayments(params);
   }
 
-  onAmountFilter(amount:{minAmount:string, maxAmount:string}){
-    this.filters.minAmount = amount.minAmount;
-    this.filters.maxAmount = amount.maxAmount;
+  onAmountFilter(amount: { minAmount: string | null, maxAmount: string | null }) {
     console.log(this.filters);
+
+    if (amount.minAmount !== null) {
+      this.filters.minAmount = amount.minAmount;
+    } else {
+      delete this.filters.minAmount; // ✅ remove old value
+    }
+    if (amount.maxAmount !== null) {
+      this.filters.maxAmount = amount.maxAmount;
+    } else {
+      delete this.filters.maxAmount; // ✅ remove old value
+    }
 
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllPayments(params);
   }
 
-  onAccountFilter(account:{accountNumber:string}){
-    this.filters.accountNumber = account.accountNumber;
+  onAccountFilter(account: { payeeAccountNumber: string | null }) {
+    // this.filters.payeeAccountNumber = account.payeeAccountNumber;
     console.log(this.filters);
+    if (account.payeeAccountNumber !== null) {
+      this.filters.payeeAccountNumber = account.payeeAccountNumber;
+    } else {
+      delete this.filters.payeeAccountNumber; // ✅ remove old value
+    }
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllPayments(params);
+  }
+
+  fetchById(value: { id: number }) {
+    if (value.id == 0) {
+      const params = new URLSearchParams(this.filters).toString();
+      this.fetchAllPayments(params);
+    }
+
+    this.paymentSvc.getPaymentById(value.id).subscribe((data) => {
+      console.log(data);
+      this.payments = [data];
+    },
+      (error) => {
+        console.log(error);
+      })
+  }
+
+  onNameFilter(name: { payerName: string }) {
+    this.filters.payerName = name.payerName;
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllPayments(params);
+  }
+
+  onStatusFilter(status: { paymentStatusId: string }) {
+    this.filters.paymentStatusId = status.paymentStatusId;
 
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllPayments(params);

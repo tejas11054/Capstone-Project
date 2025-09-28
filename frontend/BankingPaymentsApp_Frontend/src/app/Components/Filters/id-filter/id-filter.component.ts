@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -9,18 +9,24 @@ import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstr
   styleUrl: './id-filter.component.css'
 })
 export class IdFilterComponent {
-filterForm!: FormGroup;
+  filterForm!: FormGroup;
+  @Output() idFilter = new EventEmitter<{id:number}>()
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.filterForm = this.fb.group({
-      dateFrom: [null],
-      dateTo: [null]
+      id:0
     });
   }
 
   applyFilters() {
     const value = this.filterForm.value;
-    // TODO: Apply the filter logic to your data source
+    console.log(value);
+    this.idFilter.emit(value);
+  }
+
+  reset(){
+    this.filterForm.reset();
+    this.idFilter.emit({id:0});
   }
 }

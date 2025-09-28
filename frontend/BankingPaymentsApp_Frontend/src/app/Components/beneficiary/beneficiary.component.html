@@ -1,70 +1,65 @@
-<div *ngIf="loading" class="loading">
-  Loading beneficiaries...
-</div>
+<div class="mt-4 px-3 w-100">
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Beneficiaries</li>
+    </ol>
+  </nav>
 
-<div *ngIf="!loading">
-  <h2>Beneficiaries</h2>
-
-
-  <button type="button" (click)="goBack()" class="back-button">
-    ← Back
-  </button>
-
-  <div *ngIf="beneficiaries.length === 0">
-    No beneficiaries found.
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold mb-0">ALL BENEFICIARIES</h5>
+    <button class="btn btn-create-payment" routerLink="/beneficiary/create">
+      <i class="bi bi-plus-lg me-2"></i> Add Beneficiary
+    </button>
   </div>
+  <hr>
 
-  <div *ngIf="beneficiaries.length > 0" class="beneficiaries-list">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Beneficiary Name</th>
-          <th>Account Number</th>
-          <th>Bank Name</th>
-          <th>IFSC</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let b of beneficiaries; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ b.beneficiaryName }}</td>
-          <td>{{ b.accountNumber }}</td>
-          <td>{{ b.bankName }}</td>
-          <td>{{ b.ifsc }}</td>
-          <td>
-            <button (click)="startEdit(b)">Update</button>
-            <button (click)="deleteBeneficiary(b.beneficiaryId)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="mb-3 d-flex flex-wrap gap-2">
+    <div ngbDropdown class="d-inline-block">
+      <div class="mb-3 d-flex flex-wrap gap-2">
+        <!-- Filters if needed -->
+        <!-- <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
+        <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
+        <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter> -->
+      </div>
 
-  <!-- Edit Form -->
-  <div *ngIf="editingBeneficiary" class="edit-form">
-    <h3>Edit Beneficiary</h3>
-    <form (ngSubmit)="saveEdit()">
-      <label>
-        Name:
-        <input [(ngModel)]="editingBeneficiary.beneficiaryName" name="beneficiaryName" required />
-      </label>
-      <label>
-        Account Number:
-        <input [(ngModel)]="editingBeneficiary.accountNumber" name="accountNumber" required />
-      </label>
-      <label>
-        Bank Name:
-        <input [(ngModel)]="editingBeneficiary.bankName" name="bankName" required />
-      </label>
-      <label>
-        IFSC:
-        <input [(ngModel)]="editingBeneficiary.ifsc" name="ifsc" required />
-      </label>
-      <br />
-      <button type="submit">Save</button>
-      <button type="button" (click)="cancelEdit()">Cancel</button>
-    </form>
+      <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">
+        <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Beneficiary Name</th>
+              <th>Account Number</th>
+              <th>Bank Name</th>
+              <th>IFSC</th>
+              <th>Client ID</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let beneficiary of beneficiaries">
+              <td class="text-truncate">{{ beneficiary.beneficiaryId }}</td>
+              <td class="text-truncate" style="max-width: 160px;">
+                {{ beneficiary.beneficiaryName }}
+              </td>
+              <td class="text-truncate" style="max-width: 160px;">
+                {{ beneficiary.accountNumber }}
+              </td>
+              <td class="text-truncate" style="max-width: 160px;">
+                {{ beneficiary.bankName }}
+              </td>
+              <td class="text-truncate" style="max-width: 120px;">
+                {{ beneficiary.ifsc }}
+              </td>
+              <td class="text-truncate">{{ beneficiary.clientId }}</td>
+              <td>
+                <button class="btn btn-sm btn-primary me-1" (click)="editBeneficiary(beneficiary)">Edit</button>
+                <button class="btn btn-sm btn-outline-danger" (click)="deleteBeneficiary(beneficiary)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

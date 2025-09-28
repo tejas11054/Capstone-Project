@@ -1,45 +1,78 @@
-<div class="container mt-4">
-  <h1 class="mb-3">ALL EMPLOYEES</h1>
+<div class="mt-4 px-3 w-100">
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Employees</li>
+    </ol>
+  </nav>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold mb-0">ALL EMPLOYEES</h5>
+    
+    <button class="btn btn-create-payment" (click)="createDisbursement()">
+      <i class="bi bi-plus-lg me-2"></i> Disburse Salary
+    </button>
+  </div>
   <hr>
-
-  <table class="table table-bordered table-striped table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>
-          <input type="checkbox" [(ngModel)]="selectAll" (change)="selectAllEmployees($event)" />
-        </th>
-        <th>ID</th>
-        <th>Employee Name</th>
-        <th>Account Number</th>
-        <th>Bank Name</th>
-        <th>IFSC</th>
-        <th>Salary</th>
-        <th>Client User</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let employee of employees">
-        <td>
-          <input
-            type="checkbox"
-            [checked]="isSelected(employee)"
-            (change)="onEmployeeSelect(employee,$event)"
-          />
-        </td>
-        <td>{{ employee.employeeId }}</td>
-        <td>{{ employee.employeeName }}</td>
-        <td>{{ employee.accountNumber }}</td>
-        <td>{{ employee.bankName }}</td>
-        <td>{{ employee.ifsc }}</td>
-        <td>{{ employee.salary | currency }}</td>
-        <td>{{ employee.clientUser?.userName }}</td>
-        <td>
-          <button class="btn btn-primary btn-sm me-1" (click)="viewEmployee(employee)">View</button>
-          <button class="btn btn-warning btn-sm me-1" (click)="editEmployee(employee)">Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee.employeeId)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="mb-3 d-flex flex-wrap gap-2">
+    <div ngbDropdown class="d-inline-block">
+      <div class="mb-3 d-flex flex-wrap gap-2 ">
+        <!-- Date and Time Filter -->
+        <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
+        <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter>
+        <!-- <app-status-filter [statusOptions]="statusOptions" (statusFilter)="onStatusFilter($event)"></app-status-filter> -->
+        <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
+        <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
+        <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
+        <app-employee-upload></app-employee-upload>
+      </div>
+    </div>
+    <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">
+      <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
+        <thead class="table-light">
+          <tr>
+            <th>
+              <input type="checkbox" [(ngModel)]="selectAll" (change)="selectAllEmployees($event)" />
+            </th>
+            <th>ID</th>
+            <th>Employee Name</th>
+            <th>Account Number</th>
+            <th>Bank Name</th>
+            <th>IFSC</th>
+            <th>Salary</th>
+            <th>Client User</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>
+              <input *ngIf="employee.isActive == true" type="checkbox" [checked]="isSelected(employee)" (change)="onEmployeeSelect(employee,$event)" />
+            </td>
+            <td class="text-truncate">{{ employee.employeeId }}</td>
+            <td class="text-truncate" style="max-width: 160px;">
+              {{ employee.employeeName }}
+            </td>
+            <td class="text-truncate" style="max-width: 140px;">
+              {{ employee.accountNumber }}
+            </td>
+            <td class="text-truncate" style="max-width: 140px;">
+              {{ employee.bankName }}
+            </td>
+            <td class="text-truncate" style="max-width: 120px;">
+              {{ employee.ifsc }}
+            </td>
+            <td class="text-truncate">{{ employee.salary | currency }}</td>
+            <td class="text-truncate" style="max-width: 160px;">
+              {{ employee.clientUser?.userName }}
+            </td>
+            <td>
+              <button class="btn btn-sm btn-primary me-1" (click)="viewEmployee(employee)">View</button>
+              <button class="btn btn-sm btn-warning me-1" (click)="editEmployee(employee)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteEmployee(employee.employeeId)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    [Migration("20250926090034_initial")]
-    partial class initial
+    [Migration("20250927105842_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -448,6 +448,9 @@ namespace BankingPaymentsApp_API.Migrations
 
                     b.Property<int>("SalaryDisbursementId")
                         .HasColumnType("int");
+
+                    b.Property<bool?>("Success")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("TransactionId")
                         .HasColumnType("int");

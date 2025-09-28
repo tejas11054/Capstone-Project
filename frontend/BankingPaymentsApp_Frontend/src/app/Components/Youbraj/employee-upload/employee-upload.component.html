@@ -1,0 +1,18 @@
+<div class="d-flex align-items-center gap-2 mb-3">
+  <!-- Single file input with smaller width -->
+  <input type="file" class="form-control form-control-sm border-0 p-1"
+         (change)="onCSVSelected($event)" accept=".csv"
+         style="flex: 0 0 200px; background-color: transparent;" />
+
+  <!-- Upload button -->
+  <button class="btn btn-sm btn-create-payment" (click)="handleCSV('upload')"
+          [disabled]="!csvFile">
+    <i class="bi bi-upload me-1"></i> Upload
+  </button>
+
+  <!-- Update button -->
+  <button class="btn btn-sm btn-create-payment" (click)="handleCSV('update')"
+          [disabled]="!csvFile">
+    <i class="bi bi-upload me-1"></i> Update
+  </button>
+</div>

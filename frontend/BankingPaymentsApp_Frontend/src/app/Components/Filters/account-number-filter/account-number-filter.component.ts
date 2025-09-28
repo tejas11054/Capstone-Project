@@ -10,21 +10,24 @@ import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstr
 })
 export class AccountNumberFilterComponent {
 filterForm!: FormGroup;
-@Output() accountFilter = new EventEmitter<{ accountNumber: string}>()
+@Output() accountFilter = new EventEmitter<{ payeeAccountNumber: string| null}>()
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.filterForm = this.fb.group({
-      accountNumber:""
+      payeeAccountNumber:""
     });
   }
 
   applyFilters() {
     const value = this.filterForm.value;
-    this.accountFilter.emit(value);
+    this.accountFilter.emit( {
+      payeeAccountNumber: value.payeeAccountNumber ? value.payeeAccountNumber : null,
+    });
   }
 
   reset(){
-    this.accountFilter.emit({accountNumber:""})
+    this.filterForm.reset();
+    this.accountFilter.emit({payeeAccountNumber:null})
   }
 }

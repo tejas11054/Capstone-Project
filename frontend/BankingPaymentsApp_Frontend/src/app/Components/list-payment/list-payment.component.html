@@ -1,5 +1,35 @@
-<div class="container mt-4">
-  <h5 class="fw-bold mb-3">ALL PENDING PAYMENTS</h5>
+<div class="mt-4 px-3 w-100">
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Pending Payments</li>
+    </ol>
+  </nav>
+  <div class="d-flex gap-3 flex-wrap mb-3">
+    <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+      <div class="text-muted small">Total Payments</div>
+      <div class="fw-bold fs-5">₹ 15,000</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+      <div class="text-muted small">Pending</div>
+      <div class="fw-bold fs-5 text-warning">3</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+      <div class="text-muted small">Approved</div>
+      <div class="fw-bold fs-5 text-success">5</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+      <div class="text-muted small">Declined</div>
+      <div class="fw-bold fs-5 text-danger">5</div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold mb-0">ALL PAYMENTS</h5>
+    <button class="btn btn-create-payment" routerLink="/payment">
+      <i class="bi bi-plus-lg me-2"></i> Create payment
+    </button>
+  </div>
+  <hr>
 
   <div class="mb-3 d-flex flex-wrap gap-2">
     <div ngbDropdown class="d-inline-block">
@@ -7,56 +37,56 @@
         <!-- Date and Time Filter -->
         <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
         <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter>
-        <app-status-filter></app-status-filter>
-        <app-name-filter></app-name-filter>
-        <app-id-filter></app-id-filter>
+        <app-status-filter [statusOptions]="statusOptions" (statusFilter)="onStatusFilter($event)"></app-status-filter>
+        <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
+        <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
         <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
       </div>
-
-      <div class="table-responsive shadow-sm rounded bg-white">
-        <table class="table table-hover align-middle small mb-0">
-          <thead class="table-light">
-            <tr>
-              <th>ID</th>
-              <th>Payer Name</th>
-              <th>Payer Account Number</th>
-              <th>Amount</th>
-              <th>Payee Account Number</th>
-              <th>Created At</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let payment of payments">
-              <td class="text-truncate">{{ payment.paymentId }}</td>
-              <td class="text-truncate" style="max-width: 160px;">
-                {{ payment.payerAccount?.clientUser?.userName }}
-              </td>
-              <td class="text-truncate" style="max-width: 140px;">
-                {{ payment.payerAccount?.accountNumber }}
-              </td>
-              <td class="text-truncate">{{ payment.amount | currency }}</td>
-              <td class="text-truncate" style="max-width: 160px;">
-                {{ payment.payeeAccountNumber }}
-              </td>
-              <td class="text-truncate" style="max-width: 140px;">
-                {{ payment.createdAt | date:'dd-MMM, h:mm a' }}
-              </td>
-              <td>
-                <span class="badge rounded-pill bg-light text-dark border">
-                  {{ payment.paymentStatus?.statusId | paymentStatus }}
-                </span>
-              </td>
-              <td>
-                <button class="btn btn-sm btn-success me-1">Approve</button>
-                <button class="btn btn-sm btn-outline-danger">Reject</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
-
-    <app-reject-modal #rejectModal [Parentid]="selectedPayment?.id"
-      (formSubmit)="handleFormSubmit($event)"></app-reject-modal>
+    <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">
+      <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Payer Name</th>
+            <th>Payer Account Number</th>
+            <th>Amount</th>
+            <th>Payee Account Number</th>
+            <th>Created At</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of payments">
+            <td class="text-truncate">{{ payment.paymentId }}</td>
+            <td class="text-truncate" style="max-width: 160px;">
+              {{ payment.payerAccount?.clientUser?.userName }}
+            </td>
+            <td class="text-truncate" style="max-width: 140px;">
+              {{ payment.payerAccount?.accountNumber }}
+            </td>
+            <td class="text-truncate">{{ payment.amount | currency }}</td>
+            <td class="text-truncate" style="max-width: 160px;">
+              {{ payment.payeeAccountNumber }}
+            </td>
+            <td class="text-truncate" style="max-width: 140px;">
+              {{ payment.createdAt | date:'dd-MMM, h:mm a' }}
+            </td>
+            <td>
+              <span class="badge rounded-pill bg-light text-dark border">
+                {{ payment.paymentStatus?.statusId | paymentStatus }}
+              </span>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-success me-1" (click)="approvePayment(payment)">Approve</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="openFormModal(payment)">Reject</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<app-reject-modal #rejectModal [Parentid]="selectedPayment?.id"
+  (formSubmit)="handleFormSubmit($event)"></app-reject-modal>

@@ -1,5 +1,6 @@
 ﻿using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankingPaymentsApp_API.Services
@@ -7,10 +8,12 @@ namespace BankingPaymentsApp_API.Services
     public class AccountService : IAccountService
     {
         private readonly IAccountRepository _accountRepository;
+        private readonly ITransactionRepository _transactionRepository;
 
-        public AccountService(IAccountRepository accountRepository)
+        public AccountService(IAccountRepository accountRepository, ITransactionRepository transactionRepository)
         {
             _accountRepository = accountRepository;
+            _transactionRepository = transactionRepository;
         }
 
         //public async Task<IEnumerable<Account>> GetAll()
@@ -84,38 +87,62 @@ namespace BankingPaymentsApp_API.Services
             return await _accountRepository.GenerateAccountNumber();
         }
 
-        public async Task CreditAccount(int accountId,double amount)
+        public async Task<Transaction> CreditAccount(int accountId, double amount, int? paymentId, int? disbursementId)
         {
             Account? account = await _accountRepository.GetById(accountId);
             if (account == null) throw new NullReferenceException("No account of id: " + accountId);
 
             account.Balance += amount;
+            Transaction creditTransaction = new Transaction
+            {
+                TransactionTypeId = 1,
+                AccountId = accountId,
+                Amount = amount,
+                PaymentId = paymentId ?? null,
+                SalaryDisbursementId = disbursementId ?? null,
+                CreatedAt = DateTime.UtcNow
+            };
+            Transaction addedTransaction = await _transactionRepository.Add(creditTransaction);
             await _accountRepository.Update(account);
+            return addedTransaction;
         }
-        public async Task DebitAccount(int accountId,double amount)
+        public async Task<Transaction> DebitAccount(int accountId, double amount, int? paymentId, int? disbursementId)
         {
             Account? account = await _accountRepository.GetById(accountId);
             if (account == null) throw new NullReferenceException("No account of id: " + accountId);
 
+            if (account.Balance < amount) throw new InvalidOperationException("Insufficient balance!");
+
             account.Balance -= amount;
+            Transaction debitTransaction = new Transaction
+            {
+                TransactionTypeId = 2,
+                AccountId = accountId,
+                Amount = amount,
+                PaymentId = paymentId,
+                SalaryDisbursementId = disbursementId,
+                CreatedAt = DateTime.UtcNow
+            };
+            Transaction addedTransaction = await _transactionRepository.Add(debitTransaction);
             await _accountRepository.Update(account);
+            return addedTransaction;
         }
         public async Task<Account?> AccountExistsWithAccountNumber(string accountNumber)
         {
             var accounts = _accountRepository.GetAll();
             //return true if any account has the given account Number 
-            Account? account = accounts.FirstOrDefault(a=>a.AccountNumber.Equals(accountNumber));
+            Account? account = accounts.FirstOrDefault(a => a.AccountNumber.Equals(accountNumber));
             if (account == null) return null;
             return account;
         }
 
-        public async Task<bool?> CheckAccountBalance(int accountId ,double amount)
+        public async Task<bool?> CheckAccountBalance(int accountId, double amount)
         {
             Account? account = await GetById(accountId);
 
             if (account == null) return null;
 
-            if(account.Balance < amount) return false;
+            if (account.Balance < amount) return false;
             return true;
         }
     }

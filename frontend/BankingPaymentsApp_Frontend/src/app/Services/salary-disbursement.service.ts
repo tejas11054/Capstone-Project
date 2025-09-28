@@ -14,12 +14,12 @@ export class SalaryDisbursementService {
   salaryDisbursementURL:string = environment.backendURL + "/SalaryDisbursement";
   constructor(private http:HttpClient) { }
 
-  getAllSalaryDisbursement():Observable<SalaryDisbursement[]>{
-    return this.http.get<SalaryDisbursement[]>(this.salaryDisbursementURL);
+  getAllSalaryDisbursement(queryParams: string):Observable<SalaryDisbursement[]>{
+    return this.http.get<SalaryDisbursement[]>(this.salaryDisbursementURL+`?${queryParams}`);
   }
 
   getSalaryDisbursementById(id:number):Observable<SalaryDisbursement>{
-    return this.http.get<SalaryDisbursement>(this.salaryDisbursementURL+`${id}`);
+    return this.http.get<SalaryDisbursement>(this.salaryDisbursementURL+`/${id}`);
   }
 
   createSalaryDisbursement(disbursement:CreateSalaryDisbursmentDTO):Observable<SalaryDisbursement>{

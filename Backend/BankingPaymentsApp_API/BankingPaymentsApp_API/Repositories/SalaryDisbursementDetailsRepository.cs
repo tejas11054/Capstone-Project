@@ -47,6 +47,7 @@ namespace BankingPaymentsApp_API.Repositories
             existing.EmployeeId = detail.EmployeeId;
             existing.Amount = detail.Amount;
             existing.TransactionId = detail.TransactionId;
+            existing.Success = detail.Success;
 
             await _dbContext.SaveChangesAsync();
             return existing;

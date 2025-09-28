@@ -1,0 +1,37 @@
+.modern-input {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px #ddd;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+    background-color: #fafafa;
+    color: #111;
+  }
+
+  .modern-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #5146ea;
+    background-color: #fff;
+  }
+
+  /* Reuse modern button styles */
+  .modern-btn {
+    background-color: #5146ea;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(81, 70, 234, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+  }
+
+  .modern-btn:hover {
+    background-color: #3f36c3;
+    box-shadow: 0 6px 20px rgba(63, 54, 195, 0.5);
+  }

@@ -38,7 +38,7 @@ namespace BankingPaymentsApp_API.Repositories
         {
             return await _dbContext.SalaryDisbursements
                 .Include(s => s.ClientUser).ThenInclude(u => u.Account)
-                .Include(s => s.DisbursementDetails)
+                .Include(s => s.DisbursementDetails).ThenInclude(d=>d.Employee)
                 .Include(s => s.Employees)
                 .FirstOrDefaultAsync(s => s.SalaryDisbursementId == id);
         }

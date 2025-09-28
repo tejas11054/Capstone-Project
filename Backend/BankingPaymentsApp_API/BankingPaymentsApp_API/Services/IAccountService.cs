@@ -18,8 +18,8 @@ namespace BankingPaymentsApp_API.Services
         Task<Account?> GetById(int id);
         Task<Account?> Update(Account account);
         Task DeleteById(int id);
-        public Task CreditAccount(int accountId, double amount);
-        public Task DebitAccount(int accountId, double amount);
+        public Task<Transaction> CreditAccount(int accountId, double amount, int? paymentId, int? disbursementId);
+        public Task<Transaction> DebitAccount(int accountId, double amount, int? paymentId, int? disbursementId);
         Task<string> GenerateAccountNumber();
         public Task<Account?> AccountExistsWithAccountNumber(string accountNumber);
         public Task<bool?> CheckAccountBalance(int accountId, double amount);

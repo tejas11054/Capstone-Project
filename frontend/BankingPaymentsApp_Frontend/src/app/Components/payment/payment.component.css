@@ -1,0 +1,80 @@
+.modern-input {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px #ddd;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+    background-color: #fafafa;
+    color: #111;
+}
+
+.modern-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #5146ea;
+    background-color: #fff;
+}
+
+/* Modern button */
+.modern-btn {
+    background-color: #5146ea;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(81, 70, 234, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modern-btn:hover {
+    background-color: #3f36c3;
+    box-shadow: 0 6px 20px rgba(63, 54, 195, 0.5);
+}
+
+/* Remove default select arrow if you want an even cleaner look (optional) */
+select.modern-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image:
+        url("data:image/svg+xml;utf8,<svg fill='%23707070' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+}
+
+
+
+.forms-wrapper {
+    display: flex;
+    gap: 2rem;
+    /* space between forms */
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Make sure forms fill equally */
+.payment-form,
+.beneficiary-form-wrapper {
+    min-width: 320px;
+    /* keep a minimum width */
+    flex-basis: 45%;
+    /* about half container each */
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 768px) {
+    .forms-wrapper {
+        flex-direction: column;
+    }
+
+    .payment-form,
+    .beneficiary-form-wrapper {
+        flex-basis: 100%;
+    }
+}

@@ -8,6 +8,7 @@ export interface SalaryDisbursementDetails {
   salaryDisbursement: SalaryDisbursement;
   employeeId: number;
   employee: Employee;
+  success:boolean | null;
   amount: number; 
   transactionId?: number;
   transaction?: Transaction;

@@ -1,0 +1,83 @@
+<div class="mt-4 px-3 w-100">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item"><a routerLink="/disbursements">Salary Disbursements</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Disbursement #{{ disbursement?.salaryDisbursementId }}
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Disbursement Info -->
+  <div *ngIf="disbursement" class="bg-white p-3 shadow-sm rounded border mb-4">
+    <h5 class="fw-bold mb-3">Disbursement Summary</h5>
+    <div class="row">
+      <div class="col-md-4">
+        <p><strong>ID:</strong> {{ disbursement.salaryDisbursementId }}</p>
+        <p><strong>Client:</strong> {{ disbursement.clientUser?.userName }}</p>
+      </div>
+      <div class="col-md-4">
+        <p><strong>Total Amount:</strong> {{ disbursement.totalAmount | currency:'INR' }}</p>
+        <p><strong>Date:</strong> {{ disbursement.disbursementDate | date:'dd-MMM, h:mm a' }}</p>
+      </div>
+      <div class="col-md-4">
+        <p><strong>Status:</strong>
+          <span class="badge rounded-pill bg-light text-dark border">
+            {{ disbursement.disbursementStatusId | paymentStatus }}
+          </span>
+        </p>
+        <p><strong>All Employees:</strong> {{ disbursement.allEmployees ? 'Yes' : 'No' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details Table -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold mb-0">Disbursement Details</h5>
+  </div>
+  <hr>
+
+  <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">
+    <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
+      <thead class="table-light">
+        <tr>
+          <th>Detail ID</th>
+          <th>Employee ID</th>
+          <th>Employee Name</th>
+          <th>Amount</th>
+          <th>Success</th>
+          <th>Transaction ID</th>
+          <th>Transaction Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let detail of disbursement?.disbursementDetails">
+          <td class="text-truncate">{{ detail.detailId }}</td>
+          <td class="text-truncate">{{ detail.employeeId }}</td>
+          <td class="text-truncate" style="max-width: 160px;">
+            {{ detail.employee?.employeeName }}
+          </td>
+          <td class="text-truncate">{{ detail.amount | currency:'INR' }}</td>
+          <td>
+            <span *ngIf="detail.success === true" class="badge rounded-pill bg-success">Success</span>
+            <span *ngIf="detail.success === false" class="badge rounded-pill bg-danger">Failed</span>
+            <span *ngIf="detail.success === null" class="badge rounded-pill bg-secondary">Pending</span>
+          </td>
+          <td class="text-truncate">
+            {{ detail.transactionId || '—' }}
+          </td>
+          <td class="text-truncate" style="max-width: 160px;">
+            {{ detail.transactionId || 'N/A' }}
+          </td>
+          <td>
+            <!-- <button class="btn btn-sm btn-outline-primary me-1" (click)="viewTransaction(detail)">View Txn</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="retryDisbursement(detail)">Retry</button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

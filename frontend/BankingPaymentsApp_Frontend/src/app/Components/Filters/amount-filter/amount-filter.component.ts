@@ -11,7 +11,7 @@ import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstr
 })
 export class AmountFilterComponent {
   filterForm!: FormGroup;
-  @Output() amountFilter = new EventEmitter<{ minAmount: string, maxAmount: string }>()
+  @Output() amountFilter = new EventEmitter<{ minAmount: string | null, maxAmount: string | null }>()
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -24,12 +24,16 @@ export class AmountFilterComponent {
   applyFilters() {
     const value = this.filterForm.value;
     console.log(value);
-    this.amountFilter.emit(value);
+    this.amountFilter.emit({
+      minAmount: value.minAmount ? value.minAmount.toString() : null,
+      maxAmount: value.maxAmount ? value.maxAmount.toString() : null
+    });
   }
 
-  reset(){
+  reset() {
     const value = this.filterForm.value;
-    this.amountFilter.emit({minAmount:"",maxAmount:""});
+    this.filterForm.reset();
+    this.amountFilter.emit({ minAmount: null, maxAmount: null });
   }
 
 }

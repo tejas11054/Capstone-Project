@@ -446,6 +446,9 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<int>("SalaryDisbursementId")
                         .HasColumnType("int");
 
+                    b.Property<bool?>("Success")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("TransactionId")
                         .HasColumnType("int");
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -9,18 +9,23 @@ import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstr
   styleUrl: './name-filter.component.css'
 })
 export class NameFilterComponent {
-filterForm!: FormGroup;
+  filterForm!: FormGroup;
+  @Output() nameFilter = new EventEmitter<{ payerName: string }>()
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.filterForm = this.fb.group({
-      dateFrom: [null],
-      dateTo: [null]
+      payerName: ""
     });
   }
 
   applyFilters() {
     const value = this.filterForm.value;
-    // TODO: Apply the filter logic to your data source
+    this.nameFilter.emit(value);
+  }
+
+  reset() {
+    this.filterForm.reset();
+    this.nameFilter.emit({ payerName: "" })
   }
 }
