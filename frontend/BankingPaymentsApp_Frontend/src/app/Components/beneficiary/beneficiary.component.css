@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .table {
   font-size: 0.85rem; /* smaller & cleaner text */
   margin-bottom: 0;
@@ -82,3 +83,230 @@
 .breadcrumb a:hover {
   text-decoration: underline; /* subtle hover effect */
 }
+=======
+/* ---------------- Body & Container ---------------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #12101b;
+  color: #fff;
+  padding: 1rem;
+}
+
+/* ---------------- Section Wrapper ---------------- */
+.documents-section {
+  padding: 2rem 3rem; /* more space around the section */
+  margin: 1rem auto;
+}
+
+/* ---------------- Section Title ---------------- */
+.section-title {
+  color: white;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* ---------------- Back Button ---------------- */
+.back-button {
+  background: #7a5af8;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.back-button:hover {
+  background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.4);
+}
+
+/* ---------------- CSV Upload ---------------- */
+.csv-upload {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.csv-upload input[type="file"] {
+  background-color: #1f1c2f;
+  color: #fff;
+  border: 1px solid #3c3a4a;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.csv-upload button {
+  background: #7a5af8;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.csv-upload button:hover {
+  background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.4);
+}
+
+.csv-upload button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------------- Filters ---------------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.filters input[type="text"],
+.filters input[type="number"] {
+  background-color: #1f1c2f;
+  color: #fff;
+  border: 1px solid #3c3a4a;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  width: 200px;
+  max-width: 100%;
+  text-align: center;
+}
+
+.filters input::placeholder {
+  color: #fff;
+  opacity: 1;
+}
+
+.filters button {
+ border-radius: 50px;
+  padding: 0.45rem 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+
+/* ---------------- Employee Table ---------------- */
+.employees-list {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+}
+
+.employees-list table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1f1c2f;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.2);
+  margin-bottom: 2rem;
+}
+
+.employees-list th,
+.employees-list td {
+  padding: 1rem 1.2rem; /* more padding for comfort */
+  text-align: center;
+  color: #fff;
+  border-bottom: 1px solid #3c3a4a;
+}
+
+.employees-list th {
+  background: #2a283b;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.employees-list tr:hover {
+  background: rgba(122, 90, 248, 0.1);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+.employees-list tbody tr:nth-child(even) {
+  background: #232030;
+}
+
+.employees-list tbody tr:nth-child(odd) {
+  background: #1f1c2f;
+}
+
+/* Action Buttons inside table */
+.employees-list button {
+  background: #7a5af8;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin: 0 2px;
+}
+
+.employees-list button:hover {
+  background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-1px);
+}
+
+/* ---------------- Edit Form ---------------- */
+.edit-form {
+  background: #1f1c2f;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.edit-form h3 {
+  color: #7a5af8;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="number"] {
+  background-color: #1f1c2f;
+  color: #fff;
+  border: 1px solid #3c3a4a;
+  border-radius: 50px;
+  padding: 0.6rem 1rem;
+  width: 100%;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.edit-form button {
+  background: #7a5af8;
+  color: #fff;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+}
+
+/* ---------------- No Data Text ---------------- */
+.employees-list div.no-data {
+  text-align: center;
+  color: #ccc;
+  margin-top: 1rem;
+  font-style: italic;
+}
+>>>>>>> 8f3a84c6a8c895a6866e493fbd96db878a7c89f2

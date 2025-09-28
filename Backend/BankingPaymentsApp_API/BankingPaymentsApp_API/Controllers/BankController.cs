@@ -68,7 +68,7 @@ namespace BankingPaymentsApp_API.Controllers
                 return BadRequest(ModelState);
 
             var newBank = _mapper.Map<Bank>(dto);
-            var addedBank = await _service.Add(newBank);
+            var addedBank = await _service.Add(newBank);    
 
             if (addedBank == null)
                 return BadRequest("Unable to create account!");
