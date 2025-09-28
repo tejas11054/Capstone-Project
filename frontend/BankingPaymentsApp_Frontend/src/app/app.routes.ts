@@ -29,6 +29,8 @@ import { CreateBeneficiaryComponent } from './Components/Youbraj/create-benefici
 import { EmployeeComponent } from './Components/Youbraj/employee/employee.component';
 import { DisbursementComponent } from './Components/Youbraj/disbursement/disbursement.component';
 import { DisbursementDetailsComponent } from './Components/Youbraj/disbursement-details/disbursement-details.component';
+import { TransactionComponent } from './Components/Youbraj/transaction/transaction.component';
+import { HomeComponent } from './Components/Youbraj/home/home.component';
 
 export const routes: Routes = [
      {
@@ -56,6 +58,8 @@ export const routes: Routes = [
     {path:"employee",component:ListAllEmployeesComponent},
     {path:"disbursements",component:DisbursementComponent},
     {path:"disbursements/:id",component:DisbursementDetailsComponent},
+    {path:"transactions",component:TransactionComponent},
+    {path:"home",component:HomeComponent},
     
     
     { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },

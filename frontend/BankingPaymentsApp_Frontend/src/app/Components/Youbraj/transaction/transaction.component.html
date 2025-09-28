@@ -1,0 +1,80 @@
+<div class="mt-4 px-3 w-100">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Transactions</li>
+        </ol>
+    </nav>
+
+    <div class="d-flex gap-3 flex-wrap mb-3">
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+            <div class="text-muted small">Total Transactions</div>
+            <div class="fw-bold fs-5">{{ transactions?.length }}</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+            <div class="text-muted small">Total Amount</div>
+            <div class="fw-bold fs-5">₹ {{ totalTransactionAmount | number }}</div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0">ALL TRANSACTIONS</h5>
+        <button class="btn btn-create-payment" routerLink="/transaction/create">
+            <i class="bi bi-plus-lg me-2"></i> Create Transaction
+        </button>
+    </div>
+    <hr>
+    <div class="mb-3 d-flex flex-wrap gap-2">
+        <div ngbDropdown class="d-inline-block">
+            <div class="mb-3 d-flex flex-wrap gap-2">
+                <!-- Date and Time Filter -->
+                <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
+                <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter>
+                <app-status-filter [statusOptions]="statusOptions"
+                    (statusFilter)="onStatusFilter($event)"></app-status-filter>
+                <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
+                <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
+                <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
+            </div>
+        </div>
+        <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">
+            <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Account</th>
+                        <th>Payment</th>
+                        <th>Disbursement</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let txn of transactions">
+                        <td class="text-truncate">{{ txn.transactionId }}</td>
+                        <td class="text-truncate" style="max-width: 160px;">
+                            {{ txn.account?.accountNumber }} - {{ txn.account?.clientUser?.userName }}
+                        </td>
+                        <td class="text-truncate" style="max-width: 140px;">
+                            {{ txn.paymentId || '-' }}
+                        </td>
+                        <td class="text-truncate" style="max-width: 140px;">
+                            {{ txn.salaryDisbursementId || '-' }}
+                        </td>
+                        <td class="text-truncate">
+                            <span class="badge rounded-pill border"
+                                [ngClass]="txn.transactionTypeId == 1 ? 'text-success' : 'text-danger'">
+                                {{ txn.transactionTypeId | transactionType }}
+                            </span>
+                        </td>
+                        <td class="text-truncate">{{ txn.amount | currency }}</td>
+                        <td class="text-truncate" style="max-width: 140px;">
+                            {{ txn.createdAt | date:'dd-MMM, h:mm a' }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

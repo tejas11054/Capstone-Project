@@ -1,1 +1,62 @@
-<p>home works!</p>
+<div class="mt-4 px-3 w-100">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+    </nav>
+
+    <!-- User Info Cards -->
+    <div class="d-flex flex-wrap gap-3 mb-4">
+        <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 250px;">
+            <div class="text-muted small">User Name</div>
+            <div class="fw-bold fs-5">{{ user?.userFullName }}</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 250px;">
+            <div class="text-muted small">Account Number</div>
+            <div class="fw-bold fs-5">{{ user?.account?.accountNumber }}</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 250px;">
+            <div class="text-muted small">Balance</div>
+            <div class="fw-bold fs-5">₹ {{ user?.account?.balance | number }}</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 250px;">
+            <div class="text-muted small">Total Payments Made</div>
+            <div class="fw-bold fs-5">{{ payments?.length }}</div>
+        </div>
+    </div>
+    <hr>
+    <!-- Charts Section -->
+    <div class="row mb-4">
+        <!-- Payments by Status -->
+        <div class="col-md-6 mb-3">
+            <div class="bg-white shadow-sm rounded border p-3" style="height: 300px;">
+                <h6 class="fw-bold mb-3">Payments by Status</h6>
+                <canvas baseChart [data]="paymentStatusChartData" [labels]="paymentStatusChartData.labels"
+                    [type]="'doughnut'" [options]="chartOptions">
+                </canvas>
+            </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="col-md-6 mb-3">
+            <div class="bg-white shadow-sm rounded border p-3" style="height: 300px;">
+                <h6 class="fw-bold mb-3">Recent Transactions</h6>
+                <canvas baseChart [data]="recentTxnChartData" [labels]="recentTxnChartData.labels" [type]="'line'"
+                    [options]="chartOptions">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="bg-white shadow-sm rounded border p-3" style="height: 300px;">
+                <h6 class="fw-bold mb-3">Recent Transactions</h6>
+                <canvas baseChart [data]="recentTxnChartData" [labels]="recentTxnChartData.labels" [type]="'line'"
+                    [options]="chartOptions">
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
