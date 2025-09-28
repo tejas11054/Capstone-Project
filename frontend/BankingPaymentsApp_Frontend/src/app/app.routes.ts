@@ -36,6 +36,7 @@ import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dash
 import { AdminViewBankComponent } from './Components/admin-view-bank/admin-view-bank.component';
 import { AdminHomeComponent } from './Components/admin-home/admin-home.component';
 import { AdminLogsComponent } from './Components/admin-logs/admin-logs.component';
+import { ProfileComponent } from './Components/Youbraj/profile/profile.component';
 
 export const routes: Routes = [
      {
@@ -80,6 +81,10 @@ export const routes: Routes = [
     {path:"disbursements/:id",component:DisbursementDetailsComponent},
     {path:"transactions",component:TransactionComponent},
     {path:"home",component:HomeComponent},
+    {path:"profile",component:ProfileComponent},
+    {path:"document/upload",component:DocumentUploadComponent},
+    {path:"profile/edit",component:ClientProfileComponent},
+
     
     
     { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },

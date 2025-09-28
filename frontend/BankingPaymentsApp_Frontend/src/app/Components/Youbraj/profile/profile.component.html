@@ -1,0 +1,225 @@
+<div class="mt-4 px-3 w-100">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Profile</li>
+    </ol>
+  </nav>
+
+  <!-- Header -->
+  <div class="bg-white p-3 shadow-sm rounded border mb-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div class="d-flex align-items-center gap-3">
+        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+             style="width:56px;height:56px;">
+          <span class="fw-bold fs-5">
+            {{ client?.userFullName ? client.userFullName[0] : 'U' }}
+          </span>
+        </div>
+        <div>
+          <div class="fw-bold fs-5 mb-1">{{ client?.userFullName }}</div>
+          <div class="text-muted small">
+            {{ client?.userEmail }} • Joined: {{ client?.userJoiningDate | date:'mediumDate' }}
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-primary" routerLink="/profile/edit">Edit Profile</button>
+        <button class="btn btn-sm btn-outline-secondary" routerLink="/document/upload">Upload Document</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Info Cards -->
+  <div class="d-flex flex-wrap gap-3 mb-4">
+    <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 260px;">
+      <div class="text-muted small">Account Number</div>
+      <div class="fw-bold fs-5">{{ client?.account?.accountNumber || '—' }}</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 260px;">
+      <div class="text-muted small">Balance</div>
+      <div class="fw-bold fs-5">₹ {{ client?.account?.balance | number:'1.2-2' }}</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 260px;">
+      <div class="text-muted small">KYC Status</div>
+      <div class="fw-bold fs-5">{{ client?.kycVierified ? 'Verified' : 'Not Verified' }}</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 260px;">
+      <div class="text-muted small">Beneficiaries</div>
+      <div class="fw-bold fs-5">{{ client?.beneficiaries?.length || 0 }}</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 260px;">
+      <div class="text-muted small">Employees</div>
+      <div class="fw-bold fs-5">{{ client?.employees?.length || 0 }}</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Personal + Security -->
+  <div class="row mb-4">
+    <!-- Personal Details -->
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow-sm rounded border p-3">
+        <h6 class="fw-bold mb-3">Personal Details</h6>
+        <div class="row g-2">
+          <div class="col-6">
+            <div class="text-muted small">Full Name</div>
+            <div class="fw-semibold">{{ client?.userFullName || '—' }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Username</div>
+            <div class="fw-semibold">{{ client?.userName || '—' }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Email</div>
+            <div class="fw-semibold">{{ client?.userEmail || '—' }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Phone</div>
+            <div class="fw-semibold">{{ client?.userPhone || '—' }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Date of Birth</div>
+            <div class="fw-semibold">{{ client?.dateOfBirth | date:'mediumDate' }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Address</div>
+            <div class="fw-semibold">{{ client?.address || '—' }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security / Role / Bank -->
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow-sm rounded border p-3">
+        <h6 class="fw-bold mb-3">Access & Bank</h6>
+        <div class="row g-2">
+          <div class="col-6">
+            <div class="text-muted small">Role</div>
+            <div class="fw-semibold">{{client?.userRoleId }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Bank</div>
+            <div class="fw-semibold">{{ client?.bank?.bankName || client?.bankId }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Joined</div>
+            <div class="fw-semibold">{{ client?.userJoiningDate | date:'mediumDate' }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Account Id</div>
+            <div class="fw-semibold">{{ client?.accountId || '—' }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bank Manager + Documents -->
+  <div class="row mb-4">
+    <!-- Bank Relationship Manager -->
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow-sm rounded border p-3">
+        <h6 class="fw-bold mb-3">Bank Relationship Manager</h6>
+        <div class="d-flex align-items-center gap-3" *ngIf="client?.bankUser; else noBankUser">
+          <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
+               style="width:44px;height:44px;">
+            <span class="fw-bold">
+              {{ client?.bankUser?.userFullName ? client.bankUser.userFullName[0] : 'B' }}
+            </span>
+          </div>
+          <div>
+            <div class="fw-semibold">{{ client?.bankUser?.userFullName }}</div>
+            <div class="text-muted small">
+              {{ client?.bankUser?.userEmail }}
+              <span *ngIf="client?.bankUser?.userPhone"> • {{ client.bankUser.userPhone }}</span>
+            </div>
+          </div>
+        </div>
+        <ng-template #noBankUser>
+          <div class="text-muted">No manager assigned.</div>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Documents -->
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow-sm rounded border p-3">
+        <h6 class="fw-bold mb-3">KYC Documents</h6>
+        <ng-container *ngIf="client?.documents?.length; else noDocs">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+                *ngFor="let d of client?.documents">
+              <div>
+                <div class="fw-semibold">{{ d.documentName }}</div>
+                <div class="text-muted small">
+                  Type: {{d.proofTypeId }}
+                </div>
+              </div>
+              <a class="btn btn-sm btn-outline-primary" [href]="d.documentURL" target="_blank">View</a>
+            </li>
+          </ul>
+        </ng-container>
+        <ng-template #noDocs>
+          <div class="text-muted">No documents uploaded.</div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- Beneficiaries + Employees -->
+  <div class="row mb-4">
+    <!-- Beneficiaries -->
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow-sm rounded border p-3">
+        <h6 class="fw-bold mb-3">Beneficiaries</h6>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let b of client?.beneficiaries">
+            <div>
+              <div class="fw-semibold">{{ b.beneficiaryName }}</div>
+              <div class="text-muted small">
+                {{ b.bankName }} • {{ b.accountNumber }} • {{ b.ifsc }}
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item text-muted" *ngIf="!client?.beneficiaries?.length">
+            No beneficiaries added.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Employees -->
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow-sm rounded border p-3">
+        <h6 class="fw-bold mb-3">Employees</h6>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let e of client?.employees">
+            <div>
+              <div class="fw-semibold">
+                {{ e.employeeName }}
+                <span class="badge ms-2" [ngClass]="e.isActive ? 'bg-success' : 'bg-secondary'">
+                  {{ e.isActive ? 'Active' : 'Inactive' }}
+                </span>
+              </div>
+              <div class="text-muted small">
+                A/C: {{ e.accountNumber }} • {{ e.bankName }} • {{ e.ifsc }}
+              </div>
+            </div>
+            <div class="fw-semibold">₹ {{ e.salary | number:'1.0-0' }}</div>
+          </li>
+          <li class="list-group-item text-muted" *ngIf="!client?.employees?.length">
+            No employees found.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>

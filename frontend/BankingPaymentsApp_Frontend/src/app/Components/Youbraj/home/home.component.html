@@ -26,6 +26,20 @@
             <div class="text-muted small">Total Payments Made</div>
             <div class="fw-bold fs-5">{{ payments?.length }}</div>
         </div>
+        <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 250px;">
+            <div class="text-muted small">Active Employees</div>
+            <div class="fw-bold fs-5">{{ activeEmployees }}</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 250px;">
+    <div class="text-muted small">Payment Success Rate</div>
+    <div class="fw-bold fs-5">
+        {{
+            payments?.length ? 
+            ((getApprovedPayments() / payments.length) * 100 | number : '1.0-0') + '%' 
+            : '0%'
+        }}
+    </div>
+</div>
     </div>
     <hr>
     <!-- Charts Section -->
@@ -34,8 +48,8 @@
         <div class="col-md-6 mb-3">
             <div class="bg-white shadow-sm rounded border p-3" style="height: 300px;">
                 <h6 class="fw-bold mb-3">Payments by Status</h6>
-                <canvas baseChart [data]="paymentStatusChartData" [labels]="paymentStatusChartData.labels"
-                    [type]="'doughnut'" [options]="chartOptions">
+                <canvas baseChart [data]="paymentStatusChartData" [type]="paymentStatusChartType"
+                    [options]="chartOptions">
                 </canvas>
             </div>
         </div>
@@ -49,11 +63,22 @@
                 </canvas>
             </div>
         </div>
+        <!-- <div class="chart-container card">
+            <h4>Employees Status</h4>
+            <canvas baseChart [data]="employeeChartData" [options]="employeeChartOptions" [type]="employeeChartType">
+            </canvas>
+        </div> -->
         <div class="col-md-6 mb-3">
             <div class="bg-white shadow-sm rounded border p-3" style="height: 300px;">
-                <h6 class="fw-bold mb-3">Recent Transactions</h6>
-                <canvas baseChart [data]="recentTxnChartData" [labels]="recentTxnChartData.labels" [type]="'line'"
-                    [options]="chartOptions">
+                <h6 class="fw-bold mb-3">Employees Status</h6>
+                <canvas baseChart [data]="employeeChartData" [type]="employeeChartType" [options]="chartOptions">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="bg-white shadow-sm rounded border p-3" style="height: 300px;">
+                <h6 class="fw-bold mb-3">Beneficiaries per Bank</h6>
+                <canvas baseChart [data]="beneficiaryChartData" [type]="beneficiaryChartType" [options]="chartOptions">
                 </canvas>
             </div>
         </div>

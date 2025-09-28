@@ -1,52 +1,100 @@
-<h2>Upload Documents</h2>
+<div class="mt-4 px-3 w-100">
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Upload Documents</li>
+    </ol>
+  </nav>
 
-<form [formGroup]="uploadForm" (ngSubmit)="uploadAllDocuments()">
-
-  <div *ngFor="let doc of documentFields">
-    <h3>{{doc}}</h3>
-    <div [formGroupName]="doc">
-      
-      <!-- Document Name -->
-      <label>Document Name:</label>
-      <input formControlName="DocumentName" type="text">
-      <div *ngIf="getFormGroup(doc).get('DocumentName')?.touched && getFormGroup(doc).get('DocumentName')?.invalid">
-        Document Name is required.
-      </div>
-
-      <!-- Proof Type -->
-      <label>Proof Type:</label>
-      <select formControlName="ProofTypeId">
-        <option value="" disabled>Select Proof Type</option>
-        <option *ngFor="let p of proofTypes" [value]="p.TypeId">{{p.Type}}</option>
-      </select>
-      <div *ngIf="getFormGroup(doc).get('ProofTypeId')?.touched && getFormGroup(doc).get('ProofTypeId')?.invalid">
-        Proof Type is required.
-      </div>
-
-      <!-- File Upload -->
-      <label>Select File:</label>
-      <input type="file" (change)="onFileSelected($event, doc)">
-      <div *ngIf="!getFormGroup(doc).get('File')?.value">
-        File is required.
-      </div>
-
-      <!-- Preview Section -->
-      <div *ngIf="previewUrls[doc]" class="preview-box">
-        <!-- Image -->
-        <img *ngIf="isImage(previewUrls[doc])" [src]="previewUrls[doc]" width="150" height="100">
-
-        <!-- PDF -->
-        <iframe *ngIf="isPdf(previewUrls[doc])" [src]="previewUrls[doc]" width="200" height="150"></iframe>
-
-        <!-- Other files -->
-        <p *ngIf="previewUrls[doc] && !isImage(previewUrls[doc]) && !isPdf(previewUrls[doc])">
-          {{ getFormGroup(doc).get('File')?.value?.name }}
-        </p>
-      </div>
-
-    </div>
-    <hr>
+  <div class="bg-white p-3 shadow-sm rounded border mb-3">
+    <h6 class="fw-bold mb-0">Upload Documents</h6>
   </div>
 
-  <button type="submit">Upload All Documents</button>
-</form>
+  <form [formGroup]="uploadForm" (ngSubmit)="uploadAllDocuments()" class="needs-validation" novalidate>
+    <div class="row">
+      <div class="col-12" *ngFor="let doc of documentFields">
+        <div class="bg-white p-3 shadow-sm rounded border mb-3">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h6 class="fw-bold mb-0">{{ doc }}</h6>
+            <button type="button" class="btn btn-sm btn-outline-secondary" (click)="resetDoc(doc)">
+              Reset
+            </button>
+          </div>
+
+          <div [formGroupName]="doc" class="row g-3">
+            <!-- Document Name -->
+            <div class="col-md-6">
+              <label class="form-label">Document Name</label>
+              <input class="form-control"
+                     formControlName="DocumentName"
+                     type="text"
+                     [class.is-invalid]="getFormGroup(doc).get('DocumentName')?.touched && getFormGroup(doc).get('DocumentName')?.invalid">
+              <div class="invalid-feedback">
+                Document Name is required.
+              </div>
+            </div>
+
+            <!-- Proof Type -->
+            <div class="col-md-6">
+              <label class="form-label">Proof Type</label>
+              <select class="form-select"
+                      formControlName="ProofTypeId"
+                      [class.is-invalid]="getFormGroup(doc).get('ProofTypeId')?.touched && getFormGroup(doc).get('ProofTypeId')?.invalid">
+                <option [ngValue]="null" disabled>Select Proof Type</option>
+                <option *ngFor="let p of proofTypes" [ngValue]="p.TypeId">{{ p.Type }}</option>
+              </select>
+              <div class="invalid-feedback">
+                Proof Type is required.
+              </div>
+            </div>
+
+            <!-- File Upload -->
+            <div class="col-md-6">
+              <label class="form-label">Select File</label>
+              <input class="form-control"
+                     type="file"
+                     (change)="onFileSelected($event, doc)"
+                     [class.is-invalid]="!getFormGroup(doc).get('File')?.value && getFormGroup(doc).touched">
+              <div class="invalid-feedback">
+                File is required.
+              </div>
+              <div class="form-text">
+                Supported: images, PDF. Max size as per policy.
+              </div>
+            </div>
+
+            <!-- Preview -->
+            <div class="col-md-6">
+              <label class="form-label">Preview</label>
+              <div class="border rounded p-2 bg-light" style="min-height: 120px;">
+                <ng-container *ngIf="previewUrls[doc]; else noPreview">
+                  <img *ngIf="isImage(previewUrls[doc])"
+                       [src]="previewUrls[doc]"
+                       class="img-fluid rounded"
+                       style="max-height: 150px; object-fit: contain;">
+                  <iframe *ngIf="isPdf(previewUrls[doc])"
+                          [src]="previewUrls[doc]"
+                          style="width: 100%; height: 150px; border: 0;"></iframe>
+                  <p class="mb-0" *ngIf="previewUrls[doc] && !isImage(previewUrls[doc]) && !isPdf(previewUrls[doc])">
+                    {{ getFormGroup(doc).get('File')?.value?.name }}
+                  </p>
+                </ng-container>
+                <ng-template #noPreview>
+                  <div class="text-muted small">No preview available.</div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="col-12">
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Upload All Documents</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="resetAll()">Reset All</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

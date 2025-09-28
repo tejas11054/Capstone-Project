@@ -49,7 +49,9 @@ export class BankUserComponent implements OnInit {
           kycVierified: c.kycVierified,
           documents: [],
           bankId: c.bankId ?? 0,
-          bank: c.bank ?? ''
+          bank: c.bank ?? '',
+          bankUserId: c.bankUserId,
+          bankUser: c.bankUser
         }));
         this.loading = false;
       },
@@ -74,13 +76,13 @@ export class BankUserComponent implements OnInit {
     this.bankService.getClientDocuments(client.userId).subscribe({
       next: (docs: any[]) => {
         this.selectedClientDocs = (docs ?? []).map(d => ({
-          DocumentId: d.documentId ?? 0,
-          DocumentName: d.documentName ?? '',
-          DocumentURL: d.documentURL ?? '',
-          ProofTypeId: d.proofTypeId ?? 0,
-          PublicId: d.publicId ?? '',
-          ClientId: d.clientId ?? 0,
-          ProofType: d.proofType ? { TypeId: d.proofType.typeId, Type: d.proofType.type } : undefined
+          documentId: d.documentId ?? 0,
+          documentName: d.documentName ?? '',
+          documentURL: d.documentURL ?? '',
+          proofTypeId: d.proofTypeId ?? 0,
+          publicId: d.publicId ?? '',
+          clientId: d.clientId ?? 0,
+          proofType: d.proofType ? { TypeId: d.proofType.typeId, Type: d.proofType.type } : undefined
         }));
 
         this.showDocuments = this.selectedClientDocs.length > 0;

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DocumentUploadService } from '../../Services/document.service';
 import { DocumentDTO } from '../../DTO/DocumentDTO';
 import { ProofType, DocProofType } from '../../Models/ProofType';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-document-upload',
@@ -25,7 +26,8 @@ export class DocumentUploadComponent implements OnInit {
     private fb: FormBuilder,
     private docService: DocumentUploadService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auth: AuthService
   ) {
     // Initialize form with 4 document sub-groups
     const group: any = {};
@@ -51,12 +53,13 @@ export class DocumentUploadComponent implements OnInit {
 
   ngOnInit() {
     // Get userId from route params
-    this.clientId = Number(this.route.snapshot.paramMap.get('userId')) || 0;
+    // this.clientId = Number(this.route.snapshot.paramMap.get('userId')) || 0;
+    this.clientId = this.auth.getUserId() ?? 0;
 
-    if (!this.clientId) {
-      alert('Client ID missing! Redirecting to login.');
-      this.router.navigate(['/Login']);
-    }
+    // if (!this.clientId) {
+    //   alert('Client ID missing! Redirecting to login.');
+    //   this.router.navigate(['/login']);
+    // }
   }
 
   // Helper to get a FormGroup for each document
@@ -65,57 +68,76 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   // Handle file selection
- onFileSelected(event: any, docField: string) {
-  const file = event.target.files[0];
-  if (file) {
-    this.getFormGroup(docField).patchValue({ File: file });
+  onFileSelected(event: any, docField: string) {
+    const file = event.target.files[0];
+    if (file) {
+      this.getFormGroup(docField).patchValue({ File: file });
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.previewUrls[docField] = reader.result;
-    };
-    reader.readAsDataURL(file);
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewUrls[docField] = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
-}
 
-isImage(url: string | ArrayBuffer | null): boolean {
-  return typeof url === 'string' && url.startsWith('data:image');
-}
+  isImage(url: string | ArrayBuffer | null): boolean {
+    return typeof url === 'string' && url.startsWith('data:image');
+  }
 
-isPdf(url: string | ArrayBuffer | null): boolean {
-  return typeof url === 'string' && url.startsWith('data:application/pdf');
-}
+  isPdf(url: string | ArrayBuffer | null): boolean {
+    return typeof url === 'string' && url.startsWith('data:application/pdf');
+  }
 
 
   // Upload all documents at once
   uploadAllDocuments() {
-  if (this.documentFields.some(doc => this.getFormGroup(doc).invalid)) {
-    alert('Please fill all fields and select files for all documents.');
-    return;
+    if (this.documentFields.some(doc => this.getFormGroup(doc).invalid)) {
+      alert('Please fill all fields and select files for all documents.');
+      return;
+    }
+
+    const uploadObservables = this.documentFields.map(doc => {
+      const formGroup = this.getFormGroup(doc);
+      const formValue = formGroup.value;
+      const dto: DocumentDTO = {
+        DocumentName: formValue['DocumentName'],
+        ProofTypeId: formValue['ProofTypeId'],
+        ClientId: this.clientId
+      };
+      const file: File = formValue['File'];
+      return this.docService.uploadDocument(dto, file);
+    });
+
+    // Upload all documents in parallel
+    Promise.all(uploadObservables.map(obs => obs.toPromise()))
+      .then(() => {
+        alert('All documents uploaded successfully!');
+        this.router.navigate([`/ClientUser/${this.clientId}`]);
+      })
+      .catch(err => {
+        console.error(err);
+        alert('One or more document uploads failed.');
+      });
   }
 
-  const uploadObservables = this.documentFields.map(doc => {
-    const formGroup = this.getFormGroup(doc);
-    const formValue = formGroup.value;
-    const dto: DocumentDTO = {
-      DocumentName: formValue['DocumentName'],
-      ProofTypeId: formValue['ProofTypeId'],
-      ClientId: this.clientId
-    };
-    const file: File = formValue['File'];
-    return this.docService.uploadDocument(dto, file);
-  });
+  // Ensure these are present in your component.ts
 
-  // Upload all documents in parallel
-  Promise.all(uploadObservables.map(obs => obs.toPromise()))
-    .then(() => {
-      alert('All documents uploaded successfully!');
-      this.router.navigate([`/ClientUser/${this.clientId}`]); 
-    })
-    .catch(err => {
-      console.error(err);
-      alert('One or more document uploads failed.');
-    });
-}
+  // Example structure assumptions:
+  // uploadForm: FormGroup;
+  // documentFields: string[] = ['Address Proof', 'ID Proof', 'Photo']; // example
+  // proofTypes: { TypeId: number; Type: string }[] = [];
+  // previewUrls: Record<string, string> = {};
 
+
+  resetDoc(doc: string) {
+    const fg = this.getFormGroup(doc);
+    fg.reset();
+    delete this.previewUrls[doc];
+  }
+
+  resetAll() {
+    this.uploadForm.reset();
+    this.previewUrls = {};
+  }
 }

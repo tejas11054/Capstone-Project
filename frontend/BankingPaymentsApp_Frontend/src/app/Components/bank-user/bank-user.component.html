@@ -59,10 +59,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let doc of selectedClientDocs">
-          <td>{{ doc.DocumentName }}</td>
-          <td>{{ doc.ProofType?.Type || doc.ProofTypeId }}</td>
-          <td><a [href]="doc.DocumentURL" target="_blank">View</a></td>
-          <td>{{ doc.PublicId }}</td>
+          <td>{{ doc.documentName }}</td>
+          <td>{{ doc.proofType?.Type || doc.proofTypeId }}</td>
+          <td><a [href]="doc.documentURL" target="_blank">View</a></td>
+          <td>{{ doc.publicId }}</td>
         </tr>
       </tbody>
     </table>

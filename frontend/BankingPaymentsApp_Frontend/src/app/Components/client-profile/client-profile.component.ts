@@ -6,6 +6,7 @@ import { ClientRegisterService } from '../../Services/client.service';
 import { ClientUser } from '../../Models/ClientUser';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-client-profile',
@@ -21,6 +22,7 @@ export class ClientProfileComponent implements OnInit {
   loading = true;
 
   constructor(
+    private auth:AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
@@ -28,7 +30,7 @@ export class ClientProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userId = Number(this.route.snapshot.paramMap.get('id'));
+    this.userId = this.auth.getUserId() ?? 0;
 
     this.clientSvc.getClientById(this.userId).subscribe({
       next: (res: ClientUser) => {
@@ -83,6 +85,10 @@ export class ClientProfileComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(["/ClientUser/" + this.userId]);  // navigates to previous page
+  }
+
+  cancel(){
+    
   }
 
 }
