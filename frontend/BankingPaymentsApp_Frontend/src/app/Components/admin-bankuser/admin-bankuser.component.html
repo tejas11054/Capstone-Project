@@ -1,0 +1,44 @@
+<div class="container my-4 documents-section">
+  <h2 class="section-title">Bank Users</h2>
+
+  <div class="employees-list">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Full Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Branch</th>
+          <th>Active</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bank of banks; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ bank.userFullName }}</td>
+          <td>{{ bank.userName }}</td>
+          <td>{{ bank.userEmail }}</td>
+          <td>{{ bank.userPhone }}</td>
+          <td>{{ bank.branch }}</td>
+          <td>{{ bank.isActive ? 'Yes' : 'No' }}</td>
+          <td>
+            <button
+              (click)="approveBankUser(bank.userId)"
+              [disabled]="processing[bank.userId || 0]">
+              {{ processing[bank.userId || 0] ? 'Processing...' : 'Approve' }}
+            </button>
+
+            <button (click)="rejectBankUser(bank)">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="banks.length === 0" class="no-data">
+      No bank users found.
+    </div>
+  </div>
+</div>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .table {
   font-size: 0.85rem; /* smaller & cleaner text */
   margin-bottom: 0;
@@ -83,7 +82,6 @@
 .breadcrumb a:hover {
   text-decoration: underline; /* subtle hover effect */
 }
-=======
 /* ---------------- Body & Container ---------------- */
 html, body {
   height: 100%;
@@ -309,4 +307,19 @@ html, body {
   margin-top: 1rem;
   font-style: italic;
 }
->>>>>>> 8f3a84c6a8c895a6866e493fbd96db878a7c89f2
+
+
+
+button{
+    width: 100px;
+    background: #7a5af8;
+}
+
+button:hover{
+    background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-1px);
+}
+
+.card-title{
+    color: #fff !important; 
+}

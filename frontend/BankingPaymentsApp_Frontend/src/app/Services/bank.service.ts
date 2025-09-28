@@ -13,10 +13,28 @@ export class BankService {
   private baseUrl = environment.backendURL + "/Bank";
 
   constructor(private http: HttpClient) { }
+
   createBank(dto: BankDTO): Observable<Bank> {
       return this.http.post<Bank>(`${this.baseUrl}`, {
         ...dto,
         isActive: true  
       });
   }
+
+   getAllBanks(): Observable<Bank[]> {
+    return this.http.get<Bank[]>(`${this.baseUrl}`);
+  }
+
+  getBankById(id: number): Observable<Bank> {
+    return this.http.get<Bank>(`${this.baseUrl}/${id}`);
+  }
+
+  updateBank(id: number, dto: BankDTO): Observable<Bank> {
+    return this.http.put<Bank>(`${this.baseUrl}/${id}`, dto);
+  }
+
+  deleteBank(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  }
+  
 }

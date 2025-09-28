@@ -8,7 +8,7 @@ import { roleGuard } from './Guards/role.guard';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { BankRegisterComponent } from './Components/bank-register/bank-register.component';
-import { AdminComponent } from './Components/admin/admin.component';
+import { AdminComponent } from './Components/admin-bankuser/admin-bankuser.component';
 import { ListPaymentComponent } from './Components/list-payment/list-payment.component';
 import { ClientUserComponent } from './Components/client-user/client-user.component';
 import { EmployeeUploadComponent } from './Components/employee-upload/employee-upload.component';
@@ -31,6 +31,11 @@ import { DisbursementComponent } from './Components/Youbraj/disbursement/disburs
 import { DisbursementDetailsComponent } from './Components/Youbraj/disbursement-details/disbursement-details.component';
 import { TransactionComponent } from './Components/Youbraj/transaction/transaction.component';
 import { HomeComponent } from './Components/Youbraj/home/home.component';
+import { ClientHomeComponent } from './Components/client-home/client-home.component';
+import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
+import { AdminViewBankComponent } from './Components/admin-view-bank/admin-view-bank.component';
+import { AdminHomeComponent } from './Components/admin-home/admin-home.component';
+import { AdminLogsComponent } from './Components/admin-logs/admin-logs.component';
 
 export const routes: Routes = [
      {
@@ -38,14 +43,29 @@ export const routes: Routes = [
     component: ClientUserComponent, // dashboard parent
     children: [
       { path: '', pathMatch: 'full', redirectTo: '' },
-      { path: 'home', pathMatch: 'full', redirectTo: '' },
+      { path: 'home', pathMatch: 'full', component: ClientHomeComponent },
       { path: 'profile/:id', component: ClientProfileComponent },
       { path: 'ClientAccount/:id', component: ClientAccountComponent },
       { path: 'ClientDocuments/:userId', component: ClientDocumentsComponent },
-      { path: 'ClientUser/:userId/beneficiaries', component: BeneficiariesComponent },
+      { path: 'beneficiaries', component: BeneficiariesComponent, children: [
+        { path: 'add', component: BeneficiaryRegisterComponent }
+      ]},
+
       { path: 'ClientUser/:userId/transactions', component: ClientTransactionComponent },
       { path: 'ClientEmployees/:userId', component: EmployeesComponent },
       { path: 'ClientPayments/:clientId', component: ClientPaymentComponent },
+      { path: 'ClientSalaryDisbursement/:userId', component: ClientSalaryDisbursementComponent},
+    ]
+  },
+
+  { path: 'AdminDashboard', 
+    component: AdminDashboardComponent,
+    children: [
+      { path: "BankRegister", component: BankRegisterComponent },
+      { path: 'AdminBankUsers', component: AdminComponent },
+      { path: 'AdminViewBanks', component: AdminViewBankComponent},
+      { path: 'AdminHome', component: AdminHomeComponent},
+      { path: 'AdminLogs', component: AdminLogsComponent},
     ]
   },
     { path: '', component: LoginComponent },
@@ -64,15 +84,11 @@ export const routes: Routes = [
     
     { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
     
-    
-    
-    
-    
     { path: "ClientUser/:clientId/payments", component: ClientAccountComponent},
-    { path: 'ClientSalaryDisbursement/:userId', component: ClientSalaryDisbursementComponent},
+    
     { path: 'BankUser', component: BankUserComponent },
-    { path: "BankRegister", component: BankRegisterComponent },
-    { path: 'Admin', component: AdminComponent },
+    
+    
     { path: "pendingPayment", component: ListPaymentComponent },
     { path: "payment", component: PaymentComponent },
     { path: "EmployeeUpload", component: EmployeeUploadComponent },
@@ -80,5 +96,6 @@ export const routes: Routes = [
     { path: "salary", component: SalaryDisbursementComponent },
     { path: "disbursement", component: SalaryDisbursementComponent },
     { path: "BeneficiaryRegister", component: BeneficiaryRegisterComponent},
+    { path: "disbursement", component: ListSalaryDisbursementComponent },
     { path: "**", component: PageNotFoundComponent },
 ];

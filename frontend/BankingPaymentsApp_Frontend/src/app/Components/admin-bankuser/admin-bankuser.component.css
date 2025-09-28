@@ -1,0 +1,101 @@
+/* ---------------- Body & Container ---------------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #12101b;
+  color: #fff;
+  padding: 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+/* ---------------- Section Title ---------------- */
+.section-title {
+  color: white;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* ---------------- Bank Users Table ---------------- */
+.employees-list {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+}
+
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1f1c2f;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.2);
+  margin-bottom: 2rem;
+}
+
+.doc-table th,
+.doc-table td {
+  padding: 1rem 1.2rem;
+  text-align: center;
+  color: #fff;
+  border-bottom: 1px solid #3c3a4a;
+}
+
+.doc-table th {
+  background: #2a283b;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.doc-table tr:hover {
+  background: rgba(122, 90, 248, 0.1);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+.doc-table tbody tr:nth-child(even) {
+  background: #232030;
+}
+
+.doc-table tbody tr:nth-child(odd) {
+  background: #1f1c2f;
+}
+
+/* ---------------- Buttons ---------------- */
+.doc-table button {
+  background: #7a5af8;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin: 0 2px;
+  transition: all 0.2s ease;
+}
+
+.doc-table button:hover {
+  background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-1px);
+}
+
+.doc-table button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------------- No Data Text ---------------- */
+.no-data {
+  text-align: center;
+  color: #ccc;
+  margin-top: 1rem;
+  font-style: italic;
+}

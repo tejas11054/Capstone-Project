@@ -5,17 +5,19 @@ import { Router } from '@angular/router';
 import { LoginResponseDTO } from '../../DTO/LoginResponseDTO';
 import { InvisibleReCaptchaComponent, NgxCaptchaModule, ReCaptchaV3Service } from 'ngx-captcha';
 import { environment } from '../../../environments/environment';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true, 
-  imports: [ReactiveFormsModule, NgxCaptchaModule],
+  imports: [ReactiveFormsModule, NgxCaptchaModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loginResponse!: LoginResponseDTO;
+  passwordFieldType: string = 'password';
 
   siteKey: string = environment.recaptcha.siteKey;
 
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
         // Role-based navigation
         switch (role) {
           case "ADMIN":
-            this.router.navigate(['/Admin']);
+            this.router.navigate(['/AdminDashboard']);
             break;
           case "BANK_USER":
             this.router.navigate(['/BankUser']);
@@ -94,7 +96,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  logout(){
-    this.authSvc.logout();
+
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }

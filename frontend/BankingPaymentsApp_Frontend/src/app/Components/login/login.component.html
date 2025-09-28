@@ -1,16 +1,20 @@
-<div class="container">
-  <form [formGroup]="loginForm" (ngSubmit)="Login(loginForm)">
-    <div class="form-group">
-      <label class="form-label">UserName: </label>
-      <input class="form-control" id="userName" formControlName="userName">
-    </div>
+<div class="login-container d-flex justify-content-center align-items-center">
+  <form [formGroup]="loginForm" (ngSubmit)="Login(loginForm)" class="login-form">
+    <h2 class="login-title">PayPro Login</h2>
 
     <div class="form-group">
-      <label class="form-label">Password: </label>
-      <input class="form-control" type="password" id="password" formControlName="password">
+      <label class="form-label">Username</label>
+      <input class="form-control" id="userName" formControlName="userName" placeholder="Enter your username">
     </div>
 
-    <!-- Invisible reCAPTCHA -->
+    <div class="form-group password-group">
+      <label class="form-label">Password</label>
+      <div class="password-wrapper">
+        <input [type]="passwordFieldType" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
+        <i class="fas" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()"></i>
+      </div>
+    </div>
+
     <ngx-invisible-recaptcha
       #captchaElem
       [siteKey]="siteKey"
@@ -20,9 +24,6 @@
       (success)="handleSuccess($event)">
     </ngx-invisible-recaptcha>
 
-    <button class="btn btn-success" type="submit">Login</button>
-
+    <button class="btn-login" type="submit">Login</button>
   </form>
-
-  <button class="btn btn-primary" type="submit" onclick="logout()">Logout</button>
 </div>

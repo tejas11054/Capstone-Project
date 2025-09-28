@@ -35,3 +35,38 @@
     background-color: #3f36c3;
     box-shadow: 0 6px 20px rgba(63, 54, 195, 0.5);
   }
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 0.75rem;
+  background-color: #1e1b2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #ccc;
+  text-align: left;
+  display: block;
+  margin-left: 0.2rem;
+}
+
+button{
+    width: 100px;
+    background: #7a5af8;
+}
+
+button:hover{
+    background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-1px);
+}
+
+
+.card-title{
+    color: #fff !important; 
+}

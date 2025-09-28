@@ -1,36 +1,62 @@
-<div class="container mt-4">
-  <h2>Register Bank</h2>
-  <form #bankForm="ngForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label for="bankName" class="form-label">Bank Name</label>
-      <input
-        type="text"
-        id="bankName"
-        name="bankName"
-        class="form-control"
-        [(ngModel)]="bankDto.bankName"
-        required
-      />
+<div *ngIf="loading" class="loading text-center py-5">
+  <div class="spinner-border text-primary" role="status"></div>
+  <p class="mt-3">Loading Bank Registration...</p>
+</div>
+
+<div *ngIf="!loading" class="container py-5">
+  <div class="profile-card shadow-lg mx-auto">
+    
+    <!-- Header -->
+    <div class="card-header text-center">
+      <h2>Register Bank</h2>
     </div>
 
-    <div class="mb-3">
-      <label for="ifsc" class="form-label">IFSC Code</label>
-      <input
-        type="text"
-        id="ifsc"
-        name="ifsc"
-        class="form-control"
-        [(ngModel)]="bankDto.ifsc"
-        required
-      />
+    <!-- Form -->
+    <div class="card-body">
+      <form #bankForm="ngForm" (ngSubmit)="onSubmit()" class="row g-4">
+
+        <!-- Bank Name -->
+        <div class="col-md-12">
+          <label class="form-label">Bank Name</label>
+          <input
+            type="text"
+            id="bankName"
+            name="bankName"
+            class="form-control"
+            [(ngModel)]="bankDto.bankName"
+            required
+          />
+        </div>
+
+        <!-- IFSC Code -->
+        <div class="col-md-12">
+          <label class="form-label">IFSC Code</label>
+          <input
+            type="text"
+            id="ifsc"
+            name="ifsc"
+            class="form-control"
+            [(ngModel)]="bankDto.ifsc"
+            required
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-12 text-center mt-4">
+          <button
+            type="submit"
+            class="btn submit-btn"
+            [disabled]="!bankForm.form.valid"
+          >
+            Register Bank
+          </button>
+        </div>
+      </form>
+
+      <!-- Response Message -->
+      <div *ngIf="responseMessage" class="alert alert-info mt-4 text-center">
+        {{ responseMessage }}
+      </div>
     </div>
-
-    <button type="submit" class="btn btn-primary" [disabled]="!bankForm.form.valid">
-      Register Bank
-    </button>
-  </form>
-
-  <div *ngIf="responseMessage" class="alert alert-info mt-3">
-    {{ responseMessage }}
   </div>
 </div>

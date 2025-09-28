@@ -1,0 +1,66 @@
+<div *ngIf="loading" class="loading text-center py-5">
+  <div class="spinner-border text-primary" role="status"></div>
+  <p class="mt-3">Loading banks...</p>
+</div>
+
+<div *ngIf="!loading" class="container py-5">
+
+  <div class="profile-card shadow-lg mx-auto">
+    <div class="card-header text-center">
+      <h2>Manage Banks</h2>
+    </div>
+
+    <div class="card-body">
+
+      <div *ngIf="responseMessage" class="alert alert-info text-center">
+        {{ responseMessage }}
+      </div>
+
+      <!-- Banks Table -->
+      <div class="banks-list">
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Bank Name</th>
+              <th>IFSC</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bank of banks">
+              <td>{{ bank.bankId }}</td>
+              <td>{{ bank.bankName }}</td>
+              <td>{{ bank.ifsc }}</td>
+              <td>
+                <button class="btn btn-warning btn-sm me-2" (click)="editBank(bank)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteBank(bank.bankId)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Edit Form -->
+      <div *ngIf="selectedBank" class="edit-form mt-5">
+        <h3>Edit Bank (ID: {{ selectedBank.bankId }})</h3>
+        <form (ngSubmit)="updateBank()">
+          <div class="mb-3">
+            <label class="form-label">Bank Name</label>
+            <input type="text" class="form-control" [(ngModel)]="bankDto.bankName" name="bankName" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">IFSC</label>
+            <input type="text" class="form-control" [(ngModel)]="bankDto.ifsc" name="ifsc" required />
+          </div>
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary me-2">Update Bank</button>
+            <button type="button" class="btn btn-secondary" (click)="selectedBank = null">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="dashboard-home">
+
+  <!-- Charts -->
+  <div class="charts d-flex flex-wrap gap-4 justify-content-center mt-4">
+
+    <!-- Employees Status Doughnut -->
+    <div class="chart-container card">
+      <h4>Employees Status</h4>
+      <canvas baseChart
+              [data]="employeeChartData"
+              [options]="employeeChartOptions"
+              [type]="employeeChartType">
+      </canvas>
+    </div>
+
+    <!-- Beneficiaries Bar Chart -->
+    <div class="chart-container card">
+      <h4>Beneficiaries per Bank</h4>
+      <canvas baseChart
+              [data]="beneficiaryChartData"
+              [options]="beneficiaryChartOptions"
+              [type]="beneficiaryChartType">
+      </canvas>
+    </div>
+
+    <!-- Salary Bar Chart -->
+    <div class="chart-container card">
+      <h4>Salary Distribution</h4>
+      <canvas baseChart
+              [data]="salaryChartData"
+              [options]="salaryChartOptions"
+              [type]="salaryChartType">
+      </canvas>
+    </div>
+
+  </div>
+</div>

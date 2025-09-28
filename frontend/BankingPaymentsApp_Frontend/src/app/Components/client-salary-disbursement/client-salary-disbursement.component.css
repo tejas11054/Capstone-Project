@@ -1,0 +1,65 @@
+.section-title {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  color: white;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.employees-list {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e1b2a;
+  color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.doc-table th, .doc-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #444;
+}
+
+.doc-table th {
+  background-color: #2a2540;
+  font-weight: 600;
+}
+
+.doc-table tr:hover {
+  background: rgba(122, 90, 248, 0.1);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #7a5af8;
+}
+
+button {
+  width: 140px;
+  background: #7a5af8;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-1px);
+}
