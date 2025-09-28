@@ -18,6 +18,15 @@
     <button class="btn btn-secondary btn-filter" (click)="resetFilters()">
       <i class="fas fa-redo"></i> Reset
     </button>
+
+    <button class="btn btn-success btn-filter" (click)="downloadPDF()">
+    <i class="fas fa-file-pdf"></i> Download PDF
+  </button>
+  <button class="btn btn-warning btn-filter" (click)="downloadExcel()">
+    <i class="fas fa-file-excel"></i> Download Excel
+  </button>
+
+  
   </div>
 
   <div *ngIf="transactions.length > 0" class="transactions-table-wrapper">
