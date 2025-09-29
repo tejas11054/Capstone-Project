@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BankingPaymentsApp_API.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class queryadded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -79,6 +79,22 @@ namespace BankingPaymentsApp_API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProofTypes", x => x.TypeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Queries",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Queries", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -636,6 +652,9 @@ namespace BankingPaymentsApp_API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Documents");
+
+            migrationBuilder.DropTable(
+                name: "Queries");
 
             migrationBuilder.DropTable(
                 name: "SalaryDisbursementDetails");

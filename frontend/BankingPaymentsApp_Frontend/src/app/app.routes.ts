@@ -45,6 +45,7 @@ import { authGuard } from './Guards/auth.guard';
 import { ClientCreateComponent } from './Components/Youbraj/client-create/client-create.component';
 import { CallToAction } from './Components/landing-page/call-to-action/call-to-action';
 import { BankUserRegisterComponent } from './Components/bank-user-register/bank-user-register.component';
+import { MainComponent } from './Components/landing-page/main/main.component';
 
 export const routes: Routes = [
      {
@@ -100,7 +101,7 @@ export const routes: Routes = [
     {path:"DocumentUpload",component:DocumentUploadComponent},
 
     
-    { path: "Home", component: CallToAction},
+    { path: "Landing", component: MainComponent},
     // { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
     
     { path: "ClientUser/:clientId/payments", component: ClientAccountComponent},

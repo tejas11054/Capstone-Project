@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    [Migration("20250927105842_init")]
-    partial class init
+    [Migration("20250929165730_query model changes")]
+    partial class querymodelchanges
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -398,6 +398,37 @@ namespace BankingPaymentsApp_API.Migrations
                             TypeId = 6,
                             Type = 5
                         });
+                });
+
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Query", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Response")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Queries");
                 });
 
             modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursement", b =>

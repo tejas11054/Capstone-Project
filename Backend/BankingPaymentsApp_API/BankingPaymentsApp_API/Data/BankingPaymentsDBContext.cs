@@ -26,6 +26,7 @@ namespace BankingPaymentsApp_API.Data
         public DbSet<UserRole> Roles { get; set; }
         public DbSet<SalaryDisbursement> SalaryDisbursements { get; set; }
         public DbSet<SalaryDisbursementDetails> SalaryDisbursementDetails { get; set; }
+        public DbSet<Query> Queries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
