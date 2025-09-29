@@ -29,6 +29,7 @@ namespace BankingPaymentsApp_API.Services
         }
 
         public async Task<IEnumerable<Payment>> GetAll(
+            int? clientId,
             int? payerAccountId,
             string?payerName,
             string? payeeAccountNumber,
@@ -41,6 +42,10 @@ namespace BankingPaymentsApp_API.Services
             DateTime? actionTo)
         {
             var query = _paymentRepository.GetAll();
+
+
+            if (clientId.HasValue)
+                query = query.Where(p => p.PayerAccount.ClientId.Equals(clientId));
 
             if (payerAccountId.HasValue)
                 query = query.Where(p => p.PayerAccountId == payerAccountId.Value);

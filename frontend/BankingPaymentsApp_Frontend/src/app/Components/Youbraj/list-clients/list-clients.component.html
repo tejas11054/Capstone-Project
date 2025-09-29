@@ -1,0 +1,91 @@
+<div class="mt-4 px-3 w-100">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Clients</li>
+        </ol>
+    </nav>
+    <div class="d-flex gap-3 flex-wrap mb-3">
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+            <div class="text-muted small">Total Payments</div>
+            <div class="fw-bold fs-5">₹ 15,000</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+            <div class="text-muted small">Pending</div>
+            <div class="fw-bold fs-5 text-warning">3</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+            <div class="text-muted small">Approved</div>
+            <div class="fw-bold fs-5 text-success">5</div>
+        </div>
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+            <div class="text-muted small">Declined</div>
+            <div class="fw-bold fs-5 text-danger">5</div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0">ALL PAYMENTS</h5>
+        <button class="btn btn-create-payment" routerLink="/payment">
+            <i class="bi bi-plus-lg me-2"></i> Create payment
+        </button>
+    </div>
+    <hr>
+
+    <!-- Filters -->
+    <div class="mb-3 d-flex flex-wrap gap-2">
+        <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
+        <app-id-filter (idFilter)="onIdFilter($event)"></app-id-filter>
+        <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
+        <app-status-filter [statusOptions]="statusOptions" (statusFilter)="onStatusFilter($event)"></app-status-filter>
+        <button class="btn btn-create-payment" (click)="downloadPDF()">Download PDF</button>
+    </div>
+
+    <!-- Clients Table -->
+    <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">
+        <table class="table table-hover align-middle small mb-0" style="min-width: 1200px;">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>DOB</th>
+                    <th>Address</th>
+                    <th>Account Number</th>
+                    <th>Bank Name</th>
+                    <th>KYC Verified</th>
+                    <th>Documents</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of clients">
+                    <td>{{ client.userId }}</td>
+                    <td>{{ client.userFullName }}</td>
+                    <td>{{ client.userName }}</td>
+                    <td>{{ client.dateOfBirth | date:'dd-MMM-yyyy' }}</td>
+                    <td>{{ client.address }}</td>
+                    <td>{{ client.account?.accountNumber || '-' }}</td>
+                    <td>{{ client.bank?.bankName || '-' }}</td>
+                    <td>
+                        <span class="badge"
+                            [ngClass]="client.kycVierified ? 'bg-success text-light' : 'bg-warning text-dark'">
+                            {{ client.kycVierified ? 'Yes' : 'No' }}
+                        </span>
+                    </td>
+                    <td>
+                        <a [routerLink]="['documents',client.userId]"
+                            class="btn btn-sm btn-outline-success text-dark p-1">
+                            View Documents
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-info me-1" (click)="approveClient(client)">Approve</button>
+                        <button class="btn btn-sm btn-warning me-1" (click)="openFormModal(client)">Reject</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<app-reject-modal #rejectModal [Parentid]="selectedClient?.id"
+  (formSubmit)="handleFormSubmit($event)"></app-reject-modal>

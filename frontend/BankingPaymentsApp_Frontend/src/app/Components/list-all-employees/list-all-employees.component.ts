@@ -14,6 +14,8 @@ import { RejectModalComponent } from '../Shared/reject-modal/reject-modal.compon
 import { RouterLink } from '@angular/router';
 import { SalaryDisbursementService } from '../../Services/salary-disbursement.service';
 import { EmployeeUploadComponent } from '../Youbraj/employee-upload/employee-upload.component';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-list-all-employees',
@@ -29,13 +31,21 @@ export class ListAllEmployeesComponent implements OnInit {
   selectedEmployees: Employee[] = [];
   selectedEmployeeIds: number[] = [];
   filters: any = {};
+  role!:string;
 
   // @Output() event = new EventEmitter<{ allEmployees: boolean, employeeIds: number[] }>
   constructor(private auth: AuthService, private employeeSvc: EmployeeService, private disbursementSvc: SalaryDisbursementService) { }
 
   ngOnInit(): void {
     const user = this.auth.getLoggedInUser();
-
+    const role = this.auth.getUserRole();
+    console.log(role);
+    if(role == "CLIENT_USER"){
+      console.log("helo")
+      console.log(user?.userId)
+      this.role = role;
+      this.filters.clientId =  user?.userId;
+    }
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllEmployees(params);
   }
@@ -190,5 +200,37 @@ export class ListAllEmployeesComponent implements OnInit {
 
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllEmployees(params);
+  }
+
+  downloadPDF(): void {
+    if (!this.employees || this.employees.length === 0) {
+      alert('No Employees to export!');
+      return;
+    }
+
+    const doc = new jsPDF();
+    doc.text('Employees Report', 14, 16);
+
+    const tableColumn = ['#', 'Transaction ID', 'Type', 'Amount', 'Date'];
+    const tableRows: any[] = [];
+
+    this.employees.forEach((t, i) => {
+      tableRows.push([
+        i + 1,
+        t.employeeId,
+        t.employeeName,
+        t.isActive,
+        t.accountNumber,
+        t.salary
+      ]);
+    });
+
+    autoTable(doc, {
+      head: [tableColumn],
+      body: tableRows,
+      startY: 20
+    });
+
+    doc.save(`Employees_User_${this.employees[0].clientId}.pdf`);
   }
 }

@@ -5,19 +5,34 @@
   <hr class="my-2">
 
   <ul class="nav nav-pills flex-column mb-auto small">
-    <li class="nav-item">
+    <li *ngIf="role == 'CLIENT_USER'" class="nav-item">
       <a routerLink="/home" class="nav-link d-flex align-items-center">
         <i class="bi bi-house me-2"></i> Home
       </a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="role == 'BANK_USER'" class="nav-item">
+      <a routerLink="/BankUserHome" class="nav-link d-flex align-items-center">
+        <i class="bi bi-house me-2"></i> Home
+      </a>
+    </li>
+    <li *ngIf="role == 'CLIENT_USER'" class="nav-item">
       <a routerLink="/profile" class="nav-link d-flex align-items-center">
+        <i class="bi bi-person me-2"></i> Profile
+      </a>
+    </li>
+    <li *ngIf="role == 'BANK_USER'" class="nav-item">
+      <a routerLink="/BankUserProfile" class="nav-link d-flex align-items-center">
         <i class="bi bi-person me-2"></i> Profile
       </a>
     </li>
     <li>
       <a routerLink="/beneficiary" class="nav-link d-flex align-items-center">
         <i class="bi bi-wallet2 me-2"></i> Beneficiary
+      </a>
+    </li>
+    <li *ngIf="role == 'BANK_USER'">
+      <a  routerLink="/clients" class="nav-link d-flex align-items-center">
+        <i class="bi bi-wallet2 me-2"></i> Clients
       </a>
     </li>
     <li>
@@ -64,8 +79,8 @@
   </ul>
 
   <div class="mt-auto pt-3 border-top">
-    <a routerLink="/developers" class="nav-link small d-flex align-items-center text-muted">
-      <i class="bi bi-code-slash me-2"></i> Developers
+    <a (click)="logout()" class="nav-link small d-flex align-items-center text-muted">
+      <i class="bi bi-code-slash me-2"></i> Logout
     </a>
   </div>
 </div>

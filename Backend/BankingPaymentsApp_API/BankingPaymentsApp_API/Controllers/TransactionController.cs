@@ -22,11 +22,12 @@ namespace BankingPaymentsApp_API.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAll(
-        [FromQuery] int? transactionId,
-        [FromQuery] int? transactionTypeId,
-        [FromQuery] DateTime? date)  // single date filter
+            [FromQuery] int? clientId,
+            [FromQuery] int? transactionId,
+            [FromQuery] int? transactionTypeId,
+            [FromQuery] DateTime? date)  // single date filter
         {
-            var transactions = await _transactionService.GetAll(transactionId, transactionTypeId, date);
+            var transactions = await _transactionService.GetAll(clientId,transactionId, transactionTypeId, date);
 
             if (!transactions.Any())
                 return NotFound("No transactions to display.");

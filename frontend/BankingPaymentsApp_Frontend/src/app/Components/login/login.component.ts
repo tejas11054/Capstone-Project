@@ -58,10 +58,10 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/AdminDashboard']);
             break;
           case "BANK_USER":
-            this.router.navigate(['/BankUser']);
+            this.router.navigate(['/BankUserHome']);
             break;
           case "CLIENT_USER":
-            this.router.navigate(['/ClientUser', userId]); 
+            this.router.navigate(['/home']); 
             break;
           default:
             alert("Unknown role! Cannot navigate.");

@@ -35,6 +35,9 @@
                 <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
                 <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
                 <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
+                <button class="btn btn-create-payment" (click)="downloadPDF()">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                </button>
             </div>
         </div>
         <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">

@@ -1,0 +1,128 @@
+<div class="mt-4 px-3 w-100">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Bank User Profile</li>
+    </ol>
+  </nav>
+
+  <!-- Header -->
+  <div class="bg-white p-3 shadow-sm rounded border mb-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div class="d-flex align-items-center gap-3">
+        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+             style="width:56px;height:56px;">
+          <span class="fw-bold fs-5">
+            {{ bankUser?.userFullName ? bankUser.userFullName[0] : 'B' }}
+          </span>
+        </div>
+        <div>
+          <div class="fw-bold fs-5 mb-1">{{ bankUser?.userFullName }}</div>
+          <div class="text-muted small">
+            {{ bankUser?.userEmail }} • Joined: {{ bankUser?.userJoiningDate | date:'mediumDate' }}
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-primary" routerLink="/bank/profile/edit">Edit Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Info Cards -->
+  <div class="d-flex flex-wrap gap-3 mb-4">
+    <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 260px;">
+      <div class="text-muted small">Bank</div>
+      <div class="fw-bold fs-5">{{ bankUser?.bank?.bankName || '—' }}</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 260px;">
+      <div class="text-muted small">Total Clients</div>
+      <div class="fw-bold fs-5">{{ clients?.length || 0 }}</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 260px;">
+      <div class="text-muted small">Total Payments</div>
+      <div class="fw-bold fs-5">{{ payments?.length || 0 }}</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border flex-grow-1" style="max-width: 260px;">
+      <div class="text-muted small">Branch Managed</div>
+      <div class="fw-bold fs-5">{{ bankUser?.branch}}</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Personal + Access -->
+  <div class="row mb-4">
+    <!-- Personal Details -->
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow-sm rounded border p-3">
+        <h6 class="fw-bold mb-3">Personal Details</h6>
+        <div class="row g-2">
+          <div class="col-6">
+            <div class="text-muted small">Full Name</div>
+            <div class="fw-semibold">{{ bankUser?.userFullName || '—' }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Username</div>
+            <div class="fw-semibold">{{ bankUser?.userName || '—' }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Email</div>
+            <div class="fw-semibold">{{ bankUser?.userEmail || '—' }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Phone</div>
+            <div class="fw-semibold">{{ bankUser?.userPhone || '—' }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Access / Bank -->
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow-sm rounded border p-3">
+        <h6 class="fw-bold mb-3">Access & Bank</h6>
+        <div class="row g-2">
+          <div class="col-6">
+            <div class="text-muted small">Role</div>
+            <div class="fw-semibold">{{ bankUser?.userRoleId }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Bank</div>
+            <div class="fw-semibold">{{ bankUser?.bank?.bankName || bankUser?.bankId }}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">Joined</div>
+            <div class="fw-semibold">{{ bankUser?.userJoiningDate | date:'mediumDate' }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clients + Branches -->
+  <div class="row mb-4">
+    <!-- Clients -->
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow-sm rounded border p-3">
+        <h6 class="fw-bold mb-3">Clients Managed</h6>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let c of clients">
+            <div>
+              <div class="fw-semibold">{{ c.userFullName }}</div>
+              <div class="text-muted small">
+                {{ c.userEmail }} • {{ c.account?.accountNumber }}
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item text-muted" *ngIf="!clients?.length">
+            No clients assigned.
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+</div>

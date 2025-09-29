@@ -1,29 +1,42 @@
-<div class="login-container d-flex justify-content-center align-items-center">
-  <form [formGroup]="loginForm" (ngSubmit)="Login(loginForm)" class="login-form">
-    <h2 class="login-title">PayPro Login</h2>
+<div class="login-page d-flex vh-100">
+  <!-- Left side: SVG / illustration -->
+  <div class="login-illustration flex-grow-1 d-none d-lg-flex justify-content-center align-items-center bg-light">
+    <img src="assets/login.svg" alt="Login Illustration" class="img-fluid" style="max-width: 80%;">
+  </div>
 
-    <div class="form-group">
-      <label class="form-label">Username</label>
-      <input class="form-control" id="userName" formControlName="userName" placeholder="Enter your username">
-    </div>
+  <!-- Right side: Login Form -->
+  <div class="login-form-container d-flex justify-content-center align-items-center flex-grow-1">
+    <form [formGroup]="loginForm" (ngSubmit)="Login(loginForm)" class="login-form p-4 rounded shadow-sm bg-white">
+      <h2 class="login-title text-center mb-4">PayPro Login</h2>
 
-    <div class="form-group password-group">
-      <label class="form-label">Password</label>
-      <div class="password-wrapper">
-        <input [type]="passwordFieldType" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
-        <i class="fas" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()"></i>
+      <div class="form-group mb-3">
+        <label class="form-label fw-semibold">Username</label>
+        <input class="form-control" id="userName" formControlName="userName" placeholder="Enter your username">
       </div>
-    </div>
 
-    <ngx-invisible-recaptcha
-      #captchaElem
-      [siteKey]="siteKey"
-      (reset)="handleReset()"
-      (ready)="handleReady()"
-      (load)="handleLoad()"
-      (success)="handleSuccess($event)">
-    </ngx-invisible-recaptcha>
+      <div class="form-group mb-3">
+        <label class="form-label fw-semibold">Password</label>
+        <div class="input-group">
+          <input [type]="passwordFieldType" class="form-control" formControlName="password"
+            placeholder="Enter your password">
+          <span class="input-group-text bg-white border-start-0" style="cursor:pointer;"
+            (click)="togglePasswordVisibility()">
+            <i class="fas" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'"></i>
+          </span>
+        </div>
+      </div>
 
-    <button class="btn-login" type="submit">Login</button>
-  </form>
+
+
+      <ngx-invisible-recaptcha #captchaElem [siteKey]="siteKey" (reset)="handleReset()" (ready)="handleReady()"
+        (load)="handleLoad()" (success)="handleSuccess($event)">
+      </ngx-invisible-recaptcha>
+
+      <button class="btn btn-primary w-100 mt-3">Login</button>
+
+      <div class="text-center mt-3 text-muted small">
+        &copy; 2025 PayPro. All rights reserved.
+      </div>
+    </form>
+  </div>
 </div>

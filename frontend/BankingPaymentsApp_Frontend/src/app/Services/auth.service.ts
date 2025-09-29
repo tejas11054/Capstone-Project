@@ -1,18 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginDTO } from '../DTO/LoginDTO';
 import { LoginResponseDTO } from '../DTO/LoginResponseDTO';
 import { User } from '../Models/User';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  private roleSubject = new BehaviorSubject<string | null>(null);
+  role$ = this.roleSubject.asObservable();
   loginURL: string = environment.backendURL;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {
+    const storedRole = localStorage.getItem('role');
+    if (storedRole) {
+      this.roleSubject.next(storedRole);
+    }
+  }
 
   loginUser(user: LoginDTO): Observable<LoginResponseDTO> {
     return this.http.post<LoginResponseDTO>(this.loginURL + "/Auth/Login", user);
@@ -34,7 +41,7 @@ export class AuthService {
       // JWT uses base64url, so replace chars before decoding
       const base64 = payloadBase64.replace(/-/g, '+').replace(/_/g, '/');
       const decodedPayload = JSON.parse(atob(base64));
-
+      this.roleSubject.next(decodedPayload['Role']);
       localStorage.setItem("role", decodedPayload["Role"]);
     } catch (err) {
       console.error("Invalid token format", err);
@@ -51,19 +58,19 @@ export class AuthService {
 
   getUserRole(): string | null {
     const role = localStorage.getItem("role");
-    if(role){
+    if (role) {
       return role;
     }
     return null;
   }
 
-  isLoggedIn():boolean{
+  isLoggedIn(): boolean {
     const token = localStorage.getItem("token");
-    if(token) return true;
+    if (token) return true;
     return false;
   }
 
-  getToken():string | null{
+  getToken(): string | null {
     return localStorage.getItem("token");
   }
 
@@ -72,8 +79,10 @@ export class AuthService {
     return id ? parseInt(id, 10) : null;
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
+    this.router.navigate(['/login']);
+    this.roleSubject.next(null);
   }
 
 }

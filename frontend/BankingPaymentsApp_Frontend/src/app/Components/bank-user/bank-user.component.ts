@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ClientUser } from '../../Models/ClientUser';
 import { Document } from '../../Models/Document';
 import { ClientRegisterService } from '../../Services/client.service';
+import { RejectDTO } from '../../DTO/RejectDTO';
 
 @Component({
   selector: 'app-bank-user',
@@ -21,6 +22,7 @@ export class BankUserComponent implements OnInit {
   showDocuments: boolean = false;
   loading: boolean = true;
   responseMessage: string | null = null;
+  reject!:RejectDTO;
 
   constructor(private bankService: ClientRegisterService) { }
 
@@ -33,7 +35,7 @@ export class BankUserComponent implements OnInit {
     this.resetDocuments();
     this.responseMessage = null;
 
-    this.bankService.getClients().subscribe({
+    this.bankService.getClients("").subscribe({
       next: (res: any[]) => {
         this.clients = res.map((c: any) => ({
           userId: c.userId ?? c.id,
@@ -113,12 +115,9 @@ export class BankUserComponent implements OnInit {
     });
   }
 
-  rejectClient(client: ClientUser, reason: string) {
-    if (!client.userId) return;
-
-    this.bankService.rejectClient(client.userId, reason).subscribe({
+  rejectClient(reject:RejectDTO) {
+    this.bankService.rejectClient(reject).subscribe({
       next: (res) => {
-        this.responseMessage = res;
         this.fetchClients();
       },
       error: (err) => {

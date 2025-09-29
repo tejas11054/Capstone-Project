@@ -113,7 +113,7 @@ export class DocumentUploadComponent implements OnInit {
     Promise.all(uploadObservables.map(obs => obs.toPromise()))
       .then(() => {
         alert('All documents uploaded successfully!');
-        this.router.navigate([`/ClientUser/${this.clientId}`]);
+        this.router.navigate([`/login`]);
       })
       .catch(err => {
         console.error(err);

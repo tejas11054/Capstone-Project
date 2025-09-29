@@ -43,10 +43,10 @@ namespace BankingPaymentsApp_API.Controllers
             if (!clientUsers.Any())
                 return NotFound("No Client Users found!");
 
-            var response = clientUsers.Select(u => _mapper.Map<ClientUserResponseDTO>(u));
-            _logger.LogInformation($"{response.Count()} client users were displayed!");
+            //var response = clientUsers.Select(u => _mapper.Map<ClientUserResponseDTO>(u));
+            _logger.LogInformation($"{clientUsers.Count()} client users were displayed!");
 
-            return Ok(response);
+            return Ok(clientUsers);
         }
 
         // GET: api/ClientUser/{id}

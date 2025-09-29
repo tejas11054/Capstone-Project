@@ -14,7 +14,12 @@ namespace BankingPaymentsApp_API.Repositories
 
         public IQueryable<Transaction> GetAll()
         {
-            return _dbContext.Transactions.AsQueryable();
+            return _dbContext.Transactions
+                .Include(t=>t.Account).ThenInclude(a=>a.ClientUser)
+                .Include(t=>t.Payment)
+                .Include(t=>t.SalaryDisbursement)
+                .Include(t=>t.TransactionType)
+                .AsQueryable();
         }
 
         public async Task<Transaction> Add(Transaction transaction)

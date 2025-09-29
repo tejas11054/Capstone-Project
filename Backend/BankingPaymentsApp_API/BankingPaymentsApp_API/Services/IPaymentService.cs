@@ -5,6 +5,7 @@ namespace BankingPaymentsApp_API.Services
     public interface IPaymentService
     {
         public Task<IEnumerable<Payment>> GetAll(
+            int? clientId,
             int? payerAccountId,
             string? payerName,
             string? payeeAccountNumber,

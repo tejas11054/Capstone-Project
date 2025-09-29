@@ -7,10 +7,10 @@ import { PaymentStatusPipe } from '../../../Pipes/payment-status.pipe';
 
 @Component({
   selector: 'app-disbursement-details',
-  imports: [CommonModule, PaymentStatusPipe,RouterLink],
+  imports: [CommonModule, PaymentStatusPipe, RouterLink],
   templateUrl: './disbursement-details.component.html',
   styleUrl: './disbursement-details.component.css',
-  standalone:true
+  standalone: true
 })
 export class DisbursementDetailsComponent implements OnInit {
   disbursement!: SalaryDisbursement;
@@ -31,4 +31,6 @@ export class DisbursementDetailsComponent implements OnInit {
         console.log(error);
       })
   }
+
+
 }

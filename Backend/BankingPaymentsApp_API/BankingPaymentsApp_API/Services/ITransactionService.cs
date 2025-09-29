@@ -4,7 +4,7 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface ITransactionService
     {
-        public Task<IEnumerable<Transaction>> GetAll(int? transactionId, int? transactionTypeId, DateTime? date);
+        public Task<IEnumerable<Transaction>> GetAll(int? clientId,int? transactionId, int? transactionTypeId, DateTime? date);
         public Task<Transaction> Add(Transaction transaction);
         public Task<IEnumerable<Transaction>> AddMany(IEnumerable<Transaction> transactions);
         public Task<Transaction?> GetById(int id);

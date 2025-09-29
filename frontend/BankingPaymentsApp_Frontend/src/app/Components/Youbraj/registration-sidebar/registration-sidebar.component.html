@@ -1,0 +1,15 @@
+<div class="bg-light p-4 border-end h-100">
+  <h5 class="fw-bold mb-4">Registration Steps</h5>
+  <ul class="list-unstyled">
+    <li class="mb-3">
+      <div [ngClass]="currentStep === 1 ? 'fw-bold text-primary' : 'text-muted'">
+        1. Personal Details
+      </div>
+    </li>
+    <li>
+      <div [ngClass]="currentStep === 2 ? 'fw-bold text-primary' : 'text-muted'">
+        2. Upload Documents
+      </div>
+    </li>
+  </ul>
+</div>

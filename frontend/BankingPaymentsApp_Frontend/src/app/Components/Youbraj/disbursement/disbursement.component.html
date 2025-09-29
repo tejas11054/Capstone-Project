@@ -29,24 +29,28 @@
     <!-- Header with action -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="fw-bold mb-0">ALL SALARY DISBURSEMENTS</h5>
-        <button class="btn btn-create-payment" routerLink="/employee">
+        <button *ngIf="role == 'CLIENT_USER'" class="btn btn-create-payment" routerLink="/employee">
             <i class="bi bi-plus-lg me-2"></i> Create Disbursement
         </button>
     </div>
     <hr>
 
     <div class="mb-3 d-flex flex-wrap gap-2">
-<div ngbDropdown class="d-inline-block">
-      <div class="mb-3 d-flex flex-wrap gap-2">
-        <!-- Date and Time Filter -->
-        <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
-        <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter>
-        <app-status-filter [statusOptions]="statusOptions" (statusFilter)="onStatusFilter($event)"></app-status-filter>
-        <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
-        <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
-        <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
-      </div>
-    </div>
+        <div ngbDropdown class="d-inline-block">
+            <div class="mb-3 d-flex flex-wrap gap-2">
+                <!-- Date and Time Filter -->
+                <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
+                <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter>
+                <app-status-filter [statusOptions]="statusOptions"
+                    (statusFilter)="onStatusFilter($event)"></app-status-filter>
+                <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
+                <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
+                <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
+                <button class="btn btn-create-payment" (click)="downloadPDF()">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                </button>
+            </div>
+        </div>
         <!-- Disbursements Table -->
         <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">
             <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
@@ -84,9 +88,9 @@
                         </td>
                         <td>{{ disb.employees?.length || disb.clientUser?.employees?.length }}</td>
                         <td>
-                            <button *ngIf="disb.disbursementStatusId == 3" class="btn btn-sm btn-outline-success me-1"
+                            <button  *ngIf="disb.disbursementStatusId == 3 && role == 'BANK_USER'" class="btn btn-sm btn-outline-success me-1"
                                 (click)="approveDisbursement(disb)">Approve</button>
-                            <button *ngIf="disb.disbursementStatusId == 3" class="btn btn-sm btn-outline-danger me-1"
+                            <button *ngIf="disb.disbursementStatusId == 3 && role == 'BANK_USER'" class="btn btn-sm btn-outline-danger me-1"
                                 (click)="openFormModal(disb)">Reject</button>
                             <button class="btn btn-sm btn-outline-primary"
                                 [routerLink]="['/disbursements', disb.salaryDisbursementId]">View</button>
@@ -98,4 +102,4 @@
     </div>
 </div>
 <app-reject-modal #rejectModal [Parentid]="selectedDisbursement?.id"
-  (formSubmit)="handleFormSubmit($event)"></app-reject-modal>
+    (formSubmit)="handleFormSubmit($event)"></app-reject-modal>

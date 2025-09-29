@@ -1,1 +1,32 @@
-<p>admin-logs works!</p>
+<div class="container my-4 documents-section">
+  <h2 class="section-title">System Logs</h2>
+
+  <div class="logs-list">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>File Name</th>
+          <th>Created On</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logs; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ log.fileName }}</td>
+          <td>{{ log.createdOn }}</td>
+          <td>
+            <button (click)="downloadLog(log.fileName)">
+              <i class="fas fa-download"></i> Download
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="logs.length === 0" class="no-data">
+      No log files found.
+    </div>
+  </div>
+</div>

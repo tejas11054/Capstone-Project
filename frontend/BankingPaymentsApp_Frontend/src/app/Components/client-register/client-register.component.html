@@ -1,49 +1,95 @@
-<h2>Client Registration</h2>
+<div class="container d-flex justify-content-center mt-5">
+  <form [formGroup]="registerForm" (ngSubmit)="register()" class="w-75 p-4 rounded shadow-sm bg-white">
 
-<form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="fw-bold mb-0">CLIENT REGISTER</h5>
+    </div>
+    <hr>
+    <div class="row g-3">
+      <!-- Full Name -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Full Name</label>
+        <input formControlName="UserFullName" type="text" class="form-control" placeholder="Enter full name">
+        <div *ngIf="f['UserFullName'].touched && f['UserFullName'].invalid" class="text-danger small mt-1">
+          Full Name is required.
+        </div>
+      </div>
 
-  <label>Full Name:</label>
-  <input formControlName="UserFullName" type="text">
-  <div *ngIf="f['UserFullName'].touched && f['UserFullName'].invalid">
-    Full Name is required.
-  </div>
+      <!-- Username -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Username</label>
+        <input formControlName="UserName" type="text" class="form-control" placeholder="Enter username">
+        <div *ngIf="f['UserName'].touched && f['UserName'].invalid" class="text-danger small mt-1">
+          Username is required.
+        </div>
+      </div>
 
-  <label>Username:</label>
-  <input formControlName="UserName" type="text">
-  <div *ngIf="f['UserName'].touched && f['UserName'].invalid">
-    Username is required.
-  </div>
+      <!-- Email -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Email</label>
+        <input formControlName="UserEmail" type="email" class="form-control" placeholder="Enter email">
+        <div *ngIf="f['UserEmail'].touched && f['UserEmail'].invalid" class="text-danger small mt-1">
+          Valid Email is required.
+        </div>
+      </div>
 
-  <label>Email:</label>
-  <input formControlName="UserEmail" type="email">
-  <div *ngIf="f['UserEmail'].touched && f['UserEmail'].invalid">
-    Valid Email is required.
-  </div>
+      <!-- Phone -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Phone</label>
+        <input formControlName="UserPhone" type="text" class="form-control" placeholder="Enter phone number">
+        <div *ngIf="f['UserPhone'].touched && f['UserPhone'].invalid" class="text-danger small mt-1">
+          Phone is required and must be 10 digits.
+        </div>
+      </div>
 
-  <label>Phone:</label>
-  <input formControlName="UserPhone" type="text">
-  <div *ngIf="f['UserPhone'].touched && f['UserPhone'].invalid">
-    Phone is required and must be 10 digits.
-  </div>
+      <!-- Password -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Password</label>
+        <input formControlName="Password" type="password" class="form-control" placeholder="Enter password">
+        <div *ngIf="f['Password'].touched && f['Password'].invalid" class="text-danger small mt-1">
+          Password must be at least 8 characters long, include uppercase, lowercase, number, and special character.
+        </div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Confirm Password</label>
+        <input formControlName="ConfirmPassword" type="password" class="form-control" placeholder="Confirm password">
+        <div *ngIf="registerForm.errors?.['notMatching'] && f['ConfirmPassword'].touched"
+          class="text-danger small mt-1">
+          Passwords do not match.
+        </div>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Date of Birth</label>
+        <input formControlName="DateOfBirth" type="date" class="form-control">
+      </div>
+
+      <!-- Address -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Address</label>
+        <textarea formControlName="Address" class="form-control" rows="1" placeholder="Enter address"></textarea>
+      </div>
+    </div>
+    <!-- Bank Dropdown -->
+    <div class="col-md-12">
+      <label class="form-label fw-semibold">Bank</label>
+      <select formControlName="BankId" class="form-select">
+        <option value="" disabled selected>Select Bank</option>
+        <option *ngFor="let bank of banks" [value]="bank.bankId">{{ bank.bankName }}</option>
+      </select>
+      <div *ngIf="f['BankId'].touched && f['BankId'].invalid" class="text-danger small mt-1">
+        Please select a bank.
+      </div>
+    </div>
 
 
-  <label>Password:</label>
-  <input formControlName="Password" type="password">
-  <div *ngIf="f['Password'].touched && f['Password'].invalid">
-    Password must be at least 8 characters long, include uppercase, lowercase, number, and special character.
-  </div>
+    <!-- Submit button -->
+    <div class="mt-4 text-center">
+      <button type="submit" class="btn btn-primary w-50" [disabled]="registerForm.invalid">Register</button>
+    </div>
 
-  <label>Confirm Password:</label>
-  <input formControlName="ConfirmPassword" type="password">
-  <div *ngIf="registerForm.errors?.['notMatching'] && f['ConfirmPassword'].touched">
-    Passwords do not match.
-  </div>
-
-  <label>Date of Birth:</label>
-  <input formControlName="DateOfBirth" type="date">
-
-  <label>Address:</label>
-  <textarea formControlName="Address"></textarea>
-
-  <button type="submit" [disabled]="registerForm.invalid">Register</button>
-</form>
+  </form>
+</div>

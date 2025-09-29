@@ -1,0 +1,10 @@
+<div class="d-flex">
+  <!-- Sidebar -->
+  <app-registration-sidebar [currentStep]="currentStep"></app-registration-sidebar>
+
+  <!-- Form Content -->
+  <div class="flex-grow-1 p-3">
+    <app-client-register *ngIf="currentStep === 1" (nextStep)="nextStep()"></app-client-register>
+    <app-document-upload *ngIf="currentStep === 2" (previousStep)="previousStep()"></app-document-upload>
+  </div>
+</div>

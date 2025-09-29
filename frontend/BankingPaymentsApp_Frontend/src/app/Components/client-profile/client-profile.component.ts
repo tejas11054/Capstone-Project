@@ -52,8 +52,7 @@ export class ClientProfileComponent implements OnInit {
       userEmail: [user.userEmail, [Validators.required, Validators.email]],
       userPhone: [user.userPhone, Validators.required],
       dateOfBirth: [user.dateOfBirth ? new Date(user.dateOfBirth).toISOString().substring(0, 10) : ''],
-      address: [user.address || ''],
-      accountNumber: [user.account?.accountNumber || '', Validators.required]
+      address: [user.address || '']
     });
   }
 

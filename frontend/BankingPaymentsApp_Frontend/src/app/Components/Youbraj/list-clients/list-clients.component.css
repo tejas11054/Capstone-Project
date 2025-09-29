@@ -1,0 +1,84 @@
+.table {
+  font-size: 0.85rem; /* smaller & cleaner text */
+  margin-bottom: 0;
+}
+
+.table th {
+  font-weight: 500;
+  color: #555;
+  white-space: nowrap;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 0.35em 0.6em;
+}
+
+.btn-outline-dark {
+  font-size: 0.75rem;
+  border-radius: 50rem; /* pill shape */
+  padding: 2px 10px;
+}
+
+.btn-outline-dark:hover {
+  background-color: #f2f2f2; /* light grey */
+  color: #333;              /* keep text dark */
+  border-color: #bbb;       /* subtle border */
+}
+
+.btn-sm {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+}
+
+.btn-outline-danger {
+  border: 1px solid #dc3545;
+  background-color: #fff;
+  color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.table td, 
+.table th {
+  white-space: nowrap;     /* prevent wrapping */
+  overflow: hidden;        /* hide overflow */
+  text-overflow: ellipsis; /* add ... */
+  max-width: 180px;        /* control width */
+}
+
+.table-responsive {
+  border-radius: 0.5rem;
+}
+
+.btn-create-payment {
+  background-color: #635bff;
+  color: #fff;
+  border: none;
+  padding: 4px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-create-payment:hover {
+  background-color: #5146ea;
+  color: #fff;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: inherit;   /* inherit text color */
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline; /* subtle hover effect */
+}

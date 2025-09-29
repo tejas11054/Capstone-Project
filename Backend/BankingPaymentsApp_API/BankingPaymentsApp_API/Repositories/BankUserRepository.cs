@@ -18,7 +18,7 @@ namespace BankingPaymentsApp_API.Repositories
         //}
         public IQueryable<BankUser> GetAll()
         {
-            return _dbContext.BankUsers.Include(u => u.Role).Include(u => u.Clients).AsQueryable();
+            return _dbContext.BankUsers.Include(u=>u.Bank).Include(u => u.Role).Include(u => u.Clients).AsQueryable();
         }
 
         public async Task<BankUser> Add(BankUser user)
@@ -30,7 +30,7 @@ namespace BankingPaymentsApp_API.Repositories
 
         public async Task<BankUser?> GetById(int id)
         {
-            return await _dbContext.BankUsers.Include(u => u.Role).Include(u=>u.Clients).FirstOrDefaultAsync(u => u.UserId.Equals(id));
+            return await _dbContext.BankUsers.Include(u => u.Bank).Include(u => u.Role).Include(u=>u.Clients).FirstOrDefaultAsync(u => u.UserId.Equals(id));
         }
         public async Task<BankUser?> Update(BankUser user)
         {

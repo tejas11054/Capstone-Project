@@ -13,9 +13,14 @@ namespace BankingPaymentsApp_API.Services
             _transactionRepository = transactionRepository;
         }
 
-        public async Task<IEnumerable<Transaction>> GetAll(int? transactionId, int? transactionTypeId, DateTime? date)
+        public async Task<IEnumerable<Transaction>> GetAll(int? clientId,int? transactionId, int? transactionTypeId, DateTime? date)
         {
             var query = _transactionRepository.GetAll();
+
+            if (clientId.HasValue)
+            {
+                query = query.Where(t=>t.Account.ClientId == clientId);
+            }
 
             if (transactionId.HasValue)
                 query = query.Where(t => t.TransactionId == transactionId.Value);

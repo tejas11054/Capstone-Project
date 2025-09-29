@@ -37,6 +37,12 @@ import { AdminViewBankComponent } from './Components/admin-view-bank/admin-view-
 import { AdminHomeComponent } from './Components/admin-home/admin-home.component';
 import { AdminLogsComponent } from './Components/admin-logs/admin-logs.component';
 import { ProfileComponent } from './Components/Youbraj/profile/profile.component';
+import { ListClientsComponent } from './Components/Youbraj/list-clients/list-clients.component';
+import { ViewDocumentsComponent } from './Components/Youbraj/view-documents/view-documents.component';
+import { BankUserHomeComponent } from './Components/Youbraj/bank-user-home/bank-user-home.component';
+import { BankUserProfileComponent } from './Components/Youbraj/bank-user-profile/bank-user-profile.component';
+import { authGuard } from './Guards/auth.guard';
+import { ClientCreateComponent } from './Components/Youbraj/client-create/client-create.component';
 
 export const routes: Routes = [
      {
@@ -80,14 +86,20 @@ export const routes: Routes = [
     {path:"disbursements",component:DisbursementComponent},
     {path:"disbursements/:id",component:DisbursementDetailsComponent},
     {path:"transactions",component:TransactionComponent},
-    {path:"home",component:HomeComponent},
+    {path:"home",component:HomeComponent,canActivate: [authGuard], data: { role: "CLIENT_USER" }},
     {path:"profile",component:ProfileComponent},
     {path:"document/upload",component:DocumentUploadComponent},
     {path:"profile/edit",component:ClientProfileComponent},
+    {path:"clients",component:ListClientsComponent},
+    {path:"clients/documents/:id",component:ViewDocumentsComponent},
+    {path:"BankUserHome",component:BankUserHomeComponent},
+    {path:"BankUserProfile",component:BankUserProfileComponent},
+    {path:"clientRegister",component:ClientCreateComponent},
+    {path:"DocumentUpload",component:DocumentUploadComponent},
 
     
     
-    { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
+    // { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
     
     { path: "ClientUser/:clientId/payments", component: ClientAccountComponent},
     

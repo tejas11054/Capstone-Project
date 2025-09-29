@@ -13,6 +13,9 @@ import { IdFilterComponent } from '../Filters/id-filter/id-filter.component';
 import { NameFilterComponent } from '../Filters/name-filter/name-filter.component';
 import { StatusFilterComponent } from '../Filters/status-filter/status-filter.component';
 import { RouterLink } from '@angular/router';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-list-payment',
@@ -27,6 +30,7 @@ export class ListPaymentComponent implements OnInit {
   filters: any = {};
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
   selectedPayment: any = null;
+  role!:string | null;
 
   statusOptions = [
     { id: 1, name: 'Approved' },
@@ -34,9 +38,19 @@ export class ListPaymentComponent implements OnInit {
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private paymentSvc: PaymentService, private fb: FormBuilder) { }
+  constructor(private auth:AuthService,private paymentSvc: PaymentService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    const user = this.auth.getLoggedInUser();
+    const role = this.auth.getUserRole();
+    console.log(role);
+    if(role == "CLIENT_USER"){
+      console.log("helo")
+      console.log(user?.userId)
+      this.role = role;
+      this.filters.clientId =  user?.userId;
+    }
+    this.role =  role;
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllPayments(params);
   }
@@ -154,5 +168,38 @@ export class ListPaymentComponent implements OnInit {
 
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllPayments(params);
+  }
+
+  downloadPDF(): void {
+    if (!this.payments || this.payments.length === 0) {
+      alert('No payments to export!');
+      return;
+    }
+
+    const doc = new jsPDF();
+    doc.text('Payments Report', 14, 16);
+
+    const tableColumn = ['#', 'Payment ID', 'Client Name', 'Paid To', 'status','amount','createdAt'];
+    const tableRows: any[] = [];
+
+    this.payments.forEach((t, i) => {
+      tableRows.push([
+        i + 1,
+        t.paymentId,
+        t.payerAccount?.clientUser?.userFullName,
+        t.payeeAccountNumber,
+        t.paymentStatus,
+        t.amount,
+        new Date(t.createdAt).toLocaleString()
+      ]);
+    });
+
+    autoTable(doc, {
+      head: [tableColumn],
+      body: tableRows,
+      startY: 20
+    });
+
+    doc.save(`Payments_User_${this.payments[0].payerAccountId}.pdf`);
   }
 }

@@ -10,6 +10,9 @@ import { AccountNumberFilterComponent } from '../../Filters/account-number-filte
 import { AmountFilterComponent } from '../../Filters/amount-filter/amount-filter.component';
 import { DateFilterComponent } from '../../Filters/date-filter/date-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-transaction',
@@ -21,6 +24,7 @@ export class TransactionComponent {
   transactions: Transaction[] = [];
   filters: any = {};
   totalTransactionAmount: number = 0;
+  userId!:number;
 
   statusOptions = [
     { id: 1, name: 'Credit' },
@@ -28,9 +32,18 @@ export class TransactionComponent {
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private transactionSvc: TransactionService) { }
+  constructor(private auth:AuthService, private transactionSvc: TransactionService) { }
 
   ngOnInit() {
+    const user = this.auth.getLoggedInUser();
+    const role = this.auth.getUserRole();
+    console.log(role);
+    if(role == "CLIENT_USER"){
+      console.log("helo")
+      console.log(user?.userId)
+      this.filters.clientId =  user?.userId;
+    }
+    this.userId = this.auth.getUserId()??0;
     // this.filters.clientId = 2;
     const params = new URLSearchParams(this.filters).toString();
     this.fetchTransactions(params);
@@ -116,6 +129,37 @@ export class TransactionComponent {
 
     const params = new URLSearchParams(this.filters).toString();
     this.fetchTransactions(params);
+  }
+
+  downloadPDF(): void {
+    if (!this.transactions || this.transactions.length === 0) {
+      alert('No transactions to export!');
+      return;
+    }
+
+    const doc = new jsPDF();
+    doc.text('Transactions Report', 14, 16);
+
+    const tableColumn = ['#', 'Transaction ID', 'Type', 'Amount', 'Date'];
+    const tableRows: any[] = [];
+
+    this.transactions.forEach((t, i) => {
+      tableRows.push([
+        i + 1,
+        t.transactionId,
+        t.transactionTypeId,
+        t.amount,
+        new Date(t.createdAt).toLocaleString()
+      ]);
+    });
+
+    autoTable(doc, {
+      head: [tableColumn],
+      body: tableRows,
+      startY: 20
+    });
+
+    doc.save(`Transactions_User_${this.userId}.pdf`);
   }
 
 
