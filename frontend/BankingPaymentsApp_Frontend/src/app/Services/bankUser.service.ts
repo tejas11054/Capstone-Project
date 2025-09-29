@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
 import { BankUser } from '../Models/BankUser';
 import { RegisterBankUserDTO } from '../DTO/RegisterBankUserDTO';
+import { Bank } from '../Models/Bank';
 
 @Injectable({
   providedIn: 'root'
@@ -36,4 +37,8 @@ export class BankRegisterService {
   registerBankUser(user: RegisterBankUserDTO): Observable<any> {
     return this.http.post<any>(this.baseUrl, user);
   }
+
+     getAllBanks(): Observable<Bank[]> {
+      return this.http.get<Bank[]>(`${this.baseUrl}`);
+    }
 }

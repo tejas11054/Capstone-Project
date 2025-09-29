@@ -1,0 +1,68 @@
+.carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.carousel {
+  display: flex;
+  width: calc(300px * 6); /* 6 cards width */
+  animation: slide 18s linear infinite;
+}
+
+.feature-card {
+  flex: 0 0 300px;
+  margin: 0 1rem;
+  background: #2a283b;
+  border: 1px solid #3c3a4a;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.feature-card .icon {
+  font-size: 3rem;
+  color: #7a5af8;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: #fff;
+  margin: 1rem 0 0.5rem;
+}
+
+.feature-card p {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* Keyframes for sliding effect */
+@keyframes slide {
+  0% { transform: translateX(0); }
+  16.66% { transform: translateX(-300px); }
+  33.33% { transform: translateX(-600px); }
+  50% { transform: translateX(-900px); }
+  66.66% { transform: translateX(-1200px); }
+  83.33% { transform: translateX(-1500px); }
+  100% { transform: translateX(0); }
+}
+
+/* Responsive: show fewer cards on smaller screens */
+@media (max-width: 992px) {
+  .feature-card {
+    flex: 0 0 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .feature-card {
+    flex: 0 0 80%;
+  }
+}

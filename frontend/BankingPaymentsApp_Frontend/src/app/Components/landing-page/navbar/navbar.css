@@ -1,0 +1,108 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background: rgba(18, 16, 27, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo styles */
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem; /* space between image and text */
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.navbar .logo img {
+  height: 40px; /* adjust the logo height */
+  width: auto;
+  border-radius: 8px; /* optional */
+}
+
+/* Navigation links */
+.navbar .nav-links a {
+  color: #ddd;
+  margin: 0 1rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+  color: #fff;
+}
+
+/* Buttons container */
+.navbar .nav-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Login button */
+.navbar .nav-buttons .login-btn {
+  background: transparent;
+  border: 1px solid #7a5af8;
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Register button */
+.navbar .nav-buttons .buy-now-btn {
+  background: #7a5af8;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.navbar .nav-buttons .buy-now-btn:hover {
+  background: #6a49e6;
+}
+
+/* Dropdown container */
+.navbar .nav-buttons .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown content */
+.navbar .nav-buttons .dropdown-content {
+  display: none; /* hidden by default */
+  position: absolute;
+  top: 110%; /* below the button */
+  right: 0;
+  background-color: #1f1c2f;
+  min-width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.3);
+  flex-direction: column;
+  z-index: 1000;
+}
+
+/* Dropdown links */
+.navbar .nav-buttons .dropdown-content a {
+  color: #fff;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  display: block;
+  transition: background 0.2s;
+}
+
+.navbar .nav-buttons .dropdown-content a:hover {
+  background: rgba(122, 90, 248, 0.2);
+  border-radius: 6px;
+}
+
+/* Show dropdown on hover */
+.navbar .nav-buttons .dropdown:hover .dropdown-content {
+  display: flex;
+}

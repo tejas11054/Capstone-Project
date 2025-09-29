@@ -1,0 +1,55 @@
+.cta-section {
+  background: #12101b;
+  padding: 5rem 2rem;
+}
+
+.cta-section .cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta-section .cta-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section .cta-content p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.cta-section .cta-content .cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.cta-section .cta-content .cta-buttons .start-btn,
+.cta-section .cta-content .cta-buttons .learn-btn {
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cta-section .cta-content .cta-buttons .start-btn {
+  background: var(--primary-purple);
+  color: #fff;
+  border: none;
+}
+
+.cta-section .cta-content .cta-buttons .start-btn:hover {
+  background: #6a49e6;
+}
+
+.cta-section .cta-content .cta-buttons .learn-btn {
+  background: transparent;
+  border: 1px solid #5a5a5a;
+  color: #ccc;
+}
+
+.cta-section .cta-content .cta-buttons .learn-btn:hover {
+  background: #2a283b;
+}

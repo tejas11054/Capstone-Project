@@ -1,0 +1,40 @@
+.faq-section {
+  background: #1d1b2a;
+}
+
+.faq-section .faq-container {
+  max-width: 800px;
+  margin: 3rem auto;
+  text-align: left;
+}
+
+.faq-section .faq-container .faq-item {
+  background: #2a283b;
+  border: 1px solid #3c3a4a;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+}
+
+.faq-section .faq-container .faq-item summary {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-section .faq-container .faq-item summary::before {
+  content: '+';
+  margin-right: 1rem;
+  transition: transform 0.3s;
+}
+
+.faq-section .faq-container .faq-item[open] summary::before {
+  content: '-';
+}
+
+.faq-section .faq-container .faq-item p {
+  color: var(--text-secondary);
+  margin-top: 1rem;
+}
