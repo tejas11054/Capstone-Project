@@ -107,6 +107,7 @@ export class ListAllEmployeesComponent implements OnInit {
     };
     this.disbursementSvc.createSalaryDisbursement(payload).subscribe((data) => {
       console.log(data);
+      alert("disbursement Created Successfully!");
     },
       (error) => {
         console.log(error);

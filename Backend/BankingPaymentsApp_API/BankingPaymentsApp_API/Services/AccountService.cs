@@ -125,6 +125,14 @@ namespace BankingPaymentsApp_API.Services
             };
             Transaction addedTransaction = await _transactionRepository.Add(debitTransaction);
             await _accountRepository.Update(account);
+            //string subject = $"Your SalaryDisbursement ID {disbursementId} is Approved!";
+            //string body =
+            //    $"""
+            //            Your SalaryDisbursement ({disbursementId}) has been approved at {DateTime.UtcNow}
+            //            Your Account ({ClientAccount.AccountNumber}) is Debited with Rs {salaryDisbursement.TotalAmount} 
+            //            """;
+            //await _emailService.SendEmailToClientAsync((int)salaryDisbursement.ClientId, subject, body);
+            //return updatedDisbursement;
             return addedTransaction;
         }
         public async Task<Account?> AccountExistsWithAccountNumber(string accountNumber)

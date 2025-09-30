@@ -15,7 +15,7 @@ export class EmployeeUploadComponent {
   message: string = '';
   uploading: boolean = false;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService) { }
 
   onFileSelected(event: any) {
     if (event.target.files.length > 0) {
@@ -24,26 +24,26 @@ export class EmployeeUploadComponent {
   }
 
   uploadFile() {
-  if (!this.selectedFile) {
-    alert('Please select a CSV file first.');
-    return;
-  }
-
-  this.uploading = true;
-  this.employeeService.uploadEmployees(this.selectedFile).subscribe({
-    next: (res: string) => {
-      this.message = res;
-      alert(res); // 
-      this.uploading = false;
-      this.selectedFile = null; 
-    },
-    error: (err: any) => {
-      console.error('Upload error:', err);
-      this.message = 'Failed to upload employees.';
-      alert('Failed to upload employees. Please check console.');
-      this.uploading = false;
+    if (!this.selectedFile) {
+      alert('Please select a CSV file first.');
+      return;
     }
-  });
-}
+
+    this.uploading = true;
+    this.employeeService.uploadEmployees(this.selectedFile).subscribe({
+      next: (res: string) => {
+        this.message = res;
+        alert(res); // 
+        this.uploading = false;
+        this.selectedFile = null;
+      },
+      error: (err: any) => {
+        console.error('Upload error:', err);
+        this.message = 'Failed to upload employees.';
+        alert('Failed to upload employees. Please check console.');
+        this.uploading = false;
+      }
+    });
+  }
 
 }

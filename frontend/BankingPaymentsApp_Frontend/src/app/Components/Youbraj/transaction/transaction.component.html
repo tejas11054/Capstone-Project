@@ -48,6 +48,7 @@
                         <th>Account</th>
                         <th>Payment</th>
                         <th>Disbursement</th>
+                        <th>To/From</th>
                         <th>Type</th>
                         <th>Amount</th>
                         <th>Created At</th>
@@ -64,6 +65,9 @@
                         </td>
                         <td class="text-truncate" style="max-width: 140px;">
                             {{ txn.salaryDisbursementId || '-' }}
+                        </td>
+                        <td class="text-truncate" style="max-width: 140px;">
+                            {{ txn.transactionTypeId == 2 ? txn.payment?.payeeAccountNumber : txn.payment?.payerAccount?.accountNumber ||'-' }}
                         </td>
                         <td class="text-truncate">
                             <span class="badge rounded-pill border"
