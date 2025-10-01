@@ -14,6 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
 export class AdminLogsComponent implements OnInit {
   logs: any[] = [];
   loading = true;
+  pageNumber = 1;
+  pageSize = 5;
+  totalRecords = 0;
 
   constructor(private logService: LogService) {}
 
@@ -23,9 +26,10 @@ export class AdminLogsComponent implements OnInit {
 
   fetchLogs(): void {
     this.loading = true;
-    this.logService.getLogs().subscribe({
+    this.logService.getLogs(this.pageNumber, this.pageSize).subscribe({
       next: (res) => {
-        this.logs = res;
+        this.logs = res.data;
+        this.totalRecords = res.totalRecords;
         this.loading = false;
       },
       error: (err) => {
@@ -48,4 +52,21 @@ export class AdminLogsComponent implements OnInit {
       }
     });
   }
+
+  goToPage(page: number): void {
+    if (page < 1 || page > Math.ceil(this.totalRecords / this.pageSize)) return;
+    this.pageNumber = page;
+    this.fetchLogs();
+  }
+  // Add this inside the component class
+get totalPages(): number {
+  return Math.ceil(this.totalRecords / this.pageSize);
+}
+
+// Also for generating page numbers
+get pages(): number[] {
+  return Array(this.totalPages).fill(0).map((x, i) => i + 1);
+}
+
+
 }

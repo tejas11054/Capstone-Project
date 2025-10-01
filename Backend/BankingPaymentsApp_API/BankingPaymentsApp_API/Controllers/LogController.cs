@@ -17,7 +17,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/logs
         [HttpGet]
-        public IActionResult GetLogs()
+        public IActionResult GetLogs([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             if (!Directory.Exists(logDirectory))
                 return NotFound(new { message = "No logs found" });
@@ -28,9 +28,25 @@ namespace BankingPaymentsApp_API.Controllers
                                      FileName = Path.GetFileName(f),
                                      CreatedOn = System.IO.File.GetCreationTime(f).ToString("yyyy-MM-dd HH:mm:ss")
                                  })
+                                 .OrderByDescending(f => f.CreatedOn) // optional: newest first
                                  .ToList();
 
-            return Ok(files);
+            var totalRecords = files.Count;
+            var pagedFiles = files
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            if (!pagedFiles.Any())
+                return NotFound(new { message = "No logs to display for this page" });
+
+            return Ok(new
+            {
+                Data = pagedFiles,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            });
         }
 
         // GET: api/logs/download/{fileName}

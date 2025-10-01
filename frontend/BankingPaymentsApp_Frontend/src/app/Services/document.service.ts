@@ -38,11 +38,10 @@ updateDocument(documentId: number, dto: DocumentDTO, file: File): Observable<any
   return this.http.put(`${this.apiUrl.replace('/upload', '')}/update/${documentId}`, formData);
 }
 
-getDocumentsByClient(clientId: number, documentName?: string): Observable<any[]> {
-  // Backend API URL
-  let url = `https://localhost:7030/api/Document?DocumentName=${documentName || ''}`;
-  return this.http.get<any[]>(url);
-}
+getDocumentsByClient(clientId: number, documentName?: string, pageNumber: number = 1, pageSize: number = 10): Observable<any> {
+    const url = `${this.apiUrl.replace('/upload', '')}?clientId=${clientId}&DocumentName=${documentName || ''}&pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    return this.http.get<any>(url);
+  }
 
 
   

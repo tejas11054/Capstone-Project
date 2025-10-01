@@ -19,6 +19,13 @@ export class AdminViewBankComponent implements OnInit {
   loading = true;
   responseMessage: string | null = null;
 
+  // Pagination
+  pageNumber = 1;
+  pageSize = 5;
+  totalRecords = 0;
+  totalPages = 0;
+  totalPagesArray: number[] = [];
+
   constructor(private bankService: BankService) {}
 
   ngOnInit(): void {
@@ -27,9 +34,12 @@ export class AdminViewBankComponent implements OnInit {
 
   fetchBanks() {
     this.loading = true;
-    this.bankService.getAllBanks().subscribe({
-      next: (res) => {
-        this.banks = res;
+    this.bankService.getAllBanks(this.pageNumber, this.pageSize).subscribe({
+      next: (res: any) => {
+        this.banks = res.data;
+        this.totalRecords = res.totalRecords;
+        this.totalPages = Math.ceil(this.totalRecords / this.pageSize);
+        this.totalPagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         this.loading = false;
       },
       error: () => {
@@ -37,6 +47,12 @@ export class AdminViewBankComponent implements OnInit {
         this.responseMessage = "Failed to fetch banks!";
       }
     });
+  }
+
+  changePage(page: number) {
+    if (page < 1 || page > this.totalPages) return;
+    this.pageNumber = page;
+    this.fetchBanks();
   }
 
   editBank(bank: Bank) {

@@ -14,6 +14,9 @@ namespace BankingPaymentsApp_API.Services
         public Task<Document?> Update(Document document);
         public Task DeleteById(int id);
 
-        public Task<IEnumerable<Document>> GetDocumentByClientId(int clientId);
+        Task<PagedResultDTO<Document>> GetDocumentByClientId(
+        int clientId,
+        int pageNumber = 1,
+        int pageSize = 5);
     }
 }

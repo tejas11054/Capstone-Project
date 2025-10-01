@@ -16,10 +16,16 @@ import { FormsModule } from '@angular/forms';
 export class ClientDocumentsComponent implements OnInit {
   userId!: number;
   documents: any[] = [];
-  loading = true;
-
   filteredDocuments: any[] = [];
-filterDocumentName: string = '';
+  loading = true;
+  filterDocumentName: string = '';
+
+  // Pagination
+  pageNumber = 1;
+  pageSize = 6; // Number of cards per page
+  totalRecords = 0;
+  totalPages = 0;
+  totalPagesArray: number[] = [];
 
   // Store preview files for update
   previewFiles: { [docId: number]: { file: File, url: string } } = {};
@@ -33,103 +39,76 @@ filterDocumentName: string = '';
 
   ngOnInit(): void {
     this.userId = +this.route.snapshot.paramMap.get('userId')!;
-    console.log('Client User ID:', this.userId);
-
-    if (this.userId) {
-      this.loadDocuments();
-    } else {
-      console.error('User ID is invalid!');
-      this.loading = false;
-    }
+    if (this.userId) this.loadDocuments();
+    else this.loading = false;
   }
 
   loadDocuments(): void {
-  this.documentSvc.getDocumentsByClient(this.userId, this.filterDocumentName).subscribe({
-    next: (docs) => {
-      this.documents = docs;
-      this.filteredDocuments = [...docs];
-      this.loading = false;
-    },
-    error: (err) => {
-      console.error('Error fetching documents:', err);
-      this.loading = false;
-    }
-  });
-}
-
-// Call this when user types or clicks filter
-applyFilter(): void {
-  this.loading = true;
-  this.loadDocuments(); // pass current filterDocumentName automatically
-}
-
-resetFilter(): void {
-  this.filterDocumentName = '';
-  this.applyFilter(); // reload all documents
-}
-
-  deleteDocument(documentId: number): void {
-    if (!documentId) {
-      console.error('Document ID is missing.');
-      alert('Document ID is missing. Cannot delete.');
-      return;
-    }
-
-    if (confirm('Are you sure you want to delete this document?')) {
-      this.documentSvc.deleteDocument(documentId).subscribe({
-        next: () => {
-          alert('Document deleted successfully.');
-          this.documents = this.documents.filter(doc => doc.documentId !== documentId);
+    this.loading = true;
+    this.documentSvc.getDocumentsByClient(this.userId, this.filterDocumentName, this.pageNumber, this.pageSize)
+      .subscribe({
+        next: (res: any) => {
+          this.documents = res.data || [];
+          this.totalRecords = res.totalRecords || this.documents.length;
+          this.totalPages = Math.ceil(this.totalRecords / this.pageSize);
+          this.totalPagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+          this.filteredDocuments = [...this.documents];
+          this.loading = false;
         },
-        error: (err) => {
-          console.error('Error deleting document:', err);
-          alert('Failed to delete document. Check console for details.');
+        error: err => {
+          console.error('Error fetching documents:', err);
+          this.loading = false;
         }
       });
-    }
   }
 
-  // When user selects a file
-  onFileSelected(doc: any, event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      this.previewFiles[doc.documentId] = { file, url };
-    }
+  applyFilter(): void {
+    this.pageNumber = 1;
+    this.loadDocuments();
   }
 
-  // Confirm update
-  confirmUpdate(doc: any): void {
-    const preview = this.previewFiles[doc.documentId];
-    if (!preview) {
-      alert("Please select a file before updating.");
-      return;
-    }
+  resetFilter(): void {
+    this.filterDocumentName = '';
+    this.applyFilter();
+  }
 
-    const dto = {
-      DocumentName: doc.documentName,
-      ProofTypeId: doc.proofTypeId,
-      ClientId: this.userId
-    };
+  changePage(page: number): void {
+    if (page < 1 || page > this.totalPages) return;
+    this.pageNumber = page;
+    this.loadDocuments();
+  }
 
-    this.documentSvc.updateDocument(doc.documentId, dto, preview.file).subscribe({
+  deleteDocument(documentId: number): void {
+    if (!confirm('Are you sure you want to delete this document?')) return;
+
+    this.documentSvc.deleteDocument(documentId).subscribe({
       next: () => {
-        alert("Document updated successfully.");
-        delete this.previewFiles[doc.documentId]; // clear preview
+        alert('Document deleted successfully.');
         this.loadDocuments();
       },
-      error: (err) => {
-        console.error("Error updating document:", err);
-        alert("Failed to update document.");
+      error: err => {
+        console.error('Error deleting document:', err);
+        alert('Failed to delete document.');
       }
     });
   }
 
-  goBack(): void {
-    this.router.navigate(["/ClientUser/" + this.userId]); 
+  onFileSelected(doc: any, event: any): void {
+    const file: File = event.target.files[0];
+    if (file) this.previewFiles[doc.documentId] = { file, url: URL.createObjectURL(file) };
   }
 
-  uploadDocument(){
-    this.router.navigate(['DocumentUpload/' + this.userId]);
+  confirmUpdate(doc: any): void {
+    const preview = this.previewFiles[doc.documentId];
+    if (!preview) { alert("Please select a file before updating."); return; }
+
+    const dto = { DocumentName: doc.documentName, ProofTypeId: doc.proofTypeId, ClientId: this.userId };
+    this.documentSvc.updateDocument(doc.documentId, dto, preview.file).subscribe({
+      next: () => { alert("Document updated successfully."); delete this.previewFiles[doc.documentId]; this.loadDocuments(); },
+      error: err => { console.error("Error updating document:", err); alert("Failed to update document."); }
+    });
   }
+
+  goBack(): void { this.router.navigate(["/ClientUser/" + this.userId]); }
+  uploadDocument(): void { this.router.navigate(['DocumentUpload/' + this.userId]); }
 }

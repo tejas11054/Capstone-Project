@@ -192,32 +192,37 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Document/client/{clientId}
         [HttpGet("client/{clientId}")]
-       // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        public async Task<ActionResult<IEnumerable<DocumentDTO>>> GetDocumentsByClientId(int clientId)
+        // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        public async Task<ActionResult> GetDocumentsByClientId(int clientId,
+        [FromQuery] int pageNumber = 1,
+        [FromQuery] int pageSize = 5)
         {
             _logger.LogInformation("GetDocumentsByClientId started!");
 
-            var documents = await _documentService.GetDocumentByClientId(clientId);
+            var pagedResult = await _documentService.GetDocumentByClientId(clientId, pageNumber, pageSize);
 
-            if (documents == null || !documents.Any())
+            if (!pagedResult.Data.Any())
                 return NotFound($"No documents found for ClientId {clientId}");
 
-            // Map to DocumentDTO 
-            var docDtos = documents.Select(d => new DocumentDTO
+            var docDtos = pagedResult.Data.Select(d => new DocumentDTO
             {
+                DocumentId = d.DocumentId,
+                ClientId = d.ClientId,
                 DocumentName = d.DocumentName,
                 DocumentURL = d.DocumentURL,
                 ProofTypeId = d.ProofTypeId,
-                DocumentId = d.DocumentId,
-                ClientId = d.ClientId,
                 PublicId = d.PublicId
             }).ToList();
 
-            _logger.LogInformation($"{docDtos.Count()} was displayed");
-
-
-            return Ok(docDtos);
+            return Ok(new
+            {
+                Data = docDtos,
+                pagedResult.TotalRecords,
+                pagedResult.PageNumber,
+                pagedResult.PageSize
+            });
         }
+
 
 
     }

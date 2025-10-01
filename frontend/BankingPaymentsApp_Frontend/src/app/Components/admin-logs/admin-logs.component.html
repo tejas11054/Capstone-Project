@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let log of logs; index as i">
-          <td>{{ i + 1 }}</td>
+          <td>{{ (pageNumber - 1) * pageSize + i + 1 }}</td>
           <td>{{ log.fileName }}</td>
           <td>{{ log.createdOn }}</td>
           <td>
@@ -28,5 +28,27 @@
     <div *ngIf="logs.length === 0" class="no-data">
       No log files found.
     </div>
+
+    <!-- Pagination -->
+<nav *ngIf="totalRecords > pageSize">
+  <ul class="pagination pagination-modern justify-content-center mt-3">
+    <li class="page-item" [class.disabled]="pageNumber === 1">
+      <a class="page-link" (click)="goToPage(pageNumber - 1)">Previous</a>
+    </li>
+
+    <li
+      class="page-item"
+      *ngFor="let page of pages"
+      [class.active]="pageNumber === page"
+    >
+      <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+    </li>
+
+    <li class="page-item" [class.disabled]="pageNumber === totalPages">
+      <a class="page-link" (click)="goToPage(pageNumber + 1)">Next</a>
+    </li>
+  </ul>
+</nav>
+
   </div>
 </div>

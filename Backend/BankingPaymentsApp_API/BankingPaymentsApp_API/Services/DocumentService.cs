@@ -61,10 +61,26 @@ namespace BankingPaymentsApp_API.Services
             await _documentRepository.DeleteById(id);
         }
 
-        public async Task<IEnumerable<Document>> GetDocumentByClientId(int clientId)
+        public async Task<PagedResultDTO<Document>> GetDocumentByClientId(int clientId, int pageNumber = 1, int pageSize = 5)
         {
-            return await _documentRepository.GetDocumentByClientId(clientId);
+            var query = _documentRepository.GetAll().Where(d => d.ClientId == clientId);
+
+            var totalRecords = await query.CountAsync();
+
+            var data = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResultDTO<Document>
+            {
+                Data = data,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
+
 
 
     }

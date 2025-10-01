@@ -126,3 +126,57 @@ button:hover {
   font-size: 1.2rem;
   text-align: center;
 }
+/* Modern pagination */
+.pagination-modern {
+  gap: 0.5rem;
+}
+
+/* Page numbers */
+.pagination-modern .page-item .page-link {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  background-color: #fff;
+  color: #495057;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Hover effect */
+.pagination-modern .page-item .page-link:hover {
+  background-color: #0d6efd;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Active page */
+.pagination-modern .page-item.active .page-link {
+  background-color: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
+  font-weight: 600;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Disabled buttons */
+.pagination-modern .page-item.disabled .page-link {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Responsive for small screens */
+@media (max-width: 576px) {
+  .pagination-modern .page-item .page-link {
+    min-width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+    padding: 0 8px;
+  }
+}
