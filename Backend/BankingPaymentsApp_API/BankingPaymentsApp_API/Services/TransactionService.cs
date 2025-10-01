@@ -1,4 +1,5 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,14 +14,18 @@ namespace BankingPaymentsApp_API.Services
             _transactionRepository = transactionRepository;
         }
 
-        public async Task<IEnumerable<Transaction>> GetAll(int? clientId,int? transactionId, int? transactionTypeId, DateTime? date)
+        public async Task<PagedResultDTO<Transaction>> GetAll(
+            int? clientId,
+            int? transactionId,
+            int? transactionTypeId,
+            DateTime? date,
+            int pageNumber = 1,
+            int pageSize = 10)
         {
             var query = _transactionRepository.GetAll();
 
             if (clientId.HasValue)
-            {
-                query = query.Where(t=>t.Account.ClientId == clientId);
-            }
+                query = query.Where(t => t.Account.ClientId == clientId.Value);
 
             if (transactionId.HasValue)
                 query = query.Where(t => t.TransactionId == transactionId.Value);
@@ -29,12 +34,24 @@ namespace BankingPaymentsApp_API.Services
                 query = query.Where(t => t.TransactionTypeId == transactionTypeId.Value);
 
             if (date.HasValue)
-            {
                 query = query.Where(t => t.CreatedAt.Date == date.Value.Date);
-            }
 
-            return await query.ToListAsync();
+            var totalRecords = await query.CountAsync();
+
+            var data = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResultDTO<Transaction>
+            {
+                Data = data,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
+
 
         public async Task<Transaction> Add(Transaction transaction)
         {

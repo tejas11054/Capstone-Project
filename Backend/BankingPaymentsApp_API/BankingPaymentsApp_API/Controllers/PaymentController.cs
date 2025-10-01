@@ -20,7 +20,6 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Payment
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)}")]
         public async Task<IActionResult> GetAllPayments(
             [FromQuery] int? clientId,
             [FromQuery] int? payerAccountId,
@@ -30,15 +29,30 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] double? maxAmount,
             [FromQuery] DateTime? createdFrom,
             [FromQuery] DateTime? createdTo,
-            [FromQuery] int? paymentStatusId    ,
+            [FromQuery] int? paymentStatusId,
             [FromQuery] DateTime? actionFrom,
-            [FromQuery] DateTime? actionTo)
+            [FromQuery] DateTime? actionTo,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
         {
-            var payments =await _paymentService.GetAll(clientId,payerAccountId, payerName, payeeAccountNumber, minAmount, maxAmount,
-            createdFrom, createdTo, paymentStatusId, actionFrom, actionTo);
-     
+            var payments = await _paymentService.GetAll(
+                clientId,
+                payerAccountId,
+                payerName,
+                payeeAccountNumber,
+                minAmount,
+                maxAmount,
+                createdFrom,
+                createdTo,
+                paymentStatusId,
+                actionFrom,
+                actionTo,
+                pageNumber,
+                pageSize);
+
             return Ok(payments);
         }
+
 
         // POST: api/Payment
         [HttpPost]

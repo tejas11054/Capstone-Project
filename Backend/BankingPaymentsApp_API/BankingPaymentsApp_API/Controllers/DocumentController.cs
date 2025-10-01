@@ -32,12 +32,37 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Document
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        public async Task<ActionResult<IEnumerable<DocumentDTO>>> GetAll(
-            [FromQuery] string? DocumentName)
+        public async Task<ActionResult<PagedResultDTO<DocumentDTO>>> GetAll(
+            [FromQuery] string? documentName,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
         {
-            var docs = await _documentService.GetAll(DocumentName);
-            return Ok(docs);
+            _logger.LogInformation("GetAllDocuments started!");
+
+            var pagedResult = await _documentService.GetAll(documentName, pageNumber, pageSize);
+
+            if (!pagedResult.Data.Any())
+                return NotFound("No documents found!");
+
+            var docDtos = pagedResult.Data.Select(d => new DocumentDTO
+            {
+                DocumentId = d.DocumentId,
+                ClientId = d.ClientId,
+                DocumentName = d.DocumentName,
+                DocumentURL = d.DocumentURL,
+                ProofTypeId = d.ProofTypeId,
+                PublicId = d.PublicId
+            }).ToList();
+
+            return Ok(new
+            {
+                Data = docDtos,
+                pagedResult.TotalRecords,
+                pagedResult.PageNumber,
+                pagedResult.PageSize
+            });
         }
+
 
         // GET: api/Document/{id}
         [HttpGet("{id}")]

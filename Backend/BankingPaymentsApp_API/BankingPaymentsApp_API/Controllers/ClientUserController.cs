@@ -24,7 +24,6 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/ClientUser
         [HttpGet]
-        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllClientUsers(
             [FromQuery] string? fullName,
             [FromQuery] string? userName,
@@ -35,19 +34,22 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] DateTime? dobTo,
             [FromQuery] string? address,
             [FromQuery] bool? kycVerified,
-            [FromQuery] int? bankUserId)
+            [FromQuery] int? bankUserId,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
         {
             _logger.LogInformation("GetAllCLientUsers started!");
 
-            var clientUsers = await _service.GetAll(fullName, userName, email, phone, bankId, dobFrom, dobTo, address, kycVerified, bankUserId);
-            if (!clientUsers.Any())
+            var pagedResult = await _service.GetAll(fullName, userName, email, phone, bankId, dobFrom, dobTo, address, kycVerified, bankUserId, pageNumber, pageSize);
+
+            if (!pagedResult.Data.Any())
                 return NotFound("No Client Users found!");
 
-            //var response = clientUsers.Select(u => _mapper.Map<ClientUserResponseDTO>(u));
-            _logger.LogInformation($"{clientUsers.Count()} client users were displayed!");
+            _logger.LogInformation($"{pagedResult.Data.Count()} client users were displayed!");
 
-            return Ok(clientUsers);
+            return Ok(pagedResult);
         }
+
 
         // GET: api/ClientUser/{id}
         [HttpGet("{id}")]

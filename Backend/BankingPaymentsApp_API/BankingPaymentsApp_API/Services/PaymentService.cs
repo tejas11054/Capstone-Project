@@ -6,6 +6,7 @@ using BankingPaymentsApp_API.Repositories;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
+using System.Linq.Dynamic.Core;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -28,10 +29,10 @@ namespace BankingPaymentsApp_API.Services
             _emailService = emailService;
         }
 
-        public async Task<IEnumerable<Payment>> GetAll(
+        public async Task<PagedResultDTO<Payment>> GetAll(
             int? clientId,
             int? payerAccountId,
-            string?payerName,
+            string? payerName,
             string? payeeAccountNumber,
             double? minAmount,
             double? maxAmount,
@@ -39,11 +40,13 @@ namespace BankingPaymentsApp_API.Services
             DateTime? createdTo,
             int? paymentStatusId,
             DateTime? actionFrom,
-            DateTime? actionTo)
+            DateTime? actionTo,
+            int pageNumber = 1,
+            int pageSize = 10)
         {
             var query = _paymentRepository.GetAll();
 
-
+            // --- filters ---
             if (clientId.HasValue)
                 query = query.Where(p => p.PayerAccount.ClientId.Equals(clientId));
 
@@ -77,8 +80,26 @@ namespace BankingPaymentsApp_API.Services
             if (actionTo.HasValue)
                 query = query.Where(p => p.ActionAt <= actionTo.Value);
 
-            return await query.ToListAsync();
+            // --- total count BEFORE pagination ---
+            var totalRecords = await query.CountAsync();
+
+            // --- apply pagination ---
+            var data = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResultDTO<Payment>
+            {
+                Data = data,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+
         }
+
 
         public async Task<Payment> Add(Payment payment)
         {

@@ -5,7 +5,8 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IBankUserService
     {
-        Task<IEnumerable<BankUser>> GetAll(string? fullName,
+        Task<PagedResultDTO<BankUser>> GetAll(
+            string? fullName,
             string? userName,
             string? email,
             string? phone,
@@ -13,7 +14,9 @@ namespace BankingPaymentsApp_API.Services
             int? bankId,
             string? branch,
             DateTime? joiningFrom,
-            DateTime? joiningTo);
+            DateTime? joiningTo,
+            int pageNumber = 1,
+            int pageSize = 10);
         Task<BankUser> Add(BankUser bankUser);
         Task<BankUser?> GetById(int id);
         Task<BankUser?> Update(BankUser bankUser);
