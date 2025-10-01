@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './features.html',
-  styleUrl: './features.css'
+  styleUrls: ['./features.css', '../main/main.component.css']
 })
 export class Features {
 
