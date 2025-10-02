@@ -194,11 +194,13 @@ namespace BankingPaymentsApp_API
             }
 
             app.UseHttpsRedirection();
+            //app.UseExceptionHandler();
+            app.UseMiddleware<GlobalExceptionMiddleware>();
+
 
             app.UseCors("AllowFrontend");
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
