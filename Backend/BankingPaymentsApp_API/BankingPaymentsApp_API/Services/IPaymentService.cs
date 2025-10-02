@@ -6,7 +6,7 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IPaymentService
     {
-        public Task<PagedResultDTO<Payment>> GetAll(
+        public Task<IEnumerable<Payment>> GetAll(
             int? clientId,
             int? payerAccountId,
             string? payerName,
@@ -18,8 +18,8 @@ namespace BankingPaymentsApp_API.Services
             int? paymentStatusId,
             DateTime? actionFrom,
             DateTime? actionTo,
-            int pageNumber = 1,
-            int pageSize = 10);
+            int? pageNumber,
+            int? pageSize);
 
         public Task<Payment> Add(Payment payment);
         public Task<Payment?> GetById(int id);

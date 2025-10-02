@@ -16,17 +16,17 @@ namespace BankingPaymentsApp_API.Services
         {
             _employeeRepository = employeeRepository;
         }
-        public async Task<PagedResultDTO<Employee>> GetAll(
-    int? clientId,
-    string? employeeName,
-    string? accountNumber,
-    string? bankName,
-    string? ifsc,
-    bool? isActive,
-    int? minSalary,
-    int? maxSalary,
-    int pageNumber = 1,
-    int pageSize = 10)
+        public async Task<IEnumerable<Employee>> GetAll(
+            int? clientId,
+            string? employeeName,
+            string? accountNumber,
+            string? bankName,
+            string? ifsc,
+            bool? isActive,
+            int? minSalary,
+            int? maxSalary,
+            int? pageNumber,
+            int? pageSize)
         {
             var query = _employeeRepository.GetAll();
 
@@ -54,20 +54,7 @@ namespace BankingPaymentsApp_API.Services
             if (maxSalary.HasValue)
                 query = query.Where(e => e.Salary <= maxSalary.Value);
 
-            var totalRecords = await query.CountAsync();
-
-            var data = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return new PagedResultDTO<Employee>
-            {
-                Data = data,
-                TotalRecords = totalRecords,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            return query;
         }
 
 
@@ -150,10 +137,10 @@ namespace BankingPaymentsApp_API.Services
         public async Task<ICollection<Employee>> GetEmployeesByIDs(ICollection<int> ids)
         {
             List<Employee> employees = new List<Employee>();
-            foreach(int id in ids)
+            foreach (int id in ids)
             {
                 Employee? employee = await _employeeRepository.GetById(id);
-                if(employee != null)
+                if (employee != null)
                 {
                     employees.Add(employee);
                 }

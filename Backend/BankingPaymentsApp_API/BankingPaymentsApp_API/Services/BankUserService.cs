@@ -23,7 +23,7 @@ namespace BankingPaymentsApp_API.Services
             _emailService = emailService;
         }
 
-        public async Task<PagedResultDTO<BankUser>> GetAll(
+        public async Task<IEnumerable<BankUser>> GetAll(
             string? fullName,
             string? userName,
             string? email,
@@ -33,8 +33,8 @@ namespace BankingPaymentsApp_API.Services
             string? branch,
             DateTime? joiningFrom,
             DateTime? joiningTo,
-            int pageNumber = 1,
-            int pageSize = 10)
+            int? pageNumber,
+            int? pageSize)
         {
             var query = _bankUserRepository.GetAll();
 
@@ -57,20 +57,7 @@ namespace BankingPaymentsApp_API.Services
             if (joiningTo.HasValue)
                 query = query.Where(u => u.UserJoiningDate <= joiningTo.Value);
 
-            var totalRecords = await query.CountAsync();
-
-            var data = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return new PagedResultDTO<BankUser>
-            {
-                Data = data,
-                TotalRecords = totalRecords,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            return query;
         }
 
 

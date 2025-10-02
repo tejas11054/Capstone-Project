@@ -28,7 +28,7 @@ namespace BankingPaymentsApp_API.Services
             _emailService = emailService;
         }
 
-        public async Task<PagedResultDTO<SalaryDisbursement>> GetAll(
+        public async Task<IEnumerable<SalaryDisbursement>> GetAll(
              int? clientId,
              decimal? minAmount,
              decimal? maxAmount,
@@ -36,8 +36,8 @@ namespace BankingPaymentsApp_API.Services
              DateTime? disbursementTo,
              int? disbursementStatusId,
              bool? allEmployees,
-             int pageNumber = 1,
-             int pageSize = 10)
+             int? pageNumber,
+            int? pageSize)
         {
             var query = _salaryDisbursementRepository.GetAll();
 
@@ -56,20 +56,7 @@ namespace BankingPaymentsApp_API.Services
             if (allEmployees.HasValue)
                 query = query.Where(sd => sd.AllEmployees == allEmployees.Value);
 
-            var totalRecords = await query.CountAsync();
-
-            var data = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return new PagedResultDTO<SalaryDisbursement>
-            {
-                Data = data,
-                TotalRecords = totalRecords,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            return query;
         }
 
         public async Task<SalaryDisbursement?> GetById(int id)
@@ -103,7 +90,19 @@ namespace BankingPaymentsApp_API.Services
                 }
             }
 
-            return await _salaryDisbursementRepository.Add(disbursement);
+            SalaryDisbursement added =  await _salaryDisbursementRepository.Add(disbursement);
+
+            SalaryDisbursement salary =  await GetById(added.SalaryDisbursementId);
+
+            string subject = $"Disbursement Id ({salary.SalaryDisbursementId}) has been created Your Action awaits";
+            string body =
+                        $"""
+                        Salary Disbursement Id ({salary.SalaryDisbursementId}) has been created by {salary?.ClientUser?.UserName ?? "an user"}.
+                        with amount {salary.TotalAmount}.
+                        """;
+            await _emailService.SendEmailToClientAsync((int)salary?.ClientUser?.BankUserId, subject, body);
+
+            return added;
         }
         public async Task<SalaryDisbursement?> Update(SalaryDisbursement disbursement)
         {

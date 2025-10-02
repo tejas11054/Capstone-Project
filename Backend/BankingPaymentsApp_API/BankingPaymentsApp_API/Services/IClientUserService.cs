@@ -5,7 +5,7 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IClientUserService
     {
-        public Task<PagedResultDTO<ClientUser>> GetAll(
+        public Task<IEnumerable<ClientUser>> GetAll(
             string? fullName,
             string? userName,
             string? email,
@@ -16,8 +16,8 @@ namespace BankingPaymentsApp_API.Services
             string? address,
             bool? kycVerified,
             int? bankUserId,
-            int pageNumber = 1,
-            int pageSize = 10);
+            int? pageNumber,
+            int? pageSize);
         public Task<ClientUser> Add(ClientUser user);
         public Task<ClientUser?> GetById(int id);
         public  Task<ClientUser?> Update(ClientUser user);

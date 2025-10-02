@@ -32,8 +32,8 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] int? paymentStatusId,
             [FromQuery] DateTime? actionFrom,
             [FromQuery] DateTime? actionTo,
-            [FromQuery] int pageNumber = 1,
-            [FromQuery] int pageSize = 10)
+            [FromQuery] int? pageNumber,
+            [FromQuery] int? pageSize)
         {
             var payments = await _paymentService.GetAll(
                 clientId,

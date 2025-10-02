@@ -46,6 +46,7 @@ import { ClientCreateComponent } from './Components/Youbraj/client-create/client
 import { CallToAction } from './Components/landing-page/call-to-action/call-to-action';
 import { BankUserRegisterComponent } from './Components/bank-user-register/bank-user-register.component';
 import { MainComponent } from './Components/landing-page/main/main.component';
+import { BankuserEditComponent } from './Components/bankuser-edit/bankuser-edit.component';
 
 
 export const routes: Routes = [
@@ -113,6 +114,8 @@ export const routes: Routes = [
   { path: "adminHome", component: AdminHomeComponent },
   { path: "bank", component: BankRegisterComponent },
   { path: "banks", component: AdminViewBankComponent },
+  { path: "bank/profile/edit", component: BankuserEditComponent },
+
 
 
 

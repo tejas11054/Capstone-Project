@@ -35,19 +35,19 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] string? address,
             [FromQuery] bool? kycVerified,
             [FromQuery] int? bankUserId,
-            [FromQuery] int pageNumber = 1,
-            [FromQuery] int pageSize = 10)
+            [FromQuery] int? pageNumber,
+            [FromQuery] int? pageSize)
         {
             _logger.LogInformation("GetAllCLientUsers started!");
 
-            var pagedResult = await _service.GetAll(fullName, userName, email, phone, bankId, dobFrom, dobTo, address, kycVerified, bankUserId, pageNumber, pageSize);
+            var response = await _service.GetAll(fullName, userName, email, phone, bankId, dobFrom, dobTo, address, kycVerified, bankUserId, pageNumber, pageSize);
 
-            if (!pagedResult.Data.Any())
-                return NotFound("No Client Users found!");
+            if (!response.Any())
+                return Ok(response);
 
-            _logger.LogInformation($"{pagedResult.Data.Count()} client users were displayed!");
+            _logger.LogInformation($"{response.Count()} client users were displayed!");
 
-            return Ok(pagedResult);
+            return Ok(response);
         }
 
 

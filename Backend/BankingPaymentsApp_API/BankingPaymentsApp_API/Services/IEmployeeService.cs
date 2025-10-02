@@ -7,7 +7,7 @@ namespace BankingPaymentsApp_API.Services
     {
 
 
-        Task<PagedResultDTO<Employee>> GetAll(
+        Task<IEnumerable<Employee>> GetAll(
                 int? clientId,
                 string? employeeName,
                 string? accountNumber,
@@ -16,8 +16,8 @@ namespace BankingPaymentsApp_API.Services
                 bool? isActive,
                 int? minSalary,
                 int? maxSalary,
-                int pageNumber = 1,
-                int pageSize = 10);
+                int? pageNumber,
+                int? pageSize);
         public Task<Employee> Add(Employee employee);
         public Task<Employee?> GetById(int id);
         public Task<Employee?> Update(Employee employee);

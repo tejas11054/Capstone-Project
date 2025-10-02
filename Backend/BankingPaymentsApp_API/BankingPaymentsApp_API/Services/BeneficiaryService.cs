@@ -16,14 +16,14 @@ namespace BankingPaymentsApp_API.Services
             _clientUserRepository = clientUserRepository;
         }
 
-        public async Task<PagedResultDTO<Beneficiary>> GetAll(
+        public async Task<IEnumerable<Beneficiary>> GetAll(
              int? clientId,
              string? beneficiaryName,
              string? accountNumber,
              string? bankName,
              string? ifsc,
-             int pageNumber = 1,
-             int pageSize = 10)
+             int? pageNumber,
+            int? pageSize)
         {
             var query = _beneficiaryRepository.GetAll();
 
@@ -42,20 +42,7 @@ namespace BankingPaymentsApp_API.Services
             if (!string.IsNullOrEmpty(ifsc))
                 query = query.Where(b => b.IFSC.Contains(ifsc));
 
-            var totalRecords = await query.CountAsync();
-
-            var data = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return new PagedResultDTO<Beneficiary>
-            {
-                Data = data,
-                TotalRecords = totalRecords,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            return query;
         }
 
 

@@ -5,14 +5,14 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IBankService
     {
-        public Task<PagedResultDTO<Bank>> GetAll(
+        public Task<IEnumerable<Bank>> GetAll(
             string? bankName,
             string? ifsc,
             bool? isActive,
             DateTime? createdFrom,
             DateTime? createdTo,
-            int pageNumber = 1,
-            int pageSize = 5);
+            int? pageNumber,
+            int? pageSize);
 
         public Task<Bank?> GetById(int id);
 

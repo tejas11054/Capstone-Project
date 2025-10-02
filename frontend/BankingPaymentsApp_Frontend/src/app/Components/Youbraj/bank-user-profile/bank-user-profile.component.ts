@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BankRegisterService } from '../../../Services/bankUser.service';
 import { AuthService } from '../../../Services/auth.service';
 import { ClientRegisterService } from '../../../Services/client.service';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bank-user-profile',
-  imports:[CommonModule],
+  imports:[CommonModule,RouterLink],
   templateUrl: './bank-user-profile.component.html',
   styleUrls: ['./bank-user-profile.component.css']
 })

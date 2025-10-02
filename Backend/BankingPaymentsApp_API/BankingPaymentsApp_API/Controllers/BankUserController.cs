@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure;
 using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Services;
@@ -36,36 +37,18 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] string? branch,
             [FromQuery] DateTime? joiningFrom,
             [FromQuery] DateTime? joiningTo,
-            [FromQuery] int pageNumber = 1,
-            [FromQuery] int pageSize = 10)
+            [FromQuery] int? pageNumber = 1,
+            [FromQuery] int? pageSize = 10)
         {
             _logger.LogInformation("GetAllBankUsers started!");
-<<<<<<< HEAD
-            var bankUsers = await _service.GetAll(fullName, userName, email, phone, roleId, bankId, branch, joiningFrom, joiningTo);
-            if (!bankUsers.Any())
-                return Ok(bankUsers);
 
-            //var response = bankUsers.Select(u => _mapper.Map<BankUserResponseDTO>(u));
-            _logger.LogInformation($"Found Bank user");
-            return Ok(bankUsers);
-=======
+            var response = await _service.GetAll(fullName, userName, email, phone, roleId, bankId, branch, joiningFrom, joiningTo, pageNumber, pageSize);
 
-            var pagedResult = await _service.GetAll(fullName, userName, email, phone, roleId, bankId, branch, joiningFrom, joiningTo, pageNumber, pageSize);
-
-            if (!pagedResult.Data.Any())
-                return NotFound("No Bank Users found!");
-
-            var response = pagedResult.Data.Select(u => _mapper.Map<BankUserResponseDTO>(u));
+            if (!response.Any())
+                return Ok(response);
 
             _logger.LogInformation($"Found {response.Count()} Bank Users");
-            return Ok(new
-            {
-                Data = response,
-                pagedResult.TotalRecords,
-                pagedResult.PageNumber,
-                pagedResult.PageSize
-            });
->>>>>>> f4fc12053d1e5693eea840165e1e862cd38ca36e
+            return Ok(response);
         }
 
 

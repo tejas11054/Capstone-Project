@@ -48,7 +48,6 @@ namespace BankingPaymentsApp_API.Repositories
             existingUser.UserFullName = user.UserFullName;
             existingUser.UserName = user.UserName;
             existingUser.Password = user.Password;
-            existingUser.UserRoleId = user.UserRoleId;
             existingUser.Branch = user.Branch;
             existingUser.RefferalCode = user.RefferalCode;
 

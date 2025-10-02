@@ -42,21 +42,15 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] bool? isActive,
             [FromQuery] int? minSalary,
             [FromQuery] int? maxSalary,
-            [FromQuery] int pageNumber = 1,
-            [FromQuery] int pageSize = 10)
+            [FromQuery] int? pageNumber,
+            [FromQuery] int? pageSize)
         {
-            var pagedResult = await _employeeService.GetAll(clientId, employeeName, accountNumber, bankName, ifsc, isActive, minSalary, maxSalary, pageNumber, pageSize);
+            var response = await _employeeService.GetAll(clientId, employeeName, accountNumber, bankName, ifsc, isActive, minSalary, maxSalary, pageNumber, pageSize);
 
-            if (!pagedResult.Data.Any())
+            if (!response.Any())
                 return NotFound("No employees to display");
 
-            return Ok(new
-            {
-                Data = pagedResult.Data,
-                pagedResult.TotalRecords,
-                pagedResult.PageNumber,
-                pagedResult.PageSize
-            });
+            return Ok(response);
         }
 
 

@@ -51,7 +51,7 @@ export class AdminComponent implements OnInit {
   }
 
   fetchBanks() {
-    this.bankSvc.getAllBanks("").subscribe((data: any[]) => {
+    this.bankSvc.getAllBanks("").subscribe((data) => {
       console.log("Full Data:", data);
 
       // Extract only bankId & Bankname, rename keys to id & name

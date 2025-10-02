@@ -16,7 +16,7 @@ namespace BankingPaymentsApp_API.Services
         private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
 
-        public ClientUserService(IClientUserRepository clientUserRepository, IAccountService accountService, IMapper mapper,IPasswordHasher<User> passwordHasher, IEmailService emailService, IBankUserService bankUserService)
+        public ClientUserService(IClientUserRepository clientUserRepository, IAccountService accountService, IMapper mapper, IPasswordHasher<User> passwordHasher, IEmailService emailService, IBankUserService bankUserService)
         {
             _clientUserRepository = clientUserRepository;
             _accountService = accountService;
@@ -26,7 +26,7 @@ namespace BankingPaymentsApp_API.Services
             _bankUserService = bankUserService;
         }
 
-        public async Task<PagedResultDTO<ClientUser>> GetAll(
+        public async Task<IEnumerable<ClientUser>> GetAll(
             string? fullName,
             string? userName,
             string? email,
@@ -37,8 +37,8 @@ namespace BankingPaymentsApp_API.Services
             string? address,
             bool? kycVerified,
             int? bankUserId,
-            int pageNumber = 1,
-            int pageSize = 10)
+            int? pageNumber,
+            int? pageSize)
         {
             var query = _clientUserRepository.GetAll();
 
@@ -72,20 +72,7 @@ namespace BankingPaymentsApp_API.Services
             if (bankUserId.HasValue)
                 query = query.Where(cu => cu.BankUserId == bankUserId.Value);
 
-            var totalRecords = await query.CountAsync();
-
-            var data = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return new PagedResultDTO<ClientUser>
-            {
-                Data = data,
-                TotalRecords = totalRecords,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            return query;
         }
 
         public async Task<ClientUser> Add(ClientUser user)
@@ -145,10 +132,10 @@ namespace BankingPaymentsApp_API.Services
                 """;
             await _emailService.SendEmailToClientAsync(clientUser.UserId, subject, body);
 
-            return updatedUser;  
+            return updatedUser;
         }
 
-        public async Task RejectClient(ClientUser clientUser,string reason)
+        public async Task RejectClient(ClientUser clientUser, string reason)
         {
             string subject = "Appication Reverted back";
             await _emailService.SendEmailToClientAsync(clientUser.UserId, subject, reason);

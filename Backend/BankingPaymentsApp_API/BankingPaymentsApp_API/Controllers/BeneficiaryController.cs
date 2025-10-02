@@ -31,25 +31,19 @@ namespace BankingPaymentsApp_API.Controllers
              [FromQuery] string? accountNumber,
              [FromQuery] string? bankName,
              [FromQuery] string? ifsc,
-             [FromQuery] int pageNumber = 1,
-             [FromQuery] int pageSize = 10)
+             [FromQuery] int? pageNumber,
+             [FromQuery] int? pageSize)
         {
             _logger.LogInformation("GetAllBeneficiaries started!");
 
-            var pagedResult = await _beneficiaryService.GetAll(clientId, beneficiaryName, accountNumber, bankName, ifsc, pageNumber, pageSize);
+            var response = await _beneficiaryService.GetAll(clientId, beneficiaryName, accountNumber, bankName, ifsc, pageNumber, pageSize);
 
-            if (!pagedResult.Data.Any())
-                return NotFound("No Beneficiary to display");
+            if (!response.Any())
+                return Ok(response);
 
             _logger.LogInformation($"beneficiaries displayed!");
 
-            return Ok(new
-            {
-                Data = pagedResult.Data,
-                pagedResult.TotalRecords,
-                pagedResult.PageNumber,
-                pagedResult.PageSize
-            });
+            return Ok(response);
         }
 
 

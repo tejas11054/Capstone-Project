@@ -5,10 +5,10 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IDocumentService
     {
-        public Task<PagedResultDTO<Document>> GetAll(
+        public Task<IEnumerable<Document>> GetAll(
             string? documentName,
-            int pageNumber = 1,
-            int pageSize = 10);
+            int? pageNumber,
+            int? pageSize);
         public Task<Document> Add(Document document);
         public Task<Document?> GetById(int id);
         public Task<Document?> Update(Document document);

@@ -5,7 +5,7 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface ISalaryDisbursementService
     {
-        Task<PagedResultDTO<SalaryDisbursement>> GetAll(
+        Task<IEnumerable<SalaryDisbursement>> GetAll(
             int? clientId,
             decimal? minAmount,
             decimal? maxAmount,
@@ -13,8 +13,8 @@ namespace BankingPaymentsApp_API.Services
             DateTime? disbursementTo,
             int? disbursementStatusId,
             bool? allEmployees,
-            int pageNumber = 1,
-            int pageSize = 10);
+            int? pageNumber,
+            int? pageSize);
         Task<SalaryDisbursement?> GetById(int id);
         Task<SalaryDisbursement> Add(SalaryDisbursement disbursement, ICollection<int> ids);
         Task<SalaryDisbursement?> Update(SalaryDisbursement disbursement);

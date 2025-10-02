@@ -25,36 +25,21 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] int? clientId,
             [FromQuery] int? transactionId,
             [FromQuery] int? transactionTypeId,
-<<<<<<< HEAD
             [FromQuery] double? minAmount,
             [FromQuery] double? maxAmount,
             [FromQuery] DateTime? createdFrom,
             [FromQuery] DateTime? createdTo,
-            [FromQuery] string? toFrom
-            )  // single date filter
-        {
-            var transactions = await _transactionService.GetAll(clientId, transactionId, transactionTypeId, createdFrom, createdTo,maxAmount,minAmount,toFrom);
-
-            if (!transactions.Any())
-                return Ok(transactions);
-=======
+            [FromQuery] string? toFrom,
             [FromQuery] DateTime? date,
-            [FromQuery] int pageNumber = 1,
-            [FromQuery] int pageSize = 10)
+            [FromQuery] int? pageNumber,
+            [FromQuery] int? pageSize)
         {
-            var pagedResult = await _transactionService.GetAll(clientId, transactionId, transactionTypeId, date, pageNumber, pageSize);
+            var response = await _transactionService.GetAll(clientId, transactionId, transactionTypeId, createdFrom, createdTo, maxAmount, minAmount, toFrom, pageNumber, pageSize);
 
-            if (!pagedResult.Data.Any())
-                return NotFound("No transactions to display.");
->>>>>>> f4fc12053d1e5693eea840165e1e862cd38ca36e
+            if (!response.Any())
+                return Ok(response);
 
-            return Ok(new
-            {
-                Data = pagedResult.Data,
-                pagedResult.TotalRecords,
-                pagedResult.PageNumber,
-                pagedResult.PageSize
-            });
+            return Ok(response);
         }
 
         // POST: api/Transaction

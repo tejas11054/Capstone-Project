@@ -5,14 +5,14 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IBeneficiaryService
     {
-        Task<PagedResultDTO<Beneficiary>> GetAll(
+        Task<IEnumerable<Beneficiary>> GetAll(
             int? clientId,
             string? beneficiaryName,
             string? accountNumber,
             string? bankName,
             string? ifsc,
-            int pageNumber = 1,
-            int pageSize = 10);
+            int? pageNumber,
+            int? pageSize);
         public Task<Beneficiary> Add(Beneficiary beneficiary);
         public Task<Beneficiary?> GetById(int id);
         public Task<Beneficiary?> Update(Beneficiary beneficiary);

@@ -3,9 +3,7 @@ using BankingPaymentsApp_API.Data;
 using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.InteropServices;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Linq.Dynamic.Core;
 
 namespace BankingPaymentsApp_API.Services
@@ -29,7 +27,7 @@ namespace BankingPaymentsApp_API.Services
             _emailService = emailService;
         }
 
-        public async Task<PagedResultDTO<Payment>> GetAll(
+        public async Task<IEnumerable<Payment>> GetAll(
             int? clientId,
             int? payerAccountId,
             string? payerName,
@@ -41,8 +39,8 @@ namespace BankingPaymentsApp_API.Services
             int? paymentStatusId,
             DateTime? actionFrom,
             DateTime? actionTo,
-            int pageNumber = 1,
-            int pageSize = 10)
+            int? pageNumber,
+            int? pageSize)
         {
             var query = _paymentRepository.GetAll();
 
@@ -80,30 +78,25 @@ namespace BankingPaymentsApp_API.Services
             if (actionTo.HasValue)
                 query = query.Where(p => p.ActionAt <= actionTo.Value);
 
-            // --- total count BEFORE pagination ---
-            var totalRecords = await query.CountAsync();
-
-            // --- apply pagination ---
-            var data = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return new PagedResultDTO<Payment>
-            {
-                Data = data,
-                TotalRecords = totalRecords,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
-
+            return query;
 
         }
 
 
         public async Task<Payment> Add(Payment payment)
         {
-            return await _paymentRepository.Add(payment);
+
+            Payment addedpayment =  await _paymentRepository.Add(payment);
+
+            Payment currPayment = await GetById(addedpayment.PaymentId);
+            string subject = $"payment Id ({currPayment.PaymentId}) has been created Your Action awaits";
+            string body =
+                        $"""
+                        payment Id ({currPayment.PaymentId}) has been created at {currPayment.CreatedAt}.
+                        with amount {currPayment.Amount} from {currPayment.PayerAccount.AccountNumber} to {currPayment.PayeeAccountNumber}.
+                        """;
+            await _emailService.SendEmailToClientAsync((int)currPayment?.PayerAccount?.ClientUser?.BankUserId, subject, body);
+            return addedpayment;
         }
 
         public async Task<Payment?> GetById(int id)
@@ -186,7 +179,7 @@ namespace BankingPaymentsApp_API.Services
                 int id = addedTransactions.FirstOrDefault(t => t.TransactionTypeId == 2).TransactionId;
                 payerAccount.TransactionIds.Add(id);
                 if (payeeAccount != null)
-                { 
+                {
                     if (payeeAccount != null)
                     {
                         payeeAccount.Balance += payment.Amount;
@@ -221,7 +214,7 @@ namespace BankingPaymentsApp_API.Services
         }
 
 
-        public async Task<Payment> RejectPayment(int paymentId,string reason)
+        public async Task<Payment> RejectPayment(int paymentId, string reason)
         {
             Payment? payment = await _paymentRepository.GetById(paymentId);
             if (payment == null) throw new NullReferenceException("No Payment of id :" + paymentId);
@@ -234,7 +227,7 @@ namespace BankingPaymentsApp_API.Services
 
             int clientId = (int)payment.PayerAccount.ClientId;
 
-            await _emailService.SendEmailToClientAsync(clientId,subject,body);
+            await _emailService.SendEmailToClientAsync(clientId, subject, body);
 
             Payment? updatedPayment = await _paymentRepository.Update(payment);
             return updatedPayment;
@@ -242,7 +235,7 @@ namespace BankingPaymentsApp_API.Services
 
         public async Task<List<Payment>> GetPaymentsByAccountId(int accountId)
         {
-            var allPayments =  _paymentRepository.GetAll();
+            var allPayments = _paymentRepository.GetAll();
             var userPayments = allPayments.Where(p => p.PayerAccountId == accountId).ToList();
             return userPayments;
         }

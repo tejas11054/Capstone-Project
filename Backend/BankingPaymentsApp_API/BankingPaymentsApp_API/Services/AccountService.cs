@@ -10,11 +10,13 @@ namespace BankingPaymentsApp_API.Services
     {
         private readonly IAccountRepository _accountRepository;
         private readonly ITransactionRepository _transactionRepository;
+        private readonly IEmailService _emailService;
 
-        public AccountService(IAccountRepository accountRepository, ITransactionRepository transactionRepository)
+        public AccountService(IAccountRepository accountRepository, ITransactionRepository transactionRepository, IEmailService emailService)
         {
             _accountRepository = accountRepository;
             _transactionRepository = transactionRepository;
+            _emailService = emailService;
         }
 
         //public async Task<IEnumerable<Account>> GetAll()
@@ -115,6 +117,15 @@ namespace BankingPaymentsApp_API.Services
             };
             Transaction addedTransaction = await _transactionRepository.Add(creditTransaction);
             await _accountRepository.Update(account);
+
+            string subject = $"Your Salary has been Approved!";
+            string body =
+                $"""
+                        Your Salary ({disbursementId}) has been approved at {DateTime.UtcNow}
+                        Your Account ({account.AccountNumber}) is Credited with Rs {amount}.
+                        """;
+            await _emailService.SendEmailToClientAsync((int)account.ClientId, subject, body);
+
             return addedTransaction;
         }
         public async Task<Transaction> DebitAccount(int accountId, double amount, int? paymentId, int? disbursementId, string toFrom)
@@ -137,14 +148,17 @@ namespace BankingPaymentsApp_API.Services
             };
             Transaction addedTransaction = await _transactionRepository.Add(debitTransaction);
             await _accountRepository.Update(account);
-            //string subject = $"Your SalaryDisbursement ID {disbursementId} is Approved!";
-            //string body =
-            //    $"""
-            //            Your SalaryDisbursement ({disbursementId}) has been approved at {DateTime.UtcNow}
-            //            Your Account ({ClientAccount.AccountNumber}) is Debited with Rs {salaryDisbursement.TotalAmount} 
-            //            """;
-            //await _emailService.SendEmailToClientAsync((int)salaryDisbursement.ClientId, subject, body);
-            //return updatedDisbursement;
+
+
+            string subject = $"Your SalaryDisbursement ID {disbursementId} is Approved!";
+            string body =
+                $"""
+                        Your SalaryDisbursement ({disbursementId}) has been approved at {DateTime.UtcNow}
+                        Your Account ({account.AccountNumber}) is Debited with Rs {amount}.
+                        """;
+            await _emailService.SendEmailToClientAsync((int)account.ClientId, subject, body);
+
+
             return addedTransaction;
         }
         public async Task<Account?> AccountExistsWithAccountNumber(string accountNumber)

@@ -14,14 +14,14 @@ namespace BankingPaymentsApp_API.Services
             _bankRepository = bankRepository;
         }
 
-        public async Task<PagedResultDTO<Bank>> GetAll(
+        public async Task<IEnumerable<Bank>> GetAll(
             string? bankName,
             string? ifsc,
             bool? isActive,
             DateTime? createdFrom,
             DateTime? createdTo,
-            int pageNumber = 1,
-            int pageSize = 5)
+            int? pageNumber,
+            int? pageSize)
         {
             var query = _bankRepository.GetAll();
 
@@ -40,20 +40,7 @@ namespace BankingPaymentsApp_API.Services
             if (createdTo.HasValue)
                 query = query.Where(b => b.CreatedAt <= createdTo.Value);
 
-            var totalRecords = await query.CountAsync();
-
-            var data = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return new PagedResultDTO<Bank>
-            {
-                Data = data,
-                TotalRecords = totalRecords,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            return query;
         }
 
 
@@ -79,7 +66,7 @@ namespace BankingPaymentsApp_API.Services
 
         public async Task<List<BankUsersPerBankDTO>> GetUsersByBank()
         {
-            var banks =  _bankRepository.GetAll();
+            var banks = _bankRepository.GetAll();
             var result = banks.Select(b => new BankUsersPerBankDTO
             {
                 BankId = b.BankId,

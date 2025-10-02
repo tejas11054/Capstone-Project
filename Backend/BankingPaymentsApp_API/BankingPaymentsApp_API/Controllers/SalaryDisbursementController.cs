@@ -35,21 +35,15 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] DateTime? disbursementTo,
             [FromQuery] int? disbursementStatusId,
             [FromQuery] bool? allEmployees,
-            [FromQuery] int pageNumber = 1,
-            [FromQuery] int pageSize = 10)
+            [FromQuery] int? pageNumber,
+            [FromQuery] int? pageSize)
         {
-            var pagedResult = await _service.GetAll(clientId, minAmount, maxAmount, disbursementFrom, disbursementTo, disbursementStatusId, allEmployees, pageNumber, pageSize);
+            var response = await _service.GetAll(clientId, minAmount, maxAmount, disbursementFrom, disbursementTo, disbursementStatusId, allEmployees, pageNumber, pageSize);
 
-            if (!pagedResult.Data.Any())
-                return NotFound("No Salary Disbursements found!");
+            if (!response.Any())
+                return Ok(response);
 
-            return Ok(new
-            {
-                Data = pagedResult.Data,
-                pagedResult.TotalRecords,
-                pagedResult.PageNumber,
-                pagedResult.PageSize
-            });
+            return Ok(response);
         }
 
 

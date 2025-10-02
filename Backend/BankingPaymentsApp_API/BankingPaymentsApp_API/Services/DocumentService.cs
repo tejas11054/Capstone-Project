@@ -15,27 +15,14 @@ namespace BankingPaymentsApp_API.Services
             _documentRepository = documentRepository;
         }
 
-        public async Task<PagedResultDTO<Document>> GetAll(string? documentName, int pageNumber = 1, int pageSize = 10)
+        public async Task<IEnumerable<Document>> GetAll(string? documentName, int? pageNumber,int? pageSize)
         {
             var query = _documentRepository.GetAll();
 
             if (!string.IsNullOrEmpty(documentName))
                 query = query.Where(d => d.DocumentName.Contains(documentName));
 
-            var totalRecords = await query.CountAsync();
-
-            var data = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return new PagedResultDTO<Document>
-            {
-                Data = data,
-                TotalRecords = totalRecords,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            return query;
         }
 
 

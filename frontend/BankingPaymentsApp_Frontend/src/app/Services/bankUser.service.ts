@@ -33,6 +33,10 @@ export class BankRegisterService {
     return this.http.put(`${this.baseUrl}/approve/${userId}`, bankUser);
   }
 
+  updateBankUser(userId: number, bankUser: BankUser) {
+    return this.http.put(`${this.baseUrl}/${userId}`, bankUser);
+
+  }
 
   // Reject a bank user
   rejectBankUser(reject: RejectDTO): Observable<string> {
