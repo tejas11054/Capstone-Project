@@ -27,8 +27,8 @@ export class ListClientsComponent implements OnInit {
   clients!: ClientUser[];
   filters: any = {};
   selectedClient!: any;
-  approved!:number;
-  pending!:number;
+  approved!: number;
+  pending!: number;
 
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
 
@@ -38,7 +38,7 @@ export class ListClientsComponent implements OnInit {
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private clientSvc: ClientRegisterService,private auth:AuthService) { }
+  constructor(private clientSvc: ClientRegisterService, private auth: AuthService) { }
 
   ngOnInit(): void {
     let userId = this.auth.getUserId();
@@ -51,8 +51,8 @@ export class ListClientsComponent implements OnInit {
     this.clientSvc.getClients(params).subscribe((data) => {
       console.log(data);
       this.clients = data;
-      this.pending = data.filter(d=>d.kycVierified==false).length;
-      this.approved = data.filter(d=>d.kycVierified==true).length;
+      this.pending = data.filter(d => d.kycVierified == false).length;
+      this.approved = data.filter(d => d.kycVierified == true).length;
     },
       (error) => {
         console.log(error);
@@ -64,6 +64,8 @@ export class ListClientsComponent implements OnInit {
     this.clientSvc.approveClient(client.userId).subscribe((data) => {
       console.log(data);
       alert("client sucessfully approved");
+      const params = new URLSearchParams(this.filters).toString();
+      this.fetchAllClients(params);
     },
       (error) => {
         console.log(error);

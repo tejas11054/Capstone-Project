@@ -81,7 +81,7 @@
                 {{ payment.paymentStatus?.statusId | paymentStatus }}
               </span>
             </td>
-            <td *ngIf="role == 'BANK_USER'">
+            <td *ngIf="role == 'BANK_USER' && payment.paymentStatusId==3">
               <button class="btn btn-sm btn-success me-1" (click)="approvePayment(payment)">Approve</button>
               <button class="btn btn-sm btn-outline-danger" (click)="openFormModal(payment)">Reject</button>
             </td>

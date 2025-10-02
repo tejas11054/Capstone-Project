@@ -29,6 +29,11 @@ export class DisbursementComponent implements OnInit {
   selectedDisbursement: any = {};
   role!: string | null;
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
+  totalDisbursementAmount!: number;
+  pending!: number;
+  approved!: number;
+  declined!: number;
+
 
   statusOptions = [
     { id: 1, name: 'Approved' },
@@ -59,6 +64,10 @@ export class DisbursementComponent implements OnInit {
       // const pendingPayments = data.filter(e => e.paymentStatusId == 3);
       // this.payments = pendingPayments;
       this.disbursements = data;
+      this.totalDisbursementAmount = data.reduce((sum, d) => sum + d.totalAmount, 0);
+      this.approved = data.filter(d => d.disbursementStatusId == 1).length;
+      this.declined = data.filter(d => d.disbursementStatusId == 2).length;
+      this.pending = data.filter(d => d.disbursementStatusId == 3).length;
     },
       error => console.log(error)
     )
@@ -69,6 +78,8 @@ export class DisbursementComponent implements OnInit {
     this.disbursementSvc.approveSalaryDisbursement(disbursement.salaryDisbursementId).subscribe((data) => {
       console.log(data);
       alert("payment sucessfully approved");
+      const params = new URLSearchParams(this.filters).toString();
+      this.fetchAllPayments(params);
     },
       (error) => {
         console.log(error);
@@ -92,6 +103,8 @@ export class DisbursementComponent implements OnInit {
     this.disbursementSvc.rejectSalaryDisbursement(reject).subscribe((data) => {
       console.log(data);
       alert("disbursement sucessfully Rejected");
+      const params = new URLSearchParams(this.filters).toString();
+      this.fetchAllPayments(params);
     },
       (error) => {
         console.log(error);

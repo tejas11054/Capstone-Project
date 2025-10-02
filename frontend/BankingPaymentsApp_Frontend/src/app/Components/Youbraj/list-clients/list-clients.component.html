@@ -71,7 +71,7 @@
                             View Documents
                         </a>
                     </td>
-                    <td>
+                    <td *ngIf="!client.kycVierified">
                         <button class="btn btn-sm btn-info me-1" (click)="approveClient(client)">Approve</button>
                         <button class="btn btn-sm btn-warning me-1" (click)="openFormModal(client)">Reject</button>
                     </td>

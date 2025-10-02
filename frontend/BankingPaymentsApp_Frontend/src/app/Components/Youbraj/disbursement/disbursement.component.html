@@ -10,19 +10,19 @@
     <div class="d-flex gap-3 flex-wrap mb-3">
         <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 220px;">
             <div class="text-muted small">Total Disbursements</div>
-            <div class="fw-bold fs-5">₹ {{ 1500000 | number }}</div>
+            <div class="fw-bold fs-5">₹ {{ totalDisbursementAmount ?? 0 | number }}</div>
         </div>
         <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 220px;">
             <div class="text-muted small">Pending</div>
-            <div class="fw-bold fs-5 text-warning">{{ 5 }}</div>
+            <div class="fw-bold fs-5 text-warning">{{ pending ?? 0 }}</div>
         </div>
         <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 220px;">
             <div class="text-muted small">Approved</div>
-            <div class="fw-bold fs-5 text-success">{{ 1 }}</div>
+            <div class="fw-bold fs-5 text-success">{{ approved ?? 0 }}</div>
         </div>
         <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 220px;">
             <div class="text-muted small">Declined</div>
-            <div class="fw-bold fs-5 text-danger">{{ 2 }}</div>
+            <div class="fw-bold fs-5 text-danger">{{ declined ?? 0 }}</div>
         </div>
     </div>
 

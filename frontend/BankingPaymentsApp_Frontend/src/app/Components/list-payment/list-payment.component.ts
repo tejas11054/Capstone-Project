@@ -31,10 +31,10 @@ export class ListPaymentComponent implements OnInit {
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
   selectedPayment: any = null;
   role!: string | null;
-  totalPaymentAmount!:number;
-  pending!:number;
-  approved!:number;
-  rejected!:number;
+  totalPaymentAmount!: number;
+  pending!: number;
+  approved!: number;
+  rejected!: number;
 
   statusOptions = [
     { id: 1, name: 'Approved' },
@@ -65,10 +65,10 @@ export class ListPaymentComponent implements OnInit {
       // const pendingPayments = data.filter(e => e.paymentStatusId == 3);
       // this.payments = pendingPayments;
       this.payments = data;
-      this.totalPaymentAmount = data.reduce((sum,p)=>sum+p.amount,0);
-      this.approved = data.filter(p=>p.paymentStatusId==1).length;
-      this.rejected = data.filter(p=>p.paymentStatusId==2).length;
-      this.pending = data.filter(p=>p.paymentStatusId==3).length;
+      this.totalPaymentAmount = data.reduce((sum, p) => sum + p.amount, 0);
+      this.approved = data.filter(p => p.paymentStatusId == 1).length;
+      this.rejected = data.filter(p => p.paymentStatusId == 2).length;
+      this.pending = data.filter(p => p.paymentStatusId == 3).length;
     },
       error => console.log(error)
     )
@@ -79,6 +79,8 @@ export class ListPaymentComponent implements OnInit {
     this.paymentSvc.approvePayment(payment).subscribe((data) => {
       console.log(data);
       alert("payment sucessfully approved");
+      const params = new URLSearchParams(this.filters).toString();
+      this.fetchAllPayments(params);
     },
       (error) => {
         console.log(error);
@@ -102,6 +104,8 @@ export class ListPaymentComponent implements OnInit {
     this.paymentSvc.rejectPayment(reject).subscribe((data) => {
       console.log(data);
       alert("payment sucessfully Rejected");
+      const params = new URLSearchParams(this.filters).toString();
+      this.fetchAllPayments(params);
     },
       (error) => {
         console.log(error);
