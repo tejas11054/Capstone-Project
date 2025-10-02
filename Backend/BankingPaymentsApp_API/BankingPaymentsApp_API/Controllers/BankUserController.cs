@@ -42,13 +42,26 @@ namespace BankingPaymentsApp_API.Controllers
         {
             _logger.LogInformation("GetAllBankUsers started!");
 
+<<<<<<< HEAD
             var response = await _service.GetAll(fullName, userName, email, phone, roleId, bankId, branch, joiningFrom, joiningTo, pageNumber, pageSize);
+=======
+>>>>>>> b7dece97df6c64b925bbe45fee5bd994621a7b25
 
             if (!response.Any())
                 return Ok(response);
 
             _logger.LogInformation($"Found {response.Count()} Bank Users");
+<<<<<<< HEAD
             return Ok(response);
+=======
+            return Ok(new
+            {
+                Data = response,
+                pagedResult.TotalRecords,
+                pagedResult.PageNumber,
+                pagedResult.PageSize
+            });
+>>>>>>> b7dece97df6c64b925bbe45fee5bd994621a7b25
         }
 
 

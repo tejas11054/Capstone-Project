@@ -13,6 +13,32 @@
   background-color: var(--dark-bg);
   color: var(--text-light);
   line-height: 1.6;
+  display: block;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw; 
+  margin-right: -50vw;
+  overflow-x: hidden; 
+  box-sizing: border-box;
+  
+  /* Hides the scrollbar visually for Firefox (keeps scrolling functionality) */
+  scrollbar-width: none; 
+
+  /* Remove all padding/margin at the bottom */
+  padding-bottom: 0 !important; 
+  margin-bottom: 0 !important; 
+
+  /* 🔑 AGGRESSIVE FIX: Pull the bottom of the component up by a large amount */
+  padding-top: 0; /* Ensures the final margin/padding is calculated correctly */
+  margin-bottom: -50px !important; /* Adjust this value (e.g., -50px) if needed */
+}
+
+:host::-webkit-scrollbar {
+  display: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -28,6 +54,7 @@ h2 {
 section {
   padding: 5rem 2rem;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .section-header h2 {
@@ -46,3 +73,11 @@ button {
   font-family: inherit;
   cursor: pointer;
 }
+
+:host ::ng-deep section {
+  padding: 5rem 0;
+  margin: 0;
+  width: 100%;
+  margin-bottom: 0;
+}
+

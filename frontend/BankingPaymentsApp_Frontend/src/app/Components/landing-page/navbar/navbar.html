@@ -4,20 +4,21 @@
     <span>PayPro</span>
   </div>
   <div class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#how-it-works">Working</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#faq">FAQ</a>
-    <a href="#user-query">Contact Us</a>
-  </div>
+  <a href="#features">Features</a>
+  <a href="#testimonials">Testimonials</a>
+  <a href="#faq">FAQ</a>
+  <a href="#query">Contact Us</a>
+</div>
+
   <div class="nav-buttons">
-  <button class="login-btn">Login</button>
+  <button class="login-btn" [routerLink]="['/login']">Login</button>
+
 
   <div class="dropdown">
     <button class="buy-now-btn">Register</button>
     <div class="dropdown-content">
-      <a href="/client-register">Client User</a>
-      <a href="/bank-register">Bank User</a>
+      <a [routerLink]="['/ClientRegister']" >Client User</a>
+      <a [routerLink]="['/BankUserRegistration']">Bank User</a>
     </div>
   </div>
 </div>
