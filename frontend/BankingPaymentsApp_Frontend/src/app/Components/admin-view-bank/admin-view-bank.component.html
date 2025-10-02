@@ -1,91 +1,59 @@
-<div *ngIf="loading" class="loading text-center py-5">
-  <div class="spinner-border text-primary" role="status"></div>
-  <p class="mt-3">Loading banks...</p>
-</div>
+<div class="mt-4 px-3 w-100">
 
-<div *ngIf="!loading" class="container py-5">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/adminHome">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Banks</li>
+    </ol>
+  </nav>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold mb-0">ALL BANKS</h5>
+    <button class="btn btn-primary" routerLink="/bank">
+      <i class="bi bi-plus-lg me-2"></i> Add Bank
+    </button>
+  </div>
+  <hr>
 
-  <div class="profile-card shadow-lg mx-auto">
-    <div class="card-header text-center">
-      <h2>Manage Banks</h2>
+  <!-- Filters Section -->
+  <div class="mb-3">
+    <div class="d-flex flex-wrap gap-2">
+      <!-- Example filter -->
+      <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
+      <app-boolean-filter [statusOptions]="statusOptions" (booleanFilter)="onBooleanFilter($event)"></app-boolean-filter>
     </div>
+  </div>
 
-    <div class="card-body">
+  <!-- Banks Table -->
+  <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x:auto;">
+    <table class="table table-hover align-middle small mb-0" style="min-width: 800px;">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Bank Name</th>
+          <th>IFSC</th>
+          <th>Users</th>
+          <th>Accounts</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bank of banks">
+          <td class="text-truncate">{{ bank.bankId }}</td>
+          <td class="text-truncate" style="max-width: 200px;">{{ bank.bankName }}</td>
+          <td class="text-truncate" style="max-width: 200px;">{{ bank.ifsc }}</td>
+          <td class="text-truncate" style="max-width: 200px;">{{ bank?.users?.length || 0 }}</td>
+          <td class="text-truncate" style="max-width: 200px;">{{ bank?.accounts?.length }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" (click)="editBank(bank)">Edit</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="deleteBank(bank.bankId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <div *ngIf="responseMessage" class="alert alert-info text-center">
-        {{ responseMessage }}
-      </div>
-
-      <!-- Banks Table -->
-      <div class="banks-list">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Bank Name</th>
-              <th>IFSC</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let bank of banks">
-              <td>{{ bank.bankId }}</td>
-              <td>{{ bank.bankName }}</td>
-              <td>{{ bank.ifsc }}</td>
-              <td>
-                <button class="btn btn-warning btn-sm me-2" (click)="editBank(bank)">Edit</button>
-                <button class="btn btn-danger btn-sm" (click)="deleteBank(bank.bankId)">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-<!-- Pagination Controls -->
-<nav *ngIf="totalRecords > pageSize" aria-label="Bank Pagination" class="mt-4">
-  <ul class="pagination justify-content-center flex-wrap pagination-modern">
-
-    <!-- Previous Page -->
-    <li class="page-item" [class.disabled]="pageNumber === 1">
-      <button class="page-link" (click)="changePage(pageNumber - 1)">
-        <i class="bi bi-chevron-left"></i> Prev
-      </button>
-    </li>
-
-    <!-- Page Numbers -->
-    <li class="page-item" *ngFor="let page of totalPagesArray" [class.active]="pageNumber === page">
-      <button class="page-link" (click)="changePage(page)">{{ page }}</button>
-    </li>
-
-    <!-- Next Page -->
-    <li class="page-item" [class.disabled]="pageNumber === totalPages">
-      <button class="page-link" (click)="changePage(pageNumber + 1)">
-        Next <i class="bi bi-chevron-right"></i>
-      </button>
-    </li>
-
-  </ul>
-</nav>
-
-
-      <!-- Edit Form -->
-      <div *ngIf="selectedBank" class="edit-form mt-5">
-        <h3>Edit Bank (ID: {{ selectedBank.bankId }})</h3>
-        <form (ngSubmit)="updateBank()">
-          <div class="mb-3">
-            <label class="form-label">Bank Name</label>
-            <input type="text" class="form-control" [(ngModel)]="bankDto.bankName" name="bankName" required />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">IFSC</label>
-            <input type="text" class="form-control" [(ngModel)]="bankDto.ifsc" name="ifsc" required />
-          </div>
-          <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary me-2">Update Bank</button>
-            <button type="button" class="btn btn-secondary" (click)="selectedBank = null">Cancel</button>
-          </div>
-        </form>
-      </div>
-
+    <div *ngIf="banks.length === 0" class="text-center p-3 text-muted">
+      No banks found.
     </div>
   </div>
 

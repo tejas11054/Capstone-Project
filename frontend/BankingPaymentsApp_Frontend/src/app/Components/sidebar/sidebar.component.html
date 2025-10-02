@@ -15,6 +15,11 @@
         <i class="bi bi-house me-2"></i> Home
       </a>
     </li>
+    <li *ngIf="role == 'ADMIN'" class="nav-item">
+      <a routerLink="/adminHome" class="nav-link d-flex align-items-center">
+        <i class="bi bi-house me-2"></i> Home
+      </a>
+    </li>
     <li *ngIf="role == 'CLIENT_USER'" class="nav-item">
       <a routerLink="/profile" class="nav-link d-flex align-items-center">
         <i class="bi bi-person me-2"></i> Profile
@@ -25,27 +30,37 @@
         <i class="bi bi-person me-2"></i> Profile
       </a>
     </li>
-    <li>
+    <li *ngIf="role != 'ADMIN'">
       <a routerLink="/beneficiary" class="nav-link d-flex align-items-center">
         <i class="bi bi-wallet2 me-2"></i> Beneficiary
       </a>
     </li>
     <li *ngIf="role == 'BANK_USER'">
       <a  routerLink="/clients" class="nav-link d-flex align-items-center">
-        <i class="bi bi-wallet2 me-2"></i> Clients
+        <i class="bi bi-people me-2"></i> Clients
       </a>
     </li>
-    <li>
+    <li *ngIf="role == 'ADMIN'">
+      <a  routerLink="/bankusers" class="nav-link d-flex align-items-center">
+        <i class="bi bi-people me-2"></i> Bank Users
+      </a>
+    </li>
+    <li *ngIf="role == 'ADMIN'">
+      <a  routerLink="/logs" class="nav-link d-flex align-items-center">
+        <i class="bi bi-arrow-left-right me-2"></i> Audit Logs
+      </a>
+    </li>
+    <li *ngIf="role != 'ADMIN'">
       <a routerLink="/transactions" class="nav-link d-flex align-items-center">
         <i class="bi bi-arrow-left-right me-2"></i> Transactions
       </a>
     </li>
-    <li>
+    <li *ngIf="role != 'ADMIN'">
       <a routerLink="/employee" class="nav-link d-flex align-items-center">
         <i class="bi bi-people me-2"></i> Employees
       </a>
     </li>
-    <li>
+    <li *ngIf="role != 'ADMIN'">
       <a routerLink="/disbursements" class="nav-link d-flex align-items-center">
         <i class="bi bi-box-seam me-2"></i> Salary Disbursement
       </a>
@@ -56,14 +71,14 @@
 
   <div class="small text-muted fw-bold ps-1">Products</div>
   <ul class="nav flex-column small mt-2">
-    <li>
-      <a routerLink="/pendingPayment" class="nav-link d-flex align-items-center">
+    <li *ngIf="role != 'ADMIN'">
+      <a routerLink="/payments" class="nav-link d-flex align-items-center">
         <i class="bi bi-credit-card me-2"></i> Payments
       </a>
     </li>
-    <li>
-      <a routerLink="/billing" class="nav-link d-flex align-items-center">
-        <i class="bi bi-receipt me-2"></i> Billing
+    <li *ngIf="role == 'ADMIN'">
+      <a routerLink="/banks" class="nav-link d-flex align-items-center">
+        <i class="bi bi-bank me-2"></i> Banks
       </a>
     </li>
     <li>

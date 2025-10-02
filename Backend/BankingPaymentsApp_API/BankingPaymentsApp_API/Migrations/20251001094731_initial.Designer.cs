@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingPaymentsApp_API.Migrations
 {
     [DbContext(typeof(BankingPaymentsDBContext))]
-    [Migration("20250929165730_query model changes")]
-    partial class querymodelchanges
+    [Migration("20251001094731_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -521,6 +521,10 @@ namespace BankingPaymentsApp_API.Migrations
 
                     b.Property<int?>("SalaryDisbursementId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ToFrom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TransactionTypeId")
                         .HasColumnType("int");

@@ -17,6 +17,8 @@ namespace BankingPaymentsApp_API.Models
         public int? SalaryDisbursementId {  get; set; }
         public virtual SalaryDisbursement? SalaryDisbursement { get; set; }
 
+        public string ToFrom { get; set; }
+
         [Required(ErrorMessage ="Transaction Type is Required!")]
         [ForeignKey("TransactionType")]
         public int TransactionTypeId { get; set; }

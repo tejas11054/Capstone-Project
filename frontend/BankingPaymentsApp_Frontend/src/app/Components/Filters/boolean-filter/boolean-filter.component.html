@@ -1,14 +1,14 @@
 <div ngbDropdown class="d-inline-block">
     <button class="btn btn-outline-dark btn-sm rounded-pill" ngbDropdownToggle>
-        + {{title}}
+        + Status
     </button>
     <div ngbDropdownMenu class="p-3 shadow" style="min-width: 300px;">
         <!-- Place your filter form/content here -->
         <form [formGroup]="filterForm" (ngSubmit)="applyFilters()">
             <div class="mb-3">
                 <label class="form-label small">Status</label>
-                <select formControlName="paymentStatusId" class="form-select form-select-sm">
-                    <option value="" disabled hidden>Select a {{title}}</option>
+                <select formControlName="isActive" class="form-select form-select-sm">
+                    <option [ngValue]="null" disabled hidden>Select a status</option>
                     <option *ngFor="let status of statusOptions" [value]="status.id">
                         {{ status.name }}
                     </option>

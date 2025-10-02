@@ -1,0 +1,16 @@
+.btn-outline-dark {
+  font-size: 0.75rem;
+  border-radius: 50rem; /* pill shape */
+  padding: 2px 10px;
+}
+
+.btn-outline-dark:hover {
+  background-color: #f2f2f2; /* light grey */
+  color: #333;              /* keep text dark */
+  border-color: #bbb;       /* subtle border */
+}
+
+.btn-sm {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+}

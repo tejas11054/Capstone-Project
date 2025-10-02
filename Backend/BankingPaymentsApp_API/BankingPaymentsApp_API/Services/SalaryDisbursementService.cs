@@ -232,10 +232,10 @@ namespace BankingPaymentsApp_API.Services
                     Account? employeeAccount = await _accountService.AccountExistsWithAccountNumber(emp.AccountNumber);
                     if (employeeAccount != null)
                     {
-                        Transaction debitTransaction = await _accountService.DebitAccount(ClientAccountId, (double)emp.Salary, paymentId: null, disbursementId: disbursementId);
+                        Transaction debitTransaction = await _accountService.DebitAccount(ClientAccountId, (double)emp.Salary, paymentId: null, disbursementId: disbursementId,employeeAccount.AccountNumber);
                         totalDebited += (double)emp.Salary;
 
-                        Transaction creditTransaction = await _accountService.CreditAccount(employeeAccount.AccountId, emp.Salary, paymentId: null, disbursementId: disbursementId);
+                        Transaction creditTransaction = await _accountService.CreditAccount(employeeAccount.AccountId, emp.Salary, paymentId: null, disbursementId: disbursementId,ClientAccount.AccountNumber);
                         SalaryDisbursementDetails detail = new SalaryDisbursementDetails
                         {
                             SalaryDisbursementId = salaryDisbursement.SalaryDisbursementId,

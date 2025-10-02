@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EmployeeService } from '../../Services/employee.service';
@@ -14,8 +14,9 @@ export class EmployeeUploadComponent {
   selectedFile: File | null = null;
   message: string = '';
   uploading: boolean = false;
+  @Output() dataChanged = new EventEmitter<void>();
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService) { }
 
   onFileSelected(event: any) {
     if (event.target.files.length > 0) {
@@ -24,26 +25,27 @@ export class EmployeeUploadComponent {
   }
 
   uploadFile() {
-  if (!this.selectedFile) {
-    alert('Please select a CSV file first.');
-    return;
-  }
-
-  this.uploading = true;
-  this.employeeService.uploadEmployees(this.selectedFile).subscribe({
-    next: (res: string) => {
-      this.message = res;
-      alert(res); // 
-      this.uploading = false;
-      this.selectedFile = null; 
-    },
-    error: (err: any) => {
-      console.error('Upload error:', err);
-      this.message = 'Failed to upload employees.';
-      alert('Failed to upload employees. Please check console.');
-      this.uploading = false;
+    if (!this.selectedFile) {
+      alert('Please select a CSV file first.');
+      return;
     }
-  });
-}
+
+    this.uploading = true;
+    this.employeeService.uploadEmployees(this.selectedFile).subscribe({
+      next: (res: string) => {
+        this.message = res;
+        alert(res); // 
+        this.uploading = false;
+        this.selectedFile = null;
+        this.dataChanged.emit();
+      },
+      error: (err: any) => {
+        console.error('Upload error:', err);
+        this.message = 'Failed to upload employees.';
+        alert('Failed to upload employees. Please check console.');
+        this.uploading = false;
+      }
+    });
+  }
 
 }

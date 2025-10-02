@@ -4,13 +4,13 @@ import { Bank } from '../../Models/Bank';
 import { BankDTO } from '../../DTO/BankDTO';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-bank-register',
   standalone: true,
   imports: [
-    CommonModule, FormsModule
+    CommonModule, FormsModule,RouterLink
   ],
   templateUrl: './bank-register.component.html',
   styleUrls: ['./bank-register.component.css']
@@ -46,7 +46,7 @@ export class BankRegisterComponent implements OnInit {
         alert("Bank has been registered successfully");
 
         this.loading = false; // hide spinner
-        this.router.navigate(['/login']); 
+        this.router.navigate(['/banks']); 
       },
       error: () => {
         this.responseMessage = 'Failed to register bank!';

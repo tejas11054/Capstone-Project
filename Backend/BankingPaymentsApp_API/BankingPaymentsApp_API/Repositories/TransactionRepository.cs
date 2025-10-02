@@ -16,8 +16,8 @@ namespace BankingPaymentsApp_API.Repositories
         {
             return _dbContext.Transactions
                 .Include(t=>t.Account).ThenInclude(a=>a.ClientUser)
-                .Include(t=>t.Payment)
-                .Include(t=>t.SalaryDisbursement)
+                .Include(t=>t.Payment).ThenInclude(p=>p.PayerAccount)
+                .Include(t=>t.SalaryDisbursement).ThenInclude(s=>s.DisbursementDetails).ThenInclude(d=>d.Employee)
                 .Include(t=>t.TransactionType)
                 .AsQueryable();
         }
@@ -51,6 +51,7 @@ namespace BankingPaymentsApp_API.Repositories
             existingTransaction.AccountId = transaction.AccountId;
             existingTransaction.PaymentId = transaction.PaymentId;
             existingTransaction.Amount = transaction.Amount;
+            existingTransaction.ToFrom = transaction.ToFrom;
 
             await _dbContext.SaveChangesAsync();
             return existingTransaction;

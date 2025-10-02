@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BeneficiaryService } from '../../Services/beneficiary.service';
 import { AuthService } from '../../Services/auth.service';
 import { Beneficiary } from '../../Models/Beneficiary';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-beneficiary-register',
@@ -18,7 +19,7 @@ export class BeneficiaryRegisterComponent implements OnInit {
   @Output() beneficiaryAdded = new EventEmitter<Beneficiary>();
   @Output() cancelAdd = new EventEmitter<void>(); 
   
-  constructor(private fb: FormBuilder,private beneficiarySvc:BeneficiaryService,private auth:AuthService) { }
+  constructor(private router: Router,private fb: FormBuilder,private beneficiarySvc:BeneficiaryService,private auth:AuthService) { }
 
 
   ngOnInit(): void {
@@ -39,8 +40,11 @@ export class BeneficiaryRegisterComponent implements OnInit {
     this.beneficiarySvc.createBeneficiary(this.createBeneficiary.value).subscribe(
       (data) => {
         console.log(data);
+        alert(`The beneficiary ${data.beneficiaryName} has been added sucessfully!` )
+
         this.beneficiaryAdded.emit(data);
         this.cancelAdd.emit(); // close the form after successful addition
+        this.router.navigate(["/beneficiary"])
       },
       (error) => {
         console.log(error);

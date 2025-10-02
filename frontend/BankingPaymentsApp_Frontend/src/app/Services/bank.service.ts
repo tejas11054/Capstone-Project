@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { BankDTO } from '../DTO/BankDTO';
 import { Observable } from 'rxjs';
 import { Bank } from '../Models/Bank';
+import { BankUsersPerBank } from '../DTO/BankUserPerBank';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +16,18 @@ export class BankService {
   constructor(private http: HttpClient) { }
 
   createBank(dto: BankDTO): Observable<Bank> {
-      return this.http.post<Bank>(`${this.baseUrl}`, {
-        ...dto,
-        isActive: true  
-      });
+    return this.http.post<Bank>(`${this.baseUrl}`, {
+      ...dto,
+      isActive: true
+    });
   }
 
-   getAllBanks(pageNumber: number = 1, pageSize: number = 5): Observable<any> {
-  return this.http.get<any>(`${this.baseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
-}
+  getAllBanks(queryParams: string): Observable<Bank[]> {
+    return this.http.get<Bank[]>(`${this.baseUrl}?${queryParams}`);
+  }
+  // getAllBanks(pageNumber: number = 1, pageSize: number = 5): Observable<any> {
+  //   return this.http.get<any>(`${this.baseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+  // }
 
 
   getBankById(id: number): Observable<Bank> {
@@ -37,5 +41,9 @@ export class BankService {
   deleteBank(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
-  
+
+  userPerBank(): Observable<BankUsersPerBank[]> {
+    return this.http.get<BankUsersPerBank[]>(this.baseUrl + "/users");
+  }
+
 }

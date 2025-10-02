@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BankingPaymentsApp_API.Migrations
 {
     /// <inheritdoc />
-    public partial class queryadded : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -90,6 +90,7 @@ namespace BankingPaymentsApp_API.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Response = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -364,6 +365,7 @@ namespace BankingPaymentsApp_API.Migrations
                     AccountId = table.Column<int>(type: "int", nullable: false),
                     PaymentId = table.Column<int>(type: "int", nullable: true),
                     SalaryDisbursementId = table.Column<int>(type: "int", nullable: true),
+                    ToFrom = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TransactionTypeId = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<double>(type: "float", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)

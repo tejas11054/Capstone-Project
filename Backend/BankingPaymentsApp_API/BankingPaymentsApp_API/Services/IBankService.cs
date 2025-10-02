@@ -21,5 +21,6 @@ namespace BankingPaymentsApp_API.Services
         public Task<Bank?> Update(Bank bank);
 
         public Task DeleteById(int id);
+        public Task<List<BankUsersPerBankDTO>> GetUsersByBank();
     }
 }

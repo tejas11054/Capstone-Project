@@ -67,6 +67,15 @@ select.modern-input {
     /* about half container each */
 }
 
+.breadcrumb a {
+  text-decoration: none;
+  color: inherit;   /* inherit text color */
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline; /* subtle hover effect */
+}
+
 /* Responsive: stack on small screens */
 @media (max-width: 768px) {
     .forms-wrapper {

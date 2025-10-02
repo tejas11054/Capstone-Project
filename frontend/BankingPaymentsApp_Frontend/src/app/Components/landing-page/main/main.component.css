@@ -8,6 +8,22 @@
   --text-secondary: #ccc;
 }
 
+<<<<<<< HEAD
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* landing.component.css */
+.landing-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff; /* or whatever background */
+  margin: 0;
+  padding: 0;
+=======
 :host {
   font-family: 'Inter', sans-serif;
   background-color: var(--dark-bg);
@@ -45,4 +61,5 @@ section {
 button {
   font-family: inherit;
   cursor: pointer;
+>>>>>>> f4fc12053d1e5693eea840165e1e862cd38ca36e
 }

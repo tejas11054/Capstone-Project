@@ -14,7 +14,7 @@ namespace BankingPaymentsApp_API.Controllers
     {
         private readonly ITransactionService _transactionService;
         private readonly IMapper _mapper;
-        public TransactionController(ITransactionService transactionService,IMapper mapper)
+        public TransactionController(ITransactionService transactionService, IMapper mapper)
         {
             _transactionService = transactionService;
             _mapper = mapper;
@@ -25,6 +25,19 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] int? clientId,
             [FromQuery] int? transactionId,
             [FromQuery] int? transactionTypeId,
+<<<<<<< HEAD
+            [FromQuery] double? minAmount,
+            [FromQuery] double? maxAmount,
+            [FromQuery] DateTime? createdFrom,
+            [FromQuery] DateTime? createdTo,
+            [FromQuery] string? toFrom
+            )  // single date filter
+        {
+            var transactions = await _transactionService.GetAll(clientId, transactionId, transactionTypeId, createdFrom, createdTo,maxAmount,minAmount,toFrom);
+
+            if (!transactions.Any())
+                return Ok(transactions);
+=======
             [FromQuery] DateTime? date,
             [FromQuery] int pageNumber = 1,
             [FromQuery] int pageSize = 10)
@@ -33,6 +46,7 @@ namespace BankingPaymentsApp_API.Controllers
 
             if (!pagedResult.Data.Any())
                 return NotFound("No transactions to display.");
+>>>>>>> f4fc12053d1e5693eea840165e1e862cd38ca36e
 
             return Ok(new
             {

@@ -62,7 +62,7 @@
   background-color: #635bff;
   color: #fff;
   border: none;
-  padding: 4px 16px;
+  padding: 4px 16px !important;
   font-weight: 500;
   font-size: 14px;
   border-radius: 8px;

@@ -11,6 +11,7 @@ export interface Transaction {
   payment?: Payment;
   salaryDisbursementId?: number;
   salaryDisbursement?: SalaryDisbursement;
+  toFrom:string;
   transactionTypeId: number;
   transactionType?: TransactionType;
   amount: number;

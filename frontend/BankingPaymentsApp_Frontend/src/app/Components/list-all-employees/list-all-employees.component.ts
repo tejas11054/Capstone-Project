@@ -11,15 +11,16 @@ import { AccountNumberFilterComponent } from '../Filters/account-number-filter/a
 import { AmountFilterComponent } from '../Filters/amount-filter/amount-filter.component';
 import { DateFilterComponent } from '../Filters/date-filter/date-filter.component';
 import { RejectModalComponent } from '../Shared/reject-modal/reject-modal.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { SalaryDisbursementService } from '../../Services/salary-disbursement.service';
 import { EmployeeUploadComponent } from '../Youbraj/employee-upload/employee-upload.component';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { BooleanFilterComponent } from '../Filters/boolean-filter/boolean-filter.component';
 
 @Component({
   selector: 'app-list-all-employees',
-  imports: [CommonModule, FormsModule, CommonModule, RouterLink, EmployeeUploadComponent, RejectModalComponent, ReactiveFormsModule, DateFilterComponent, AmountFilterComponent, AccountNumberFilterComponent, IdFilterComponent, NameFilterComponent, StatusFilterComponent],
+  imports: [CommonModule, FormsModule, CommonModule, RouterLink, EmployeeUploadComponent, RejectModalComponent, ReactiveFormsModule, DateFilterComponent, AmountFilterComponent, AccountNumberFilterComponent, IdFilterComponent, NameFilterComponent, StatusFilterComponent, BooleanFilterComponent],
   templateUrl: './list-all-employees.component.html',
   styleUrls: ['./list-all-employees.component.css'],
   standalone: true
@@ -31,20 +32,23 @@ export class ListAllEmployeesComponent implements OnInit {
   selectedEmployees: Employee[] = [];
   selectedEmployeeIds: number[] = [];
   filters: any = {};
-  role!:string;
-
+  role!: string;
+  statusOptions = [
+    { id: true, name: "Active" },
+    { id: false, name: "InActive" }
+  ];
   // @Output() event = new EventEmitter<{ allEmployees: boolean, employeeIds: number[] }>
-  constructor(private auth: AuthService, private employeeSvc: EmployeeService, private disbursementSvc: SalaryDisbursementService) { }
+  constructor(private router: Router, private auth: AuthService, private employeeSvc: EmployeeService, private disbursementSvc: SalaryDisbursementService) { }
 
   ngOnInit(): void {
     const user = this.auth.getLoggedInUser();
     const role = this.auth.getUserRole();
     console.log(role);
-    if(role == "CLIENT_USER"){
+    if (role == "CLIENT_USER") {
       console.log("helo")
       console.log(user?.userId)
       this.role = role;
-      this.filters.clientId =  user?.userId;
+      this.filters.clientId = user?.userId;
     }
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllEmployees(params);
@@ -86,7 +90,7 @@ export class ListAllEmployeesComponent implements OnInit {
 
   selectAllEmployees(event: any) {
     if (event.target.checked) {
-      this.selectedEmployeeIds = this.employees.filter(e=>e.isActive).map(e => e.employeeId);
+      this.selectedEmployeeIds = this.employees.filter(e => e.isActive).map(e => e.employeeId);
     } else {
       this.selectedEmployeeIds = [];
     }
@@ -107,6 +111,9 @@ export class ListAllEmployeesComponent implements OnInit {
     };
     this.disbursementSvc.createSalaryDisbursement(payload).subscribe((data) => {
       console.log(data);
+      alert("disbursement Created Successfully!");
+      this.router.navigate(["/disbursements"]);
+
     },
       (error) => {
         console.log(error);
@@ -117,6 +124,8 @@ export class ListAllEmployeesComponent implements OnInit {
     this.employeeSvc.deleteEmployee(id).subscribe((data) => {
       console.log(data);
       alert("employee deleted sucessfully!");
+      const params = new URLSearchParams(this.filters).toString();
+      this.fetchAllEmployees(params);
     },
       (error) => {
         console.log(error)
@@ -188,6 +197,17 @@ export class ListAllEmployeesComponent implements OnInit {
     }
   }
 
+  onBooleanFilter(filter: { isActive: boolean | null }) {
+    if (filter.isActive !== null) {
+      this.filters.isActive = filter.isActive;
+    } else {
+      delete this.filters.isActive;
+    }
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchAllEmployees(params);
+  }
+
   onNameFilter(name: { payerName: string }) {
     this.filters.employeeName = name.payerName;
 
@@ -195,12 +215,17 @@ export class ListAllEmployeesComponent implements OnInit {
     this.fetchAllEmployees(params);
   }
 
-  onStatusFilter(status: { paymentStatusId: string }) {
-    this.filters.paymentStatusId = status.paymentStatusId;
-
+  reloadData(){
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllEmployees(params);
   }
+
+  // onStatusFilter(status: { paymentStatusId: string }) {
+  //   this.filters.paymentStatusId = status.paymentStatusId;
+
+  //   const params = new URLSearchParams(this.filters).toString();
+  //   this.fetchAllEmployees(params);
+  // }
 
   downloadPDF(): void {
     if (!this.employees || this.employees.length === 0) {

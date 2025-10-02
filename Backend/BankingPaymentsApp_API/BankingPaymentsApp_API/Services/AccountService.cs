@@ -97,7 +97,7 @@ namespace BankingPaymentsApp_API.Services
             return await _accountRepository.GenerateAccountNumber();
         }
 
-        public async Task<Transaction> CreditAccount(int accountId, double amount, int? paymentId, int? disbursementId)
+        public async Task<Transaction> CreditAccount(int accountId, double amount, int? paymentId, int? disbursementId, string toFrom)
         {
             Account? account = await _accountRepository.GetById(accountId);
             if (account == null) throw new NullReferenceException("No account of id: " + accountId);
@@ -110,13 +110,14 @@ namespace BankingPaymentsApp_API.Services
                 Amount = amount,
                 PaymentId = paymentId ?? null,
                 SalaryDisbursementId = disbursementId ?? null,
+                ToFrom = toFrom,
                 CreatedAt = DateTime.UtcNow
             };
             Transaction addedTransaction = await _transactionRepository.Add(creditTransaction);
             await _accountRepository.Update(account);
             return addedTransaction;
         }
-        public async Task<Transaction> DebitAccount(int accountId, double amount, int? paymentId, int? disbursementId)
+        public async Task<Transaction> DebitAccount(int accountId, double amount, int? paymentId, int? disbursementId, string toFrom)
         {
             Account? account = await _accountRepository.GetById(accountId);
             if (account == null) throw new NullReferenceException("No account of id: " + accountId);
@@ -131,10 +132,19 @@ namespace BankingPaymentsApp_API.Services
                 Amount = amount,
                 PaymentId = paymentId,
                 SalaryDisbursementId = disbursementId,
+                ToFrom = toFrom,
                 CreatedAt = DateTime.UtcNow
             };
             Transaction addedTransaction = await _transactionRepository.Add(debitTransaction);
             await _accountRepository.Update(account);
+            //string subject = $"Your SalaryDisbursement ID {disbursementId} is Approved!";
+            //string body =
+            //    $"""
+            //            Your SalaryDisbursement ({disbursementId}) has been approved at {DateTime.UtcNow}
+            //            Your Account ({ClientAccount.AccountNumber}) is Debited with Rs {salaryDisbursement.TotalAmount} 
+            //            """;
+            //await _emailService.SendEmailToClientAsync((int)salaryDisbursement.ClientId, subject, body);
+            //return updatedDisbursement;
             return addedTransaction;
         }
         public async Task<Account?> AccountExistsWithAccountNumber(string accountNumber)

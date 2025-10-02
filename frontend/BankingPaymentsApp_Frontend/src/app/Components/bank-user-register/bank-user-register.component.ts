@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, 
 import { BankRegisterService } from '../../Services/bankUser.service';
 import { Bank } from '../../Models/Bank';
 import { BankService } from '../../Services/bank.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bank-user-register',
@@ -20,6 +21,7 @@ export class BankUserRegisterComponent implements OnInit {
     private fb: FormBuilder,
     private bankUserService: BankRegisterService,
     private bankService: BankService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class BankUserRegisterComponent implements OnInit {
   }
 
   loadBanks() {
-    this.bankService.getAllBanks().subscribe({
+    this.bankService.getAllBanks("").subscribe({
       next: (res) => (this.banks = res),
       error: (err) => console.error('Error fetching banks:', err)
     });
@@ -75,6 +77,7 @@ export class BankUserRegisterComponent implements OnInit {
       next: () => {
         alert('Bank User registered successfully!');
         this.registerForm.reset();
+        this.router.navigate(["/login"])
       },
       error: (err) => {
         console.error(err);

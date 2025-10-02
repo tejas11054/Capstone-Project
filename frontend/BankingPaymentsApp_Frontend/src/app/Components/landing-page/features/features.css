@@ -11,13 +11,12 @@
 
 .carousel {
   display: flex;
-  width: calc(300px * 6); /* 6 cards width */
+  gap: 2rem; /* space between cards */
   animation: slide 18s linear infinite;
 }
 
 .feature-card {
-  flex: 0 0 300px;
-  margin: 0 1rem;
+  flex: 0 0 300px; /* default card width */
   background: #2a283b;
   border: 1px solid #3c3a4a;
   border-radius: 12px;
@@ -28,7 +27,7 @@
 
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 .feature-card .icon {
@@ -47,26 +46,21 @@
   font-size: 0.9rem;
 }
 
-/* Keyframes for sliding effect */
+/* Sliding animation */
 @keyframes slide {
   0% { transform: translateX(0); }
-  16.66% { transform: translateX(-300px); }
-  33.33% { transform: translateX(-600px); }
-  50% { transform: translateX(-900px); }
-  66.66% { transform: translateX(-1200px); }
-  83.33% { transform: translateX(-1500px); }
-  100% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* scroll half the total width */
 }
 
-/* Responsive: show fewer cards on smaller screens */
+/* Responsive adjustments */
 @media (max-width: 992px) {
   .feature-card {
-    flex: 0 0 45%;
+    flex: 0 0 45%; /* two cards in view */
   }
 }
 
 @media (max-width: 600px) {
   .feature-card {
-    flex: 0 0 80%;
+    flex: 0 0 80%; /* one card in view */
   }
 }

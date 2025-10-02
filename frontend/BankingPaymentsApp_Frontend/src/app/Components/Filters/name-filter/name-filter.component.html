@@ -4,18 +4,16 @@
     </button>
     <div ngbDropdownMenu class="p-3 shadow" style="min-width: 300px;">
         <!-- Place your filter form/content here -->
-        <form [formGroup]="filterForm" (ngSubmit)="applyFilters()">
+        <form [formGroup]="filterForm">
             <div class="mb-3">
-                <label class="form-label small">Payee Name</label>
+                <label class="form-label small">Name</label>
                 <input class="form-control form-control-sm" type="text" placeholder="John Doe" formControlName="payerName" />
             </div>
             <div class="d-flex justify-content-end gap-2">
                 <button type="button" class="btn btn-sm btn-outline-secondary" (click)="reset()">
                     Reset
                 </button>
-                <button type="submit" class="btn btn-sm btn-primary">
-                    Apply
-                </button>
+                <button type="button" class="btn btn-sm btn-primary" (click)="applyFilters()">Apply</button>
             </div>
         </form>
     </div>

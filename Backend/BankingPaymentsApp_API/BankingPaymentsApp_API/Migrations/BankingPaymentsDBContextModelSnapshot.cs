@@ -519,6 +519,10 @@ namespace BankingPaymentsApp_API.Migrations
                     b.Property<int?>("SalaryDisbursementId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ToFrom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("TransactionTypeId")
                         .HasColumnType("int");
 

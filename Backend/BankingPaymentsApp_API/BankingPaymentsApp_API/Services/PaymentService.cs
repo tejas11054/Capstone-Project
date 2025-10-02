@@ -148,7 +148,8 @@ namespace BankingPaymentsApp_API.Services
                     PaymentId = payment.PaymentId,
                     Amount = payment.Amount,
                     AccountId = payment.PayerAccountId,
-                    TransactionTypeId = 2 // debit
+                    TransactionTypeId = 2, // debit
+                    ToFrom = payment.PayeeAccountNumber
                 };
 
                 var transactions = new List<Transaction> { debitTxn };
@@ -162,7 +163,8 @@ namespace BankingPaymentsApp_API.Services
                         PaymentId = payment.PaymentId,
                         Amount = payment.Amount,
                         AccountId = payeeAccount.AccountId,
-                        TransactionTypeId = 1 // credit
+                        TransactionTypeId = 1, // credit
+                        ToFrom = payment.PayeeAccountNumber
                     };
 
                     transactions.Add(creditTxn);

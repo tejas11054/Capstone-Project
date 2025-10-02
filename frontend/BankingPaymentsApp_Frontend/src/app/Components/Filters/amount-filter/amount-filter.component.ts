@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,6 +11,7 @@ import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstr
 })
 export class AmountFilterComponent {
   filterForm!: FormGroup;
+  @Input() title:string = "Amount";
   @Output() amountFilter = new EventEmitter<{ minAmount: string | null, maxAmount: string | null }>()
   constructor(private fb: FormBuilder) { }
 

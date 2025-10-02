@@ -15,6 +15,7 @@ import { PaymentStatusPipe } from '../../../Pipes/payment-status.pipe';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RejectDTO } from '../../../DTO/RejectDTO';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-list-clients',
@@ -26,6 +27,8 @@ export class ListClientsComponent implements OnInit {
   clients!: ClientUser[];
   filters: any = {};
   selectedClient!: any;
+  approved!:number;
+  pending!:number;
 
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
 
@@ -35,9 +38,11 @@ export class ListClientsComponent implements OnInit {
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private clientSvc: ClientRegisterService) { }
+  constructor(private clientSvc: ClientRegisterService,private auth:AuthService) { }
 
   ngOnInit(): void {
+    let userId = this.auth.getUserId();
+    this.filters.BankUserId = userId;
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllClients(params);
   }
@@ -46,6 +51,8 @@ export class ListClientsComponent implements OnInit {
     this.clientSvc.getClients(params).subscribe((data) => {
       console.log(data);
       this.clients = data;
+      this.pending = data.filter(d=>d.kycVierified==false).length;
+      this.approved = data.filter(d=>d.kycVierified==true).length;
     },
       (error) => {
         console.log(error);
