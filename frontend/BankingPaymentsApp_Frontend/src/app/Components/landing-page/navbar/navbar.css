@@ -103,7 +103,11 @@
 .navbar-main {
   position: fixed;       
   top: 0;               
-  width: 100%;          
+  left: 0;      
+  right: 0;        /* ensure it starts from exact left */
   z-index: 10000;        
+  width: 98.8%;          /* take full width */
   background: rgba(18, 16, 27, 0.95); 
+  margin: 0;            /* remove any extra spacing */
+  padding: 0;  
 }

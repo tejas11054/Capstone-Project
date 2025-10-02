@@ -1,14 +1,23 @@
+/* app-hero.component.css */
+
 /* HERO SECTION BASE */
 .hero-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: left;
-  padding: 6rem 3rem;
+  padding: 6rem 0;
   color: #fff;
-  background: #1d1b2a;
+  background: #12101b;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  margin-left: 0;
+}
+
+.hero-section .hero-content,
+.hero-section .hero-image {
+  padding: 0 3rem;
 }
 
 .hero-section .hero-content {
@@ -111,7 +120,6 @@
   margin: 0;
 }
 
-
 /* HERO IMAGE */
 .hero-section .hero-image {
   flex: 1;
@@ -181,8 +189,15 @@
   .hero-section {
     flex-direction: column;
     text-align: center;
+    padding: 3rem;
   }
 
+  .hero-section .hero-content,
+  .hero-section .hero-image {
+    padding: 0;
+    max-width: 100%;
+  }
+  
   .hero-section .hero-content {
     max-width: 100%;
   }
@@ -195,8 +210,4 @@
   .hero-section .hero-image {
     margin-top: 3rem;
   }
-}
-
-.hero-section{
-   background: #12101b;
 }

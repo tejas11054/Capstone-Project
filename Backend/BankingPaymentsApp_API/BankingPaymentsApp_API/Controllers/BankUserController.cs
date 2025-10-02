@@ -40,15 +40,7 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] int pageSize = 10)
         {
             _logger.LogInformation("GetAllBankUsers started!");
-<<<<<<< HEAD
-            var bankUsers = await _service.GetAll(fullName, userName, email, phone, roleId, bankId, branch, joiningFrom, joiningTo);
-            if (!bankUsers.Any())
-                return Ok(bankUsers);
 
-            //var response = bankUsers.Select(u => _mapper.Map<BankUserResponseDTO>(u));
-            _logger.LogInformation($"Found Bank user");
-            return Ok(bankUsers);
-=======
 
             var pagedResult = await _service.GetAll(fullName, userName, email, phone, roleId, bankId, branch, joiningFrom, joiningTo, pageNumber, pageSize);
 
@@ -65,7 +57,6 @@ namespace BankingPaymentsApp_API.Controllers
                 pagedResult.PageNumber,
                 pagedResult.PageSize
             });
->>>>>>> f4fc12053d1e5693eea840165e1e862cd38ca36e
         }
 
 
