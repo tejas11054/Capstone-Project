@@ -28,7 +28,7 @@ namespace BankingPaymentsApp_API.Controllers
                                      FileName = Path.GetFileName(f),
                                      CreatedOn = System.IO.File.GetCreationTime(f).ToString("yyyy-MM-dd HH:mm:ss")
                                  })
-                                 .OrderByDescending(f => f.CreatedOn) // optional: newest first
+                                 .OrderByDescending(f => f.CreatedOn) 
                                  .ToList();
 
             var totalRecords = files.Count;
