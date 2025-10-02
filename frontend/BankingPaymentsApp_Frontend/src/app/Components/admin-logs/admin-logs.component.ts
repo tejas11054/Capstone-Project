@@ -3,19 +3,21 @@ import { CommonModule } from '@angular/common';
 import { LogService } from '../../Services/log.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DateFilterComponent } from '../Filters/date-filter/date-filter.component';
 
 @Component({
   selector: 'app-admin-logs',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, DateFilterComponent],
   templateUrl: './admin-logs.component.html',
   styleUrls: ['./admin-logs.component.css']
 })
 export class AdminLogsComponent implements OnInit {
   logs: any[] = [];
+  allLogs: any[] = []; // Keep the original list
   loading = true;
 
-  constructor(private logService: LogService) {}
+  constructor(private logService: LogService) { }
 
   ngOnInit(): void {
     this.fetchLogs();
@@ -25,7 +27,8 @@ export class AdminLogsComponent implements OnInit {
     this.loading = true;
     this.logService.getLogs().subscribe({
       next: (res) => {
-        this.logs = res;
+        this.allLogs = res;  // store original
+        this.logs = res;      // display initially
         this.loading = false;
       },
       error: (err) => {
@@ -36,16 +39,39 @@ export class AdminLogsComponent implements OnInit {
   }
 
   downloadLog(fileName: string): void {
-    this.logService.downloadLog(fileName).subscribe({
-      next: (blob) => {
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.download = fileName;
-        link.click();
-      },
-      error: (err) => {
-        console.error('Download failed:', err);
+    this.logService.downloadLog(fileName).subscribe(
+      {
+        next: (blob) => {
+          const link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.download = fileName; link.click();
+        },
+        error: (err) => {
+          console.error('Download failed:', err);
+        }
+      });
+  }
+
+  onDateFilter(dates: { dateFrom: string; dateTo: string }) {
+    if (!dates.dateFrom && !dates.dateTo) {
+      // Reset filter if both dates are empty
+      this.logs = [...this.allLogs];
+      return;
+    }
+
+    const createdFrom = dates.dateFrom ? new Date(dates.dateFrom) : null;
+    const createdTo = dates.dateTo ? new Date(dates.dateTo) : null;
+
+    this.logs = this.allLogs.filter(l => {
+      const createdDate = new Date(l.createdOn);
+      if (createdFrom && createdTo) {
+        return createdDate >= createdFrom && createdDate <= createdTo;
+      } else if (createdFrom) {
+        return createdDate >= createdFrom;
+      } else if (createdTo) {
+        return createdDate <= createdTo;
       }
+      return true;
     });
   }
 }

@@ -51,6 +51,7 @@ namespace BankingPaymentsApp_API.Repositories
             existingTransaction.AccountId = transaction.AccountId;
             existingTransaction.PaymentId = transaction.PaymentId;
             existingTransaction.Amount = transaction.Amount;
+            existingTransaction.ToFrom = transaction.ToFrom;
 
             await _dbContext.SaveChangesAsync();
             return existingTransaction;

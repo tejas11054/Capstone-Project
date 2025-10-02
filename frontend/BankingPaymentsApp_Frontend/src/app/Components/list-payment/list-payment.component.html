@@ -7,20 +7,20 @@
   </nav>
   <div class="d-flex gap-3 flex-wrap mb-3">
     <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
-      <div class="text-muted small">Total Payments</div>
-      <div class="fw-bold fs-5">₹ 15,000</div>
+      <div class="text-muted small">Total Payment Amount</div>
+      <div class="fw-bold fs-5">₹ {{totalPaymentAmount ?? 0}}</div>
     </div>
     <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
       <div class="text-muted small">Pending</div>
-      <div class="fw-bold fs-5 text-warning">3</div>
+      <div class="fw-bold fs-5 text-warning">{{pending ?? 0}}</div>
     </div>
     <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
       <div class="text-muted small">Approved</div>
-      <div class="fw-bold fs-5 text-success">5</div>
+      <div class="fw-bold fs-5 text-success">{{approved ?? 0}}</div>
     </div>
     <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
       <div class="text-muted small">Declined</div>
-      <div class="fw-bold fs-5 text-danger">5</div>
+      <div class="fw-bold fs-5 text-danger">{{rejected ?? 0}}</div>
     </div>
   </div>
   <div class="d-flex justify-content-between align-items-center mb-3">
@@ -38,7 +38,7 @@
         <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
         <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter>
         <app-status-filter [statusOptions]="statusOptions" (statusFilter)="onStatusFilter($event)"></app-status-filter>
-        <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
+        <!-- <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter> -->
         <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
         <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
         <button class="btn btn-create-payment" (click)="downloadPDF()">
@@ -88,6 +88,9 @@
           </tr>
         </tbody>
       </table>
+      <div *ngIf="payments?.length === 0" class="text-center p-3 text-muted">
+        No payment found.
+      </div>
     </div>
   </div>
 </div>

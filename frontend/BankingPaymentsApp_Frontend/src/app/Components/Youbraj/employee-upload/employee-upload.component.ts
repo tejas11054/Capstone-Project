@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientRegisterService } from '../../../Services/client.service';
 import { EmployeeService } from '../../../Services/employee.service';
@@ -14,6 +14,7 @@ export class EmployeeUploadComponent implements OnInit {
   csvFile!: File;
   updateCSVFile!: File;
   userId!: number;
+  @Output() dataChanged = new EventEmitter<void>();
   constructor(
     private route: ActivatedRoute,
     private clientSvc: ClientRegisterService,
@@ -50,7 +51,7 @@ export class EmployeeUploadComponent implements OnInit {
   uploadCSV() {
     if (!this.csvFile) { alert('No CSV file selected.'); return; }
     this.employeeSvc.uploadCSV(this.csvFile).subscribe({
-      next: (res: string) => { alert(res); },
+      next: (res: string) => { alert(res); this.dataChanged.emit()},
       error: (err) => { console.error(err); alert('Failed to upload CSV.'); }
     });
   }
@@ -62,7 +63,7 @@ export class EmployeeUploadComponent implements OnInit {
   uploadUpdateCSVByClient() {
     if (!this.csvFile) { alert('No CSV file selected.'); return; }
     this.employeeSvc.uploadUpdateCSVByClient(this.csvFile, this.userId).subscribe({
-      next: (res: string) => { alert(res); },
+      next: (res: string) => { alert(res); this.dataChanged.emit()},
       error: (err) => { console.error(err); alert('Failed to update employees via CSV.'); }
     });
   }

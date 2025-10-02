@@ -397,6 +397,37 @@ namespace BankingPaymentsApp_API.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BankingPaymentsApp_API.Models.Query", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Response")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Queries");
+                });
+
             modelBuilder.Entity("BankingPaymentsApp_API.Models.SalaryDisbursement", b =>
                 {
                     b.Property<int>("SalaryDisbursementId")
@@ -487,6 +518,10 @@ namespace BankingPaymentsApp_API.Migrations
 
                     b.Property<int?>("SalaryDisbursementId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ToFrom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TransactionTypeId")
                         .HasColumnType("int");

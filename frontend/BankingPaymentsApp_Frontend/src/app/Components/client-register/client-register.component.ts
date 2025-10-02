@@ -91,7 +91,7 @@ export class ClientRegisterComponent {
   }
 
   fetchBanks(){
-    this.bankSvc.getAllBanks().subscribe((data)=>{
+    this.bankSvc.getAllBanks("").subscribe((data)=>{
       console.log(data);
       this.banks = data;
     })

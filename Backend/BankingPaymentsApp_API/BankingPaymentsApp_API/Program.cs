@@ -53,6 +53,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<ISalaryDisbursementDetailsRepository, SalaryDisbursementDetailsRepository>();
             builder.Services.AddScoped<IEmailRepository, EmailRepository>();
             builder.Services.AddScoped<IBankRepository, BankRepository>();
+            builder.Services.AddScoped<IQueryRepository, QueryRepository>();
 
 
             //Adding Services
@@ -72,6 +73,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddScoped<IBankService, BankService>();
             builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             builder.Services.AddScoped<IEmailService, EmailService>();
+            builder.Services.AddScoped<IQueryService, QueryService>();
 
             builder.Services.Configure<RecaptchaSettings>(
                 builder.Configuration.GetSection("RecaptchaSettings")

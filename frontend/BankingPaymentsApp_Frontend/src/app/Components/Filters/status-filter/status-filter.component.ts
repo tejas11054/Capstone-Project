@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class StatusFilterComponent {
   filterForm!: FormGroup;
 
+  @Input() title:string = "Status";
   @Input() statusOptions: { id: number; name: string }[] = [];
   @Output() statusFilter = new EventEmitter<{ paymentStatusId: string }>()
   constructor(private fb: FormBuilder) { }

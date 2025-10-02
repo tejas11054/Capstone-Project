@@ -1,0 +1,110 @@
+.user-query-section {
+  background: #12101b;
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.user-query-section .section-header h2 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.user-query-section .section-header p {
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.query-form {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.query-form .form-group {
+  position: relative;
+  width: 100%;
+}
+
+.query-form .form-group input,
+.query-form .form-group textarea {
+  width: 100%;
+  padding: 1.2rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #3c3a4a;
+  background: #1f1c2f;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.4s;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.query-form .form-group input:focus,
+.query-form .form-group textarea:focus {
+  border-color: #7a5af8;
+  box-shadow: 0 0 20px rgba(122, 90, 248, 0.5);
+  outline: none;
+  background: #2a283b;
+}
+
+.query-form .form-group label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background: transparent;
+  padding: 0 0.2rem;
+}
+
+.query-form .form-group input:focus + label,
+.query-form .form-group textarea:focus + label,
+.query-form .form-group input:not(:placeholder-shown) + label,
+.query-form .form-group textarea:not(:placeholder-shown) + label {
+  top: -0.6rem;
+  left: 0.8rem;
+  font-size: 0.85rem;
+  color: #7a5af8;
+  text-shadow: 0 0 8px rgba(122, 90, 248, 0.6);
+  background: #12101b;
+}
+
+.query-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.query-form .submit-btn {
+  background: linear-gradient(135deg, #7a5af8, #6a49e6);
+  color: #fff;
+  width: 80%;
+  padding: 1.2rem 2rem;
+  margin-left: 0.8rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.4s;
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.3);
+}
+
+.query-form .submit-btn:hover {
+  background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(122, 90, 248, 0.6);
+}

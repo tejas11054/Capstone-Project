@@ -25,6 +25,7 @@ namespace BankingPaymentsApp_API.Repositories
                              .Include(cu => cu.Employees)
                              .Include(cu => cu.BankUser)
                              .Include(cu => cu.Documents)
+                             .Include(cu=>cu.Bank)
                              .AsQueryable();
         }
 

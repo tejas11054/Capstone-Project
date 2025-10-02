@@ -53,6 +53,9 @@ export class TransactionComponent {
     this.transactionSvc.getAllTransaction(params).subscribe((data) => {
       console.log(data);
       this.transactions = data;
+      let credit = data.filter(t=>t.transactionTypeId==1).reduce((sum, t) => sum + t.amount, 0);
+      let debit = data.filter(t=>t.transactionTypeId==2).reduce((sum, t) => sum + t.amount, 0);
+      this.totalTransactionAmount = credit - debit;
     },
       (error) => {
         console.log(error);
@@ -93,10 +96,11 @@ export class TransactionComponent {
     // this.filters.payeeAccountNumber = account.payeeAccountNumber;
     console.log(this.filters);
     if (account.payeeAccountNumber !== null) {
-      this.filters.payeeAccountNumber = account.payeeAccountNumber;
+      this.filters.toFrom = account.payeeAccountNumber;
     } else {
-      delete this.filters.payeeAccountNumber; // ✅ remove old value
+      delete this.filters.toFrom; // ✅ remove old value
     }
+    console.log(this.filters);
 
     const params = new URLSearchParams(this.filters).toString();
     this.fetchTransactions(params);
@@ -125,7 +129,7 @@ export class TransactionComponent {
   }
 
   onStatusFilter(status: { paymentStatusId: string }) {
-    this.filters.paymentStatusId = status.paymentStatusId;
+    this.filters.transactionTypeId = status.paymentStatusId;
 
     const params = new URLSearchParams(this.filters).toString();
     this.fetchTransactions(params);

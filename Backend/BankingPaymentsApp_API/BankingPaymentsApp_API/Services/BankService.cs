@@ -1,4 +1,5 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,6 +59,21 @@ namespace BankingPaymentsApp_API.Services
         public async Task DeleteById(int id)
         {
             await _bankRepository.DeleteById(id);
+        }
+
+        public async Task<List<BankUsersPerBankDTO>> GetUsersByBank()
+        {
+            var banks =  _bankRepository.GetAll();
+            var result = banks.Select(b => new BankUsersPerBankDTO
+            {
+                BankId = b.BankId,
+                BankName = b.BankName,
+                BankUsers = b.Users.OfType<BankUser>().ToList(),
+                ClientUsers = b.Users.OfType<ClientUser>().ToList()
+            }).ToList();
+
+            return result;
+
         }
     }
 }

@@ -75,8 +75,14 @@ export class BeneficiaryComponent {
   }
 
   onAccountFilter(account: { payeeAccountNumber: string | null }) {
-    this.filters.accountNumber = account.payeeAccountNumber;
     console.log(this.filters);
+    if (account.payeeAccountNumber !== null) {
+      this.filters.accountNumber = account.payeeAccountNumber;
+    } else {
+      console.log("Before delete:", this.filters);
+      delete this.filters.accountNumber;
+      console.log("After delete:", this.filters); // ✅ remove old value
+    }
 
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllBeneficiaries(params);

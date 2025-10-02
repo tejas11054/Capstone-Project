@@ -1,32 +1,49 @@
-<div class="container my-4 documents-section">
-  <h2 class="section-title">System Logs</h2>
+<div class="mt-4 px-3 w-100">
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">System Logs</li>
+    </ol>
+  </nav>
 
-  <div class="logs-list">
-    <table class="doc-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>File Name</th>
-          <th>Created On</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let log of logs; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ log.fileName }}</td>
-          <td>{{ log.createdOn }}</td>
-          <td>
-            <button (click)="downloadLog(log.fileName)">
-              <i class="fas fa-download"></i> Download
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold mb-0">SYSTEM LOGS</h5>
+  </div>
 
-    <div *ngIf="logs.length === 0" class="no-data">
-      No log files found.
+  <hr>
+  <div class="mb-3 d-flex flex-column flex-wrap gap-2">
+    <div ngbDropdown class="d-inline-block">
+      <div class="mb-3  d-flex justify-content-start flex-wrap gap-2">
+        <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
+      </div>
+    </div>
+    <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">
+      <table class="table table-hover align-middle small mb-0" style="min-width: 800px;">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>File Name</th>
+            <th>Created On</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let log of logs; index as i">
+            <td>{{ i + 1 }}</td>
+            <td class="text-truncate" style="max-width: 250px;">{{ log.fileName }}</td>
+            <td>{{ log.createdOn | date:'short' }}</td>
+            <td>
+              <button class="btn btn-sm btn-create-payment" (click)="downloadLog(log.fileName)">
+                <i class="bi bi-download me-1"></i> Download
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="logs.length === 0" class="text-center p-3 text-muted">
+        No log files found.
+      </div>
     </div>
   </div>
 </div>

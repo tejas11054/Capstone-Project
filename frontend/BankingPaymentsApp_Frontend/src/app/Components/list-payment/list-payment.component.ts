@@ -30,7 +30,11 @@ export class ListPaymentComponent implements OnInit {
   filters: any = {};
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
   selectedPayment: any = null;
-  role!:string | null;
+  role!: string | null;
+  totalPaymentAmount!:number;
+  pending!:number;
+  approved!:number;
+  rejected!:number;
 
   statusOptions = [
     { id: 1, name: 'Approved' },
@@ -38,19 +42,19 @@ export class ListPaymentComponent implements OnInit {
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private auth:AuthService,private paymentSvc: PaymentService, private fb: FormBuilder) { }
+  constructor(private auth: AuthService, private paymentSvc: PaymentService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const user = this.auth.getLoggedInUser();
     const role = this.auth.getUserRole();
     console.log(role);
-    if(role == "CLIENT_USER"){
+    if (role == "CLIENT_USER") {
       console.log("helo")
       console.log(user?.userId)
       this.role = role;
-      this.filters.clientId =  user?.userId;
+      this.filters.clientId = user?.userId;
     }
-    this.role =  role;
+    this.role = role;
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllPayments(params);
   }
@@ -61,6 +65,10 @@ export class ListPaymentComponent implements OnInit {
       // const pendingPayments = data.filter(e => e.paymentStatusId == 3);
       // this.payments = pendingPayments;
       this.payments = data;
+      this.totalPaymentAmount = data.reduce((sum,p)=>sum+p.amount,0);
+      this.approved = data.filter(p=>p.paymentStatusId==1).length;
+      this.rejected = data.filter(p=>p.paymentStatusId==2).length;
+      this.pending = data.filter(p=>p.paymentStatusId==3).length;
     },
       error => console.log(error)
     )
@@ -134,7 +142,9 @@ export class ListPaymentComponent implements OnInit {
     if (account.payeeAccountNumber !== null) {
       this.filters.payeeAccountNumber = account.payeeAccountNumber;
     } else {
-      delete this.filters.payeeAccountNumber; // ✅ remove old value
+      console.log("Before delete:", this.filters);
+      delete this.filters.payeeAccountNumber;
+      console.log("After delete:", this.filters); // ✅ remove old value
     }
 
     const params = new URLSearchParams(this.filters).toString();
@@ -142,9 +152,10 @@ export class ListPaymentComponent implements OnInit {
   }
 
   fetchById(value: { id: number }) {
-    if (value.id == 0) {
+    if (value.id == 0 || value.id == null) {
       const params = new URLSearchParams(this.filters).toString();
       this.fetchAllPayments(params);
+      return;
     }
 
     this.paymentSvc.getPaymentById(value.id).subscribe((data) => {
@@ -179,7 +190,7 @@ export class ListPaymentComponent implements OnInit {
     const doc = new jsPDF();
     doc.text('Payments Report', 14, 16);
 
-    const tableColumn = ['#', 'Payment ID', 'Client Name', 'Paid To', 'status','amount','createdAt'];
+    const tableColumn = ['#', 'Payment ID', 'Client Name', 'Paid To', 'status', 'amount', 'createdAt'];
     const tableRows: any[] = [];
 
     this.payments.forEach((t, i) => {

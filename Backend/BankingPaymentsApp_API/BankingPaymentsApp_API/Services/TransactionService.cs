@@ -13,7 +13,7 @@ namespace BankingPaymentsApp_API.Services
             _transactionRepository = transactionRepository;
         }
 
-        public async Task<IEnumerable<Transaction>> GetAll(int? clientId,int? transactionId, int? transactionTypeId, DateTime? date)
+        public async Task<IEnumerable<Transaction>> GetAll(int? clientId, int? transactionId, int? transactionTypeId, DateTime? createdFrom, DateTime? createdTo, double? minAmount, double? maxAmount,string? toFrom)
         {
             var query = _transactionRepository.GetAll();
 
@@ -28,10 +28,20 @@ namespace BankingPaymentsApp_API.Services
             if (transactionTypeId.HasValue)
                 query = query.Where(t => t.TransactionTypeId == transactionTypeId.Value);
 
-            if (date.HasValue)
-            {
-                query = query.Where(t => t.CreatedAt.Date == date.Value.Date);
-            }
+            if (minAmount.HasValue)
+                query = query.Where(p => p.Amount >= minAmount.Value);
+
+            if (maxAmount.HasValue)
+                query = query.Where(p => p.Amount <= maxAmount.Value);
+
+            if (createdFrom.HasValue)
+                query = query.Where(p => p.CreatedAt.Date >= createdFrom.Value.Date);
+
+            if (createdTo.HasValue)
+                query = query.Where(p => p.CreatedAt.Date <= createdTo.Value.Date);
+
+            if (!string.IsNullOrEmpty(toFrom))
+                query = query.Where(p => p.ToFrom.Contains(toFrom));
 
             return await query.ToListAsync();
         }

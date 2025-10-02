@@ -1,0 +1,21 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* adjust spacing */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* landing.component.css */
+.landing-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff; /* or whatever background */
+  margin: 0;
+  padding: 0;
+}

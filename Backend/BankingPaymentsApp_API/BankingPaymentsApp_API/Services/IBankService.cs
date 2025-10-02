@@ -1,4 +1,5 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 
 namespace BankingPaymentsApp_API.Services
 {
@@ -17,5 +18,6 @@ namespace BankingPaymentsApp_API.Services
         public Task<Bank?> Update(Bank bank);
 
         public Task DeleteById(int id);
+        public Task<List<BankUsersPerBankDTO>> GetUsersByBank();
     }
 }

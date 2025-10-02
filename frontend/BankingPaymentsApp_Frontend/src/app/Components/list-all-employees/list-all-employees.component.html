@@ -17,14 +17,15 @@
     <div ngbDropdown class="d-inline-block">
       <div class="mb-3 d-flex flex-wrap gap-2 ">
         <!-- Date and Time Filter -->
-        <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
-        <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter>
+        <!-- <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter> -->
+        <app-amount-filter (amountFilter)="onAmountFilter($event)" [title]="'Salary'"></app-amount-filter>
         <!-- <app-status-filter [statusOptions]="statusOptions" (statusFilter)="onStatusFilter($event)"></app-status-filter> -->
         <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
         <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
+        <app-boolean-filter [statusOptions]="statusOptions" (booleanFilter)="onBooleanFilter($event)"></app-boolean-filter>
         <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>
-        <app-employee-upload></app-employee-upload>
-        <button class="btn btn-sm btn-create-payment" (click)="downloadPDF()">
+        <app-employee-upload (dataChanged)="reloadData()"></app-employee-upload>
+        <button class=" btn btn-sm btn-create-payment" (click)="downloadPDF()">
           <i class="fas fa-file-pdf"></i> Download PDF
         </button>
       </div>
@@ -70,9 +71,9 @@
               {{ employee.clientUser?.userName }}
             </td>
             <td>
-              <button class="btn btn-sm btn-primary me-1" (click)="viewEmployee(employee)">View</button>
-              <button class="btn btn-sm btn-warning me-1" (click)="editEmployee(employee)">Edit</button>
-              <button class="btn btn-sm btn-danger" (click)="deleteEmployee(employee.employeeId)">Delete</button>
+              <!-- <button class="btn btn-sm btn-primary me-1" (click)="viewEmployee(employee)">View</button>
+              <button class="btn btn-sm btn-warning me-1" (click)="editEmployee(employee)">Edit</button> -->
+              <button *ngIf="employee.isActive" class="btn btn-sm btn-danger" (click)="deleteEmployee(employee.employeeId)">Delete</button>
             </td>
           </tr>
         </tbody>

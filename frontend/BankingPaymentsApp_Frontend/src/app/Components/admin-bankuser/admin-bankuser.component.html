@@ -1,44 +1,90 @@
-<div class="container my-4 documents-section">
-  <h2 class="section-title">Bank Users</h2>
+<div class="mt-4 px-3 w-100">
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Bank Users</li>
+    </ol>
+  </nav>
+  <div class="d-flex gap-3 flex-wrap mb-3">
+    <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+      <div class="text-muted small">Total BankUsers</div>
+      <div class="fw-bold fs-5"> {{totalBankUser ?? 0}}</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+      <div class="text-muted small">Pending</div>
+      <div class="fw-bold fs-5 text-warning">{{pending ?? 0}}</div>
+    </div>
+    <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+      <div class="text-muted small">Approved</div>
+      <div class="fw-bold fs-5 text-success">{{approved ?? 0}}</div>
+    </div>
+  </div>
 
-  <div class="employees-list">
-    <table class="doc-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Full Name</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Branch</th>
-          <th>Active</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bank of banks; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ bank.userFullName }}</td>
-          <td>{{ bank.userName }}</td>
-          <td>{{ bank.userEmail }}</td>
-          <td>{{ bank.userPhone }}</td>
-          <td>{{ bank.branch }}</td>
-          <td>{{ bank.isActive ? 'Yes' : 'No' }}</td>
-          <td>
-            <button
-              (click)="approveBankUser(bank.userId)"
-              [disabled]="processing[bank.userId || 0]">
-              {{ processing[bank.userId || 0] ? 'Processing...' : 'Approve' }}
-            </button>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold mb-0">BANK USERS</h5>
+  </div>
 
-            <button (click)="rejectBankUser(bank)">Reject</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <hr>
 
-    <div *ngIf="banks.length === 0" class="no-data">
-      No bank users found.
+  <div class="mb-3 d-flex flex-wrap gap-2">
+    <div ngbDropdown class="d-inline-block">
+      <div class="mb-3 d-flex flex-wrap gap-2">
+        <!-- Date and Time Filter -->
+        <app-date-filter (dateFilter)="onDateFilter($event)"></app-date-filter>
+        <!-- <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter> -->
+        <app-status-filter [title]="'Bank'" [statusOptions]="statusOptions"
+          (statusFilter)="onStatusFilter($event)"></app-status-filter>
+        <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter>
+        <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
+        <!-- <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter> -->
+        <button class="btn btn-create-payment" (click)="downloadPDF()">
+          <i class="fas fa-file-pdf"></i> Download PDF
+        </button>
+      </div>
+    </div>
+    <div class="table-wrapper bg-white rounded shadow-sm" style="overflow-x: auto;">
+      <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Bank</th>
+            <th>Branch</th>
+            <th>Active</th>
+            <th *ngIf="pending>0">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bank of banks; index as i">
+            <td>{{ i + 1 }}</td>
+            <td class="text-truncate" style="max-width: 160px;">{{ bank.userFullName }}</td>
+            <td class="text-truncate" style="max-width: 140px;">{{ bank.userName }}</td>
+            <td class="text-truncate" style="max-width: 200px;">{{ bank.userEmail }}</td>
+            <td class="text-truncate" style="max-width: 140px;">{{ bank.userPhone }}</td>
+            <td class="text-truncate" style="max-width: 140px;">{{ bank?.bank?.bankName }}</td>
+            <td class="text-truncate" style="max-width: 140px;">{{ bank.branch }}</td>
+            <td>{{ bank.isActive ? 'Yes' : 'No' }}</td>
+            <td *ngIf="!bank.isActive">
+              <button *ngIf="!bank.isActive" class="btn btn-sm btn-success me-1" (click)="approveBankUser(bank)"
+                [disabled]="processing[bank.userId || 0]">
+                {{ processing[bank.userId || 0] ? 'Processing...' : 'Approve' }}
+              </button>
+              <button *ngIf="!bank.isActive" class="btn btn-sm btn-danger" (click)="openFormModal(bank)">
+                Reject
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="banks.length === 0" class="text-center p-3 text-muted">
+        No bank users found.
+      </div>
     </div>
   </div>
 </div>
+<app-reject-modal #rejectModal [Parentid]="selectedPayment?.id"
+  (formSubmit)="handleFormSubmit($event)"></app-reject-modal>

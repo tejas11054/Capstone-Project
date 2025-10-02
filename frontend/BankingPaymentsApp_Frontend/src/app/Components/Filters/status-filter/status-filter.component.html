@@ -1,6 +1,6 @@
 <div ngbDropdown class="d-inline-block">
     <button class="btn btn-outline-dark btn-sm rounded-pill" ngbDropdownToggle>
-        + Status
+        + {{title}}
     </button>
     <div ngbDropdownMenu class="p-3 shadow" style="min-width: 300px;">
         <!-- Place your filter form/content here -->
@@ -8,7 +8,7 @@
             <div class="mb-3">
                 <label class="form-label small">Status</label>
                 <select formControlName="paymentStatusId" class="form-select form-select-sm">
-                    <option value="" disabled hidden>Select a status</option>
+                    <option value="" disabled hidden>Select a {{title}}</option>
                     <option *ngFor="let status of statusOptions" [value]="status.id">
                         {{ status.name }}
                     </option>

@@ -7,27 +7,20 @@
     </nav>
     <div class="d-flex gap-3 flex-wrap mb-3">
         <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
-            <div class="text-muted small">Total Payments</div>
-            <div class="fw-bold fs-5">₹ 15,000</div>
+            <div class="text-muted small">Total Clients</div>
+            <div class="fw-bold fs-5">{{clients.length ?? 0}}</div>
         </div>
         <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
             <div class="text-muted small">Pending</div>
-            <div class="fw-bold fs-5 text-warning">3</div>
+            <div class="fw-bold fs-5 text-warning">{{pending ?? 0}}</div>
         </div>
         <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
             <div class="text-muted small">Approved</div>
-            <div class="fw-bold fs-5 text-success">5</div>
-        </div>
-        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
-            <div class="text-muted small">Declined</div>
-            <div class="fw-bold fs-5 text-danger">5</div>
+            <div class="fw-bold fs-5 text-success">{{approved ?? 0}}</div>
         </div>
     </div>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="fw-bold mb-0">ALL PAYMENTS</h5>
-        <button class="btn btn-create-payment" routerLink="/payment">
-            <i class="bi bi-plus-lg me-2"></i> Create payment
-        </button>
+        <h5 class="fw-bold mb-0">ALL CLIENTS</h5>
     </div>
     <hr>
 

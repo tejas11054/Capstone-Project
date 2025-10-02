@@ -1,0 +1,198 @@
+/* HERO SECTION BASE */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  padding: 6rem 3rem;
+  color: #fff;
+  background: #1d1b2a;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section .hero-content {
+  max-width: 600px;
+  z-index: 2;
+}
+
+/* NEW FEATURE TAG */
+.hero-section .hero-content .new-feature {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 0.3rem 1rem;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #7a5af8;
+  letter-spacing: 0.5px;
+}
+
+/* HEADLINE */
+.hero-section .hero-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hero-section .hero-content h1 span {
+  color: #7a5af8;
+  text-shadow: 0 0 15px rgba(122, 90, 248, 0.7);
+}
+
+/* DESCRIPTION */
+.hero-section .hero-content p {
+  font-size: 1.25rem;
+  color: #ccc;
+  margin: 1.5rem 0 2.5rem;
+  line-height: 1.6;
+}
+
+/* BUTTONS */
+.hero-section .hero-content .buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.hero-section .hero-content .buttons .start-btn,
+.hero-section .hero-content .buttons .demo-btn {
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.hero-section .hero-content .buttons .start-btn {
+  background: linear-gradient(135deg, #7a5af8, #6a49e6);
+  color: #fff;
+  border: none;
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.4);
+}
+
+.hero-section .hero-content .buttons .start-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #6a49e6, #7a5af8);
+  box-shadow: 0 8px 20px rgba(122, 90, 248, 0.6);
+}
+
+.hero-section .hero-content .buttons .demo-btn {
+  background: transparent;
+  border: 1px solid #5a5a5a;
+  color: #ccc;
+}
+
+.hero-section .hero-content .buttons .demo-btn:hover {
+  background: #2a283b;
+  color: #fff;
+  border-color: #7a5af8;
+}
+
+/* STATS */
+.hero-section .hero-content .stats {
+  display: flex;
+  justify-content: flex-start;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.hero-section .hero-content .stats .stat-item h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(122, 90, 248, 0.6);
+}
+
+.hero-section .hero-content .stats .stat-item p {
+  font-size: 0.95rem;
+  color: #aaa;
+  margin: 0;
+}
+
+
+/* HERO IMAGE */
+.hero-section .hero-image {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Subtle glowing moving orbs */
+.hero-section .hero-image::before,
+.hero-section .hero-image::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: floatOrb 12s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.hero-section .hero-image::before {
+  width: 280px;
+  height: 280px;
+  background: #7a5af8;
+  top: -50px;
+  left: -80px;
+}
+
+.hero-section .hero-image::after {
+  width: 220px;
+  height: 220px;
+  background: #49c6e6;
+  bottom: -40px;
+  right: -60px;
+  animation-delay: 4s;
+}
+
+/* Image card */
+.hero-section .hero-image img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: floaty 6s ease-in-out infinite;
+}
+
+/* ANIMATIONS */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.02); }
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, -30px) scale(1.1); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-section .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-section .hero-content .stats {
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .hero-section .hero-image {
+    margin-top: 3rem;
+  }
+}

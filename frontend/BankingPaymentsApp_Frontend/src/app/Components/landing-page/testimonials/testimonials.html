@@ -1,0 +1,17 @@
+<section class="testimonials-section" id="testimonials">
+  <div class="section-header">
+    <h2>What Our Clients Say</h2>
+    <p>See how our corporate banking platform streamlines payments, salary disbursements, and client management.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card" *ngFor="let query of queries">
+      <div class="author-img-container">
+        <img src="assets/images/image-1.png" alt="{{ query.name }}" class="author-img">
+      </div>
+      <p class="quote">"{{ query.message }}"</p>
+      <div class="author-info">
+        <h4>{{ query.name }}</h4>
+      </div>
+    </div>
+  </div>
+</section>

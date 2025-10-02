@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
 import { BankUser } from '../Models/BankUser';
 import { RegisterBankUserDTO } from '../DTO/RegisterBankUserDTO';
+import { Bank } from '../Models/Bank';
+import { RejectDTO } from '../DTO/RejectDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,8 @@ export class BankRegisterService {
   constructor(private http: HttpClient) { }
 
   // Get all bank users
-  getAllBankUsers(): Observable<BankUser[]> {
-    return this.http.get<BankUser[]>(this.baseUrl);
+  getAllBankUsers(queryParams: string): Observable<BankUser[]> {
+    return this.http.get<BankUser[]>(this.baseUrl + `?${queryParams}`);
   }
 
   // Get one bank user by id
@@ -23,17 +25,21 @@ export class BankRegisterService {
   }
 
   approveBankUser(userId: number, bankUser: BankUser) {
-  return this.http.put(`${this.baseUrl}/approve/${userId}`, bankUser);
-}
+    return this.http.put(`${this.baseUrl}/approve/${userId}`, bankUser);
+  }
 
 
   // Reject a bank user
-  rejectBankUser(bankId: number, reason: string): Observable<string> {
-    return this.http.put(`${this.baseUrl}/reject/${bankId}`, { reason }, { responseType: 'text' });
+  rejectBankUser(reject: RejectDTO): Observable<string> {
+    return this.http.put(`${this.baseUrl}/reject/${reject.id}`, { reject }, { responseType: 'text' });
   }
 
   // Optional: register new bank user
   registerBankUser(user: RegisterBankUserDTO): Observable<any> {
     return this.http.post<any>(this.baseUrl, user);
+  }
+
+  getAllBanks(): Observable<Bank[]> {
+    return this.http.get<Bank[]>(`${this.baseUrl}`);
   }
 }

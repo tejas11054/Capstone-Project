@@ -40,11 +40,11 @@ namespace BankingPaymentsApp_API.Controllers
             _logger.LogInformation("GetAllBankUsers started!");
             var bankUsers = await _service.GetAll(fullName, userName, email, phone, roleId, bankId, branch, joiningFrom, joiningTo);
             if (!bankUsers.Any())
-                return NotFound("No Bank Users found!");
+                return Ok(bankUsers);
 
-            var response = bankUsers.Select(u => _mapper.Map<BankUserResponseDTO>(u));
+            //var response = bankUsers.Select(u => _mapper.Map<BankUserResponseDTO>(u));
             _logger.LogInformation($"Found Bank user");
-            return Ok(response);
+            return Ok(bankUsers);
         }
 
         // GET: api/BankUser/{id}

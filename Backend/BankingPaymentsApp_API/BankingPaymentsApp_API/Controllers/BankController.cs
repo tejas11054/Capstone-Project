@@ -35,7 +35,7 @@ namespace BankingPaymentsApp_API.Controllers
             if (!banks.Any())
             {
                 _logger.LogWarning("No Banks Found");
-                return NotFound("No Banks found!");
+                return Ok(banks);
             }
             _logger.LogInformation($"GetAllAccounts succeeded. Returned {banks.Count()} accounts");
             return Ok(banks);
@@ -120,6 +120,20 @@ namespace BankingPaymentsApp_API.Controllers
             _logger.LogInformation($"bank with id {id} was Deleted Sucessfully");
 
             return Ok("bank deleted successfully!");
+        }
+
+        [HttpGet("users")]
+        public async Task<IActionResult> UsersPerBank()
+        {
+            _logger.LogInformation($"UserPerBank started");
+            List<BankUsersPerBankDTO> usersPerBank = await _service.GetUsersByBank();
+            if (usersPerBank == null)
+            {
+                _logger.LogInformation($" no users found");
+                return NotFound();
+            }
+            _logger.LogInformation($"UserPerBank completed!");
+            return Ok(usersPerBank);
         }
     }
 }

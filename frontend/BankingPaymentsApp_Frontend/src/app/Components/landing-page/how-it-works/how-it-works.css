@@ -1,0 +1,80 @@
+.how-it-works-section {
+  padding: 5rem 2rem;
+  background: #1d1b2a;
+  text-align: center;
+}
+
+.how-it-works-section .section-header h2 {
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.how-it-works-section .section-header p {
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+.how-it-works-section .steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.how-it-works-section .steps-grid .step-card {
+  background: #2a283b;
+  border-radius: 12px;
+  padding: 3rem 2rem 2rem; /* added top padding for step number */
+  text-align: center; /* center all content */
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.how-it-works-section .steps-grid .step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Step number above the card content */
+.how-it-works-section .steps-grid .step-card .step-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #7a5af8;
+  margin-bottom: 1rem;
+}
+
+.how-it-works-section .steps-grid .step-card:hover .icon {
+  transform: scale(1.2);
+  color: #6a49e6;
+}
+
+.how-it-works-section .steps-grid .step-card h3 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.how-it-works-section .steps-grid .step-card p {
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.how-it-works-section .create-account-btn {
+  background: #7a5af8;
+  color: #fff;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  margin-top: 3rem;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.how-it-works-section .create-account-btn:hover {
+  background: #6a49e6;
+  transform: translateY(-2px);
+}
+

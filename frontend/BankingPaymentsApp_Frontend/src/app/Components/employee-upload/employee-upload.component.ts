@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EmployeeService } from '../../Services/employee.service';
@@ -14,6 +14,7 @@ export class EmployeeUploadComponent {
   selectedFile: File | null = null;
   message: string = '';
   uploading: boolean = false;
+  @Output() dataChanged = new EventEmitter<void>();
 
   constructor(private employeeService: EmployeeService) { }
 
@@ -36,6 +37,7 @@ export class EmployeeUploadComponent {
         alert(res); // 
         this.uploading = false;
         this.selectedFile = null;
+        this.dataChanged.emit();
       },
       error: (err: any) => {
         console.error('Upload error:', err);

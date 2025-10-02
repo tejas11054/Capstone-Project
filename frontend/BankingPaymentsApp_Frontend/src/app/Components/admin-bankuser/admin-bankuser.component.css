@@ -1,101 +1,84 @@
-/* ---------------- Body & Container ---------------- */
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #12101b;
+.table {
+  font-size: 0.85rem; /* smaller & cleaner text */
+  margin-bottom: 0;
+}
+
+.table th {
+  font-weight: 500;
+  color: #555;
+  white-space: nowrap;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 0.35em 0.6em;
+}
+
+.btn-outline-dark {
+  font-size: 0.75rem;
+  border-radius: 50rem; /* pill shape */
+  padding: 2px 10px;
+}
+
+.btn-outline-dark:hover {
+  background-color: #f2f2f2; /* light grey */
+  color: #333;              /* keep text dark */
+  border-color: #bbb;       /* subtle border */
+}
+
+.btn-sm {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+}
+
+.btn-outline-danger {
+  border: 1px solid #dc3545;
+  background-color: #fff;
+  color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
   color: #fff;
-  padding: 1rem;
 }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 1rem;
+.table td, 
+.table th {
+  white-space: nowrap;     /* prevent wrapping */
+  overflow: hidden;        /* hide overflow */
+  text-overflow: ellipsis; /* add ... */
+  max-width: 180px;        /* control width */
 }
 
-/* ---------------- Section Title ---------------- */
-.section-title {
-  color: white;
-  font-weight: 700;
-  margin-top: 20px;
-  margin-bottom: 2rem;
-  letter-spacing: 0.5px;
-  text-align: center;
+.table-responsive {
+  border-radius: 0.5rem;
 }
 
-/* ---------------- Bank Users Table ---------------- */
-.employees-list {
-  overflow-x: auto;
-  margin-top: 1.5rem;
-  padding: 0.5rem;
-}
-
-.doc-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #1f1c2f;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.2);
-  margin-bottom: 2rem;
-}
-
-.doc-table th,
-.doc-table td {
-  padding: 1rem 1.2rem;
-  text-align: center;
-  color: #fff;
-  border-bottom: 1px solid #3c3a4a;
-}
-
-.doc-table th {
-  background: #2a283b;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-}
-
-.doc-table tr:hover {
-  background: rgba(122, 90, 248, 0.1);
-  transform: translateY(-1px);
-  transition: all 0.2s ease;
-}
-
-.doc-table tbody tr:nth-child(even) {
-  background: #232030;
-}
-
-.doc-table tbody tr:nth-child(odd) {
-  background: #1f1c2f;
-}
-
-/* ---------------- Buttons ---------------- */
-.doc-table button {
-  background: #7a5af8;
+.btn-create-payment {
+  background-color: #635bff;
   color: #fff;
   border: none;
-  border-radius: 50px;
-  padding: 0.35rem 0.6rem;
-  font-size: 0.85rem;
-  cursor: pointer;
-  margin: 0 2px;
-  transition: all 0.2s ease;
+  padding: 4px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.doc-table button:hover {
-  background: linear-gradient(135deg, #6a49e6, #7a5af8);
-  transform: translateY(-1px);
+.btn-create-payment:hover {
+  background-color: #5146ea;
+  color: #fff;
 }
 
-.doc-table button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.breadcrumb a {
+  text-decoration: none;
+  color: inherit;   /* inherit text color */
 }
 
-/* ---------------- No Data Text ---------------- */
-.no-data {
-  text-align: center;
-  color: #ccc;
-  margin-top: 1rem;
-  font-style: italic;
+.breadcrumb a:hover {
+  text-decoration: underline; /* subtle hover effect */
 }
