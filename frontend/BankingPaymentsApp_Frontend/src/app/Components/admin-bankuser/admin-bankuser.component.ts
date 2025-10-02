@@ -29,9 +29,16 @@ export class AdminComponent implements OnInit {
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
   selectedPayment: any = null;
   Banks!: any;
-  totalBankUser!:number;
-  pending!:number;
-  approved!:number;
+  totalBankUser!: number;
+  pending!: number;
+  approved!: number;
+
+  // Pagination
+  pageNumber = 1;
+  pageSize = 10;
+  totalRecords = 0;
+  totalPages = 0;
+  totalPagesArray: number[] = [];
 
   statusOptions!: { id: number, name: string }[];
 
@@ -99,8 +106,8 @@ export class AdminComponent implements OnInit {
       console.log(data);
       this.banks = data;
       this.totalBankUser = data.length;
-      this.pending = data.filter(b=>b.isActive==false).length;
-      this.approved = data.filter(b=>b.isActive==true).length;
+      this.pending = data.filter(b => b.isActive == false).length;
+      this.approved = data.filter(b => b.isActive == true).length;
     },
       (error) => {
         console.log(error);
@@ -273,7 +280,7 @@ export class AdminComponent implements OnInit {
     const doc = new jsPDF();
     doc.text('BankUsers Report', 14, 16);
 
-    const tableColumn = ['#','userId', 'Full Name', 'User Name', 'bank', 'isActive', 'branch', 'joiningdate'];
+    const tableColumn = ['#', 'userId', 'Full Name', 'User Name', 'bank', 'isActive', 'branch', 'joiningdate'];
     const tableRows: any[] = [];
 
     this.banks.forEach((t, i) => {
@@ -298,3 +305,66 @@ export class AdminComponent implements OnInit {
     doc.save(`Payments_User_${this.banks[0].userId}.pdf`);
   }
 }
+// fetchBankUsers() {
+//   this.banks = [];
+//   this.bankService.getAllBankUsers(this.pageNumber, this.pageSize).subscribe({
+//     next: (res: any) => {
+//       this.banks = res.data; // data array from backend
+//       this.totalRecords = res.totalRecords; // total records count from backend
+//       this.totalPages = Math.ceil(this.totalRecords / this.pageSize);
+//       this.totalPagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+//     },
+//     error: (err) => console.error('Error fetching bank users:', err)
+//   });
+// }
+
+// changePage(page: number) {
+//   if (page < 1 || page > this.totalPages) return;
+//   this.pageNumber = page;
+//   this.fetchBankUsers();
+// }
+
+// approveBankUser(bankUserId: number) {
+//   const bank = this.banks.find(b => b.userId === bankUserId);
+//   if (!bank) return;
+
+//   if (!confirm(`Do you really want to approve ${bank.userFullName || bank.userName}?`)) return;
+
+//   this.processing[bankUserId] = true;
+
+//   this.bankService.getBankUser(bankUserId).subscribe({
+//     next: (bankUser) => {
+//       this.bankService.approveBankUser(bankUserId, bankUser).subscribe({
+//         next: () => {
+//           this.fetchBankUsers();
+//           this.processing[bankUserId] = false;
+//         },
+//         error: () => this.processing[bankUserId] = false
+//       });
+//     },
+//     error: () => this.processing[bankUserId] = false
+//   });
+// }
+
+// rejectBankUser(bank: BankUser) {
+//   const id = bank.userId;
+//   if (!id) return;
+
+//   const reason = prompt(`Enter the reason for rejecting ${bank.userFullName || bank.userName}:`);
+//   if (!reason || reason.trim() === '') return alert('Rejection reason is required!');
+//   if (!confirm(`Do you really want to reject ${bank.userFullName || bank.userName}?`)) return;
+
+//   this.processing[id] = true;
+
+//   this.bankService.rejectBankUser(id, reason).subscribe({
+//     next: () => {
+//       alert('Bank user rejected successfully!');
+//       this.fetchBankUsers();
+//       this.processing[id] = false;
+//     },
+//     error: () => {
+//       alert('Failed to reject bank user!');
+//       this.processing[id] = false;
+//     }
+//   });
+// }

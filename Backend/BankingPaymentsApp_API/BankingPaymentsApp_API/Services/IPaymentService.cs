@@ -1,10 +1,12 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
+using System.Linq.Dynamic.Core;
 
 namespace BankingPaymentsApp_API.Services
 {
     public interface IPaymentService
     {
-        public Task<IEnumerable<Payment>> GetAll(
+        public Task<PagedResultDTO<Payment>> GetAll(
             int? clientId,
             int? payerAccountId,
             string? payerName,
@@ -15,7 +17,10 @@ namespace BankingPaymentsApp_API.Services
             DateTime? createdTo,
             int? paymentStatusId,
             DateTime? actionFrom,
-            DateTime? actionTo);
+            DateTime? actionTo,
+            int pageNumber = 1,
+            int pageSize = 10);
+
         public Task<Payment> Add(Payment payment);
         public Task<Payment?> GetById(int id);
         public Task<Payment?> Update(Payment payment);

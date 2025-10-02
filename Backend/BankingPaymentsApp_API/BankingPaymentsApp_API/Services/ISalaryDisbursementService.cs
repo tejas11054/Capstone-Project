@@ -1,16 +1,20 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 
 namespace BankingPaymentsApp_API.Services
 {
     public interface ISalaryDisbursementService
     {
-        Task<IEnumerable<SalaryDisbursement>> GetAll(int? clientId,
+        Task<PagedResultDTO<SalaryDisbursement>> GetAll(
+            int? clientId,
             decimal? minAmount,
             decimal? maxAmount,
             DateTime? disbursementFrom,
             DateTime? disbursementTo,
             int? disbursementStatusId,
-            bool? allEmployees);
+            bool? allEmployees,
+            int pageNumber = 1,
+            int pageSize = 10);
         Task<SalaryDisbursement?> GetById(int id);
         Task<SalaryDisbursement> Add(SalaryDisbursement disbursement, ICollection<int> ids);
         Task<SalaryDisbursement?> Update(SalaryDisbursement disbursement);

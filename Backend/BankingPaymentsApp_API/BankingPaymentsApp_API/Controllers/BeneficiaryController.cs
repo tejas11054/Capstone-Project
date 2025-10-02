@@ -25,21 +25,33 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Beneficiary/
         [HttpGet]
         [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
-        public async Task<IActionResult> GetAllBeneficiarys(
-            [FromQuery] int? clientId,
-            [FromQuery] string? beneficiaryName,
-            [FromQuery] string? accountNumber,
-            [FromQuery] string? bankName,
-            [FromQuery] string? ifsc)
+        public async Task<IActionResult> GetAllBeneficiaries(
+             [FromQuery] int? clientId,
+             [FromQuery] string? beneficiaryName,
+             [FromQuery] string? accountNumber,
+             [FromQuery] string? bankName,
+             [FromQuery] string? ifsc,
+             [FromQuery] int pageNumber = 1,
+             [FromQuery] int pageSize = 10)
         {
-            _logger.LogInformation("GetAllBeneficiarys started!");
+            _logger.LogInformation("GetAllBeneficiaries started!");
 
-            var beneficiaries = await _beneficiaryService.GetAll(clientId, beneficiaryName, accountNumber, bankName, ifsc);
-            if (beneficiaries.Count() == 0)
+            var pagedResult = await _beneficiaryService.GetAll(clientId, beneficiaryName, accountNumber, bankName, ifsc, pageNumber, pageSize);
+
+            if (!pagedResult.Data.Any())
                 return NotFound("No Beneficiary to display");
-            _logger.LogInformation($"{beneficiaries.Count()} displayed!");
-            return Ok(beneficiaries);
+
+            _logger.LogInformation($"beneficiaries displayed!");
+
+            return Ok(new
+            {
+                Data = pagedResult.Data,
+                pagedResult.TotalRecords,
+                pagedResult.PageNumber,
+                pagedResult.PageSize
+            });
         }
+
 
         // POST: api/Beneficiary
         [HttpPost()]

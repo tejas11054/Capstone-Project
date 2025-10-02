@@ -26,7 +26,7 @@ namespace BankingPaymentsApp_API.Services
             _bankUserService = bankUserService;
         }
 
-        public async Task<IEnumerable<ClientUser>> GetAll(
+        public async Task<PagedResultDTO<ClientUser>> GetAll(
             string? fullName,
             string? userName,
             string? email,
@@ -36,7 +36,9 @@ namespace BankingPaymentsApp_API.Services
             DateTime? dobTo,
             string? address,
             bool? kycVerified,
-            int? bankUserId)
+            int? bankUserId,
+            int pageNumber = 1,
+            int pageSize = 10)
         {
             var query = _clientUserRepository.GetAll();
 
@@ -70,7 +72,20 @@ namespace BankingPaymentsApp_API.Services
             if (bankUserId.HasValue)
                 query = query.Where(cu => cu.BankUserId == bankUserId.Value);
 
-            return await query.ToListAsync();
+            var totalRecords = await query.CountAsync();
+
+            var data = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResultDTO<ClientUser>
+            {
+                Data = data,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<ClientUser> Add(ClientUser user)

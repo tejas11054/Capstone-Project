@@ -35,9 +35,12 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] int? bankId,
             [FromQuery] string? branch,
             [FromQuery] DateTime? joiningFrom,
-            [FromQuery] DateTime? joiningTo)
+            [FromQuery] DateTime? joiningTo,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
         {
             _logger.LogInformation("GetAllBankUsers started!");
+<<<<<<< HEAD
             var bankUsers = await _service.GetAll(fullName, userName, email, phone, roleId, bankId, branch, joiningFrom, joiningTo);
             if (!bankUsers.Any())
                 return Ok(bankUsers);
@@ -45,7 +48,26 @@ namespace BankingPaymentsApp_API.Controllers
             //var response = bankUsers.Select(u => _mapper.Map<BankUserResponseDTO>(u));
             _logger.LogInformation($"Found Bank user");
             return Ok(bankUsers);
+=======
+
+            var pagedResult = await _service.GetAll(fullName, userName, email, phone, roleId, bankId, branch, joiningFrom, joiningTo, pageNumber, pageSize);
+
+            if (!pagedResult.Data.Any())
+                return NotFound("No Bank Users found!");
+
+            var response = pagedResult.Data.Select(u => _mapper.Map<BankUserResponseDTO>(u));
+
+            _logger.LogInformation($"Found {response.Count()} Bank Users");
+            return Ok(new
+            {
+                Data = response,
+                pagedResult.TotalRecords,
+                pagedResult.PageNumber,
+                pagedResult.PageSize
+            });
+>>>>>>> f4fc12053d1e5693eea840165e1e862cd38ca36e
         }
+
 
         // GET: api/BankUser/{id}
         [HttpGet("{id}")]

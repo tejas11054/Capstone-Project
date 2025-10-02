@@ -50,6 +50,12 @@ export class AdminViewBankComponent implements OnInit {
     });
   }
 
+  // changePage(page: number) {
+  //   if (page < 1 || page > this.totalPages) return;
+  //   this.pageNumber = page;
+  //   this.fetchBanks();
+  // }
+
   editBank(bank: Bank) {
     this.selectedBank = bank;
     this.bankDto = { bankName: bank.bankName, ifsc: bank.ifsc };

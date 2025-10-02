@@ -12,9 +12,9 @@ export class LogService {
   constructor(private http: HttpClient) {}
 
   // Get all logs
-  getLogs(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
-  }
+  getLogs(pageNumber: number = 1, pageSize: number = 5): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+}
 
   // Download a log file
   downloadLog(fileName: string): Observable<Blob> {

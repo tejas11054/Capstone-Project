@@ -34,20 +34,33 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] double? minBalance,
             [FromQuery] double? maxBalance,
             [FromQuery] DateTime? createdFrom,
-            [FromQuery] DateTime? createdTo)
+            [FromQuery] DateTime? createdTo,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
         {
             _logger.LogInformation("GetAllAccounts Started");
-            var accounts = await _service.GetAll(accountNumber, clientId, bankId, accountTypeId, accountStatusId,minBalance, maxBalance, createdFrom, createdTo);
-            if (!accounts.Any())
+
+            var pagedResult = await _service.GetAll(accountNumber, clientId, bankId, accountTypeId, accountStatusId,
+                                                     minBalance, maxBalance, createdFrom, createdTo, pageNumber, pageSize);
+
+            if (!pagedResult.Data.Any())
             {
                 _logger.LogWarning("No Accounts Found");
                 return NotFound("No accounts found!");
             }
 
-            var response = accounts.Select(a => _mapper.Map<AccountResponseDTO>(a));
-            _logger.LogInformation($"GetAllAccounts succeeded. Returned {accounts.Count()} accounts");
-            return Ok(response);
+            var response = pagedResult.Data.Select(a => _mapper.Map<AccountResponseDTO>(a));
+            _logger.LogInformation($"GetAllAccounts succeeded. Returned {response.Count()} accounts");
+
+            return Ok(new
+            {
+                Data = response,
+                pagedResult.TotalRecords,
+                pagedResult.PageNumber,
+                pagedResult.PageSize
+            });
         }
+
 
         // GET: api/Account/{id}
         [HttpGet("{id}")]

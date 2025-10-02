@@ -1,10 +1,11 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 
 namespace BankingPaymentsApp_API.Services
 {
     public interface IAccountService
     {
-        Task<IEnumerable<Account>> GetAll(
+        Task<PagedResultDTO<Account>> GetAll(
             string? accountNumber,
             int? clientId,
             int? bankId,
@@ -13,7 +14,9 @@ namespace BankingPaymentsApp_API.Services
             double? minBalance,
             double? maxBalance,
             DateTime? createdFrom,
-            DateTime? createdTo);
+            DateTime? createdTo,
+            int pageNumber = 1,
+            int pageSize = 10);
         Task<Account> Add(Account account);
         Task<Account?> GetById(int id);
         Task<Account?> Update(Account account);

@@ -25,6 +25,7 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] int? clientId,
             [FromQuery] int? transactionId,
             [FromQuery] int? transactionTypeId,
+<<<<<<< HEAD
             [FromQuery] double? minAmount,
             [FromQuery] double? maxAmount,
             [FromQuery] DateTime? createdFrom,
@@ -36,9 +37,26 @@ namespace BankingPaymentsApp_API.Controllers
 
             if (!transactions.Any())
                 return Ok(transactions);
+=======
+            [FromQuery] DateTime? date,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
+        {
+            var pagedResult = await _transactionService.GetAll(clientId, transactionId, transactionTypeId, date, pageNumber, pageSize);
 
-            return Ok(transactions);
+            if (!pagedResult.Data.Any())
+                return NotFound("No transactions to display.");
+>>>>>>> f4fc12053d1e5693eea840165e1e862cd38ca36e
+
+            return Ok(new
+            {
+                Data = pagedResult.Data,
+                pagedResult.TotalRecords,
+                pagedResult.PageNumber,
+                pagedResult.PageSize
+            });
         }
+
         // POST: api/Transaction
         [HttpPost]
         [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]

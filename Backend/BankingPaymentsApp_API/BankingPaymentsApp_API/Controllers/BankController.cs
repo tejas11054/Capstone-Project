@@ -28,18 +28,24 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] string? ifsc,
             [FromQuery] bool? isActive,
             [FromQuery] DateTime? createdFrom,
-            [FromQuery] DateTime? createdTo)
+            [FromQuery] DateTime? createdTo,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 5)
         {
             _logger.LogInformation("GetAllBanks Started");
-            var banks = await _service.GetAll(bankName, ifsc, isActive, createdFrom, createdTo);
-            if (!banks.Any())
+
+            var pagedResult = await _service.GetAll(bankName, ifsc, isActive, createdFrom, createdTo, pageNumber, pageSize);
+
+            if (!pagedResult.Data.Any())
             {
                 _logger.LogWarning("No Banks Found");
                 return Ok(banks);
             }
-            _logger.LogInformation($"GetAllAccounts succeeded. Returned {banks.Count()} accounts");
-            return Ok(banks);
+
+            _logger.LogInformation($"GetAllBanks succeeded. Returned {pagedResult.Data.Count()} banks");
+            return Ok(pagedResult);
         }
+
 
         // GET: api/Account/{id}
         [HttpGet("{id}")]

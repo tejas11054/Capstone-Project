@@ -18,6 +18,11 @@ export class BankRegisterService {
   getAllBankUsers(queryParams: string): Observable<BankUser[]> {
     return this.http.get<BankUser[]>(this.baseUrl + `?${queryParams}`);
   }
+  // Get paginated bank users
+  // getAllBankUsers(pageNumber: number = 1, pageSize: number = 10): Observable<any> {
+  //   return this.http.get<any>(`${this.baseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+  // }
+
 
   // Get one bank user by id
   getBankUser(userId: number): Observable<BankUser> {

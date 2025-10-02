@@ -1,4 +1,5 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,14 +14,22 @@ namespace BankingPaymentsApp_API.Services
             _transactionRepository = transactionRepository;
         }
 
+<<<<<<< HEAD
         public async Task<IEnumerable<Transaction>> GetAll(int? clientId, int? transactionId, int? transactionTypeId, DateTime? createdFrom, DateTime? createdTo, double? minAmount, double? maxAmount,string? toFrom)
+=======
+        public async Task<PagedResultDTO<Transaction>> GetAll(
+            int? clientId,
+            int? transactionId,
+            int? transactionTypeId,
+            DateTime? date,
+            int pageNumber = 1,
+            int pageSize = 10)
+>>>>>>> f4fc12053d1e5693eea840165e1e862cd38ca36e
         {
             var query = _transactionRepository.GetAll();
 
             if (clientId.HasValue)
-            {
-                query = query.Where(t=>t.Account.ClientId == clientId);
-            }
+                query = query.Where(t => t.Account.ClientId == clientId.Value);
 
             if (transactionId.HasValue)
                 query = query.Where(t => t.TransactionId == transactionId.Value);
@@ -28,6 +37,7 @@ namespace BankingPaymentsApp_API.Services
             if (transactionTypeId.HasValue)
                 query = query.Where(t => t.TransactionTypeId == transactionTypeId.Value);
 
+<<<<<<< HEAD
             if (minAmount.HasValue)
                 query = query.Where(p => p.Amount >= minAmount.Value);
 
@@ -42,9 +52,27 @@ namespace BankingPaymentsApp_API.Services
 
             if (!string.IsNullOrEmpty(toFrom))
                 query = query.Where(p => p.ToFrom.Contains(toFrom));
+=======
+            if (date.HasValue)
+                query = query.Where(t => t.CreatedAt.Date == date.Value.Date);
+>>>>>>> f4fc12053d1e5693eea840165e1e862cd38ca36e
 
-            return await query.ToListAsync();
+            var totalRecords = await query.CountAsync();
+
+            var data = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResultDTO<Transaction>
+            {
+                Data = data,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
+
 
         public async Task<Transaction> Add(Transaction transaction)
         {

@@ -1,4 +1,5 @@
 ﻿using BankingPaymentsApp_API.Data;
+using BankingPaymentsApp_API.DTOs;
 using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -27,40 +28,50 @@ namespace BankingPaymentsApp_API.Services
             _emailService = emailService;
         }
 
-        public async Task<IEnumerable<SalaryDisbursement>> GetAll(
-            int? clientId,
-            decimal? minAmount,
-            decimal? maxAmount,
-            DateTime? disbursementFrom,
-            DateTime? disbursementTo,
-            int? disbursementStatusId,
-            bool? allEmployees)
+        public async Task<PagedResultDTO<SalaryDisbursement>> GetAll(
+             int? clientId,
+             decimal? minAmount,
+             decimal? maxAmount,
+             DateTime? disbursementFrom,
+             DateTime? disbursementTo,
+             int? disbursementStatusId,
+             bool? allEmployees,
+             int pageNumber = 1,
+             int pageSize = 10)
         {
             var query = _salaryDisbursementRepository.GetAll();
 
             if (clientId.HasValue)
                 query = query.Where(sd => sd.ClientId == clientId.Value);
-
             if (minAmount.HasValue)
                 query = query.Where(sd => sd.TotalAmount >= minAmount.Value);
-
             if (maxAmount.HasValue)
                 query = query.Where(sd => sd.TotalAmount <= maxAmount.Value);
-
             if (disbursementFrom.HasValue)
                 query = query.Where(sd => sd.DisbursementDate >= disbursementFrom.Value);
-
             if (disbursementTo.HasValue)
                 query = query.Where(sd => sd.DisbursementDate <= disbursementTo.Value);
-
             if (disbursementStatusId.HasValue)
                 query = query.Where(sd => sd.DisbursementStatusId == disbursementStatusId.Value);
-
             if (allEmployees.HasValue)
                 query = query.Where(sd => sd.AllEmployees == allEmployees.Value);
 
-            return await query.ToListAsync();
+            var totalRecords = await query.CountAsync();
+
+            var data = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResultDTO<SalaryDisbursement>
+            {
+                Data = data,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
+
         public async Task<SalaryDisbursement?> GetById(int id)
         {
             return await _salaryDisbursementRepository.GetById(id);

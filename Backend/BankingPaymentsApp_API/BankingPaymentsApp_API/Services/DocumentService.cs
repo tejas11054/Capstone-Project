@@ -1,4 +1,5 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 using BankingPaymentsApp_API.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,15 +15,29 @@ namespace BankingPaymentsApp_API.Services
             _documentRepository = documentRepository;
         }
 
-        public async Task<IEnumerable<Document>> GetAll(string? documentName)
+        public async Task<PagedResultDTO<Document>> GetAll(string? documentName, int pageNumber = 1, int pageSize = 10)
         {
-            var query = _documentRepository.GetAll(); 
+            var query = _documentRepository.GetAll();
 
             if (!string.IsNullOrEmpty(documentName))
                 query = query.Where(d => d.DocumentName.Contains(documentName));
 
-            return await query.ToListAsync(); 
+            var totalRecords = await query.CountAsync();
+
+            var data = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResultDTO<Document>
+            {
+                Data = data,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
+
 
 
 
@@ -46,10 +61,26 @@ namespace BankingPaymentsApp_API.Services
             await _documentRepository.DeleteById(id);
         }
 
-        public async Task<IEnumerable<Document>> GetDocumentByClientId(int clientId)
+        public async Task<PagedResultDTO<Document>> GetDocumentByClientId(int clientId, int pageNumber = 1, int pageSize = 5)
         {
-            return await _documentRepository.GetDocumentByClientId(clientId);
+            var query = _documentRepository.GetAll().Where(d => d.ClientId == clientId);
+
+            var totalRecords = await query.CountAsync();
+
+            var data = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResultDTO<Document>
+            {
+                Data = data,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
+
 
 
     }

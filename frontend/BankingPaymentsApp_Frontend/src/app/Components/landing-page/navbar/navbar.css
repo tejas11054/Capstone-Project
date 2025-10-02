@@ -1,108 +1,109 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 3rem;
-  background: rgba(18, 16, 27, 0.8);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 1rem 3rem !important;
+  background: rgba(18, 16, 27, 0.8) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
 }
 
-/* Logo styles */
+/* Logo */
 .navbar .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem; /* space between image and text */
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  color: #fff !important;
 }
 
-.navbar .logo img {
-  height: 40px; /* adjust the logo height */
-  width: auto;
-  border-radius: 8px; /* optional */
-}
-
-/* Navigation links */
+/* Nav links */
 .navbar .nav-links a {
-  color: #ddd;
-  margin: 0 1rem;
-  text-decoration: none;
-  transition: color 0.3s;
+  color: #ddd !important;
+  margin: 0 1rem !important;
+  text-decoration: none !important;
+  transition: color 0.3s !important;
 }
 
 .navbar .nav-links a:hover {
-  color: #fff;
+  color: #fff !important;
 }
 
-/* Buttons container */
+/* Buttons */
 .navbar .nav-buttons {
-  display: flex;
-  gap: 1rem;
+  display: flex !important;
+  gap: 1rem !important;
 }
 
-/* Login button */
 .navbar .nav-buttons .login-btn {
-  background: transparent;
-  border: 1px solid #7a5af8;
-  color: #fff;
-  padding: 0.5rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
+  background: transparent !important;
+  border: 1px solid #7a5af8 !important;
+  color: #fff !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
 }
 
-/* Register button */
 .navbar .nav-buttons .buy-now-btn {
-  background: #7a5af8;
-  border: none;
-  color: #fff;
-  padding: 0.5rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
+  background: #7a5af8 !important;
+  border: none !important;
+  color: #fff !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+  transition: background 0.3s !important;
 }
 
 .navbar .nav-buttons .buy-now-btn:hover {
-  background: #6a49e6;
+  background: #6a49e6 !important;
 }
 
-/* Dropdown container */
+/* Dropdown */
 .navbar .nav-buttons .dropdown {
-  position: relative;
-  display: inline-block;
+  position: relative !important;
+  display: inline-block !important;
 }
 
-/* Dropdown content */
 .navbar .nav-buttons .dropdown-content {
-  display: none; /* hidden by default */
-  position: absolute;
-  top: 110%; /* below the button */
-  right: 0;
-  background-color: #1f1c2f;
-  min-width: 150px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.3);
-  flex-direction: column;
-  z-index: 1000;
+  display: none !important;
+  position: absolute !important;
+  top: 110% !important;
+  right: 0 !important;
+  background-color: #1f1c2f !important;
+  min-width: 150px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 5px 15px rgba(122, 90, 248, 0.3) !important;
+  flex-direction: column !important;
+  z-index: 1000 !important;
 }
 
-/* Dropdown links */
 .navbar .nav-buttons .dropdown-content a {
-  color: #fff;
-  padding: 0.6rem 1rem;
-  text-decoration: none;
-  display: block;
-  transition: background 0.2s;
+  color: #fff !important;
+  padding: 0.6rem 1rem !important;
+  text-decoration: none !important;
+  display: block !important;
+  transition: background 0.2s !important;
 }
 
 .navbar .nav-buttons .dropdown-content a:hover {
-  background: rgba(122, 90, 248, 0.2);
-  border-radius: 6px;
+  background: rgba(122, 90, 248, 0.2) !important;
+  border-radius: 6px !important;
 }
 
-/* Show dropdown on hover */
+/* Show dropdown */
 .navbar .nav-buttons .dropdown:hover .dropdown-content {
-  display: flex;
+  display: flex !important;
+}
+
+.navbar-main{
+  background: #1d1b2a;
+}
+.navbar-main {
+  position: fixed;       
+  top: 0;               
+  width: 100%;          
+  z-index: 10000;        
+  background: rgba(18, 16, 27, 0.95); 
 }

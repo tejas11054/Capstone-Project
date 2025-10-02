@@ -34,7 +34,6 @@ namespace BankingPaymentsApp_API.Controllers
         [HttpGet]
         //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllEmployees(
-     
             [FromQuery] int? clientId,
             [FromQuery] string? employeeName,
             [FromQuery] string? accountNumber,
@@ -42,13 +41,24 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] string? ifsc,
             [FromQuery] bool? isActive,
             [FromQuery] int? minSalary,
-            [FromQuery] int? maxSalary)
+            [FromQuery] int? maxSalary,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
         {
-            var employees = await _employeeService.GetAll(clientId, employeeName, accountNumber, bankName, ifsc, isActive, minSalary, maxSalary);
-            if (employees.Count() == 0)
-                return NotFound("No Employee to display");
-            return Ok(employees);
+            var pagedResult = await _employeeService.GetAll(clientId, employeeName, accountNumber, bankName, ifsc, isActive, minSalary, maxSalary, pageNumber, pageSize);
+
+            if (!pagedResult.Data.Any())
+                return NotFound("No employees to display");
+
+            return Ok(new
+            {
+                Data = pagedResult.Data,
+                pagedResult.TotalRecords,
+                pagedResult.PageNumber,
+                pagedResult.PageSize
+            });
         }
+
 
 
         // POST: api/Employee

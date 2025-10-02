@@ -1,10 +1,12 @@
-﻿using BankingPaymentsApp_API.Models;
+﻿using BankingPaymentsApp_API.DTOs;
+using BankingPaymentsApp_API.Models;
 
 namespace BankingPaymentsApp_API.Services
 {
     public interface IClientUserService
     {
-        public Task<IEnumerable<ClientUser>> GetAll(string? fullName,
+        public Task<PagedResultDTO<ClientUser>> GetAll(
+            string? fullName,
             string? userName,
             string? email,
             string? phone,
@@ -13,7 +15,9 @@ namespace BankingPaymentsApp_API.Services
             DateTime? dobTo,
             string? address,
             bool? kycVerified,
-            int? bankUserId);
+            int? bankUserId,
+            int pageNumber = 1,
+            int pageSize = 10);
         public Task<ClientUser> Add(ClientUser user);
         public Task<ClientUser?> GetById(int id);
         public  Task<ClientUser?> Update(ClientUser user);

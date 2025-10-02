@@ -23,7 +23,7 @@ namespace BankingPaymentsApp_API.Services
             _emailService = emailService;
         }
 
-        public async Task<IEnumerable<BankUser>> GetAll(
+        public async Task<PagedResultDTO<BankUser>> GetAll(
             string? fullName,
             string? userName,
             string? email,
@@ -32,39 +32,47 @@ namespace BankingPaymentsApp_API.Services
             int? bankId,
             string? branch,
             DateTime? joiningFrom,
-            DateTime? joiningTo)
+            DateTime? joiningTo,
+            int pageNumber = 1,
+            int pageSize = 10)
         {
             var query = _bankUserRepository.GetAll();
 
             if (!string.IsNullOrEmpty(fullName))
                 query = query.Where(u => u.UserFullName.Contains(fullName));
-
             if (!string.IsNullOrEmpty(userName))
                 query = query.Where(u => u.UserName.Contains(userName));
-
             if (!string.IsNullOrEmpty(email))
                 query = query.Where(u => u.UserEmail.Contains(email));
-
             if (!string.IsNullOrEmpty(phone))
                 query = query.Where(u => u.UserPhone == phone);
-
             if (roleId.HasValue)
                 query = query.Where(u => u.UserRoleId == roleId.Value);
-
             if (bankId.HasValue)
                 query = query.Where(u => u.BankId == bankId.Value);
-
             if (!string.IsNullOrEmpty(branch))
                 query = query.Where(u => u.Branch.Contains(branch));
-
             if (joiningFrom.HasValue)
                 query = query.Where(u => u.UserJoiningDate >= joiningFrom.Value);
-
             if (joiningTo.HasValue)
                 query = query.Where(u => u.UserJoiningDate <= joiningTo.Value);
 
-            return await query.ToListAsync();
+            var totalRecords = await query.CountAsync();
+
+            var data = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResultDTO<BankUser>
+            {
+                Data = data,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
+
 
         public async Task<BankUser> Add(BankUser bankUser)
         {

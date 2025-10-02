@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-
+import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css'
+  styleUrls: ['./navbar.css', '../landing.css'],
+  encapsulation: ViewEncapsulation.None  
 })
 export class Navbar {
 

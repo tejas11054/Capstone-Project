@@ -16,15 +16,17 @@ namespace BankingPaymentsApp_API.Services
         {
             _employeeRepository = employeeRepository;
         }
-        public async Task<IEnumerable<Employee>> GetAll(
-            int? clientId,
-            string? employeeName,
-            string? accountNumber,
-            string? bankName,
-            string? ifsc,
-            bool? isActive,
-            int? minSalary,
-            int? maxSalary)
+        public async Task<PagedResultDTO<Employee>> GetAll(
+    int? clientId,
+    string? employeeName,
+    string? accountNumber,
+    string? bankName,
+    string? ifsc,
+    bool? isActive,
+    int? minSalary,
+    int? maxSalary,
+    int pageNumber = 1,
+    int pageSize = 10)
         {
             var query = _employeeRepository.GetAll();
 
@@ -52,8 +54,22 @@ namespace BankingPaymentsApp_API.Services
             if (maxSalary.HasValue)
                 query = query.Where(e => e.Salary <= maxSalary.Value);
 
-            return await query.ToListAsync();
+            var totalRecords = await query.CountAsync();
+
+            var data = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResultDTO<Employee>
+            {
+                Data = data,
+                TotalRecords = totalRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
+
 
         public async Task<Employee> Add(Employee employee)
         {

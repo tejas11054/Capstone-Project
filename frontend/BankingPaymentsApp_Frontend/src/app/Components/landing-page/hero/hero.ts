@@ -24,15 +24,21 @@ export class Hero {
       users => this.usersCount = users.length
     );
 
-    // Banks count
-    this.http.get<any[]>(environment.backendURL + "/Bank").subscribe(
-      banks => this.banksCount = banks.length
-    );
+     // Banks count (paginated)
+  this.http.get<any>(environment.backendURL + "/Bank?pageNumber=1&pageSize=5").subscribe(
+  res => this.banksCount = res.totalRecords || 0
+);
 
-    // Transactions count
-    this.http.get<any[]>(environment.backendURL + "/Transaction").subscribe(
-      transactions => this.transactionsCount = transactions.length
-    );
+
+  this.http.get<any>(environment.backendURL + "/Transaction?pageNumber=1&pageSize=10").subscribe({
+  next: res => this.transactionsCount = res.totalRecords || 0,
+  error: err => {
+    console.warn("Transaction API error:", err);
+    this.transactionsCount = 0; // fallback if no transactions
+  }
+});
+
+
     
 }
 }

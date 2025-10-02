@@ -47,6 +47,7 @@ import { CallToAction } from './Components/landing-page/call-to-action/call-to-a
 import { BankUserRegisterComponent } from './Components/bank-user-register/bank-user-register.component';
 import { MainComponent } from './Components/landing-page/main/main.component';
 
+
 export const routes: Routes = [
 
   { path: '', redirectTo: 'Landing', pathMatch: 'full' },
