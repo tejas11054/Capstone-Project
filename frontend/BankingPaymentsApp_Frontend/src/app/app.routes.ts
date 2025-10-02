@@ -91,7 +91,7 @@ export const routes: Routes = [
   // { path: '', component: LoginComponent },
   { path: "login", component: LoginComponent },
   { path: "dashboard", component: DashboardComponent, canActivate: [roleGuard], data: { role: "CLIENT_USER" } },
-  { path: "ClientRegister", component: ClientRegisterComponent },
+  //{ path: "ClientRegister", component: ClientRegisterComponent },
   { path: 'ClientUser/:id', component: ClientUserComponent },
   { path: "beneficiary", component: BeneficiaryComponent },
   { path: "beneficiary/create", component: CreateBeneficiaryComponent },

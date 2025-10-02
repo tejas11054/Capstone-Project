@@ -48,8 +48,13 @@ namespace BankingPaymentsApp_API.Controllers
                 return Ok(response);
 
             _logger.LogInformation($"Found {response.Count()} Bank Users");
+<<<<<<< HEAD
             return Ok(response);
 
+=======
+
+            return Ok(response);
+>>>>>>> 60e637dabdb5841be113a75f715a4c2bee8fadfa
         }
 
 

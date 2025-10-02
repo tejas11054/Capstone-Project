@@ -22,24 +22,37 @@ export class Hero {
   ngOnInit(): void {
     // Users count
     this.http.get<any[]>(environment.backendURL + "/User").subscribe(
-      users => this.usersCount = users.length
+      users => {
+        this.usersCount = users.filter(user => user.userRoleId === 3).length;
+      },
+      err => {
+        console.error("User API error:", err);
+        this.usersCount = 0;
+      }
     );
 
-     // Banks count (paginated)
-  this.http.get<any>(environment.backendURL + "/Bank?pageNumber=1&pageSize=5").subscribe(
-  res => this.banksCount = res.totalRecords || 0
-);
 
+    this.http.get<any>(environment.backendURL + "/Bank").subscribe(
+      res => {
+        console.log("Bank API response:", res);
+        this.banksCount = res.totalRecords ?? (Array.isArray(res) ? res.length : 0);
+      },
+      err => {
+        console.error("Bank API error:", err);
+        this.banksCount = 0;
+      }
+    );
 
-  this.http.get<any>(environment.backendURL + "/Transaction?pageNumber=1&pageSize=10").subscribe({
-  next: res => this.transactionsCount = res.totalRecords || 0,
-  error: err => {
-    console.warn("Transaction API error:", err);
-    this.transactionsCount = 0; // fallback if no transactions
+    this.http.get<any>(environment.backendURL + "/Transaction").subscribe(
+    res => {
+      console.log("Transaction API response:", res);
+      this.transactionsCount = res.totalRecords ?? (Array.isArray(res) ? res.length : 0);
+    },
+    err => {
+      console.error("Transaction API error:", err);
+      this.transactionsCount = 0;
+    }
+  );
+
   }
-});
-
-
-    
-}
 }
