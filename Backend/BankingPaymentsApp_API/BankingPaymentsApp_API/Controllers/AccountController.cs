@@ -163,5 +163,17 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok(account);
         }
 
+        [HttpPut("addBalance/{id}")]
+        public async Task<IActionResult> AddBalanceToAccount(int id, [FromBody] double amount)
+        {
+            _logger.LogInformation($"AddBalanceToAccount started");
+            Account account = await _service.GetById(id);
+
+            Transaction txn = await _service.CreditAccount(id,amount,paymentId:null,disbursementId:null,toFrom:account.AccountNumber);
+            if (account == null) return NotFound();
+
+            return Ok(txn);
+        }
+
     }
 }

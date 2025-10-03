@@ -38,15 +38,22 @@ export class DateFilterComponent implements OnInit {
 
     dateTo.setHours(23, 59, 59, 999);
 
-    const date1 = dateFrom.toISOString();
-    const date2 = dateTo.toISOString();
+    // format without timezone shift
+    const formatDate = (d: Date) =>
+      d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+
+    const date1 = formatDate(dateFrom);
+    const date2 = formatDate(dateTo);
 
     console.log('dateFrom:', date1);
     console.log('dateTo:', date2);
-    this.dateFilter.emit({ dateFrom:date1, dateTo:date2 });
+
+    this.dateFilter.emit({ dateFrom: date1, dateTo: date2 });
   }
 
-  reset(){
-    this.dateFilter.emit({dateFrom:"",dateTo:""});
+  reset() {
+    this.dateFilter.emit({ dateFrom: "", dateTo: "" });
   }
 }

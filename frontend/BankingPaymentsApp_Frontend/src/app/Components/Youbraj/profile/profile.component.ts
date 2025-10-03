@@ -8,26 +8,26 @@ import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AccountService } from '../../../Services/account.service';
 import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-declare var bootstrap: any; 
+import { CheckoutComponent } from '../../checkout/checkout.component';
+declare var bootstrap: any;
 
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule,RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule,CheckoutComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnInit, AfterViewInit  {
+export class ProfileComponent implements OnInit, AfterViewInit {
   @ViewChild('addBalanceModal') addBalanceModalRef!: ElementRef;
   addBalanceModal: any;
   client!: ClientUser;
   balanceForm: FormGroup;
-  
 
-  constructor(private auth: AuthService, private clientSvc: ClientRegisterService,  private fb: FormBuilder,
-    private accountService: AccountService,) 
-  {
+
+  constructor(private auth: AuthService, private clientSvc: ClientRegisterService, private fb: FormBuilder,
+    private accountService: AccountService,) {
     this.balanceForm = this.fb.group({
       balance: [0, [Validators.required, Validators.min(1)]],
     });
@@ -39,10 +39,10 @@ export class ProfileComponent implements OnInit, AfterViewInit  {
   }
 
   ngAfterViewInit(): void {
-  if (this.addBalanceModalRef) {
-    this.addBalanceModal = new bootstrap.Modal(this.addBalanceModalRef.nativeElement);
+    if (this.addBalanceModalRef) {
+      this.addBalanceModal = new bootstrap.Modal(this.addBalanceModalRef.nativeElement);
+    }
   }
-}
 
 
   fetchClient(id: number) {
@@ -54,49 +54,51 @@ export class ProfileComponent implements OnInit, AfterViewInit  {
         console.log(error);
       })
   }
-  onEdit(){
+  onEdit() {
 
   }
 
-  onUpload(){
+  onUpload() {
 
   }
 
-   get isAddBalanceDisabled(): boolean {
+  get isAddBalanceDisabled(): boolean {
     return (this.client?.account?.balance ?? 0) > 0;
   }
-  
+
   openAddBalanceModal() {
-  this.balanceForm.reset({ balance: 0 });
-  this.addBalanceModal?.show();
-}
+    this.balanceForm.reset({ balance: 0 });
+    this.addBalanceModal?.show();
+
+    // this.addBalanceModal.openModal();
+  }
 
 
   submitBalance() {
-  if (this.balanceForm.invalid || !this.client?.account) return;
+    if (this.balanceForm.invalid || !this.client?.account) return;
 
-  const amountToAdd = this.balanceForm.value.balance;
-  const updatedBalance = (this.client.account.balance ?? 0) + amountToAdd;
+    const amountToAdd = this.balanceForm.value.balance;
+    const updatedBalance = (this.client.account.balance ?? 0) + amountToAdd;
 
-  const payload = {
-    ...this.client.account,
-    balance: updatedBalance
-  };
+    const payload = {
+      ...this.client.account,
+      balance: updatedBalance
+    };
 
-  this.accountService.updateAccount(this.client.account.accountId, payload)
-    .subscribe({
-      next: (res: any) => {
-        if (this.client?.account) {
-          this.client.account.balance = res.balance;
+    this.accountService.addBalance(this.client.account.accountId, amountToAdd)
+      .subscribe({
+        next: (res) => {
+          if (this.client?.account) {
+            this.client.account.balance += res.amount;
+          }
+          this.addBalanceModal?.hide();
+        },
+        error: (err) => {
+          console.error(err);
+          alert('Failed to update balance.');
         }
-        this.addBalanceModal?.hide();
-      },
-      error: (err) => {
-        console.error(err);
-        alert('Failed to update balance.');
-      }
-    });
-}
+      });
+  }
 
-  
+
 }

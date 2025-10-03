@@ -13,7 +13,7 @@
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
       <div class="d-flex align-items-center gap-3">
         <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
-             style="width:56px;height:56px;">
+          style="width:56px;height:56px;">
           <span class="fw-bold fs-5">
             {{ client?.userFullName ? client.userFullName[0] : 'U' }}
           </span>
@@ -26,7 +26,8 @@
         </div>
       </div>
       <div class="d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-success" (click)="openAddBalanceModal()" [disabled]="isAddBalanceDisabled">Add Balance</button>
+        <!-- <button class="btn btn-sm btn-outline-success" (click)="openAddBalanceModal()">Add Balance</button> -->
+        <button class="btn btn-sm btn-outline-success" routerLink="/checkout">Add Balance</button>
         <button class="btn btn-sm btn-outline-primary" routerLink="/profile/edit">Edit Profile</button>
         <button class="btn btn-sm btn-outline-secondary" routerLink="/document/upload">Upload Document</button>
       </div>
@@ -128,7 +129,7 @@
         <h6 class="fw-bold mb-3">Bank Relationship Manager</h6>
         <div class="d-flex align-items-center gap-3" *ngIf="client?.bankUser; else noBankUser">
           <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
-               style="width:44px;height:44px;">
+            style="width:44px;height:44px;">
             <span class="fw-bold">
               {{ client?.bankUser?.userFullName ? client.bankUser.userFullName[0] : 'B' }}
             </span>
@@ -154,7 +155,7 @@
         <ng-container *ngIf="client?.documents?.length; else noDocs">
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center"
-                *ngFor="let d of client?.documents">
+              *ngFor="let d of client?.documents">
               <div>
                 <div class="fw-semibold">{{ d.documentName }}</div>
                 <div class="text-muted small">
@@ -180,7 +181,7 @@
         <h6 class="fw-bold mb-3">Beneficiaries</h6>
         <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center"
-              *ngFor="let b of client?.beneficiaries">
+            *ngFor="let b of client?.beneficiaries">
             <div>
               <div class="fw-semibold">{{ b.beneficiaryName }}</div>
               <div class="text-muted small">
@@ -201,7 +202,7 @@
         <h6 class="fw-bold mb-3">Employees</h6>
         <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center"
-              *ngFor="let e of client?.employees">
+            *ngFor="let e of client?.employees">
             <div>
               <div class="fw-semibold">
                 {{ e.employeeName }}
@@ -224,28 +225,27 @@
   </div>
 
   <!-- Add Balance Modal -->
-<div #addBalanceModal class="modal fade" id="addBalanceModal" tabindex="-1" aria-labelledby="addBalanceModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form [formGroup]="balanceForm" (ngSubmit)="submitBalance()">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addBalanceModalLabel">Add Balance</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="balanceInput" class="form-label">Amount</label>
-            <input type="number" id="balanceInput" class="form-control" formControlName="balance" min="0" required>
+  <div #addBalanceModal class="modal fade" id="addBalanceModal" tabindex="-1" aria-labelledby="addBalanceModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form [formGroup]="balanceForm" (ngSubmit)="submitBalance()">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addBalanceModalLabel">Add Balance</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-success" [disabled]="balanceForm.invalid">Add</button>
-        </div>
-      </form>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="balanceInput" class="form-label">Amount</label>
+              <input type="number" id="balanceInput" class="form-control" formControlName="balance" min="0" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-success" [disabled]="balanceForm.invalid">Add</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-
-
 </div>

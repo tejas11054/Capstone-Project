@@ -18,7 +18,7 @@ import { BankRegisterService } from '../../../Services/bankUser.service';
 })
 export class BankUserHomeComponent implements OnInit {
   user!: any;
-  clients: any[] = [];
+  clients: ClientUser[] = [];
   payments: Payment[] = [];
   totalClients!: number;
   totalPayments!: number;
@@ -119,11 +119,11 @@ export class BankUserHomeComponent implements OnInit {
   /** ------------------- Chart Setup Methods ------------------- **/
 
   setupClientsChart() {
-    const active = this.clients.filter(c => c.isActive).length;
+    const active = this.clients.filter(c => c.kycVierified).length;
     const inactive = this.clients.length - active;
 
     this.clientsChartData = {
-      labels: ['Active', 'Inactive'],
+      labels: ['KycVerified', 'Kyc Notverified'],
       datasets: [{
         data: [active, inactive],
         backgroundColor: ['#4caf50', '#f44336']
@@ -145,32 +145,49 @@ export class BankUserHomeComponent implements OnInit {
     };
   }
 
-  setupClientGrowthChart() {
-    // Example: Count clients per month
-    const monthMap: any = {};
-    this.clients.forEach(c => {
-      const month = new Date(c.createdAt).toLocaleString('default', { month: 'short' });
-      monthMap[month] = (monthMap[month] || 0) + 1;
-    });
-
-    this.clientGrowthData = {
-      labels: Object.keys(monthMap),
-      datasets: [{
-        label: 'New Clients',
-        data: Object.values(monthMap),
-        borderColor: '#7a5af8',
-        backgroundColor: 'rgba(122, 90, 248, 0.2)',
-        fill: true,
-        tension: 0.3
-      }]
-    };
+setupClientGrowthChart() {
+  if (!this.clients || this.clients.length === 0) {
+    this.clientGrowthData = { labels: [], datasets: [] };
+    return;
   }
+
+  // Map to store counts per day
+  const dayMap: Record<string, number> = {};
+
+  this.clients.forEach(c => {
+    const d = new Date(c.userJoiningDate);
+    if (!isNaN(d.getTime())) {
+      const dayKey = d.toISOString().split('T')[0]; // "YYYY-MM-DD"
+      dayMap[dayKey] = (dayMap[dayKey] || 0) + 1;
+    }
+  });
+
+  // Sort the dates
+  const sortedDays = Object.keys(dayMap).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+
+  // Prepare chart data
+  this.clientGrowthData = {
+    labels: sortedDays.map(d => {
+      const dt = new Date(d);
+      return `${dt.getDate()} ${dt.toLocaleString('default', { month: 'short' })}`;
+    }),
+    datasets: [{
+      label: 'New Clients',
+      data: sortedDays.map(d => dayMap[d]), // numbers only
+      borderColor: '#7a5af8',
+      backgroundColor: 'rgba(122, 90, 248, 0.2)',
+      fill: true,
+      tension: 0.3
+    }]
+  };
+}
+
 
   setupBranchChart() {
     // Example: Count clients per branch
     const branchMap: any = {};
     this.clients.forEach(c => {
-      const branch = c.branchName ?? 'Unknown';
+      const branch = c.bankUser.branch ?? 'Unknown';
       branchMap[branch] = (branchMap[branch] || 0) + 1;
     });
 

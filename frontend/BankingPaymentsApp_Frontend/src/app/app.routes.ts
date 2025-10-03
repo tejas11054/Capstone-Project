@@ -47,6 +47,7 @@ import { CallToAction } from './Components/landing-page/call-to-action/call-to-a
 import { BankUserRegisterComponent } from './Components/bank-user-register/bank-user-register.component';
 import { MainComponent } from './Components/landing-page/main/main.component';
 import { BankuserEditComponent } from './Components/bankuser-edit/bankuser-edit.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
 
 
 export const routes: Routes = [
@@ -115,6 +116,7 @@ export const routes: Routes = [
   { path: "bank", component: BankRegisterComponent },
   { path: "banks", component: AdminViewBankComponent },
   { path: "bank/profile/edit", component: BankuserEditComponent },
+  { path: "checkout", component: CheckoutComponent },
 
 
 

@@ -38,10 +38,10 @@ namespace BankingPaymentsApp_API.Services
                 query = query.Where(t => t.TransactionTypeId == transactionTypeId.Value);
 
             if (minAmount.HasValue)
-                query = query.Where(p => p.Amount >= minAmount.Value);
+                query = query.Where(p => p.Amount <= minAmount.Value);
 
             if (maxAmount.HasValue)
-                query = query.Where(p => p.Amount <= maxAmount.Value);
+                query = query.Where(p => p.Amount >= maxAmount.Value);
 
             if (createdFrom.HasValue)
                 query = query.Where(p => p.CreatedAt.Date >= createdFrom.Value.Date);
