@@ -59,36 +59,49 @@ export class ClientRegisterComponent {
   }
 
   register() {
-    if (this.registerForm.invalid) {
-      this.registerForm.markAllAsTouched();
-      return;
-    }
-
-    const formValue = this.registerForm.value;
-    const user: RegisterClientUserDTO = {
-      ...formValue,
-      DateOfBirth: formValue.DateOfBirth,
-      AccountId: formValue.AccountId ? formValue.AccountId : null
-    };
-
-    this.clientService.registerClient(user).subscribe({
-      next: (res) => {
-        const clientId = res.userId; // make sure this matches API response
-        if (!clientId) {
-          console.error('ClientId missing in response!');
-          return;
-        }
-        alert('Registration successful!');
-        localStorage["userId"] = clientId;
-        // this.router.navigate(['/DocumentUpload']);
-        this.nextStep.emit();
-      },
-      error: (err) => {
-        console.error('HTTP Error:', err);
-        alert(err.error || 'Registration failed!');
-      }
-    });
+  if (this.registerForm.invalid) {
+    this.registerForm.markAllAsTouched();
+    return;
   }
+
+  const formValue = this.registerForm.value;
+  const user: RegisterClientUserDTO = {
+    ...formValue,
+    DateOfBirth: formValue.DateOfBirth,
+    AccountId: formValue.AccountId ? formValue.AccountId : null
+  };
+
+  this.clientService.registerClient(user).subscribe({
+    next: (res) => {
+      const clientId = res.userId; // make sure this matches API response
+      if (!clientId) {
+        console.error('ClientId missing in response!');
+        return;
+      }
+      alert('Registration successful!');
+      localStorage["userId"] = clientId;
+      this.nextStep.emit();
+    },
+    error: (err) => {
+      console.error('HTTP Error:', err);
+
+      // 🔹 Specific handling for duplicate email/phone
+      if (err.status === 400 && typeof err.error === 'string') {
+        if (err.error.includes("email")) {
+          this.registerForm.get('UserEmail')?.setErrors({ duplicate: true });
+        } 
+        else if (err.error.includes("phone")) {
+          this.registerForm.get('UserPhone')?.setErrors({ duplicate: true });
+        }
+        else {
+          alert(err.error); // show other backend messages
+        }
+      } else {
+        alert('Registration failed!');
+      }
+    }
+  });
+}
 
   fetchBanks(){
     this.bankSvc.getAllBanks("").subscribe((data)=>{

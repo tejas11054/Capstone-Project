@@ -26,22 +26,29 @@
       </div>
 
       <!-- Email -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Email</label>
-        <input formControlName="userEmail" type="email" class="form-control" placeholder="Enter email">
-        <div *ngIf="f['userEmail'].touched && f['userEmail'].invalid" class="text-danger small mt-1">
-          Valid Email is required.
-        </div>
-      </div>
+<div class="col-md-6">
+  <label class="form-label fw-semibold">Email</label>
+  <input formControlName="userEmail" type="email" class="form-control" placeholder="Enter email">
+  <div *ngIf="f['userEmail'].touched && f['userEmail'].invalid" class="text-danger small mt-1">
+    Valid Email is required.
+  </div>
+  <div *ngIf="backendEmailError" class="text-danger small mt-1">
+    {{ backendEmailError }}
+  </div>
+</div>
 
-      <!-- Phone -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Phone</label>
-        <input formControlName="userPhone" type="text" class="form-control" placeholder="Enter phone number">
-        <div *ngIf="f['userPhone'].touched && f['userPhone'].invalid" class="text-danger small mt-1">
-          Phone is required and must be 10 digits.
-        </div>
-      </div>
+<!-- Phone -->
+<div class="col-md-6">
+  <label class="form-label fw-semibold">Phone</label>
+  <input formControlName="userPhone" type="text" class="form-control" placeholder="Enter phone number">
+  <div *ngIf="f['userPhone'].touched && f['userPhone'].invalid" class="text-danger small mt-1">
+    Phone is required and must be 10 digits.
+  </div>
+  <div *ngIf="backendPhoneError" class="text-danger small mt-1">
+    {{ backendPhoneError }}
+  </div>
+</div>
+
 
       <!-- Password -->
       <div class="col-md-6">

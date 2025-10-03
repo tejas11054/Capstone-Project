@@ -82,6 +82,7 @@ export class DisbursementComponent implements OnInit {
       this.fetchAllPayments(params);
     },
       (error) => {
+        alert("Insufficient Bank Balance!!!!");
         console.log(error);
       })
   }

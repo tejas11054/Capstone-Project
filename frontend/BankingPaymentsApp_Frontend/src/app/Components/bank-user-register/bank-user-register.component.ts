@@ -69,20 +69,41 @@ export class BankUserRegisterComponent implements OnInit {
     });
   }
 
-  register() {
-    if (this.registerForm.invalid) return;
+  backendEmailError: string | null = null;
+backendPhoneError: string | null = null;
 
-    const bankUser = this.registerForm.value;
-    this.bankUserService.registerBankUser(bankUser).subscribe({
-      next: () => {
-        alert('Bank User registered successfully!');
-        this.registerForm.reset();
-        this.router.navigate(["/login"])
-      },
-      error: (err) => {
-        console.error(err);
+register() {
+  if (this.registerForm.invalid) return;
+
+  const bankUser = this.registerForm.value;
+
+  // clear old backend errors before new request
+  this.backendEmailError = null;
+  this.backendPhoneError = null;
+
+  this.bankUserService.registerBankUser(bankUser).subscribe({
+    next: () => {
+      alert('Bank User registered successfully!');
+      this.registerForm.reset();
+      this.router.navigate(["/login"]);
+    },
+    error: (err) => {
+      console.error(err);
+
+      // Check backend error message and assign
+      if (err.error && typeof err.error === 'string') {
+        if (err.error.includes('email')) {
+          this.backendEmailError = err.error;
+        } else if (err.error.includes('phone')) {
+          this.backendPhoneError = err.error;
+        } else {
+          alert(err.error); // fallback
+        }
+      } else {
         alert('Registration failed!');
       }
-    });
-  }
+    }
+  });
+}
+
 }

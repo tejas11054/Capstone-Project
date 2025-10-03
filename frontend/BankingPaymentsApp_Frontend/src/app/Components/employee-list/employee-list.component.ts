@@ -143,13 +143,13 @@ export class EmployeesComponent implements OnInit {
     else alert('Please select a valid CSV file.');
   }
 
-  uploadCSV() {
-    if (!this.csvFile) { alert('No CSV file selected.'); return; }
-    this.employeeSvc.uploadCSV(this.csvFile).subscribe({
-      next: (res: string) => { alert(res); this.loadEmployees(); },
-      error: (err) => { console.error(err); alert('Failed to upload CSV.'); }
-    });
-  }
+  // uploadCSV() {
+  //   if (!this.csvFile) { alert('No CSV file selected.'); return; }
+  //   this.employeeSvc.uploadCSV(this.csvFile).subscribe({
+  //     next: (res: string) => { alert(res); this.loadEmployees(); },
+  //     error: (err) => { console.error(err); alert('Failed to upload CSV.'); }
+  //   });
+  // }
 
   onUpdateCSVFileSelect(event: any) {
     this.updateCSVFile = event.target.files[0];

@@ -7,6 +7,7 @@ import { Testimonials } from '../testimonials/testimonials';
 import { Faq } from '../faq/faq';
 import { Footer } from '../footer/footer';
 import { QueryComponent } from '../query/query';
+import { HowItWorks } from '../how-it-works/how-it-works';
 
 @Component({
   selector: 'app-main',
@@ -16,6 +17,7 @@ import { QueryComponent } from '../query/query';
     Navbar,
     Hero,
     Features,
+    HowItWorks,
     Testimonials,
     Faq,
     QueryComponent,

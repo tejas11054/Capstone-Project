@@ -113,70 +113,105 @@ namespace BankingPaymentsApp_API.Controllers
             return Ok("Employee has been deleted Sucessfully!");
         }
 
-        // POST: api/Employee/upload/
+        //// POST: api/Employee/upload/
+        //[HttpPost("upload")]
+        ////[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        //public async Task<IActionResult> UploadEmployees(IFormFile file)
+        //{
+        //    _logger.LogInformation("UploadEmployees started!");
+
+        //    //if (file == null || file.Length == 0)
+        //    //    return BadRequest("No file uploaded!");
+
+        //    //var employeeDtos = new List<EmployeeDTO>();
+
+        //    //using (var stream = new StreamReader(file.OpenReadStream()))
+        //    //using (var csv = new CsvReader(stream, new CsvHelper.Configuration.CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture)
+        //    //{
+        //    //    HasHeaderRecord = true,
+        //    //    HeaderValidated = null,
+        //    //    MissingFieldFound = null
+        //    //}))
+        //    //{
+        //    //    try
+        //    //    {
+        //    //        employeeDtos = csv.GetRecords<EmployeeDTO>().ToList();
+        //    //    }
+        //    //    catch (Exception ex)
+        //    //    {
+        //    //        return BadRequest($"Error parsing CSV: {ex.Message}");
+        //    //    }
+        //    //}
+
+        //    //// Validate DTOs
+        //    //foreach (var dto in employeeDtos)
+        //    //{
+        //    //    var context = new ValidationContext(dto, null, null);
+        //    //    var results = new List<ValidationResult>();
+        //    //    if (!Validator.TryValidateObject(dto, context, results, true))
+        //    //    {
+        //    //        return BadRequest($"Validation failed for Employee: {dto.EmployeeName}, Errors: {string.Join(", ", results.Select(r => r.ErrorMessage))}");
+        //    //    }
+        //    //}
+        //    var employeeDtos = new List<EmployeeDTO>();
+        //    employeeDtos.AddRange(await _employeeService.UploadEmployees(file));
+        //    if (employeeDtos == null || employeeDtos.Count() == 0)
+        //        return BadRequest("No employees to add");
+
+        //    // Map DTO -> Employee
+        //    var employeeEntities = _mapper.Map<List<Employee>>(employeeDtos);
+
+        //    // Bulk insert with FK exception handling
+        //    try
+        //    {
+        //        var employees = await _employeeService.BulkInsert(employeeEntities);
+        //        ClientUser? client = await _clientUserService.GetById(employeeDtos[1].ClientId);
+        //        client.Employees.AddRange(employees);
+
+        //    }
+        //    catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx && sqlEx.Number == 547)
+        //    {
+        //        return BadRequest("CSV contains invalid ClientIds that do not exist in Users table.");
+        //    }
+        //    _logger.LogInformation($"{employeeEntities.Count} employees inserted successfully.");
+
+        //    return Ok($"{employeeEntities.Count} employees inserted successfully.");
+        //}
+
+
         [HttpPost("upload")]
-        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UploadEmployees(IFormFile file)
         {
             _logger.LogInformation("UploadEmployees started!");
 
-            //if (file == null || file.Length == 0)
-            //    return BadRequest("No file uploaded!");
-
-            //var employeeDtos = new List<EmployeeDTO>();
-
-            //using (var stream = new StreamReader(file.OpenReadStream()))
-            //using (var csv = new CsvReader(stream, new CsvHelper.Configuration.CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture)
-            //{
-            //    HasHeaderRecord = true,
-            //    HeaderValidated = null,
-            //    MissingFieldFound = null
-            //}))
-            //{
-            //    try
-            //    {
-            //        employeeDtos = csv.GetRecords<EmployeeDTO>().ToList();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        return BadRequest($"Error parsing CSV: {ex.Message}");
-            //    }
-            //}
-
-            //// Validate DTOs
-            //foreach (var dto in employeeDtos)
-            //{
-            //    var context = new ValidationContext(dto, null, null);
-            //    var results = new List<ValidationResult>();
-            //    if (!Validator.TryValidateObject(dto, context, results, true))
-            //    {
-            //        return BadRequest($"Validation failed for Employee: {dto.EmployeeName}, Errors: {string.Join(", ", results.Select(r => r.ErrorMessage))}");
-            //    }
-            //}
             var employeeDtos = new List<EmployeeDTO>();
             employeeDtos.AddRange(await _employeeService.UploadEmployees(file));
-            if (employeeDtos == null || employeeDtos.Count() == 0)
+            if (employeeDtos == null || !employeeDtos.Any())
                 return BadRequest("No employees to add");
 
-            // Map DTO -> Employee
             var employeeEntities = _mapper.Map<List<Employee>>(employeeDtos);
 
-            // Bulk insert with FK exception handling
             try
             {
-                var employees = await _employeeService.BulkInsert(employeeEntities);
-                ClientUser? client = await _clientUserService.GetById(employeeDtos[1].ClientId);
-                client.Employees.AddRange(employees);
+                var (inserted, skipped) = await _employeeService.BulkInsert(employeeEntities);
 
+                var response = new
+                {
+                    InsertedCount = inserted.Count(),
+                    SkippedCount = skipped.Count(),
+                    SkippedDetails = skipped
+                };
+
+                _logger.LogInformation($"{inserted.Count()} employees inserted, {skipped.Count()} skipped.");
+
+                return Ok(response);
             }
             catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx && sqlEx.Number == 547)
             {
                 return BadRequest("CSV contains invalid ClientIds that do not exist in Users table.");
             }
-            _logger.LogInformation($"{employeeEntities.Count} employees inserted successfully.");
-
-            return Ok($"{employeeEntities.Count} employees inserted successfully.");
         }
+
 
 
         // POST: api/Employee/update-employee/{clientId}

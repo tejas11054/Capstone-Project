@@ -52,6 +52,30 @@
       </tbody>
     </table>
 
+    <!-- Edit Bank Form -->
+<div *ngIf="selectedBank" class="card mt-4 shadow-sm">
+  <div class="card-header">
+    <h6 class="mb-0">Edit Bank (ID: {{ selectedBank.bankId }})</h6>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="updateBank()">
+      <div class="mb-3">
+        <label class="form-label">Bank Name</label>
+        <input type="text" class="form-control" [(ngModel)]="bankDto.bankName" name="bankName" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">IFSC</label>
+        <input type="text" class="form-control" [(ngModel)]="bankDto.ifsc" name="ifsc" required>
+      </div>
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-success">Update</button>
+        <button type="button" class="btn btn-secondary" (click)="selectedBank = null">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
     <div *ngIf="banks.length === 0" class="text-center p-3 text-muted">
       No banks found.
     </div>

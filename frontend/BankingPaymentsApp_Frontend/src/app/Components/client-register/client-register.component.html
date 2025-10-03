@@ -24,12 +24,17 @@
         </div>
       </div>
 
-      <!-- Email -->
+     <!-- Email -->
       <div class="col-md-6">
         <label class="form-label fw-semibold">Email</label>
         <input formControlName="UserEmail" type="email" class="form-control" placeholder="Enter email">
         <div *ngIf="f['UserEmail'].touched && f['UserEmail'].invalid" class="text-danger small mt-1">
-          Valid Email is required.
+          <div *ngIf="f['UserEmail'].errors?.['required'] || f['UserEmail'].errors?.['email']">
+            Valid Email is required.
+          </div>
+          <div *ngIf="f['UserEmail'].errors?.['duplicate']">
+            This email is already registered.
+          </div>
         </div>
       </div>
 
@@ -38,7 +43,12 @@
         <label class="form-label fw-semibold">Phone</label>
         <input formControlName="UserPhone" type="text" class="form-control" placeholder="Enter phone number">
         <div *ngIf="f['UserPhone'].touched && f['UserPhone'].invalid" class="text-danger small mt-1">
-          Phone is required and must be 10 digits.
+          <div *ngIf="f['UserPhone'].errors?.['required'] || f['UserPhone'].errors?.['pattern']">
+            Phone is required and must be 10 digits.
+          </div>
+          <div *ngIf="f['UserPhone'].errors?.['duplicate']">
+            This phone number is already registered.
+          </div>
         </div>
       </div>
 

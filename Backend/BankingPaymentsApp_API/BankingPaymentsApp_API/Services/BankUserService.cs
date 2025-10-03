@@ -63,9 +63,25 @@ namespace BankingPaymentsApp_API.Services
 
         public async Task<BankUser> Add(BankUser bankUser)
         {
+            var query = _bankUserRepository.GetAll();
+
+            // Check for duplicate Email
+            if (query.Any(bu => bu.UserEmail == bankUser.UserEmail))
+            {
+                throw new InvalidOperationException("A Bank User with this email already exists!");
+            }
+
+            // Check for duplicate Phone
+            if (query.Any(bu => bu.UserPhone == bankUser.UserPhone))
+            {
+                throw new InvalidOperationException("A Bank User with this phone number already exists!");
+            }
+
             bankUser.Password = _passwordHasher.HashPassword(bankUser, bankUser.Password);
+
             return await _bankUserRepository.Add(bankUser);
         }
+
 
         public async Task<BankUser?> GetById(int id)
         {

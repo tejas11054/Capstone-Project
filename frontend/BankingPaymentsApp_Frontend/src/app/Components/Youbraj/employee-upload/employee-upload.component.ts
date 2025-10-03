@@ -50,15 +50,30 @@ export class EmployeeUploadComponent implements OnInit {
 
   uploadCSV() {
     if (!this.csvFile) { alert('No CSV file selected.'); return; }
-    this.employeeSvc.uploadCSV(this.csvFile).subscribe({
-      next: (res: string) => { alert(res); this.dataChanged.emit()},
-      error: (err) => { console.error(err); alert('Failed to upload CSV.'); }
+
+    this.employeeSvc.uploadEmployees(this.csvFile).subscribe({
+      next: (res: any) => {
+        // res contains InsertedCount, SkippedCount, SkippedDetails
+        let msg = `Inserted: ${res.InsertedCount}\nSkipped: ${res.SkippedCount}`;
+        if (res.SkippedDetails && res.SkippedDetails.length > 0) {
+          msg += `\n\nSkipped Employees:\n${res.SkippedDetails.join('\n')}`;
+        }
+        alert("Upload Successful");
+        this.dataChanged.emit();
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Failed to upload CSV.');
+      }
     });
   }
+
 
   onUpdateCSVFileSelect(event: any) {
     this.csvFile = event.target.files[0];
   }
+
+  
 
   uploadUpdateCSVByClient() {
     if (!this.csvFile) { alert('No CSV file selected.'); return; }
