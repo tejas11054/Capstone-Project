@@ -6,6 +6,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PaymentStatusPipe } from '../../Pipes/payment-status.pipe';
 import { RejectDTO } from '../../DTO/RejectDTO';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-list-salary-disbursement',
@@ -20,7 +21,7 @@ export class ListSalaryDisbursementComponent implements OnInit {
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
   selectedDisbursement: any = null;
 
-  constructor(private fb: FormBuilder, private salaryDisbursementSvc: SalaryDisbursementService) { }
+  constructor(private fb: FormBuilder, private notify: NotificationService , private salaryDisbursementSvc: SalaryDisbursementService) { }
 
 
   ngOnInit(): void {
@@ -45,7 +46,7 @@ export class ListSalaryDisbursementComponent implements OnInit {
   rejectDisbursement(rejectForm: RejectDTO) {
     this.salaryDisbursementSvc.rejectSalaryDisbursement(rejectForm).subscribe((data) => {
       console.log(data);
-      alert("this batch is now rejected!");
+      this.notify.error("This batch is now rejected!");
     },
       (error) => {
         console.log(error);
@@ -55,7 +56,7 @@ export class ListSalaryDisbursementComponent implements OnInit {
   approveDisbursement(id: number) {
     this.salaryDisbursementSvc.approveSalaryDisbursement(id).subscribe((data) => {
       console.log(data);
-      alert("this batch is now approved!")
+      this.notify.success("This batch is now approved!")
     },
       (error) => {
         console.log(error);

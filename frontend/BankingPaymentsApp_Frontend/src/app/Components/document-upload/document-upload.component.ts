@@ -6,6 +6,7 @@ import { DocumentUploadService } from '../../Services/document.service';
 import { DocumentDTO } from '../../DTO/DocumentDTO';
 import { ProofType, DocProofType } from '../../Models/ProofType';
 import { AuthService } from '../../Services/auth.service';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-document-upload',
@@ -27,7 +28,8 @@ export class DocumentUploadComponent implements OnInit {
     private docService: DocumentUploadService,
     private router: Router,
     private route: ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthService,
+    private notify: NotificationService 
   ) {
     // Initialize form with 4 document sub-groups
     const group: any = {};
@@ -93,7 +95,7 @@ export class DocumentUploadComponent implements OnInit {
   // Upload all documents at once
   uploadAllDocuments() {
     if (this.documentFields.some(doc => this.getFormGroup(doc).invalid)) {
-      alert('Please fill all fields and select files for all documents.');
+      this.notify.error('Please fill all fields and select files for all documents.');
       return;
     }
 
@@ -112,12 +114,12 @@ export class DocumentUploadComponent implements OnInit {
     // Upload all documents in parallel
     Promise.all(uploadObservables.map(obs => obs.toPromise()))
       .then(() => {
-        alert('All documents uploaded successfully!');
+        this.notify.success('All documents uploaded successfully!');
         this.router.navigate([`/login`]);
       })
       .catch(err => {
         console.error(err);
-        alert('One or more document uploads failed.');
+        this.notify.error('One or more document uploads failed.');
       });
   }
 

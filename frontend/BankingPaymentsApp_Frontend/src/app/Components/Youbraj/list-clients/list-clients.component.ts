@@ -16,6 +16,7 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RejectDTO } from '../../../DTO/RejectDTO';
 import { AuthService } from '../../../Services/auth.service';
+import { NotificationService } from '../../../Services/notification.service';
 
 @Component({
   selector: 'app-list-clients',
@@ -38,7 +39,7 @@ export class ListClientsComponent implements OnInit {
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private clientSvc: ClientRegisterService, private auth: AuthService) { }
+  constructor(private clientSvc: ClientRegisterService, private auth: AuthService, private notify: NotificationService ) { }
 
   ngOnInit(): void {
     let userId = this.auth.getUserId();
@@ -63,7 +64,7 @@ export class ListClientsComponent implements OnInit {
     console.log(client);
     this.clientSvc.approveClient(client.userId).subscribe((data) => {
       console.log(data);
-      alert("client sucessfully approved");
+      this.notify.success("Client sucessfully approved");
       const params = new URLSearchParams(this.filters).toString();
       this.fetchAllClients(params);
     },
@@ -88,7 +89,7 @@ export class ListClientsComponent implements OnInit {
   rejectPayment(reject: RejectDTO) {
     this.clientSvc.rejectClient(reject).subscribe((data) => {
       console.log(data);
-      alert(data);
+      this.notify.warning(data);
     },
       (error) => {
         console.log(error);
@@ -166,7 +167,7 @@ export class ListClientsComponent implements OnInit {
 
   downloadPDF(): void {
     if (!this.clients || this.clients.length === 0) {
-      alert('No Employees to export!');
+      this.notify.error('No Employees to export!');
       return;
     }
 

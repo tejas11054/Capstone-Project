@@ -7,6 +7,7 @@ import { Account } from '../../Models/Account';
 import { AccType, AccountType } from '../../Models/AccountType';
 import { AccStatus, AccountStatus } from '../../Models/AccountStatus';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-client-account',
@@ -26,7 +27,8 @@ export class ClientAccountComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private clientSvc: ClientRegisterService
+    private clientSvc: ClientRegisterService,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {

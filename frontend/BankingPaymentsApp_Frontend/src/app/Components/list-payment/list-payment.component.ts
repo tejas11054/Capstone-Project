@@ -16,6 +16,7 @@ import { RouterLink } from '@angular/router';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { AuthService } from '../../Services/auth.service';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-list-payment',
@@ -42,7 +43,7 @@ export class ListPaymentComponent implements OnInit {
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private auth: AuthService, private paymentSvc: PaymentService, private fb: FormBuilder) { }
+  constructor(private auth: AuthService, private notify: NotificationService , private paymentSvc: PaymentService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const user = this.auth.getLoggedInUser();
@@ -78,7 +79,7 @@ export class ListPaymentComponent implements OnInit {
     console.log(payment);
     this.paymentSvc.approvePayment(payment).subscribe((data) => {
       console.log(data);
-      alert("payment sucessfully approved");
+      this.notify.success("Payment sucessfully approved");
       const params = new URLSearchParams(this.filters).toString();
       this.fetchAllPayments(params);
     },
@@ -103,7 +104,7 @@ export class ListPaymentComponent implements OnInit {
   rejectPayment(reject: RejectDTO) {
     this.paymentSvc.rejectPayment(reject).subscribe((data) => {
       console.log(data);
-      alert("payment sucessfully Rejected");
+      this.notify.success("Payment sucessfully Rejected");
       const params = new URLSearchParams(this.filters).toString();
       this.fetchAllPayments(params);
     },
@@ -187,7 +188,7 @@ export class ListPaymentComponent implements OnInit {
 
   downloadPDF(): void {
     if (!this.payments || this.payments.length === 0) {
-      alert('No payments to export!');
+      this.notify.error('No payments to export!');
       return;
     }
 

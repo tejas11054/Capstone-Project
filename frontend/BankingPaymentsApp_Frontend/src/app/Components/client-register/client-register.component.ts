@@ -6,6 +6,7 @@ import { RegisterClientUserDTO } from '../../DTO/RegisterClientUserDTO';
 import { Router } from '@angular/router';
 import { BankService } from '../../Services/bank.service';
 import { Bank } from '../../Models/Bank';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-client-register',
@@ -25,7 +26,8 @@ export class ClientRegisterComponent {
     private fb: FormBuilder,
     private clientService: ClientRegisterService,
     private router: Router,
-    private bankSvc:BankService
+    private bankSvc:BankService,
+    private notify: NotificationService 
   ) {
     this.registerForm = this.fb.group({
       UserFullName: ['', Validators.required],
@@ -78,7 +80,7 @@ export class ClientRegisterComponent {
         console.error('ClientId missing in response!');
         return;
       }
-      alert('Registration successful!');
+      this.notify.success('Registration successful!');
       localStorage["userId"] = clientId;
       this.nextStep.emit();
     },
@@ -94,10 +96,10 @@ export class ClientRegisterComponent {
           this.registerForm.get('UserPhone')?.setErrors({ duplicate: true });
         }
         else {
-          alert(err.error); // show other backend messages
+          this.notify.error(err.error); // show other backend messages
         }
       } else {
-        alert('Registration failed!');
+        this.notify.success('Registration failed!');
       }
     }
   });

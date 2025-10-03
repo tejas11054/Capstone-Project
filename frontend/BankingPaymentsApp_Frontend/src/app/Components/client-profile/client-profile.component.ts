@@ -7,6 +7,7 @@ import { ClientUser } from '../../Models/ClientUser';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../Services/auth.service';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-client-profile',
@@ -26,7 +27,8 @@ export class ClientProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private clientSvc: ClientRegisterService
+    private clientSvc: ClientRegisterService,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {
@@ -69,16 +71,16 @@ export class ClientProfileComponent implements OnInit {
 
       this.clientSvc.updateClientUser(this.userId, updatedUser).subscribe({
         next: (res) => {
-          alert("Profile updated successfully!");
+          this.notify.success("Profile updated successfully!");
           this.userData = res;
         },
         error: (err) => {
           console.error("Error updating profile:", err);
-          alert("Failed to update profile.");
+          this.notify.error("Failed to update profile.");
         }
       });
     } else {
-      alert("Please fill all required fields.");
+      this.notify.warning("Please fill all required fields.");
     }
   }
 

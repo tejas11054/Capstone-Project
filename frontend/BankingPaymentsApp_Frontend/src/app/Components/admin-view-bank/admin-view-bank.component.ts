@@ -7,6 +7,7 @@ import { BankDTO } from '../../DTO/BankDTO';
 import { RouterLink } from '@angular/router';
 import { NameFilterComponent } from '../Filters/name-filter/name-filter.component';
 import { BooleanFilterComponent } from '../Filters/boolean-filter/boolean-filter.component';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-admin-view-bank',
@@ -28,7 +29,7 @@ export class AdminViewBankComponent implements OnInit {
     { id: false, name: "InActive" }
   ];
 
-  constructor(private bankService: BankService) { }
+  constructor(private bankService: BankService, private notify: NotificationService ) { }
 
   ngOnInit(): void {
     const params = new URLSearchParams(this.filters).toString();

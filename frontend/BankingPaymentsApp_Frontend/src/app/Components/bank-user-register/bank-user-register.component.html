@@ -50,24 +50,46 @@
 </div>
 
 
-      <!-- Password -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Password</label>
-        <input formControlName="password" type="password" class="form-control" placeholder="Enter password">
-        <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger small mt-1">
-          Password must be at least 8 characters long, include uppercase, lowercase, number, and special character.
-        </div>
-      </div>
+<!-- Password -->
+<div class="col-md-6">
+  <label class="form-label fw-semibold">Password</label>
+  <div class="position-relative">
+    <input [type]="showPassword ? 'text' : 'password'" 
+           formControlName="password" 
+           class="form-control pe-5" 
+           placeholder="Enter password">
+    <i class="bi" 
+       [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'" 
+       (click)="togglePasswordVisibility()" 
+       class="position-absolute top-50 end-0 translate-middle-y me-3"
+       style="cursor:pointer;"></i>
+  </div>
+  <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger small mt-1">
+    Password must be at least 8 characters long, include uppercase, lowercase, number, and special character.
+  </div>
+</div>
 
-      <!-- Confirm Password -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Confirm Password</label>
-        <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm password">
-        <div *ngIf="registerForm.errors?.['notMatching'] && f['confirmPassword'].touched"
-          class="text-danger small mt-1">
-          Passwords do not match.
-        </div>
-      </div>
+<!-- Confirm Password -->
+<div class="col-md-6">
+  <label class="form-label fw-semibold">Confirm Password</label>
+  <div class="position-relative">
+    <input [type]="showConfirmPassword ? 'text' : 'password'" 
+           formControlName="confirmPassword" 
+           class="form-control pe-5" 
+           placeholder="Confirm password">
+    <i class="bi" 
+       [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'" 
+       (click)="toggleConfirmPasswordVisibility()" 
+       class="position-absolute top-50 end-0 translate-middle-y me-3"
+       style="cursor:pointer;"></i>
+  </div>
+  <div *ngIf="registerForm.errors?.['notMatching'] && f['confirmPassword'].touched"
+       class="text-danger small mt-1">
+    Passwords do not match.
+  </div>
+</div>
+
+
 
       <!-- Referral Code -->
       <div class="col-md-6">

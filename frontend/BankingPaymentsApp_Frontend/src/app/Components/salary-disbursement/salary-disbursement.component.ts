@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CreateSalaryDisbursmentDTO } from '../../DTO/CreateSalaryDisbursmentDTO';
 import { AuthService } from '../../Services/auth.service';
 import { ListAllEmployeesComponent } from '../list-all-employees/list-all-employees.component';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-salary-disbursement',
@@ -14,7 +15,7 @@ import { ListAllEmployeesComponent } from '../list-all-employees/list-all-employ
 export class SalaryDisbursementComponent implements OnInit {
 
   salaryDisbursementForm!: FormGroup;
-  constructor(private auth: AuthService, private salaryDisbursementSvc: SalaryDisbursementService, private fb: FormBuilder) { }
+  constructor(private auth: AuthService, private notify: NotificationService , private salaryDisbursementSvc: SalaryDisbursementService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.salaryDisbursementForm = this.fb.group({
@@ -40,7 +41,7 @@ export class SalaryDisbursementComponent implements OnInit {
     console.log(this.salaryDisbursementForm.value)
     this.salaryDisbursementSvc.createSalaryDisbursement(this.salaryDisbursementForm.value).subscribe((data) => {
       console.log(data);
-      alert("Salary distribution created!")
+      this.notify.success("Salary distribution created!")
     },
       (error) => {
         console.log(error);

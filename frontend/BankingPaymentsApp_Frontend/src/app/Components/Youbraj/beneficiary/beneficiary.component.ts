@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { AuthService } from '../../../Services/auth.service';
+import { NotificationService } from '../../../Services/notification.service';
 
 @Component({
   selector: 'app-beneficiary',
@@ -25,7 +26,7 @@ export class BeneficiaryComponent {
   beneficiaries!: Beneficiary[];
   filters: any = {};
 
-  constructor(private auth: AuthService, private beneficiarySvc: BeneficiaryService, private fb: FormBuilder) { }
+  constructor(private auth: AuthService, private notify: NotificationService , private beneficiarySvc: BeneficiaryService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const user = this.auth.getLoggedInUser();
@@ -119,7 +120,7 @@ export class BeneficiaryComponent {
 
   downloadPDF(): void {
     if (!this.beneficiaries || this.beneficiaries.length === 0) {
-      alert('No beneficiaries to export!');
+      this.notify.error('No beneficiaries to export!');
       return;
     }
 

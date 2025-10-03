@@ -8,6 +8,7 @@ import { BankUser } from '../../../Models/BankUser';
 import { ClientUser } from '../../../Models/ClientUser';
 import { Payment } from '../../../Models/Payment';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '../../../Services/notification.service';
 
 @Component({
   selector: 'app-bank-user-profile',
@@ -27,7 +28,8 @@ export class BankUserProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private bankUserSvc: BankRegisterService,
     private clientSvc: ClientRegisterService,
-    private paymentSvc: PaymentService
+    private paymentSvc: PaymentService,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {

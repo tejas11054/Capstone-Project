@@ -7,6 +7,7 @@ import { ClientUser } from '../../Models/ClientUser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-checkout',
@@ -30,7 +31,7 @@ export class CheckoutComponent {
 
   readonly publishableKey = 'pk_test_51S8mOsDOPLdDJTqxlGeJpMgGGYyEwDCdZxWsUUPSwytFajTd994usIhRsWkPlPpQuSEHH43jIFiQ98qlbqxP14IC00hLeQUB1m';
 
-  constructor(private stripeSvc: StripeService, private auth: AuthService, private clientSvc: ClientRegisterService, private router: Router) { }
+  constructor(private stripeSvc: StripeService, private notify: NotificationService ,private auth: AuthService, private clientSvc: ClientRegisterService, private router: Router) { }
 
   async ngOnInit() {
     this.stripe = await loadStripe(this.publishableKey);
@@ -62,7 +63,7 @@ export class CheckoutComponent {
 
   startPayment() {
     if (!this.amount) {
-      alert('Enter amount');
+      this.notify.error('Enter amount');
       return;
     }
 
@@ -71,7 +72,7 @@ export class CheckoutComponent {
     this.stripeSvc.createPaymentIntent(this.amount * 100, accountId)
       .subscribe(resp => {
         if (!resp.clientSecret) {
-          alert('Failed to create payment intent');
+          this.notify.error('Failed to create payment intent');
           return;
         }
 
@@ -93,12 +94,12 @@ export class CheckoutComponent {
 
 
     if (error) {
-      alert('Payment failed: ' + error.message);
+      this.notify.error('Payment failed: ' + error.message);
     } else {
       let accountId = Number(this.client.accountId);
       this.stripeSvc.finalizePayment(accountId, this.amount).subscribe((data) => {
         console.log(data);
-        alert("Self Transfer is completed");
+        this.notify.success("Self Transfer is completed");
         this.router.navigate(["/transactions"])
       },
         (error) => {

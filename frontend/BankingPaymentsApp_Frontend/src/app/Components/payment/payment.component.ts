@@ -8,6 +8,7 @@ import { Beneficiary } from '../../Models/Beneficiary';
 import { CommonModule } from '@angular/common';
 import { BeneficiaryRegisterComponent } from '../beneficiary-register/beneficiary-register.component';
 import { Router, RouterLink } from '@angular/router';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-payment',
@@ -26,7 +27,7 @@ export class PaymentComponent implements OnInit {
   beneficiaries!: Beneficiary[];
 
 
-  constructor(private router:Router,private fb: FormBuilder, private paymentSvc: PaymentService, private auth: AuthService, private clientSvc: ClientRegisterService) { }
+  constructor(private router:Router,private fb: FormBuilder, private notify: NotificationService , private paymentSvc: PaymentService, private auth: AuthService, private clientSvc: ClientRegisterService) { }
 
   ngOnInit(): void {
 
@@ -61,7 +62,7 @@ export class PaymentComponent implements OnInit {
     this.paymentSvc.createPayment(this.createPayment.value).subscribe((data) => {
       console.log(data);
       this.paymentCreated = true;
-      alert(`payment to ${data.payeeAccountNumber} sucessfully created!`);
+      this.notify.success(`Payment to ${data.payeeAccountNumber} sucessfully created!`);
       this.router.navigate(["/payments"])
 
     },

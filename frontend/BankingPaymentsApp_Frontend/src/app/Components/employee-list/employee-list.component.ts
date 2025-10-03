@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ClientRegisterService } from '../../Services/client.service';
 import { EmployeeService } from '../../Services/employee.service';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-employees',
@@ -32,7 +33,8 @@ export class EmployeesComponent implements OnInit {
     private route: ActivatedRoute,
     private clientSvc: ClientRegisterService,
     private employeeSvc: EmployeeService,
-    private router: Router
+    private router: Router,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {
@@ -110,13 +112,13 @@ export class EmployeesComponent implements OnInit {
     this.employeeSvc.updateEmployee(this.editingEmployee.employeeId, this.editingEmployee)
       .subscribe({
         next: () => {
-          alert('Employee updated successfully!');
+          this.notify.success('Employee updated successfully!');
           this.editingEmployee = null;
           this.loadEmployees();
         },
         error: (err) => {
           console.error('Error updating employee:', err);
-          alert('Failed to update employee.');
+          this.notify.error('Failed to update employee.');
         }
       });
   }
@@ -126,13 +128,13 @@ export class EmployeesComponent implements OnInit {
 
     this.employeeSvc.deleteEmployee(id).subscribe({
       next: () => {
-        alert('Employee deleted successfully!');
+        this.notify.success('Employee deleted successfully!');
         this.employees = this.employees.filter(e => e.employeeId !== id);
         this.allEmployees = this.allEmployees.filter(e => e.employeeId !== id);
       },
       error: (err) => {
         console.error('Error deleting employee:', err);
-        alert('Failed to delete employee.');
+        this.notify.error('Failed to delete employee.');
       }
     });
   }
@@ -140,7 +142,7 @@ export class EmployeesComponent implements OnInit {
   onCSVSelected(event: any) {
     const file: File = event.target.files[0];
     if (file && file.type === 'text/csv') this.csvFile = file;
-    else alert('Please select a valid CSV file.');
+    else this.notify.error('Please select a valid CSV file.');
   }
 
   // uploadCSV() {
@@ -156,10 +158,10 @@ export class EmployeesComponent implements OnInit {
   }
 
   uploadUpdateCSVByClient() {
-    if (!this.updateCSVFile) { alert('No CSV file selected.'); return; }
+    if (!this.updateCSVFile) { this.notify.error('No CSV file selected.'); return; }
     this.employeeSvc.uploadUpdateCSVByClient(this.updateCSVFile, this.userId).subscribe({
-      next: (res: string) => { alert(res); this.loadEmployees(); },
-      error: (err) => { console.error(err); alert('Failed to update employees via CSV.'); }
+      next: (res: string) => { this.notify.warning(res); this.loadEmployees(); },
+      error: (err) => { console.error(err); this.notify.error('Failed to update employees via CSV.'); }
     });
   }
 

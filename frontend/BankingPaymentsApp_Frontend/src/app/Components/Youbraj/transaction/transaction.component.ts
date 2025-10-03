@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { AuthService } from '../../../Services/auth.service';
+import { NotificationService } from '../../../Services/notification.service';
 
 @Component({
   selector: 'app-transaction',
@@ -32,7 +33,7 @@ export class TransactionComponent {
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private auth:AuthService, private transactionSvc: TransactionService) { }
+  constructor(private auth:AuthService, private transactionSvc: TransactionService, private notify: NotificationService ) { }
 
   ngOnInit() {
     const user = this.auth.getLoggedInUser();
@@ -137,7 +138,7 @@ export class TransactionComponent {
 
   downloadPDF(): void {
     if (!this.transactions || this.transactions.length === 0) {
-      alert('No transactions to export!');
+      this.notify.error('No transactions to export!');
       return;
     }
 

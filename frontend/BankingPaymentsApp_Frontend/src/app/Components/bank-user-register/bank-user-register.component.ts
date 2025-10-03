@@ -5,6 +5,7 @@ import { BankRegisterService } from '../../Services/bankUser.service';
 import { Bank } from '../../Models/Bank';
 import { BankService } from '../../Services/bank.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-bank-user-register',
@@ -17,11 +18,18 @@ export class BankUserRegisterComponent implements OnInit {
   registerForm!: FormGroup;
   banks: Bank[] = [];
 
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+
+
+
+
   constructor(
     private fb: FormBuilder,
     private bankUserService: BankRegisterService,
     private bankService: BankService,
-    private router:Router
+    private router:Router,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +57,14 @@ export class BankUserRegisterComponent implements OnInit {
     );
 
     this.loadBanks();
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 
   // custom validator
@@ -83,7 +99,7 @@ register() {
 
   this.bankUserService.registerBankUser(bankUser).subscribe({
     next: () => {
-      alert('Bank User registered successfully!');
+      this.notify.success('Bank User registered successfully!');
       this.registerForm.reset();
       this.router.navigate(["/login"]);
     },
@@ -97,10 +113,10 @@ register() {
         } else if (err.error.includes('phone')) {
           this.backendPhoneError = err.error;
         } else {
-          alert(err.error); // fallback
+          this.notify.error(err.error); // fallback
         }
       } else {
-        alert('Registration failed!');
+        this.notify.error('Registration failed!');
       }
     }
   });
