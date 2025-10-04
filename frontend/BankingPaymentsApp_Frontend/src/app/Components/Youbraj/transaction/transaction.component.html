@@ -32,6 +32,8 @@
                 <app-amount-filter (amountFilter)="onAmountFilter($event)"></app-amount-filter>
                 <app-status-filter [statusOptions]="statusOptions"
                     (statusFilter)="onStatusFilter($event)"></app-status-filter>
+                <app-status-filter *ngIf="role == 'BANK_USER'" [title]="'Client'" [statusOptions]="clientOptions"
+                    (statusFilter)="onClientFilter($event)"></app-status-filter>
                 <!-- <app-name-filter (nameFilter)="onNameFilter($event)"></app-name-filter> -->
                 <app-id-filter (idFilter)="fetchById($event)"></app-id-filter>
                 <app-account-number-filter (accountFilter)="onAccountFilter($event)"></app-account-number-filter>

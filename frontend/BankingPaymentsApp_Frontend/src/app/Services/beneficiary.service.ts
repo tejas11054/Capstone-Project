@@ -16,7 +16,7 @@ export class BeneficiaryService {
     return this.http.get<Array<Beneficiary>>(this.BeneficiaryURL + `?${queryParams}`);
   }
 
-  getBeneficiaryById(id:number):Observable<Beneficiary>{
+  getBeneficiaryById(id: number): Observable<Beneficiary> {
     return this.http.get<Beneficiary>(this.BeneficiaryURL + `/${id}`);
   }
 
@@ -29,7 +29,7 @@ export class BeneficiaryService {
   }
 
   deleteBeneficiary(id: number): Observable<any> {
-    return this.http.delete(`${this.BeneficiaryURL}/${id}`);
+    return this.http.delete(`${this.BeneficiaryURL}/${id}`, { responseType: 'text' as 'json' });
   }
 
 

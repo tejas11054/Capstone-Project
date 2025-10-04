@@ -133,7 +133,7 @@ namespace BankingPaymentsApp_API.Controllers
             if (existingClientUser == null)
                 return NotFound($"No Client User exists with id {id}");
 
-            await _service.DeleteById(id);
+            await _service.SoftDelete(id);
             _logger.LogInformation("Client User was Deleted Sucessfully!");
 
             return Ok("Client User deleted successfully!");

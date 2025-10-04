@@ -141,6 +141,15 @@ namespace BankingPaymentsApp_API.Services
             await _emailService.SendEmailToClientAsync(clientUser.UserId, subject, reason);
         }
 
+        public async Task SoftDelete(int id)
+        {
+            ClientUser? client =  await _clientUserRepository.GetById(id);
+            if (client == null) throw new KeyNotFoundException("No such User");
+
+            client.KycVierified = false;
+            await _clientUserRepository.Update(client);
+        }
+
 
     }
 }

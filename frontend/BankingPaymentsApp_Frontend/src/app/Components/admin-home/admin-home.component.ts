@@ -11,6 +11,7 @@ import { BankRegisterService } from '../../Services/bankUser.service';
 import { ClientUser } from '../../Models/ClientUser';
 import { BankUser } from '../../Models/BankUser';
 import { RouterLink } from '@angular/router';
+import { LogService } from '../../Services/log.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -25,7 +26,7 @@ export class AdminHomeComponent implements OnInit {
   bankUser!: BankUser[];
   logs!: any[];
 
-  constructor(private auth: AuthService, private userSvc: UserService, private bankSvc: BankService, private clientSvc: ClientRegisterService, private bankUserSvc: BankRegisterService) { }
+  constructor(private logService: LogService,private auth: AuthService, private userSvc: UserService, private bankSvc: BankService, private clientSvc: ClientRegisterService, private bankUserSvc: BankRegisterService) { }
 
   ngOnInit(): void {
     let id = this.auth.getUserId() ?? 0;

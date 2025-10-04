@@ -32,6 +32,10 @@ export class ClientRegisterService {
     return this.http.put<ClientUser>(`${this.baseUrl}/ClientUser/${id}`, user);
   }
 
+  softDelete(id:number):Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/ClientUser/${id}`,{ responseType: 'text' as 'json' });
+  }
+
 
   approveClient(clientId: number): Observable<any> {
     return this.http.get<ClientUser>(`${this.baseUrl}/ClientUser/${clientId}`)

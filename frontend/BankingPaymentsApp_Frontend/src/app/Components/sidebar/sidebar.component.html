@@ -1,6 +1,6 @@
 <div class="sidebar d-flex flex-column flex-shrink-0 p-2 bg-white vh-100 border-end" style="width: 220px;">
   <a href="/" class="d-flex align-items-center mb-3 text-decoration-none">
-    <span class="fs-6 fw-semibold ms-2">New business</span>
+    <span class="fs-6 fw-semibold ms-2">PAY PRO</span>
   </a>
   <hr class="my-2">
 
@@ -20,7 +20,7 @@
         <i class="bi bi-house me-2"></i> Home
       </a>
     </li>
-    <li *ngIf="role == 'CLIENT_USER'" class="nav-item">
+    <li *ngIf="role == 'CLIENT_USER' && kycVierified" class="nav-item">
       <a routerLink="/profile" class="nav-link d-flex align-items-center">
         <i class="bi bi-person me-2"></i> Profile
       </a>
@@ -30,7 +30,7 @@
         <i class="bi bi-person me-2"></i> Profile
       </a>
     </li>
-    <li *ngIf="role != 'ADMIN'">
+    <li *ngIf="role != 'ADMIN' && kycVierified">
       <a routerLink="/beneficiary" class="nav-link d-flex align-items-center">
         <i class="bi bi-wallet2 me-2"></i> Beneficiary
       </a>
@@ -50,17 +50,17 @@
         <i class="bi bi-arrow-left-right me-2"></i> Audit Logs
       </a>
     </li>
-    <li *ngIf="role != 'ADMIN'">
+    <li *ngIf="kycVierified">
       <a routerLink="/transactions" class="nav-link d-flex align-items-center">
         <i class="bi bi-arrow-left-right me-2"></i> Transactions
       </a>
     </li>
-    <li *ngIf="role != 'ADMIN'">
+    <li *ngIf="role != 'ADMIN' && kycVierified">
       <a routerLink="/employee" class="nav-link d-flex align-items-center">
         <i class="bi bi-people me-2"></i> Employees
       </a>
     </li>
-    <li *ngIf="role != 'ADMIN'">
+    <li *ngIf="kycVierified">
       <a routerLink="/disbursements" class="nav-link d-flex align-items-center">
         <i class="bi bi-box-seam me-2"></i> Salary Disbursement
       </a>
@@ -71,7 +71,7 @@
 
   <div class="small text-muted fw-bold ps-1">Products</div>
   <ul class="nav flex-column small mt-2">
-    <li *ngIf="role != 'ADMIN'">
+    <li *ngIf="kycVierified">
       <a routerLink="/payments" class="nav-link d-flex align-items-center">
         <i class="bi bi-credit-card me-2"></i> Payments
       </a>

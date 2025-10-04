@@ -4,7 +4,7 @@ import { ClientUserResponseDTO } from '../../../DTO/ClientUserResponseDTO';
 import { ClientRegisterService } from '../../../Services/client.service';
 import { AuthService } from '../../../Services/auth.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AccountService } from '../../../Services/account.service';
 import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
@@ -15,7 +15,7 @@ declare var bootstrap: any;
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule,CheckoutComponent],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, CheckoutComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
 
   constructor(private auth: AuthService, private clientSvc: ClientRegisterService, private fb: FormBuilder,
-    private accountService: AccountService,) {
+    private accountService: AccountService, private router:Router) {
     this.balanceForm = this.fb.group({
       balance: [0, [Validators.required, Validators.min(1)]],
     });
@@ -69,8 +69,18 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   openAddBalanceModal() {
     this.balanceForm.reset({ balance: 0 });
     this.addBalanceModal?.show();
-
     // this.addBalanceModal.openModal();
+  }
+
+  deleteClient(id: number | undefined) {
+    this.clientSvc.softDelete(Number(id)).subscribe((data) => {
+      console.log(data);
+      alert("User Sucessfully Deleted!");
+      this.router.navigate(["Landing"])
+    },
+      (error) => {
+        console.log(error);
+      })
   }
 
 

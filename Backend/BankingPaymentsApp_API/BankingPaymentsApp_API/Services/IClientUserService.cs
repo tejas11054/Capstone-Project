@@ -24,5 +24,6 @@ namespace BankingPaymentsApp_API.Services
         public Task DeleteById(int id);
         public Task<ClientUser> ApproveClient(ClientUser clientUser);
         public Task RejectClient(ClientUser clientUser, string reason);
+        public Task SoftDelete(int id);
     }
 }

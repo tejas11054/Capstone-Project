@@ -205,6 +205,7 @@ namespace BankingPaymentsApp_API.Controllers
                     emp.EmployeeName = dto.EmployeeName;
                     emp.IFSC = dto.IFSC;
                     emp.BankName = dto.BankName;
+                    emp.Salary = dto.Salary;
 
                     await _employeeService.Update(emp);
                     updatedCount++;

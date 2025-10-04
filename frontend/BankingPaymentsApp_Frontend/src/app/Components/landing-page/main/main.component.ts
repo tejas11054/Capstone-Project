@@ -7,6 +7,7 @@ import { Testimonials } from '../testimonials/testimonials';
 import { Faq } from '../faq/faq';
 import { Footer } from '../footer/footer';
 import { QueryComponent } from '../query/query';
+import { HowItWorks } from '../how-it-works/how-it-works';
 
 @Component({
   selector: 'app-main',
@@ -19,7 +20,8 @@ import { QueryComponent } from '../query/query';
     Testimonials,
     Faq,
     QueryComponent,
-    Footer
+    Footer,
+    HowItWorks
   ],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']  

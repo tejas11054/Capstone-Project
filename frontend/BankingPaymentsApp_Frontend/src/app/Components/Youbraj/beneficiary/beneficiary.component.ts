@@ -52,7 +52,14 @@ export class BeneficiaryComponent {
   }
 
   deleteBeneficiary(beneficiary: Beneficiary) {
-
+    this.beneficiarySvc.deleteBeneficiary(beneficiary.beneficiaryId).subscribe((data) => {
+      console.log(data);
+      alert(`${beneficiary.beneficiaryName} has been deleted!`)
+    },
+      (error) => {
+        console.log(error);
+        
+      })
   }
 
   onDateFilter(dates: { dateFrom: string; dateTo: string }) {

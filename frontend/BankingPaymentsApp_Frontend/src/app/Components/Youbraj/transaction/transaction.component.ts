@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { AuthService } from '../../../Services/auth.service';
+import { ClientRegisterService } from '../../../Services/client.service';
 
 @Component({
   selector: 'app-transaction',
@@ -25,14 +26,16 @@ export class TransactionComponent {
   filters: any = {};
   totalTransactionAmount: number = 0;
   userId!:number;
-
+  role!: string | null;
   statusOptions = [
     { id: 1, name: 'Credit' },
     { id: 2, name: 'Debit' },
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private auth:AuthService, private transactionSvc: TransactionService) { }
+  clientOptions: { id: number, name: string }[] = [];
+
+  constructor(private auth:AuthService, private transactionSvc: TransactionService,private clientSvc:ClientRegisterService) { }
 
   ngOnInit() {
     const user = this.auth.getLoggedInUser();
@@ -42,11 +45,14 @@ export class TransactionComponent {
       console.log("helo")
       console.log(user?.userId)
       this.filters.clientId =  user?.userId;
+      this.role = role;
     }
+    this.role = role;
     this.userId = this.auth.getUserId()??0;
     // this.filters.clientId = 2;
     const params = new URLSearchParams(this.filters).toString();
     this.fetchTransactions(params);
+    this.fetchClients();
   }
 
   fetchTransactions(params: string) {
@@ -62,6 +68,18 @@ export class TransactionComponent {
       }
 
     );
+  }
+
+  fetchClients(){
+    this.clientSvc.getClients("").subscribe((data)=>{
+      console.log(data);
+      this.clientOptions = data.map(c => ({
+      id: c.userId,      // or whatever your ID field is
+      name: c.userName   // or whatever your display field is
+    }));
+
+    console.log(this.clientOptions);
+    })
   }
 
   onDateFilter(dates: { dateFrom: string; dateTo: string }) {
@@ -135,6 +153,13 @@ export class TransactionComponent {
     this.fetchTransactions(params);
   }
 
+  onClientFilter(status: { paymentStatusId: string }){
+    this.filters.clientId = status.paymentStatusId;
+
+    const params = new URLSearchParams(this.filters).toString();
+    this.fetchTransactions(params);
+  }
+
   downloadPDF(): void {
     if (!this.transactions || this.transactions.length === 0) {
       alert('No transactions to export!');
@@ -166,6 +191,7 @@ export class TransactionComponent {
     doc.save(`Transactions_User_${this.userId}.pdf`);
   }
 
+  
 
   // getEmployeeAccountByTXnId(id:number){
   //   let detail = this.transactions[id].salaryDisbursement?.disbursementDetails?.find(d=>d.transactionId==id);
