@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AccountService } from '../../../Services/account.service';
 import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CheckoutComponent } from '../../checkout/checkout.component';
+import { NotificationService } from '../../../Services/notification.service';
 declare var bootstrap: any;
 
 
@@ -26,8 +27,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   balanceForm: FormGroup;
 
 
-  constructor(private auth: AuthService, private clientSvc: ClientRegisterService, private fb: FormBuilder,
-    private accountService: AccountService, private router:Router) {
+  constructor(private auth: AuthService, private notify: NotificationService, private clientSvc: ClientRegisterService, private fb: FormBuilder,
+    private accountService: AccountService, private router: Router) {
     this.balanceForm = this.fb.group({
       balance: [0, [Validators.required, Validators.min(1)]],
     });
@@ -105,7 +106,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         },
         error: (err) => {
           console.error(err);
-          alert('Failed to update balance.');
+          this.notify.error('Failed to update balance.');
         }
       });
   }

@@ -4,6 +4,7 @@ import { BeneficiaryService } from '../../Services/beneficiary.service';
 import { AuthService } from '../../Services/auth.service';
 import { Beneficiary } from '../../Models/Beneficiary';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-beneficiary-register',
@@ -19,7 +20,7 @@ export class BeneficiaryRegisterComponent implements OnInit {
   @Output() beneficiaryAdded = new EventEmitter<Beneficiary>();
   @Output() cancelAdd = new EventEmitter<void>(); 
   
-  constructor(private router: Router,private fb: FormBuilder,private beneficiarySvc:BeneficiaryService,private auth:AuthService) { }
+  constructor(private router: Router,private fb: FormBuilder,private notify: NotificationService ,private beneficiarySvc:BeneficiaryService,private auth:AuthService) { }
 
 
   ngOnInit(): void {
@@ -40,7 +41,7 @@ export class BeneficiaryRegisterComponent implements OnInit {
     this.beneficiarySvc.createBeneficiary(this.createBeneficiary.value).subscribe(
       (data) => {
         console.log(data);
-        alert(`The beneficiary ${data.beneficiaryName} has been added sucessfully!` )
+        this.notify.success(`The beneficiary ${data.beneficiaryName} has been added sucessfully!` )
 
         this.beneficiaryAdded.emit(data);
         this.cancelAdd.emit(); // close the form after successful addition
@@ -48,7 +49,7 @@ export class BeneficiaryRegisterComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        alert('Failed to add beneficiary.');
+        this.notify.error('Failed to add beneficiary.');
       }
     );
   }

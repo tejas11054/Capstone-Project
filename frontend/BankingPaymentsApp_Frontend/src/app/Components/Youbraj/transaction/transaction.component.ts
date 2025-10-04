@@ -14,6 +14,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { AuthService } from '../../../Services/auth.service';
 import { ClientRegisterService } from '../../../Services/client.service';
+import { NotificationService } from '../../../Services/notification.service';
 
 @Component({
   selector: 'app-transaction',
@@ -35,7 +36,7 @@ export class TransactionComponent {
 
   clientOptions: { id: number, name: string }[] = [];
 
-  constructor(private auth:AuthService, private transactionSvc: TransactionService,private clientSvc:ClientRegisterService) { }
+  constructor(private auth:AuthService, private transactionSvc: TransactionService,private clientSvc:ClientRegisterService,private notify: NotificationService) { }
 
   ngOnInit() {
     const user = this.auth.getLoggedInUser();
@@ -162,7 +163,7 @@ export class TransactionComponent {
 
   downloadPDF(): void {
     if (!this.transactions || this.transactions.length === 0) {
-      alert('No transactions to export!');
+      this.notify.error('No transactions to export!');
       return;
     }
 

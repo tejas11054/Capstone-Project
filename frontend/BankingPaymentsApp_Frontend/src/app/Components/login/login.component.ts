@@ -6,6 +6,8 @@ import { LoginResponseDTO } from '../../DTO/LoginResponseDTO';
 import { InvisibleReCaptchaComponent, NgxCaptchaModule, ReCaptchaV3Service } from 'ngx-captcha';
 import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '../../Services/notification.service';
+
 
 @Component({
   selector: 'app-login',
@@ -27,7 +29,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder, 
     private router: Router, 
     private authSvc: AuthService,
-    private reCaptchaV3Service: ReCaptchaV3Service
+    private reCaptchaV3Service: ReCaptchaV3Service,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {
@@ -64,13 +67,13 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/home']); 
             break;
           default:
-            alert("Unknown role! Cannot navigate.");
+            this.notify.error("Unknown role! Cannot navigate.");
             break;
         }
       },
       error: err => {
         console.error("Login failed:", err);
-        alert("Login failed. Check credentials or try again.");
+        this.notify.error("Login failed. Check credentials or try again.");
       }
     });
   }
@@ -92,7 +95,7 @@ export class LoginComponent implements OnInit {
       // trigger invisible captcha check before login
       this.captchaElem.execute();
     } else {
-      alert("Please enter username and password");
+      this.notify.error("Please enter username and password");
     }
   }
 

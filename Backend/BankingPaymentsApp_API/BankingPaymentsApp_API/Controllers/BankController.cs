@@ -70,17 +70,30 @@ namespace BankingPaymentsApp_API.Controllers
         public async Task<IActionResult> CreateBank([FromBody] BankDTO dto)
         {
             _logger.LogInformation($"CreateBank started.");
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var newBank = _mapper.Map<Bank>(dto);
-            var addedBank = await _service.Add(newBank);    
 
-            if (addedBank == null)
-                return BadRequest("Unable to create account!");
-            _logger.LogInformation($"CreateBank succeeded ");
-            return Ok(addedBank);
+            try
+            {
+                var addedBank = await _service.Add(newBank);
+                _logger.LogInformation($"CreateBank succeeded ");
+                return Ok(addedBank);
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogWarning(ex.Message);
+                return Conflict(new { message = ex.Message }); // 409 Conflict
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error creating bank");
+                return StatusCode(500, "An unexpected error occurred.");
+            }
         }
+
 
         // PUT: api/Account/{id}
         [HttpPut("{id}")]

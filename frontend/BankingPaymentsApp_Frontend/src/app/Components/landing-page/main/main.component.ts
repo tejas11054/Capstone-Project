@@ -17,6 +17,7 @@ import { HowItWorks } from '../how-it-works/how-it-works';
     Navbar,
     Hero,
     Features,
+    HowItWorks,
     Testimonials,
     Faq,
     QueryComponent,

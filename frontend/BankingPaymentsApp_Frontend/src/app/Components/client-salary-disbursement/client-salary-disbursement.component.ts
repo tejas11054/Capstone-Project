@@ -6,6 +6,7 @@ import { ClientRegisterService } from '../../Services/client.service';
 import { EmployeeService } from '../../Services/employee.service';
 import { SalaryDisbursementService } from '../../Services/salary-disbursement.service';
 import { AuthService } from '../../Services/auth.service';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-client-salary-disbursement',
@@ -32,7 +33,8 @@ export class ClientSalaryDisbursementComponent implements OnInit {
     private salaryDisbursementSvc: SalaryDisbursementService,
     private auth: AuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {
@@ -106,14 +108,14 @@ export class ClientSalaryDisbursementComponent implements OnInit {
 
     this.salaryDisbursementSvc.createSalaryDisbursement(payload).subscribe({
       next: (res) => {
-        alert('Salary disbursement created successfully!');
+        this.notify.success('Salary disbursement created successfully!');
         // optionally reset selection
         this.selectAll = false;
         this.selectedEmployees = [];
       },
       error: (err) => {
         console.error(err);
-        alert('Failed to create salary disbursement.');
+        this.notify.error('Failed to create salary disbursement.');
       }
     });
   }

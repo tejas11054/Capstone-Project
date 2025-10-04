@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BankRegisterService } from '../../Services/bankUser.service';
 import { AuthService } from '../../Services/auth.service';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-bankuser-edit',
@@ -22,7 +23,8 @@ export class BankuserEditComponent {
     private route: ActivatedRoute,
     private router: Router,
     private bankUserService: BankRegisterService,
-    private auth: AuthService
+    private auth: AuthService,
+    private notify: NotificationService 
   ) { }
 
   ngOnInit(): void {

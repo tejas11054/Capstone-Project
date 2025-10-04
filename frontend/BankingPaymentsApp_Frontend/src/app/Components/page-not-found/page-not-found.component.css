@@ -1,0 +1,19 @@
+.not-found-container {
+  height: 80vh;
+  color: #444;
+}
+
+.not-found-container h1 {
+  font-size: 10rem;
+  color: #ff4d4f;
+}
+
+.not-found-container p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}

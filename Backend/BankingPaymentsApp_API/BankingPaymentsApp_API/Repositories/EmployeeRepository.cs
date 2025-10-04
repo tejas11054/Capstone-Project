@@ -63,12 +63,35 @@ namespace BankingPaymentsApp_API.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Employee>> BulkInsert(List<Employee> employees)
+        public async Task<(IEnumerable<Employee> inserted, List<string> skipped)> BulkInsert(List<Employee> employees)
         {
-            await _dbContext.Employees.AddRangeAsync(employees);
-            await _dbContext.SaveChangesAsync();
-            return employees;
+            var skipped = new List<string>();
+            var inserted = new List<Employee>();
+
+            foreach (var emp in employees)
+            {
+                // Check duplicate account number
+                bool exists = await _dbContext.Employees
+                    .AnyAsync(e => e.AccountNumber == emp.AccountNumber);
+
+                if (exists)
+                {
+                    skipped.Add($"Skipped Employee '{emp.EmployeeName}' - AccountNumber '{emp.AccountNumber}' already exists.");
+                    continue;
+                }
+
+                inserted.Add(emp);
+            }
+
+            if (inserted.Any())
+            {
+                await _dbContext.Employees.AddRangeAsync(inserted);
+                await _dbContext.SaveChangesAsync();
+            }
+
+            return (inserted, skipped);
         }
+
 
 
     }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Document } from '../../../Models/Document';
 import { DocumentUploadService } from '../../../Services/document.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { NotificationService } from '../../../Services/notification.service';
 
 @Component({
   selector: 'app-view-documents',
@@ -24,7 +25,8 @@ export class ViewDocumentsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private documentSvc: DocumentUploadService
+    private documentSvc: DocumentUploadService,
+    private notify: NotificationService 
   ) { }
 
   ngOnInit(): void {

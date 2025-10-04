@@ -13,6 +13,7 @@ import autoTable from 'jspdf-autotable';
 import { RejectDTO } from '../../DTO/RejectDTO';
 import { RejectModalComponent } from '../Shared/reject-modal/reject-modal.component';
 import { BankService } from '../../Services/bank.service';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-admin',
@@ -42,7 +43,7 @@ export class AdminComponent implements OnInit {
 
   statusOptions!: { id: number, name: string }[];
 
-  constructor(private bankService: BankRegisterService, private bankSvc: BankService) { }
+  constructor(private bankService: BankRegisterService, private bankSvc: BankService, private notify: NotificationService ) { }
 
   ngOnInit(): void {
     const params = new URLSearchParams(this.filters).toString();
@@ -186,7 +187,7 @@ export class AdminComponent implements OnInit {
     console.log(bankUser);
     this.bankService.approveBankUser(bankUser.userId, bankUser).subscribe((data) => {
       console.log(data);
-      alert("bankUser sucessfully approved");
+      this.notify.success("bankUser sucessfully approved");
     },
       (error) => {
         console.log(error);
@@ -209,7 +210,7 @@ export class AdminComponent implements OnInit {
   rejectBankUser(reject: RejectDTO) {
     this.bankService.rejectBankUser(reject).subscribe((data) => {
       console.log(data);
-      alert("payment sucessfully Rejected");
+      this.notify.warning("payment sucessfully Rejected");
     },
       (error) => {
         console.log(error);
@@ -273,7 +274,7 @@ export class AdminComponent implements OnInit {
 
   downloadPDF(): void {
     if (!this.banks || this.banks.length === 0) {
-      alert('No bank Users to export!');
+      this.notify.warning('No bank Users to export!');
       return;
     }
 

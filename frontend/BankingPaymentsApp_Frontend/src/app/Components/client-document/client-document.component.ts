@@ -5,6 +5,7 @@ import { DocumentUploadService } from '../../Services/document.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-client-documents',
@@ -34,7 +35,8 @@ export class ClientDocumentsComponent implements OnInit {
     private route: ActivatedRoute,
     private clientSvc: ClientRegisterService,
     private documentSvc: DocumentUploadService,
-    private router: Router
+    private router: Router,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {
@@ -83,12 +85,12 @@ export class ClientDocumentsComponent implements OnInit {
 
     this.documentSvc.deleteDocument(documentId).subscribe({
       next: () => {
-        alert('Document deleted successfully.');
+        this.notify.success('Document deleted successfully.');
         this.loadDocuments();
       },
       error: err => {
         console.error('Error deleting document:', err);
-        alert('Failed to delete document.');
+        this.notify.error('Failed to delete document.');
       }
     });
   }
@@ -100,11 +102,11 @@ export class ClientDocumentsComponent implements OnInit {
 
   confirmUpdate(doc: any): void {
     const preview = this.previewFiles[doc.documentId];
-    if (!preview) { alert("Please select a file before updating."); return; }
+    if (!preview) { this.notify.warning("Please select a file before updating."); return; }
 
     const dto = { DocumentName: doc.documentName, ProofTypeId: doc.proofTypeId, ClientId: this.userId };
     this.documentSvc.updateDocument(doc.documentId, dto, preview.file).subscribe({
-      next: () => { alert("Document updated successfully."); delete this.previewFiles[doc.documentId]; this.loadDocuments(); },
+      next: () => { this.notify.success("Document updated successfully."); delete this.previewFiles[doc.documentId]; this.loadDocuments(); },
       error: err => { console.error("Error updating document:", err); alert("Failed to update document."); }
     });
   }

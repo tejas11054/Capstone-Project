@@ -6,6 +6,7 @@ import { ClientUser } from '../../Models/ClientUser';
 import { Document } from '../../Models/Document';
 import { ClientRegisterService } from '../../Services/client.service';
 import { RejectDTO } from '../../DTO/RejectDTO';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-bank-user',
@@ -24,7 +25,7 @@ export class BankUserComponent implements OnInit {
   responseMessage: string | null = null;
   reject!:RejectDTO;
 
-  constructor(private bankService: ClientRegisterService) { }
+  constructor(private bankService: ClientRegisterService, private notify: NotificationService ) { }
 
   ngOnInit() {
     this.fetchClients();
@@ -67,7 +68,7 @@ export class BankUserComponent implements OnInit {
 
   viewDocuments(client: ClientUser) {
     if (!client.userId) {
-      alert('Client ID missing!');
+      this.notify.error('Client ID missing!');
       return;
     }
 

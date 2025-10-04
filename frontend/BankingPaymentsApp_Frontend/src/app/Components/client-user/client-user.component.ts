@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ClientRegisterService } from '../../Services/client.service';
 import { FormsModule } from '@angular/forms';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-client-user',
@@ -18,7 +19,8 @@ export class ClientUserComponent implements OnInit {
   currentComponent: string = 'profile'; 
   constructor(
     private route: ActivatedRoute,
-    private clientSvc: ClientRegisterService
+    private clientSvc: ClientRegisterService,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {

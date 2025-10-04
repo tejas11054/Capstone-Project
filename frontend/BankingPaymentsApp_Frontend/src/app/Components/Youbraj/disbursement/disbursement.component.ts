@@ -16,6 +16,7 @@ import { RejectDTO } from '../../../DTO/RejectDTO';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { AuthService } from '../../../Services/auth.service';
+import { NotificationService } from '../../../Services/notification.service';
 
 @Component({
   selector: 'app-disbursement',
@@ -41,7 +42,7 @@ export class DisbursementComponent implements OnInit {
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private auth: AuthService, private disbursementSvc: SalaryDisbursementService) { }
+  constructor(private auth: AuthService, private notify: NotificationService , private disbursementSvc: SalaryDisbursementService) { }
 
   ngOnInit(): void {
     const user = this.auth.getLoggedInUser();
@@ -77,11 +78,12 @@ export class DisbursementComponent implements OnInit {
     console.log(disbursement);
     this.disbursementSvc.approveSalaryDisbursement(disbursement.salaryDisbursementId).subscribe((data) => {
       console.log(data);
-      alert("payment sucessfully approved");
+      this.notify.success("Payment sucessfully approved");
       const params = new URLSearchParams(this.filters).toString();
       this.fetchAllPayments(params);
     },
       (error) => {
+        this.notify.warning("Insufficient Bank Balance!!!!");
         console.log(error);
       })
   }
@@ -102,7 +104,7 @@ export class DisbursementComponent implements OnInit {
   rejectPayment(reject: RejectDTO) {
     this.disbursementSvc.rejectSalaryDisbursement(reject).subscribe((data) => {
       console.log(data);
-      alert("disbursement sucessfully Rejected");
+      this.notify.success("Disbursement sucessfully Rejected");
       const params = new URLSearchParams(this.filters).toString();
       this.fetchAllPayments(params);
     },
@@ -183,7 +185,7 @@ export class DisbursementComponent implements OnInit {
 
   downloadPDF(): void {
     if (!this.disbursements || this.disbursements.length === 0) {
-      alert('No disbursements to export!');
+      this.notify.error('No disbursements to export!');
       return;
     }
 

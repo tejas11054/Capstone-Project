@@ -8,7 +8,7 @@
     <div class="col-md-6">
       <div class="input-group">
         <input class="form-control" type="file" (change)="onCSVSelected($event)" accept=".csv" />
-        <button class="btn btn-primary" (click)="uploadCSV()" [disabled]="!csvFile">
+        <button class="btn btn-primary" [disabled]="!csvFile">
           <i class="fas fa-file-upload"></i> Add Employees via CSV
         </button>
       </div>

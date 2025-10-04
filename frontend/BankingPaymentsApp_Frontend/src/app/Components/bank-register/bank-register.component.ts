@@ -5,6 +5,7 @@ import { BankDTO } from '../../DTO/BankDTO';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-bank-register',
@@ -27,7 +28,8 @@ export class BankRegisterComponent implements OnInit {
 
   constructor(
     private bankService: BankService, 
-    private router: Router
+    private router: Router,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class BankRegisterComponent implements OnInit {
         this.responseMessage = 'Bank registered successfully!';
         this.createdBank = res;
         this.bankDto = { bankName: '', ifsc: '' }; 
-        alert("Bank has been registered successfully");
+        this.notify.success("Bank has been registered successfully");
 
         this.loading = false; // hide spinner
         this.router.navigate(['/banks']); 

@@ -5,6 +5,7 @@ import { BankRegisterService } from '../../Services/bankUser.service';
 import { Bank } from '../../Models/Bank';
 import { BankService } from '../../Services/bank.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-bank-user-register',
@@ -17,11 +18,18 @@ export class BankUserRegisterComponent implements OnInit {
   registerForm!: FormGroup;
   banks: Bank[] = [];
 
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+
+
+
+
   constructor(
     private fb: FormBuilder,
     private bankUserService: BankRegisterService,
     private bankService: BankService,
-    private router:Router
+    private router:Router,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +59,14 @@ export class BankUserRegisterComponent implements OnInit {
     this.loadBanks();
   }
 
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
   // custom validator
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
     const password = group.get('password')?.value;
@@ -69,20 +85,41 @@ export class BankUserRegisterComponent implements OnInit {
     });
   }
 
-  register() {
-    if (this.registerForm.invalid) return;
+  backendEmailError: string | null = null;
+backendPhoneError: string | null = null;
 
-    const bankUser = this.registerForm.value;
-    this.bankUserService.registerBankUser(bankUser).subscribe({
-      next: () => {
-        alert('Bank User registered successfully!');
-        this.registerForm.reset();
-        this.router.navigate(["/login"])
-      },
-      error: (err) => {
-        console.error(err);
-        alert('Registration failed!');
+register() {
+  if (this.registerForm.invalid) return;
+
+  const bankUser = this.registerForm.value;
+
+  // clear old backend errors before new request
+  this.backendEmailError = null;
+  this.backendPhoneError = null;
+
+  this.bankUserService.registerBankUser(bankUser).subscribe({
+    next: () => {
+      this.notify.success('Bank User registered successfully!');
+      this.registerForm.reset();
+      this.router.navigate(["/login"]);
+    },
+    error: (err) => {
+      console.error(err);
+
+      // Check backend error message and assign
+      if (err.error && typeof err.error === 'string') {
+        if (err.error.includes('email')) {
+          this.backendEmailError = err.error;
+        } else if (err.error.includes('phone')) {
+          this.backendPhoneError = err.error;
+        } else {
+          this.notify.error(err.error); // fallback
+        }
+      } else {
+        this.notify.error('Registration failed!');
       }
-    });
-  }
+    }
+  });
+}
+
 }

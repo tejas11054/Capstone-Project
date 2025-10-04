@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { saveAs } from 'file-saver';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-client-transactions',
@@ -28,7 +29,8 @@ export class ClientTransactionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private transactionSvc: TransactionService,
-    private router: Router
+    private router: Router,
+    private notify: NotificationService 
   ) { }
 
   ngOnInit(): void {
@@ -95,7 +97,7 @@ export class ClientTransactionComponent implements OnInit {
 
   downloadPDF(): void {
     if (!this.transactions || this.transactions.length === 0) {
-      alert('No transactions to export!');
+      this.notify.error('No transactions to export!');
       return;
     }
 

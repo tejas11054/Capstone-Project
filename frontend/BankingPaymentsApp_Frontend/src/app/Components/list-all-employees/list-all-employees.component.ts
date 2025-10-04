@@ -17,6 +17,7 @@ import { EmployeeUploadComponent } from '../Youbraj/employee-upload/employee-upl
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { BooleanFilterComponent } from '../Filters/boolean-filter/boolean-filter.component';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-list-all-employees',
@@ -38,7 +39,7 @@ export class ListAllEmployeesComponent implements OnInit {
     { id: false, name: "InActive" }
   ];
   // @Output() event = new EventEmitter<{ allEmployees: boolean, employeeIds: number[] }>
-  constructor(private router: Router, private auth: AuthService, private employeeSvc: EmployeeService, private disbursementSvc: SalaryDisbursementService) { }
+  constructor(private router: Router, private auth: AuthService, private notify: NotificationService , private employeeSvc: EmployeeService, private disbursementSvc: SalaryDisbursementService) { }
 
   ngOnInit(): void {
     const user = this.auth.getLoggedInUser();
@@ -111,7 +112,7 @@ export class ListAllEmployeesComponent implements OnInit {
     };
     this.disbursementSvc.createSalaryDisbursement(payload).subscribe((data) => {
       console.log(data);
-      alert("disbursement Created Successfully!");
+      this.notify.success("Disbursement Created Successfully!");
       this.router.navigate(["/disbursements"]);
 
     },
@@ -123,7 +124,7 @@ export class ListAllEmployeesComponent implements OnInit {
   deleteEmployee(id: number) {
     this.employeeSvc.deleteEmployee(id).subscribe((data) => {
       console.log(data);
-      alert("employee deleted sucessfully!");
+      this.notify.success("Employee deleted sucessfully!");
       const params = new URLSearchParams(this.filters).toString();
       this.fetchAllEmployees(params);
     },
@@ -192,7 +193,7 @@ export class ListAllEmployeesComponent implements OnInit {
         this.employees = [data];
       },
         (error) => {
-          alert("no employee of id: " + value.id);
+          this.notify.error("No employee of id: " + value.id);
         })
     }
   }
@@ -229,7 +230,7 @@ export class ListAllEmployeesComponent implements OnInit {
 
   downloadPDF(): void {
     if (!this.employees || this.employees.length === 0) {
-      alert('No Employees to export!');
+      this.notify.error('No Employees to export!');
       return;
     }
 

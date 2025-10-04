@@ -51,6 +51,14 @@ namespace BankingPaymentsApp_API.Services
 
         public async Task<Bank> Add(Bank bank)
         {
+            var existing = await _bankRepository.GetAll()
+                        .FirstOrDefaultAsync(b => b.IFSC == bank.IFSC);
+
+            if (existing != null)
+            {
+                throw new InvalidOperationException($"Bank with IFSC '{bank.IFSC}' already exists.");
+            }
+
             return await _bankRepository.Add(bank);
         }
 

@@ -4,6 +4,7 @@ import { SalaryDisbursementService } from '../../../Services/salary-disbursement
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PaymentStatusPipe } from '../../../Pipes/payment-status.pipe';
+import { NotificationService } from '../../../Services/notification.service';
 
 @Component({
   selector: 'app-disbursement-details',
@@ -15,7 +16,7 @@ import { PaymentStatusPipe } from '../../../Pipes/payment-status.pipe';
 export class DisbursementDetailsComponent implements OnInit {
   disbursement!: SalaryDisbursement;
 
-  constructor(private route: ActivatedRoute, private disbursementSvc: SalaryDisbursementService) { }
+  constructor(private route: ActivatedRoute, private notify: NotificationService , private disbursementSvc: SalaryDisbursementService) { }
 
   ngOnInit(): void {
     let disbursementId = Number(this.route.snapshot.paramMap.get('id'));

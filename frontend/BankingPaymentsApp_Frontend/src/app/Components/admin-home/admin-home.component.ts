@@ -12,10 +12,11 @@ import { ClientUser } from '../../Models/ClientUser';
 import { BankUser } from '../../Models/BankUser';
 import { RouterLink } from '@angular/router';
 import { LogService } from '../../Services/log.service';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-admin-home',
-  imports: [NgChartsModule,RouterLink],
+  imports: [NgChartsModule, RouterLink],
   templateUrl: './admin-home.component.html',
   styleUrl: './admin-home.component.css'
 })
@@ -26,7 +27,7 @@ export class AdminHomeComponent implements OnInit {
   bankUser!: BankUser[];
   logs!: any[];
 
-  constructor(private logService: LogService,private auth: AuthService, private userSvc: UserService, private bankSvc: BankService, private clientSvc: ClientRegisterService, private bankUserSvc: BankRegisterService) { }
+  constructor(private logService: LogService, private auth: AuthService, private userSvc: UserService, private bankSvc: BankService, private clientSvc: ClientRegisterService, private bankUserSvc: BankRegisterService, private notify: NotificationService) { }
 
   ngOnInit(): void {
     let id = this.auth.getUserId() ?? 0;

@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { PaymentService } from '../../../Services/payment.service';
 import { Payment } from '../../../Models/Payment';
 import { BankRegisterService } from '../../../Services/bankUser.service';
+import { NotificationService } from '../../../Services/notification.service';
 
 @Component({
   selector: 'app-bank-user-home',
@@ -28,7 +29,8 @@ export class BankUserHomeComponent implements OnInit {
     private auth: AuthService,
     private bankUserSvc: BankRegisterService,
     private clientSvc: ClientRegisterService,
-    private paymentSvc: PaymentService
+    private paymentSvc: PaymentService,
+    private notify: NotificationService 
   ) { }
 
   ngOnInit(): void {

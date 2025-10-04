@@ -82,16 +82,29 @@ namespace BankingPaymentsApp_API.Controllers
             if (dto.Password != dto.ConfirmPassword)
                 return BadRequest("Password and Confirm Password should match!");
 
-            var newBankUser = _mapper.Map<BankUser>(dto);
-            var addedBankUser = await _service.Add(newBankUser);
+            try
+            {
+                var newBankUser = _mapper.Map<BankUser>(dto);
+                var addedBankUser = await _service.Add(newBankUser);
 
-            if (addedBankUser == null)
-                return BadRequest("Unable to add Bank User!");
+                if (addedBankUser == null)
+                    return BadRequest("Unable to add Bank User!");
 
-            var response = _mapper.Map<BankUserResponseDTO>(addedBankUser);
-            _logger.LogInformation("bank user Created!");
-            return Ok(response);
+                var response = _mapper.Map<BankUserResponseDTO>(addedBankUser);
+                _logger.LogInformation("Bank user created!");
+                return Ok(response);
+            }
+            catch (InvalidOperationException ex)  // duplicate email/phone
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while creating bank user.");
+                return StatusCode(500, "An unexpected error occurred.");
+            }
         }
+
 
         // PUT: api/BankUser/{id}
         [HttpPut("{id}")]

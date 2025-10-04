@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BeneficiaryService } from '../../Services/beneficiary.service';
 import { BeneficiaryRegisterComponent } from '../beneficiary-register/beneficiary-register.component';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-beneficiaries',
@@ -36,7 +37,8 @@ export class BeneficiariesComponent implements OnInit {
     private clientSvc: ClientRegisterService,
     private http: HttpClient,
     private beneficiarySvc: BeneficiaryService,
-    private router: Router
+    private router: Router,
+    private notify: NotificationService 
   ) {}
 
   ngOnInit(): void {
@@ -96,13 +98,13 @@ export class BeneficiariesComponent implements OnInit {
     this.beneficiarySvc.updateBeneficiary(this.editingBeneficiary.beneficiaryId, this.editingBeneficiary)
       .subscribe({
         next: () => {
-          alert('Beneficiary updated successfully!');
+          this.notify.success('Beneficiary updated successfully!');
           this.editingBeneficiary = null;
           this.loadBeneficiaries();
         },
         error: (err) => {
           console.error('Error updating beneficiary:', err);
-          alert('Failed to update beneficiary.');
+          this.notify.error('Failed to update beneficiary.');
         }
       });
   }
@@ -111,7 +113,7 @@ export class BeneficiariesComponent implements OnInit {
     if (!confirm('Are you sure you want to delete this beneficiary?')) return;
     this.beneficiarySvc.deleteBeneficiary(id).subscribe({
       next: () => {
-        alert('Beneficiary deleted successfully!');
+        this.notify.error('Beneficiary deleted successfully!');
         this.beneficiaries = this.beneficiaries.filter(b => b.beneficiaryId !== id);
         this.totalRecords = this.beneficiaries.length;
         this.totalPages = Math.ceil(this.totalRecords / this.pageSize);
@@ -120,7 +122,7 @@ export class BeneficiariesComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error deleting beneficiary:', err);
-        alert('Failed to delete beneficiary.');
+        this.notify.error('Failed to delete beneficiary.');
       }
     });
   }

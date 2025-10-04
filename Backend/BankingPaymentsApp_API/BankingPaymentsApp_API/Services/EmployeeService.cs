@@ -78,10 +78,11 @@ namespace BankingPaymentsApp_API.Services
             await _employeeRepository.DeleteById(id);
         }
 
-        public async Task<IEnumerable<Employee>> BulkInsert(List<Employee> employees)
+        public async Task<(IEnumerable<Employee> inserted, List<string> skipped)> BulkInsert(List<Employee> employees)
         {
             return await _employeeRepository.BulkInsert(employees);
         }
+
 
         public async Task<IEnumerable<Employee>> GetEmployeesByClientId(int clientId,
     string? employeeName = null,
