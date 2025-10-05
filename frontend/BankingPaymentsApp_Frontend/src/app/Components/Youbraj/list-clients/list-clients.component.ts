@@ -176,13 +176,12 @@ export class ListClientsComponent implements OnInit {
     const doc = new jsPDF();
     doc.text('Employees Report', 14, 16);
 
-    const tableColumn = ['#', 'User ID', 'Username', 'Email', 'KYC', 'Bank', 'Account Number', 'joining Date'];
+    const tableColumn = ['#', 'Username', 'Email', 'KYC', 'Bank', 'Account Number', 'joining Date'];
     const tableRows: any[] = [];
 
     this.clients.forEach((t, i) => {
       tableRows.push([
         i + 1,
-        t.userId,
         t.userName,
         t.userEmail,
         t.kycVierified,
