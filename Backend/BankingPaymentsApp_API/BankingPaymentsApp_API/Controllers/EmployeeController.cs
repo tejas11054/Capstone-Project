@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 using System.Formats.Asn1;
 using System.Globalization;
@@ -180,6 +181,7 @@ namespace BankingPaymentsApp_API.Controllers
 
 
         [HttpPost("upload")]
+        [Consumes("multipart/form-data")]
         public async Task<IActionResult> UploadEmployees(IFormFile file)
         {
             _logger.LogInformation("UploadEmployees started!");
@@ -216,6 +218,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Employee/update-employee/{clientId}
         [HttpPost("update-employee/{clientId}")]
+        [Consumes("multipart/form-data")]
         public async Task<IActionResult> UploadUpdateEmployeesByClient(int clientId, IFormFile file)
         {
             if (file == null || file.Length == 0)

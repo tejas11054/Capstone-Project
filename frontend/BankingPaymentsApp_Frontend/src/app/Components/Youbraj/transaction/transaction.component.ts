@@ -18,7 +18,7 @@ import { NotificationService } from '../../../Services/notification.service';
 
 @Component({
   selector: 'app-transaction',
-  imports: [CommonModule,TransactionTypePipe,ReactiveFormsModule, DateFilterComponent, AmountFilterComponent, AccountNumberFilterComponent, IdFilterComponent, NameFilterComponent, StatusFilterComponent],
+  imports: [CommonModule, TransactionTypePipe, ReactiveFormsModule, DateFilterComponent, AmountFilterComponent, AccountNumberFilterComponent, IdFilterComponent, NameFilterComponent, StatusFilterComponent],
   templateUrl: './transaction.component.html',
   styleUrl: './transaction.component.css'
 })
@@ -26,7 +26,7 @@ export class TransactionComponent {
   transactions: Transaction[] = [];
   filters: any = {};
   totalTransactionAmount: number = 0;
-  userId!:number;
+  userId!: number;
   role!: string | null;
   statusOptions = [
     { id: 1, name: 'Credit' },
@@ -36,20 +36,26 @@ export class TransactionComponent {
 
   clientOptions: { id: number, name: string }[] = [];
 
-  constructor(private auth:AuthService, private transactionSvc: TransactionService,private clientSvc:ClientRegisterService,private notify: NotificationService) { }
+  constructor(private auth: AuthService, private transactionSvc: TransactionService, private clientSvc: ClientRegisterService, private notify: NotificationService) { }
 
   ngOnInit() {
     const user = this.auth.getLoggedInUser();
     const role = this.auth.getUserRole();
     console.log(role);
-    if(role == "CLIENT_USER"){
+    if (role == "CLIENT_USER") {
       console.log("helo")
       console.log(user?.userId)
-      this.filters.clientId =  user?.userId;
+      this.filters.clientId = user?.userId;
+      this.role = role;
+    }
+
+    if(role == "BANK_USER"){
+      console.log(user?.userId)
+      this.filters.bankuserId = user?.userId;
       this.role = role;
     }
     this.role = role;
-    this.userId = this.auth.getUserId()??0;
+    this.userId = this.auth.getUserId() ?? 0;
     // this.filters.clientId = 2;
     const params = new URLSearchParams(this.filters).toString();
     this.fetchTransactions(params);
@@ -60,8 +66,8 @@ export class TransactionComponent {
     this.transactionSvc.getAllTransaction(params).subscribe((data) => {
       console.log(data);
       this.transactions = data;
-      let credit = data.filter(t=>t.transactionTypeId==1).reduce((sum, t) => sum + t.amount, 0);
-      let debit = data.filter(t=>t.transactionTypeId==2).reduce((sum, t) => sum + t.amount, 0);
+      let credit = data.filter(t => t.transactionTypeId == 1).reduce((sum, t) => sum + t.amount, 0);
+      let debit = data.filter(t => t.transactionTypeId == 2).reduce((sum, t) => sum + t.amount, 0);
       this.totalTransactionAmount = credit - debit;
     },
       (error) => {
@@ -71,15 +77,15 @@ export class TransactionComponent {
     );
   }
 
-  fetchClients(){
-    this.clientSvc.getClients("").subscribe((data)=>{
+  fetchClients() {
+    this.clientSvc.getClients("").subscribe((data) => {
       console.log(data);
       this.clientOptions = data.map(c => ({
-      id: c.userId,      // or whatever your ID field is
-      name: c.userName   // or whatever your display field is
-    }));
+        id: c.userId,      // or whatever your ID field is
+        name: c.userName   // or whatever your display field is
+      }));
 
-    console.log(this.clientOptions);
+      console.log(this.clientOptions);
     })
   }
 
@@ -154,7 +160,7 @@ export class TransactionComponent {
     this.fetchTransactions(params);
   }
 
-  onClientFilter(status: { paymentStatusId: string }){
+  onClientFilter(status: { paymentStatusId: string }) {
     this.filters.clientId = status.paymentStatusId;
 
     const params = new URLSearchParams(this.filters).toString();
@@ -170,14 +176,16 @@ export class TransactionComponent {
     const doc = new jsPDF();
     doc.text('Transactions Report', 14, 16);
 
-    const tableColumn = ['#', 'Transaction ID', 'Type', 'Amount', 'Date'];
+    const tableColumn = ['#', 'Account','Mode', 'Type', 'To/From', 'Amount', 'DateTime'];
     const tableRows: any[] = [];
 
     this.transactions.forEach((t, i) => {
       tableRows.push([
         i + 1,
-        t.transactionId,
-        t.transactionTypeId,
+        `${t.account?.accountNumber}`,
+        t.paymentId == null ? t.salaryDisbursementId == null ? "SELF" : "SALARY" : "PAYMENT",
+        t.transactionTypeId == 1 ? "CREDIT" : "DEBIT",
+        t.toFrom,
         t.amount,
         new Date(t.createdAt).toLocaleString()
       ]);
@@ -192,7 +200,7 @@ export class TransactionComponent {
     doc.save(`Transactions_User_${this.userId}.pdf`);
   }
 
-  
+
 
   // getEmployeeAccountByTXnId(id:number){
   //   let detail = this.transactions[id].salaryDisbursement?.disbursementDetails?.find(d=>d.transactionId==id);
@@ -201,7 +209,7 @@ export class TransactionComponent {
   //   }
   // }
 
-  getBeneficiaryFromTxn(txn:Transaction){
-    
+  getBeneficiaryFromTxn(txn: Transaction) {
+
   }
 }

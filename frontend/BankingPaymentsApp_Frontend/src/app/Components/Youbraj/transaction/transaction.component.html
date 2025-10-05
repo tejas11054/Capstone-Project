@@ -46,10 +46,9 @@
             <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
                 <thead class="table-light">
                     <tr>
-                        <th>ID</th>
+                        <th>#</th>
                         <th>Account</th>
-                        <th>Payment</th>
-                        <th>Disbursement</th>
+                        <th>Mode</th>
                         <th>To/From</th>
                         <th>Type</th>
                         <th>Amount</th>
@@ -57,16 +56,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let txn of transactions">
-                        <td class="text-truncate">{{ txn.transactionId }}</td>
+                    <tr *ngFor="let txn of transactions; let i=index">
+                        <td class="text-truncate">{{ i+1 }}</td>
                         <td class="text-truncate" style="max-width: 160px;">
                             {{ txn.account?.accountNumber }} - {{ txn.account?.clientUser?.userName }}
                         </td>
                         <td class="text-truncate" style="max-width: 140px;">
-                            {{ txn.paymentId || '-' }}
-                        </td>
-                        <td class="text-truncate" style="max-width: 140px;">
-                            {{ txn.salaryDisbursementId || '-' }}
+                            {{ txn.paymentId == null ? txn.salaryDisbursementId == null ? "SELF" : "SALARY" : "PAYMENT" }}
                         </td>
                         <td class="text-truncate" style="max-width: 140px;">
                             {{ txn.toFrom ||'-' }}

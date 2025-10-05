@@ -30,6 +30,7 @@ export class ListClientsComponent implements OnInit {
   selectedClient!: any;
   approved!: number;
   pending!: number;
+  deleted!:number;
 
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
 
@@ -52,8 +53,9 @@ export class ListClientsComponent implements OnInit {
     this.clientSvc.getClients(params).subscribe((data) => {
       console.log(data);
       this.clients = data;
-      this.pending = data.filter(d => d.kycVierified == false).length;
+      this.pending = data.filter(d => d.kycVierified == false && d.account==null).length;
       this.approved = data.filter(d => d.kycVierified == true).length;
+      this.deleted = data.filter(d => d.kycVierified == false && d.account!=null).length;
     },
       (error) => {
         console.log(error);

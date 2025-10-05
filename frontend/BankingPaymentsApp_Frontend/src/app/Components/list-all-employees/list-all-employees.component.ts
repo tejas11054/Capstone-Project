@@ -237,15 +237,15 @@ export class ListAllEmployeesComponent implements OnInit {
     const doc = new jsPDF();
     doc.text('Employees Report', 14, 16);
 
-    const tableColumn = ['#', 'Transaction ID', 'Type', 'Amount', 'Date'];
+    const tableColumn = ['#','Client Name', 'Employee Name', 'Active Status', 'Account Number', 'Salary'];
     const tableRows: any[] = [];
 
     this.employees.forEach((t, i) => {
       tableRows.push([
         i + 1,
-        t.employeeId,
+        t.clientUser?.userName,
         t.employeeName,
-        t.isActive,
+        t.isActive ? "Active":"In-Active",
         t.accountNumber,
         t.salary
       ]);

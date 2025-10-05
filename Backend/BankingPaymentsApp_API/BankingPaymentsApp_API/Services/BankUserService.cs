@@ -98,9 +98,9 @@ namespace BankingPaymentsApp_API.Services
             await _bankUserRepository.DeleteById(id);
         }
 
-        public async Task<BankUser?> GetRandomBankUser()
+        public async Task<BankUser?> GetRandomBankUser(int bankId)
         {
-            var bankUsers = _bankUserRepository.GetAll();
+            var bankUsers = _bankUserRepository.GetAll().Where(u=>u.BankId.Equals(bankId));
             if (bankUsers == null || bankUsers.Count() == 0) return null;
             var random = new Random();
             int index = random.Next(bankUsers.Count());

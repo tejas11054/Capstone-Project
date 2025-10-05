@@ -11,10 +11,12 @@ namespace BankingPaymentsApp_API.Services
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IClientUserRepository _userRepository;
 
-        public EmployeeService(IEmployeeRepository employeeRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository, IClientUserRepository clientUserRepository)
         {
             _employeeRepository = employeeRepository;
+            _userRepository = clientUserRepository;
         }
         public async Task<IEnumerable<Employee>> GetAll(
             int? clientId,
@@ -101,7 +103,7 @@ namespace BankingPaymentsApp_API.Services
             if (file == null || file.Length == 0)
                 return null;
 
-            var employeeDtos = new List<EmployeeDTO>();
+            var employeeCSVDto = new List<EmployeeCSVDto>();
 
             using (var stream = new StreamReader(file.OpenReadStream()))
             using (var csv = new CsvReader(stream, new CsvHelper.Configuration.CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture)
@@ -113,7 +115,7 @@ namespace BankingPaymentsApp_API.Services
             {
                 try
                 {
-                    employeeDtos = csv.GetRecords<EmployeeDTO>().ToList();
+                    employeeCSVDto = csv.GetRecords<EmployeeCSVDto>().ToList();
                 }
                 catch (Exception ex)
                 {
@@ -122,7 +124,7 @@ namespace BankingPaymentsApp_API.Services
             }
 
             // Validate DTOs
-            foreach (var dto in employeeDtos)
+            foreach (var dto in employeeCSVDto)
             {
                 var context = new ValidationContext(dto, null, null);
                 var results = new List<ValidationResult>();
@@ -130,6 +132,25 @@ namespace BankingPaymentsApp_API.Services
                 {
                     throw new Exception($"Validation failed for Employee: {dto.EmployeeName}, Errors: {string.Join(", ", results.Select(r => r.ErrorMessage))}");
                 }
+            }
+
+            var employeeDtos = new List<EmployeeDTO>();
+
+            foreach (var csvDto in employeeCSVDto)
+            {
+                var client = _userRepository.GetAll().FirstOrDefault(c => c.UserEmail == csvDto.ClientEmail);
+                if (client == null)
+                    throw new Exception($"Client with email '{csvDto.ClientEmail}' not found.");
+
+                employeeDtos.Add(new EmployeeDTO
+                {
+                    ClientId = client.UserId,
+                    EmployeeName = csvDto.EmployeeName,
+                    AccountNumber = csvDto.AccountNumber,
+                    BankName = csvDto.BankName,
+                    IFSC = csvDto.IFSC,
+                    Salary = csvDto.Salary
+                });
             }
 
             return employeeDtos;

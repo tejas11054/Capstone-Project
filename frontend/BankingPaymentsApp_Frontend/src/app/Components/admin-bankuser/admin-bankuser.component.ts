@@ -43,7 +43,7 @@ export class AdminComponent implements OnInit {
 
   statusOptions!: { id: number, name: string }[];
 
-  constructor(private bankService: BankRegisterService, private bankSvc: BankService, private notify: NotificationService ) { }
+  constructor(private bankService: BankRegisterService, private bankSvc: BankService, private notify: NotificationService) { }
 
   ngOnInit(): void {
     const params = new URLSearchParams(this.filters).toString();
@@ -188,6 +188,8 @@ export class AdminComponent implements OnInit {
     this.bankService.approveBankUser(bankUser.userId, bankUser).subscribe((data) => {
       console.log(data);
       this.notify.success("bankUser sucessfully approved");
+      const params = new URLSearchParams(this.filters).toString();
+      this.fetchBankUsers(params);
     },
       (error) => {
         console.log(error);

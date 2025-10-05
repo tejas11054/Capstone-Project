@@ -30,7 +30,7 @@
         <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
           <thead class="table-light">
             <tr>
-              <th>ID</th>
+              <th>#</th>
               <th>Beneficiary Name</th>
               <th>Account Number</th>
               <th>Bank Name</th>
@@ -40,8 +40,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let beneficiary of beneficiaries">
-              <td class="text-truncate">{{ beneficiary.beneficiaryId }}</td>
+            <tr *ngFor="let beneficiary of beneficiaries; let i=index">
+              <td class="text-truncate">{{ i+1 }}</td>
               <td class="text-truncate" style="max-width: 160px;">
                 {{ beneficiary.beneficiaryName }}
               </td>

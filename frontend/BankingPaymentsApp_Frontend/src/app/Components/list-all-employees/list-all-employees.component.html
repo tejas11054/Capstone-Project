@@ -37,7 +37,7 @@
             <th>
               <input type="checkbox" [(ngModel)]="selectAll" (change)="selectAllEmployees($event)" />
             </th>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Employee Name</th>
             <th>Account Number</th>
             <th>Bank Name</th>
@@ -53,7 +53,7 @@
               <input *ngIf="employee.isActive == true" type="checkbox" [checked]="isSelected(employee)"
                 (change)="onEmployeeSelect(employee,$event)" />
             </td>
-            <td class="text-truncate">{{ employee.employeeId }}</td>
+            <!-- <td class="text-truncate">{{ employee.employeeId }}</td> -->
             <td class="text-truncate" style="max-width: 160px;">
               {{ employee.employeeName }}
             </td>

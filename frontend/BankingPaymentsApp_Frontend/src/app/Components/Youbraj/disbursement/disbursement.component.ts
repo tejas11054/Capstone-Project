@@ -42,7 +42,7 @@ export class DisbursementComponent implements OnInit {
     { id: 3, name: 'pending' }
   ];
 
-  constructor(private auth: AuthService, private notify: NotificationService , private disbursementSvc: SalaryDisbursementService) { }
+  constructor(private auth: AuthService, private notify: NotificationService, private disbursementSvc: SalaryDisbursementService) { }
 
   ngOnInit(): void {
     const user = this.auth.getLoggedInUser();
@@ -192,16 +192,16 @@ export class DisbursementComponent implements OnInit {
     const doc = new jsPDF();
     doc.text('Disbursements Report', 14, 16);
 
-    const tableColumn = ['#', 'Disbursement ID', 'Client Name', 'Total Amount', 'Status', "Date"];
+    const tableColumn = ['#', 'Client Name', 'Total Amount', 'Status', 'Employees', "Date"];
     const tableRows: any[] = [];
 
     this.disbursements.forEach((t, i) => {
       tableRows.push([
         i + 1,
-        t.clientId,
         t.clientUser?.userFullName,
         t.totalAmount,
-        t.disbursementStatusId,
+        t.disbursementStatusId == 3 ? "PENDING" : t.disbursementStatusId == 1 ? "APPROVED" : "DECLINED",
+        t.employees?.length == 0 ? t.clientUser?.employees?.length : t.employees?.length,
         new Date(t.disbursementDate).toLocaleString()
       ]);
     });

@@ -195,16 +195,15 @@ export class ListPaymentComponent implements OnInit {
     const doc = new jsPDF();
     doc.text('Payments Report', 14, 16);
 
-    const tableColumn = ['#', 'Payment ID', 'Client Name', 'Paid To', 'status', 'amount', 'createdAt'];
+    const tableColumn = ['#', 'Client Name', 'Paid To', 'status', 'amount', 'createdAt'];
     const tableRows: any[] = [];
 
     this.payments.forEach((t, i) => {
       tableRows.push([
         i + 1,
-        t.paymentId,
         t.payerAccount?.clientUser?.userFullName,
         t.payeeAccountNumber,
-        t.paymentStatus,
+        t.paymentStatusId==3?"PENDING":t.paymentStatusId == 1?"APPROVED":"REJECTED",
         t.amount,
         new Date(t.createdAt).toLocaleString()
       ]);

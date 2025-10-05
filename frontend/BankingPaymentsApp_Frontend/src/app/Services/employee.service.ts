@@ -24,7 +24,7 @@ export class EmployeeService {
     return this.http.get<Employee[]>(this.baseUrl + `?${queryParams}`);
   }
 
-  getEmployeeById(id:number):Observable<Employee>{
+  getEmployeeById(id: number): Observable<Employee> {
     return this.http.get<Employee>(this.baseUrl + `/${id}`);
   }
 
@@ -46,7 +46,7 @@ export class EmployeeService {
   uploadUpdateCSVByClient(file: File, clientId: number): Observable<any> {
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.post(`${this.baseUrl}/update-employee/${clientId}`, formData);
+    return this.http.post(`${this.baseUrl}/update-employee/${clientId}`, formData, { responseType: 'text' });
   }
 
 

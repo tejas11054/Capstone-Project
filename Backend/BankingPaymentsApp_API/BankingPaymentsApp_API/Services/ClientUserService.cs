@@ -91,13 +91,23 @@ namespace BankingPaymentsApp_API.Services
             }
 
             // Assign Bank User
-            BankUser? bankUser = await _bankUserService.GetRandomBankUser();
+            BankUser? bankUser = await _bankUserService.GetRandomBankUser(user.BankId);
             if (bankUser == null) user.BankUserId = null;
             else user.BankUserId = bankUser.UserId;
 
             user.Password = _passwordHasher.HashPassword(user, user.Password);
 
-            return await _clientUserRepository.Add(user);
+            ClientUser addedUser = await _clientUserRepository.Add(user);
+
+            string subject = "Client User awaits your Action";
+            string body =
+                $"""
+                A Client User With Name: {addedUser.UserName} has applied for your bank.
+                Please carry out the desired Action.
+                """;
+            await _emailService.SendEmailToClientAsync(bankUser.UserId, subject, body);
+
+            return addedUser;
         }
 
 

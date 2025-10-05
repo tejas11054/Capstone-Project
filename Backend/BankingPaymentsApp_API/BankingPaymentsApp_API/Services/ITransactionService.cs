@@ -8,6 +8,7 @@ namespace BankingPaymentsApp_API.Services
 
         public Task<IEnumerable<Transaction>> GetAll(
             int? clientId,
+            int? bankuserId,
             int? transactionId,
             int? transactionTypeId,
             DateTime? createdFrom,

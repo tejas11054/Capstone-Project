@@ -134,13 +134,12 @@ export class BeneficiaryComponent {
     const doc = new jsPDF();
     doc.text('Beneficiaries Report', 14, 16);
 
-    const tableColumn = ['#', 'ClientID', 'AccountNumber', 'BeneficiaryName', 'Bank', 'IFSC'];
+    const tableColumn = ['#', 'AccountNumber', 'BeneficiaryName', 'Bank', 'IFSC'];
     const tableRows: any[] = [];
 
     this.beneficiaries.forEach((t, i) => {
       tableRows.push([
         i + 1,
-        t.clientId,
         t.accountNumber,
         t.beneficiaryName,
         t.bankName,

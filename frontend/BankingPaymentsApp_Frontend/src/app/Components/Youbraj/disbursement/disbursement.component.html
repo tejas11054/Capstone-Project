@@ -56,7 +56,7 @@
             <table class="table table-hover align-middle small mb-0" style="min-width: 1000px;">
                 <thead class="table-light">
                     <tr>
-                        <th>ID</th>
+                        <th>#</th>
                         <th>Client Name</th>
                         <th>Total Amount</th>
                         <th>Disbursement Date</th>
@@ -67,8 +67,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let disb of disbursements">
-                        <td class="text-truncate">{{ disb.salaryDisbursementId }}</td>
+                    <tr *ngFor="let disb of disbursements; let i=index">
+                        <td class="text-truncate">{{ i+1}}</td>
                         <td class="text-truncate" style="max-width: 160px;">
                             {{ disb.clientUser?.userName }}
                         </td>
@@ -88,10 +88,11 @@
                         </td>
                         <td>{{ disb.employees?.length || disb.clientUser?.employees?.length }}</td>
                         <td>
-                            <button  *ngIf="disb.disbursementStatusId == 3 && role == 'BANK_USER'" class="btn btn-sm btn-outline-success me-1"
+                            <button *ngIf="disb.disbursementStatusId == 3 && role == 'BANK_USER'"
+                                class="btn btn-sm btn-outline-success me-1"
                                 (click)="approveDisbursement(disb)">Approve</button>
-                            <button *ngIf="disb.disbursementStatusId == 3 && role == 'BANK_USER'" class="btn btn-sm btn-outline-danger me-1"
-                                (click)="openFormModal(disb)">Reject</button>
+                            <button *ngIf="disb.disbursementStatusId == 3 && role == 'BANK_USER'"
+                                class="btn btn-sm btn-outline-danger me-1" (click)="openFormModal(disb)">Reject</button>
                             <button class="btn btn-sm btn-outline-primary"
                                 [routerLink]="['/disbursements', disb.salaryDisbursementId]">View</button>
                         </td>

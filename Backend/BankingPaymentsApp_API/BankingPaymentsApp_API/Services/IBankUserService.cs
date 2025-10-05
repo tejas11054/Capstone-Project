@@ -21,7 +21,7 @@ namespace BankingPaymentsApp_API.Services
         Task<BankUser?> GetById(int id);
         Task<BankUser?> Update(BankUser bankUser);
         Task DeleteById(int id);
-        public Task<BankUser?> GetRandomBankUser();
+        public Task<BankUser?> GetRandomBankUser(int bankId);
         public Task<BankUser> ApproveBankUser(int id);
         public Task<BankUser> RejectBankUser(int id,RejectDTO reject);
     }

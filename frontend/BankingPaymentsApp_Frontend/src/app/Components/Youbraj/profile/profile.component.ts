@@ -10,13 +10,14 @@ import { AccountService } from '../../../Services/account.service';
 import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CheckoutComponent } from '../../checkout/checkout.component';
 import { NotificationService } from '../../../Services/notification.service';
+import { DocumentPipe } from '../../../Pipes/document.pipe';
 declare var bootstrap: any;
 
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule, CheckoutComponent],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, CheckoutComponent,DocumentPipe],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

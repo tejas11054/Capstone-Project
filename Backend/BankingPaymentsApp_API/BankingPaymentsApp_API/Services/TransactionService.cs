@@ -16,6 +16,7 @@ namespace BankingPaymentsApp_API.Services
 
         public async Task<IEnumerable<Transaction>> GetAll(
             int? clientId,
+            int? bankuserId,
             int? transactionId,
             int? transactionTypeId,
             DateTime? createdFrom,
@@ -30,6 +31,9 @@ namespace BankingPaymentsApp_API.Services
 
             if (clientId.HasValue)
                 query = query.Where(t => t.Account.ClientId == clientId.Value);
+
+            if (bankuserId.HasValue)
+                query = query.Where(t => t.Account.ClientUser.BankUserId == bankuserId.Value);
 
             if (transactionId.HasValue)
                 query = query.Where(t => t.TransactionId == transactionId.Value);

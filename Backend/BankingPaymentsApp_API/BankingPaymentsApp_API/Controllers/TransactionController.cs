@@ -23,6 +23,7 @@ namespace BankingPaymentsApp_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll(
             [FromQuery] int? clientId,
+            [FromQuery] int? bankuserId,
             [FromQuery] int? transactionId,
             [FromQuery] int? transactionTypeId,
             [FromQuery] double? minAmount,
@@ -34,7 +35,7 @@ namespace BankingPaymentsApp_API.Controllers
             [FromQuery] int? pageNumber,
             [FromQuery] int? pageSize)
         {
-            var response = await _transactionService.GetAll(clientId, transactionId, transactionTypeId, createdFrom, createdTo, maxAmount, minAmount, toFrom, pageNumber, pageSize);
+            var response = await _transactionService.GetAll(clientId, bankuserId, transactionId, transactionTypeId, createdFrom, createdTo, maxAmount, minAmount, toFrom, pageNumber, pageSize);
 
             if (!response.Any())
                 return Ok(response);

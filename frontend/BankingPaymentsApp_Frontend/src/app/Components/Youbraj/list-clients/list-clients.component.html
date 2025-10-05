@@ -18,6 +18,10 @@
             <div class="text-muted small">Approved</div>
             <div class="fw-bold fs-5 text-success">{{approved ?? 0}}</div>
         </div>
+        <div class="bg-white p-3 shadow-sm rounded border w-100" style="max-width: 200px;">
+            <div class="text-muted small">Deleted</div>
+            <div class="fw-bold fs-5 text-danger">{{deleted ?? 0}}</div>
+        </div>
     </div>
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="fw-bold mb-0">ALL CLIENTS</h5>
@@ -47,7 +51,7 @@
                     <th>Bank Name</th>
                     <th>KYC Verified</th>
                     <th>Documents</th>
-                    <th>Actions</th>
+                    <th *ngIf="pending!=0">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,8 +65,8 @@
                     <td>{{ client.bank?.bankName || '-' }}</td>
                     <td>
                         <span class="badge"
-                            [ngClass]="client.kycVierified ? 'bg-success text-light' : 'bg-warning text-dark'">
-                            {{ client.kycVierified ? 'Yes' : 'No' }}
+                            [ngClass]="client.kycVierified ? 'bg-success text-light' : client.account == null ? 'bg-warning text-dark':'bg-danger text-dark'">
+                            {{ client.kycVierified ? 'Yes' : client.account==null? 'No' : "Deleted" }}
                         </span>
                     </td>
                     <td>
@@ -71,7 +75,7 @@
                             View Documents
                         </a>
                     </td>
-                    <td *ngIf="!client.kycVierified">
+                    <td *ngIf="!client.kycVierified && client.account == null">
                         <button class="btn btn-sm btn-info me-1" (click)="approveClient(client)">Approve</button>
                         <button class="btn btn-sm btn-warning me-1" (click)="openFormModal(client)">Reject</button>
                     </td>
